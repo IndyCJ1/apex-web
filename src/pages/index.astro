@@ -1,0 +1,322 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const packages = [
+  {
+    name: "Starter",
+    price: "$1,500",
+    monthly: "$50/mo",
+    description: "Perfect for a clean, modern presence online.",
+    features: [
+      "5-page custom website",
+      "Mobile responsive design",
+      "Contact form",
+      "Basic on-page SEO",
+      "Hosting & SSL included",
+      "1 hour of edits per month",
+    ],
+    highlight: false,
+  },
+  {
+    name: "Plus",
+    price: "$3,500",
+    monthly: "$125/mo",
+    description: "Best for businesses that need to update their site.",
+    features: [
+      "Everything in Starter",
+      "Up to 10 pages",
+      "Blog or CMS for easy editing",
+      "Google Business setup",
+      "Monthly content updates",
+      "Analytics dashboard",
+    ],
+    highlight: true,
+  },
+  {
+    name: "Pro",
+    price: "$6,000+",
+    monthly: "$300/mo",
+    description: "For growing businesses ready to scale online.",
+    features: [
+      "Everything in Plus",
+      "Online booking or e-commerce",
+      "Custom integrations",
+      "Priority support",
+      "Monthly performance reports",
+      "Quarterly strategy calls",
+    ],
+    highlight: false,
+  },
+];
+---
+
+<Layout>
+  <!-- Nav -->
+  <nav class="absolute top-0 left-0 right-0 z-10 px-6 py-6">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-xl font-bold tracking-tight">Cuesseler Web</a>
+      <div class="hidden md:flex gap-8 text-sm text-slate-300">
+        <a href="#services" class="hover:text-white transition">Services</a>
+        <a href="#packages" class="hover:text-white transition">Packages</a>
+        <a href="#about" class="hover:text-white transition">About</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </div>
+      <a
+        href="#contact"
+        class="hidden md:inline-block bg-white text-slate-950 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-slate-200 transition"
+      >
+        Get a Quote
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative min-h-screen flex items-center px-6 pt-24 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950"></div>
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 50%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139,92,246,0.15) 0%, transparent 50%);"></div>
+
+    <div class="relative max-w-6xl mx-auto w-full">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-300 px-4 py-1.5 rounded-full text-sm mb-6">
+          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          Now booking projects in Gainesville
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.05]">
+          Websites that
+          <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            actually work
+          </span>
+          for your business.
+        </h1>
+
+        <p class="text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed">
+          Custom-built websites for local businesses. Fast, mobile-friendly,
+          and affordable. I handle the tech so you can run your business.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="#contact"
+            class="bg-white text-slate-950 px-7 py-3.5 rounded-lg font-semibold hover:bg-slate-200 transition text-center"
+          >
+            Get a Free Quote
+          </a>
+          <a
+            href="#packages"
+            class="border border-slate-700 px-7 py-3.5 rounded-lg font-semibold hover:bg-slate-800 transition text-center"
+          >
+            View Packages
+          </a>
+        </div>
+
+        <div class="mt-16 flex flex-wrap gap-8 text-sm text-slate-400">
+          <div>
+            <div class="text-2xl font-bold text-white">7 days</div>
+            <div>Average launch time</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white">100%</div>
+            <div>Mobile responsive</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white">A+</div>
+            <div>Page speed scores</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="px-6 py-24 bg-slate-900">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">What I Do</h2>
+      <p class="text-slate-400 text-lg mb-16 max-w-2xl">
+        Everything you need to get your business online and keep it running smoothly.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition">
+          <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Custom Web Design</h3>
+          <p class="text-slate-400">Built from scratch for your brand. No templates, no cookie-cutter layouts.</p>
+        </div>
+
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8 hover:border-purple-500/50 transition">
+          <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Lightning Fast Hosting</h3>
+          <p class="text-slate-400">Your site loads in under a second. Hosting, SSL, and backups all handled.</p>
+        </div>
+
+        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8 hover:border-green-500/50 transition">
+          <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-5">
+            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Ongoing Maintenance</h3>
+          <p class="text-slate-400">Updates, security patches, and edits — all included in your monthly plan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Packages -->
+  <section id="packages" class="px-6 py-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Simple, Honest Pricing</h2>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+          Pick a package that fits your business. No hidden fees, no upsells.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {packages.map((pkg) => (
+          <div class={`relative rounded-2xl p-8 ${pkg.highlight ? 'bg-gradient-to-br from-blue-600 to-purple-600 border-0' : 'bg-slate-900 border border-slate-800'}`}>
+            {pkg.highlight && (
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-slate-950 text-xs font-bold px-3 py-1 rounded-full">
+                MOST POPULAR
+              </div>
+            )}
+            <h3 class="text-2xl font-bold mb-2">{pkg.name}</h3>
+            <p class={`text-sm mb-6 ${pkg.highlight ? 'text-blue-100' : 'text-slate-400'}`}>{pkg.description}</p>
+
+            <div class="mb-6">
+              <div class="flex items-baseline gap-2">
+                <span class="text-4xl font-bold">{pkg.price}</span>
+                <span class={`text-sm ${pkg.highlight ? 'text-blue-100' : 'text-slate-500'}`}>upfront</span>
+              </div>
+              <div class={`text-sm mt-1 ${pkg.highlight ? 'text-blue-100' : 'text-slate-400'}`}>
+                + {pkg.monthly} hosting & maintenance
+              </div>
+            </div>
+
+            <ul class="space-y-3 mb-8">
+              {pkg.features.map((feature) => (
+                <li class="flex items-start gap-3 text-sm">
+                  <svg class={`w-5 h-5 flex-shrink-0 mt-0.5 ${pkg.highlight ? 'text-white' : 'text-green-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="#contact"
+              class={`block text-center w-full py-3 rounded-lg font-semibold transition ${pkg.highlight ? 'bg-white text-slate-950 hover:bg-slate-100' : 'bg-slate-800 hover:bg-slate-700'}`}
+            >
+              Get Started
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="px-6 py-24 bg-slate-900">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold mb-8">About</h2>
+      <div class="prose prose-invert prose-lg max-w-none">
+        <p class="text-xl text-slate-300 leading-relaxed mb-6">
+          I'm a developer based in Gainesville, building modern websites for
+          local businesses who deserve better than a free template.
+        </p>
+        <p class="text-slate-400 leading-relaxed mb-6">
+          Most small businesses don't need a 6-figure agency. They need a
+          working website, fair pricing, and someone who picks up the phone.
+          That's what I do.
+        </p>
+        <p class="text-slate-400 leading-relaxed">
+          Every site I build is custom, fast, and easy to update. No fluff,
+          no jargon, no surprise invoices.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="px-6 py-24">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center">Let's Talk</h2>
+      <p class="text-slate-400 text-lg mb-12 text-center">
+        Tell me about your business. I'll get back to you within 24 hours.
+      </p>
+
+      <form
+        action="https://formspree.io/f/mzdojrav"
+        method="POST"
+        class="space-y-5"
+      >
+        <div>
+          <label for="name" class="block text-sm font-medium mb-2">Your Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium mb-2">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition"
+          />
+        </div>
+
+        <div>
+          <label for="business" class="block text-sm font-medium mb-2">Business Name</label>
+          <input
+            type="text"
+            id="business"
+            name="business"
+            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition"
+          />
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-medium mb-2">Tell me about your project</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition resize-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold py-3.5 rounded-lg transition"
+        >
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 px-6 py-10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+      <div>© 2026 Cuesseler Web. All rights reserved.</div>
+      <div>Built in Gainesville.</div>
+    </div>
+  </footer>
+</Layout>
