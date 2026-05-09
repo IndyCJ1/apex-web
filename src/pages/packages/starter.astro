@@ -71,15 +71,15 @@ const features = [
           { label: "Visit", url: "https://hogtown-smoke.pages.dev/#visit" },
         ].map((page, i) => (
           <button
+            type="button"
             class="demo-tab px-4 py-2 text-xs font-semibold rounded-full border transition-all duration-200"
             style={i === 0 ? "background: #FF4500; color: white; border-color: #FF4500;" : "background: white; color: #737373; border-color: #E5E5E5;"}
             data-url={page.url}
-            onclick="loadDemo(this)"
           >
             {page.label}
           </button>
         ))}
-        <a href="https://hogtown-smoke.pages.dev" target="_blank" rel="noopener"
+        <a href="https://hogtown-smoke.pages.dev" target="_blank" rel="noopener noreferrer"
           class="ml-auto flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
           Open full site
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -97,21 +97,33 @@ const features = [
   </section>
 
   <script is:inline>
-    function loadDemo(btn) {
-      var url = btn.dataset.url || '';
-      var frame = document.getElementById('demo-frame');
-      var display = document.getElementById('demo-url-display');
-      if (frame) frame.src = url;
-      if (display) display.textContent = url.replace('https://', '');
-      document.querySelectorAll('.demo-tab').forEach(function(t) {
-        t.style.background = 'white';
-        t.style.color = '#737373';
-        t.style.borderColor = '#E5E5E5';
+    (function() {
+      var allowed = [
+        'https://hogtown-smoke.pages.dev',
+        'https://hogtown-smoke.pages.dev/#menu',
+        'https://hogtown-smoke.pages.dev/#about',
+        'https://hogtown-smoke.pages.dev/#visit'
+      ];
+      var tabs = document.querySelectorAll('.demo-tab');
+      tabs.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var url = btn.getAttribute('data-url') || '';
+          if (allowed.indexOf(url) === -1) return;
+          var frame = document.getElementById('demo-frame');
+          var display = document.getElementById('demo-url-display');
+          if (frame) frame.setAttribute('src', url);
+          if (display) display.textContent = url.replace('https://', '');
+          tabs.forEach(function(t) {
+            t.style.background = 'white';
+            t.style.color = '#737373';
+            t.style.borderColor = '#E5E5E5';
+          });
+          btn.style.background = '#FF4500';
+          btn.style.color = 'white';
+          btn.style.borderColor = '#FF4500';
+        });
       });
-      btn.style.background = '#FF4500';
-      btn.style.color = 'white';
-      btn.style.borderColor = '#FF4500';
-    }
+    })();
   </script>
 
   <section class="px-6 py-16 bg-accent">

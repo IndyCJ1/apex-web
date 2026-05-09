@@ -69,15 +69,15 @@ const starterIncludes = ["5-page site", "Mobile responsive", "Contact form", "SE
           { label: "Blog", url: "/demos/plus/blog" },
         ].map((page, i) => (
           <button
+            type="button"
             class="plus-tab px-4 py-2 text-xs font-semibold rounded-full border transition-all duration-200"
             style={i === 0 ? "background: #FF4500; color: white; border-color: #FF4500;" : "background: white; color: #737373; border-color: #E5E5E5;"}
             data-url={page.url}
-            onclick="loadPlusDemo(this)"
           >
             {page.label}
           </button>
         ))}
-        <a href="/demos/plus" target="_blank" rel="noopener"
+        <a href="/demos/plus" target="_blank" rel="noopener noreferrer"
           class="ml-auto flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline">
           Open full site
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -93,21 +93,28 @@ const starterIncludes = ["5-page site", "Mobile responsive", "Contact form", "SE
       </div>
 
       <script is:inline>
-        function loadPlusDemo(btn) {
-          var url = btn.dataset.url || '';
-          var frame = document.getElementById('plus-frame');
-          var display = document.getElementById('plus-url-display');
-          if (frame) frame.src = url;
-          if (display) display.textContent = 'cuesseler-web.pages.dev' + url;
-          document.querySelectorAll('.plus-tab').forEach(function(t) {
-            t.style.background = 'white';
-            t.style.color = '#737373';
-            t.style.borderColor = '#E5E5E5';
+        (function() {
+          var allowed = ['/demos/plus', '/demos/plus/menu', '/demos/plus/blog'];
+          var tabs = document.querySelectorAll('.plus-tab');
+          tabs.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+              var url = btn.getAttribute('data-url') || '';
+              if (allowed.indexOf(url) === -1) return;
+              var frame = document.getElementById('plus-frame');
+              var display = document.getElementById('plus-url-display');
+              if (frame) frame.setAttribute('src', url);
+              if (display) display.textContent = 'cuesseler-web.pages.dev' + url;
+              tabs.forEach(function(t) {
+                t.style.background = 'white';
+                t.style.color = '#737373';
+                t.style.borderColor = '#E5E5E5';
+              });
+              btn.style.background = '#FF4500';
+              btn.style.color = 'white';
+              btn.style.borderColor = '#FF4500';
+            });
           });
-          btn.style.background = '#FF4500';
-          btn.style.color = 'white';
-          btn.style.borderColor = '#FF4500';
-        }
+        })();
       </script>
     </div>
   </section>
