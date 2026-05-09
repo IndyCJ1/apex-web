@@ -2,88 +2,156 @@
 import SoleLayout from "../../../layouts/SoleLayout.astro";
 
 const services = [
-  { name: "Swedish Massage", duration: "60 or 90 min", price: "from $95", note: "Full-body relaxation, tension relief" },
-  { name: "Deep Tissue Massage", duration: "60 or 90 min", price: "from $110", note: "Targets chronic muscle tension" },
-  { name: "Signature Facial", duration: "60 min", price: "$115", note: "Custom to your skin type, deep cleanse + mask" },
-  { name: "Hot Stone Therapy", duration: "90 min", price: "$140", note: "Heated basalt stones, full body" },
-  { name: "Prenatal Massage", duration: "60 min", price: "$105", note: "Safe, comfortable support for expecting mothers" },
-  { name: "Couples Retreat", duration: "90 min", price: "$240", note: "Side-by-side massage for two" },
+  {
+    name: "Swedish Massage",
+    duration: "60 or 90 min",
+    price: "from $95",
+    img: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=800&q=80",
+  },
+  {
+    name: "Deep Tissue Massage",
+    duration: "60 or 90 min",
+    price: "from $110",
+    img: "https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=800&q=80",
+  },
+  {
+    name: "Signature Facial",
+    duration: "60 min",
+    price: "$115",
+    img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&q=80",
+  },
+  {
+    name: "Hot Stone Therapy",
+    duration: "90 min",
+    price: "$140",
+    img: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=800&q=80",
+  },
+  {
+    name: "Prenatal Massage",
+    duration: "60 min",
+    price: "$105",
+    img: "https://images.unsplash.com/photo-1591343395082-e120087004b4?w=800&q=80",
+  },
+  {
+    name: "Couples Retreat",
+    duration: "90 min",
+    price: "$240 for two",
+    img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80",
+  },
 ];
 
 const products = [
-  { name: "Recovery Body Oil", price: "$42", category: "Body" },
-  { name: "Lavender Sleep Balm", price: "$28", category: "Sleep" },
-  { name: "Exfoliating Sugar Scrub", price: "$34", category: "Body" },
-  { name: "Hydrating Face Serum", price: "$68", category: "Skin" },
+  { name: "Recovery Body Oil", price: "$42", img: "https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=400&q=80" },
+  { name: "Lavender Sleep Balm", price: "$28", img: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=400&q=80" },
+  { name: "Exfoliating Sugar Scrub", price: "$34", img: "https://images.unsplash.com/photo-1601049676869-702ea24cfd58?w=400&q=80" },
+  { name: "Hydrating Face Serum", price: "$68", img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80" },
 ];
 
 const testimonials = [
   { name: "Rachel M.", text: "Best massage I've had in Gainesville. The therapist actually listened to where I carry tension. Already booked my next appointment.", stars: 5 },
   { name: "James T.", text: "I've been coming to Solé for two years. Consistent, professional, and the booking system makes it so easy to get on the schedule.", stars: 5 },
-  { name: "Priya K.", text: "The signature facial completely transformed my skin. Worth every penny. The studio itself is beautiful and so calming.", stars: 5 },
+  { name: "Priya K.", text: "The signature facial completely transformed my skin. Worth every penny. The studio itself is so beautiful and calming.", stars: 5 },
 ];
 ---
 
 <SoleLayout>
-  <!-- Hero -->
-  <section style="background: var(--s-bg); border-bottom: 1px solid var(--s-border);" class="px-6 py-24 md:py-36">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-5 gap-12 items-center">
-      <div class="md:col-span-3">
-        <p class="reveal text-xs font-medium uppercase tracking-[0.25em] mb-5" style="color: var(--s-sage)">Gainesville Wellness Studio</p>
-        <h1 class="reveal reveal-delay-1 leading-tight mb-6" style="font-family: var(--font-serif); font-size: clamp(2.75rem, 5vw, 4.5rem); color: var(--s-ink);">
-          Your body knows<br/>when it needs<br/><em style="color: var(--s-sage)">to rest.</em>
-        </h1>
-        <p class="reveal reveal-delay-2 text-sm leading-relaxed mb-10" style="color: var(--s-muted); max-width: 400px;">
-          Therapeutic massage and skincare in a calm, unhurried space. Licensed therapists. Easy online booking.
-        </p>
-        <div class="reveal reveal-delay-3 flex flex-wrap gap-4">
-          <a href="/demos/pro/book"
-            style="background: var(--s-sage); color: #fff; letter-spacing: 0.08em;"
-            class="px-8 py-4 text-xs font-medium uppercase tracking-wider hover:opacity-90 transition-opacity">
-            Book an Appointment
-          </a>
-          <a href="/demos/pro/services"
-            style="border: 1px solid var(--s-border); color: var(--s-muted);"
-            class="px-8 py-4 text-xs font-medium uppercase tracking-wider hover:border-current transition-colors" style="color: var(--s-ink)">
-            View Services
-          </a>
-        </div>
+  <style>
+    .service-card { position: relative; overflow: hidden; cursor: pointer; }
+    .service-card img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .service-card:hover img { transform: scale(1.07); }
+    .service-card .overlay { transition: opacity 0.4s ease; }
+    .service-card:hover .overlay { opacity: 1 !important; }
+    .service-card .info { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+    .service-card:hover .info { transform: translateY(0) !important; }
+    .product-card img { transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+    .product-card:hover img { transform: scale(1.05); }
+    @keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform:none; } }
+    .hero-text { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .hero-text-2 { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.15s both; }
+    .hero-text-3 { animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
+  </style>
+
+  <!-- Hero — full bleed image -->
+  <section class="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden">
+    <img
+      src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1920&q=85"
+      alt="Solé Wellness Studio"
+      class="absolute inset-0 w-full h-full object-cover"
+      style="object-position: center 30%;"
+    />
+    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(22,32,22,0.55) 0%, rgba(22,32,22,0.45) 50%, rgba(22,32,22,0.75) 100%);"></div>
+
+    <div class="relative z-10 px-6 max-w-3xl mx-auto">
+      <p class="hero-text text-xs uppercase tracking-[0.4em] mb-8" style="color: rgba(255,255,255,0.6);">Gainesville, Georgia · Wellness Studio</p>
+      <h1 class="hero-text-2" style="font-family: var(--font-serif); font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 500; font-style: italic; color: #fff; line-height: 1; letter-spacing: -0.01em;">
+        Restore.<br/>Renew.
+      </h1>
+      <p class="hero-text-3 mt-6 text-sm leading-relaxed max-w-md mx-auto" style="color: rgba(255,255,255,0.7);">
+        Therapeutic massage and skincare in a calm, unhurried space. Licensed therapists. Easy online booking.
+      </p>
+      <div class="hero-text-3 flex flex-col sm:flex-row gap-3 justify-center mt-10">
+        <a href="/demos/pro/book"
+          style="background: var(--s-sage); color: #fff; font-size: 0.7rem; letter-spacing: 0.15em;"
+          class="px-10 py-4 font-medium uppercase tracking-wider hover:opacity-90 transition-opacity">
+          Book an Appointment
+        </a>
+        <a href="/demos/pro/services"
+          style="border: 1px solid rgba(255,255,255,0.4); color: #fff; font-size: 0.7rem; letter-spacing: 0.15em;"
+          class="px-10 py-4 font-medium uppercase tracking-wider hover:bg-white/10 transition-colors">
+          Our Services
+        </a>
       </div>
-      <div class="md:col-span-2 reveal reveal-delay-2 hidden md:block">
-        <div style="background: var(--s-bg-alt); border: 1px solid var(--s-border); aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center;">
-          <div class="text-center" style="color: var(--s-border);">
-            <svg class="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-            </svg>
-            <p class="text-xs uppercase tracking-widest" style="color: var(--s-muted);">Studio Photo</p>
-          </div>
-        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="color: rgba(255,255,255,0.4)">
+      <div style="width: 1px; height: 48px; background: rgba(255,255,255,0.25);"></div>
+      <span class="text-xs uppercase tracking-[0.2em]">Scroll</span>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section style="background: var(--s-bg); border-bottom: 1px solid var(--s-border);" class="px-6 py-20">
+    <div class="max-w-3xl mx-auto text-center reveal">
+      <p class="text-xs uppercase tracking-[0.3em] mb-6" style="color: var(--s-sage);">About Solé</p>
+      <p style="font-family: var(--font-serif); font-size: clamp(1.5rem, 2.5vw, 2.25rem); line-height: 1.4; font-style: italic; color: var(--s-ink);">
+        We created Solé as a refuge — a place where you can disconnect, breathe deeply, and let skilled hands do the rest.
+      </p>
+      <div class="flex items-center justify-center gap-4 mt-8">
+        <div style="height: 1px; width: 48px; background: var(--s-border);"></div>
+        <p class="text-xs uppercase tracking-[0.2em]" style="color: var(--s-muted);">Licensed · Trusted · Local</p>
+        <div style="height: 1px; width: 48px; background: var(--s-border);"></div>
       </div>
     </div>
   </section>
 
-  <!-- Services overview -->
-  <section style="background: var(--s-bg-alt); border-bottom: 1px solid var(--s-border);" class="px-6 py-20">
-    <div class="max-w-6xl mx-auto">
+  <!-- Services — image cards -->
+  <section style="background: var(--s-bg-alt);" class="px-6 py-20">
+    <div class="max-w-7xl mx-auto">
       <div class="reveal flex items-end justify-between mb-10">
         <div>
-          <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--s-sage)">What We Offer</p>
-          <h2 class="text-3xl font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">Our Services</h2>
+          <p class="text-xs uppercase tracking-[0.3em] mb-2" style="color: var(--s-sage);">Services</p>
+          <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 3rem); color: var(--s-ink);">What we offer</h2>
         </div>
         <a href="/demos/pro/services" class="text-xs uppercase tracking-wider hidden md:inline" style="color: var(--s-sage);">All services →</a>
       </div>
+
       <div class="grid md:grid-cols-3 gap-4">
         {services.map((svc, i) => (
-          <div class={`reveal reveal-delay-${i % 3}`} style="background: var(--s-bg); border: 1px solid var(--s-border); padding: 1.5rem;">
-            <h3 class="font-semibold mb-1" style="font-family: var(--font-serif); color: var(--s-ink);">{svc.name}</h3>
-            <p class="text-xs mb-3" style="color: var(--s-muted);">{svc.duration} · {svc.note}</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sm font-medium" style="color: var(--s-gold);">{svc.price}</span>
-              <a href="/demos/pro/book"
-                style="background: var(--s-sage); color: #fff; font-size: 0.7rem; letter-spacing: 0.08em;"
-                class="px-3 py-1.5 uppercase tracking-wider hover:opacity-90 transition-opacity">
-                Book
-              </a>
+          <div class={`reveal reveal-delay-${i % 3} service-card`} style="aspect-ratio: 3/4; background: var(--s-bg-alt);">
+            <img src={svc.img} alt={svc.name} class="w-full h-full object-cover absolute inset-0" style="position: absolute;" />
+            <div class="overlay absolute inset-0" style="background: linear-gradient(to top, rgba(22,32,22,0.9) 0%, rgba(22,32,22,0.3) 50%, transparent 100%); opacity: 0.7;"></div>
+            <div class="info absolute bottom-0 left-0 right-0 p-5" style="transform: translateY(8px);">
+              <h3 class="font-semibold text-white" style="font-family: var(--font-serif); font-size: 1.1rem;">{svc.name}</h3>
+              <p class="text-xs mt-1" style="color: rgba(255,255,255,0.65);">{svc.duration}</p>
+              <div class="flex items-center justify-between mt-3">
+                <span class="text-sm font-medium" style="color: rgba(255,255,255,0.85);">{svc.price}</span>
+                <a href="/demos/pro/book"
+                  style="background: var(--s-sage); color: #fff; font-size: 0.65rem; letter-spacing: 0.1em;"
+                  class="px-3 py-1.5 uppercase hover:opacity-90 transition-opacity">
+                  Book
+                </a>
+              </div>
             </div>
           </div>
         ))}
@@ -91,46 +159,77 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- Booking CTA banner -->
-  <section style="background: var(--s-sage);" class="px-6 py-14">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="reveal text-center md:text-left">
-        <h2 class="text-2xl font-semibold text-white mb-2" style="font-family: var(--font-serif);">
-          <em>Ready to book?</em>
-        </h2>
-        <p class="text-sm" style="color: rgba(255,255,255,0.75);">Choose your service, pick a time, and you're set. No phone tag, no waiting.</p>
+  <!-- Booking CTA — full bleed -->
+  <section class="relative py-28 px-6 overflow-hidden">
+    <img
+      src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&q=80"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover"
+    />
+    <div class="absolute inset-0" style="background: rgba(22,45,22,0.82);"></div>
+    <div class="relative z-10 max-w-2xl mx-auto text-center">
+      <p class="reveal text-xs uppercase tracking-[0.3em] mb-4" style="color: rgba(255,255,255,0.5);">Online Booking</p>
+      <h2 class="reveal text-4xl md:text-5xl font-medium text-white mb-4" style="font-family: var(--font-serif); font-style: italic;">
+        Ready when you are.
+      </h2>
+      <p class="reveal text-sm mb-10" style="color: rgba(255,255,255,0.6);">
+        Choose your service, pick a time, and you're set. No phone tag. Open 24/7.
+      </p>
+      <a href="/demos/pro/book"
+        style="background: #fff; color: var(--s-sage-dark); font-size: 0.7rem; letter-spacing: 0.15em;"
+        class="reveal inline-flex px-12 py-4 font-semibold uppercase tracking-wider hover:bg-opacity-90 transition-opacity">
+        Book Now
+      </a>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section style="background: var(--s-bg); border-bottom: 1px solid var(--s-border);" class="px-6 py-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal text-center mb-14">
+        <p class="text-xs uppercase tracking-[0.3em] mb-2" style="color: var(--s-sage);">Client Reviews</p>
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 3rem); color: var(--s-ink);">What people are saying</h2>
       </div>
-      <div class="reveal flex-shrink-0">
-        <a href="/demos/pro/book"
-          style="background: white; color: var(--s-sage-dark); letter-spacing: 0.08em;"
-          class="inline-flex px-8 py-4 text-xs font-semibold uppercase tracking-wider hover:bg-opacity-90 transition-opacity">
-          Book Online Now
-        </a>
+      <div class="grid md:grid-cols-3 gap-6">
+        {testimonials.map((t, i) => (
+          <div class={`reveal reveal-delay-${i} p-8 relative`} style="background: var(--s-bg-alt); border: 1px solid var(--s-border);">
+            <div style="font-family: var(--font-serif); font-size: 4rem; line-height: 1; color: var(--s-border); position: absolute; top: 1rem; left: 1.5rem;">"</div>
+            <div class="flex gap-0.5 mb-4 mt-4">
+              {Array(t.stars).fill(null).map(() => (
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20" style="color: var(--s-gold);">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              ))}
+            </div>
+            <p class="text-sm leading-relaxed mb-5" style="color: var(--s-muted);">"{t.text}"</p>
+            <p class="text-xs font-semibold" style="color: var(--s-ink);">{t.name}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Shop preview -->
-  <section id="shop" style="background: var(--s-bg); border-bottom: 1px solid var(--s-border);" class="px-6 py-20">
+  <!-- Shop -->
+  <section id="shop" style="background: var(--s-bg-alt); border-bottom: 1px solid var(--s-border);" class="px-6 py-20">
     <div class="max-w-6xl mx-auto">
       <div class="reveal flex items-end justify-between mb-10">
         <div>
-          <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--s-sage)">Take It Home</p>
-          <h2 class="text-3xl font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">The Shop</h2>
+          <p class="text-xs uppercase tracking-[0.3em] mb-2" style="color: var(--s-sage);">The Shop</p>
+          <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 3rem); color: var(--s-ink);">Take it home</h2>
         </div>
         <a href="#shop" class="text-xs uppercase tracking-wider hidden md:inline" style="color: var(--s-sage);">View all →</a>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {products.map((product, i) => (
-          <div class={`reveal reveal-delay-${i % 3}`}>
-            <div style="background: var(--s-bg-alt); border: 1px solid var(--s-border); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; margin-bottom: 0.75rem;">
-              <p class="text-xs uppercase tracking-widest" style="color: var(--s-border);">{product.category}</p>
+        {products.map((p, i) => (
+          <div class={`reveal reveal-delay-${i % 3} product-card`}>
+            <div class="overflow-hidden mb-3" style="aspect-ratio: 1; background: var(--s-bg);">
+              <img src={p.img} alt={p.name} class="w-full h-full object-cover" />
             </div>
-            <p class="text-sm font-medium mb-0.5" style="color: var(--s-ink);">{product.name}</p>
+            <p class="text-sm font-medium mb-0.5" style="color: var(--s-ink);">{p.name}</p>
             <div class="flex items-center justify-between">
-              <span class="text-sm" style="color: var(--s-gold);">{product.price}</span>
-              <button style="border: 1px solid var(--s-border); color: var(--s-muted); font-size: 0.7rem;" class="px-3 py-1 hover:border-current transition-colors">
-                Add to Cart
+              <span class="text-sm" style="color: var(--s-gold);">{p.price}</span>
+              <button style="border: 1px solid var(--s-border); color: var(--s-muted); font-size: 0.65rem; letter-spacing: 0.1em;" class="px-3 py-1 uppercase hover:border-current transition-colors">
+                Add
               </button>
             </div>
           </div>
@@ -139,69 +238,33 @@ const testimonials = [
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section style="background: var(--s-bg-alt); border-bottom: 1px solid var(--s-border);" class="px-6 py-20">
-    <div class="max-w-6xl mx-auto">
-      <div class="reveal text-center mb-12">
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--s-sage)">Reviews</p>
-        <h2 class="text-3xl font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">What clients say</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        {testimonials.map((t, i) => (
-          <div class={`reveal reveal-delay-${i} p-6`} style="background: var(--s-bg); border: 1px solid var(--s-border);">
-            <div class="flex gap-0.5 mb-4">
-              {Array(t.stars).fill(null).map(() => (
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" style="color: var(--s-gold);">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                </svg>
-              ))}
-            </div>
-            <p class="text-sm leading-relaxed mb-4" style="color: var(--s-muted);">"{t.text}"</p>
-            <p class="text-xs font-medium" style="color: var(--s-ink);">{t.name}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
   <!-- Contact -->
-  <section id="contact" style="background: var(--s-bg);" class="px-6 py-20">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
+  <section id="contact" style="background: var(--s-bg-dark);" class="px-6 py-20">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
       <div class="reveal">
-        <p class="text-xs uppercase tracking-[0.2em] mb-3" style="color: var(--s-sage)">Visit Us</p>
-        <h2 class="text-3xl font-semibold mb-6" style="font-family: var(--font-serif); color: var(--s-ink);">Find Solé</h2>
-        <div style="background: var(--s-bg-alt); border: 1px solid var(--s-border); height: 260px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;">
-          <div class="text-center" style="color: var(--s-border);">
-            <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            <p class="text-xs uppercase tracking-widest" style="color: var(--s-muted);">Google Maps Embed</p>
-          </div>
+        <p class="text-xs uppercase tracking-[0.3em] mb-4" style="color: var(--s-sage);">Find Us</p>
+        <h2 class="text-3xl font-medium mb-6 text-white" style="font-family: var(--font-serif); font-style: italic;">Visit Solé</h2>
+        <div class="space-y-4 text-sm" style="color: rgba(255,255,255,0.5);">
+          <p style="color: rgba(255,255,255,0.8);">1804 Green St NW, Gainesville, GA 30501</p>
+          <p>Tue–Fri: 9am–7pm &nbsp;·&nbsp; Sat: 9am–5pm &nbsp;·&nbsp; Sun–Mon: Closed</p>
+          <p>(762) 555-0192</p>
         </div>
-        <div class="space-y-3 text-sm" style="color: var(--s-muted);">
-          <p><strong style="color: var(--s-ink);">1804 Green St NW, Gainesville, GA 30501</strong></p>
-          <p>Tue–Fri: 9am–7pm · Sat: 9am–5pm · Closed Sun–Mon</p>
-          <p>(352) 555-0192 · hello@solewellness.com</p>
-        </div>
+        <a href="/demos/pro/book"
+          style="background: var(--s-sage); color: #fff; font-size: 0.7rem; letter-spacing: 0.15em;"
+          class="inline-flex mt-8 px-8 py-3.5 font-medium uppercase tracking-wider hover:opacity-90 transition-opacity">
+          Book an Appointment
+        </a>
       </div>
       <div class="reveal reveal-delay-1">
-        <p class="text-xs uppercase tracking-[0.2em] mb-3" style="color: var(--s-sage)">Get in Touch</p>
-        <h2 class="text-3xl font-semibold mb-6" style="font-family: var(--font-serif); color: var(--s-ink);">Send a message</h2>
+        <p class="text-xs uppercase tracking-[0.3em] mb-4" style="color: var(--s-sage);">Send a Message</p>
         <form class="space-y-4">
-          <div>
-            <label class="block text-xs uppercase tracking-[0.12em] mb-1.5" style="color: var(--s-muted);">Name</label>
-            <input type="text" placeholder="Your name" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
+          <div class="grid md:grid-cols-2 gap-4">
+            <input type="text" placeholder="Name" style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 0.875rem 1rem; font-size: 0.875rem; outline: none;" />
+            <input type="email" placeholder="Email" style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 0.875rem 1rem; font-size: 0.875rem; outline: none;" />
           </div>
-          <div>
-            <label class="block text-xs uppercase tracking-[0.12em] mb-1.5" style="color: var(--s-muted);">Email</label>
-            <input type="email" placeholder="your@email.com" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
-          </div>
-          <div>
-            <label class="block text-xs uppercase tracking-[0.12em] mb-1.5" style="color: var(--s-muted);">Message</label>
-            <textarea rows="4" placeholder="How can we help?" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; resize: none;"></textarea>
-          </div>
-          <button type="submit" style="width: 100%; background: var(--s-sage); color: white; padding: 1rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border: none; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
-            Send Message
+          <textarea rows="4" placeholder="How can we help?" style="width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 0.875rem 1rem; font-size: 0.875rem; outline: none; resize: none;"></textarea>
+          <button style="width: 100%; background: var(--s-sage); color: #fff; padding: 1rem; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; border: none;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+            Send
           </button>
         </form>
       </div>

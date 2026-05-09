@@ -47,20 +47,22 @@ const nav = [
   <body>
     <!-- Nav -->
     <nav style="background: var(--p-bg-dark); border-bottom: 1px solid var(--p-border);" class="sticky top-0 z-50">
-      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="/demos/plus" style="font-family: var(--font-serif);" class="text-lg font-semibold tracking-tight">
+      <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+        <div class="hidden md:flex items-center gap-6">
+          <a href="/demos/plus/menu" class="nav-link text-xs uppercase tracking-[0.18em]">Menu</a>
+          <a href="/demos/plus/blog" class="nav-link text-xs uppercase tracking-[0.18em]">Blog</a>
+          <a href="/demos/plus/index#events" class="nav-link text-xs uppercase tracking-[0.18em]">Events</a>
+        </div>
+        <a href="/demos/plus" style="font-family: var(--font-serif); letter-spacing: 0.2em; font-size: 1.1rem;" class="font-bold uppercase mx-auto md:mx-0 md:absolute md:left-1/2 md:-translate-x-1/2">
           The Perch
         </a>
-        <div class="hidden md:flex items-center gap-7">
-          {nav.map((n) => (
-            <a href={n.href} class={`nav-link ${page === n.label ? 'active' : ''}`}>{n.label}</a>
-          ))}
+        <div class="hidden md:flex items-center gap-6">
+          <a href="/demos/plus/index#about" class="nav-link text-xs uppercase tracking-[0.18em]">About</a>
+          <a href="/demos/plus/index#visit" class="nav-link text-xs uppercase tracking-[0.18em]">Visit</a>
+          <a href="/demos/plus/menu" style="border: 1px solid var(--p-gold); color: var(--p-gold); font-size: 0.7rem; letter-spacing: 0.15em;" class="px-4 py-1.5 uppercase hover:opacity-80 transition-opacity">
+            Order
+          </a>
         </div>
-        <a href="/demos/plus/index#visit"
-          style="background: var(--p-green); color: #fff; font-size: 0.8125rem;"
-          class="hidden md:inline-flex px-5 py-2.5 font-medium hover:opacity-90 transition-opacity">
-          Find Us
-        </a>
       </div>
     </nav>
 
