@@ -94,19 +94,19 @@ const demos = [
 
 <Layout title="Apex Web — Websites for Local Businesses">
   <!-- Nav -->
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream border-b border-border">
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-border" style="background: rgba(247,242,233,0.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="text-xl font-semibold tracking-tight" style="font-family: var(--font-display)">
+      <a href="/" class="text-xl font-bold tracking-tight text-ink" style="font-family: var(--font-display)">
         Apex Web
       </a>
-      <div class="hidden md:flex items-center gap-8 text-sm text-ink-muted">
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-ink-muted">
         <a href="#services" class="hover:text-ink transition-colors">Services</a>
         <a href="#packages" class="hover:text-ink transition-colors">Packages</a>
         <a href="#work" class="hover:text-ink transition-colors">Work</a>
         <a href="#about" class="hover:text-ink transition-colors">About</a>
         <a href="#contact" class="hover:text-ink transition-colors">Contact</a>
       </div>
-      <a href="#contact" class="hidden md:inline-flex items-center bg-terracotta text-cream px-5 py-2.5 text-sm font-medium hover:bg-terracotta-dark transition-colors">
+      <a href="#contact" class="hidden md:inline-flex items-center bg-ink text-cream px-5 py-2.5 text-sm font-semibold hover:bg-terracotta transition-colors duration-300">
         Get a Quote
       </a>
     </div>
@@ -158,44 +158,44 @@ const demos = [
   </section>
 
   <!-- Services -->
-  <section id="services" class="px-6 py-24 bg-cream-dark">
+  <section id="services" class="px-6 py-24 bg-ink">
     <div class="max-w-6xl mx-auto">
       <div class="reveal mb-16">
-        <p class="text-xs font-medium text-ink-muted uppercase tracking-[0.2em] mb-3">What I Do</p>
-        <h2 class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-display)">
+        <p class="text-xs font-medium uppercase tracking-[0.2em] mb-3" style="color: rgba(247,242,233,0.45)">What I Do</p>
+        <h2 class="text-4xl md:text-5xl font-semibold text-cream" style="font-family: var(--font-display)">
           Everything your business<br class="hidden md:block" /> needs to get online.
         </h2>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-px bg-border-dark">
-        <div class="reveal bg-cream-dark p-8 hover:bg-cream transition-colors">
-          <div class="w-10 h-10 border border-terracotta/30 flex items-center justify-center mb-6">
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="reveal p-8 rounded-lg hover:-translate-y-1 transition-transform duration-300" style="background: rgba(247,242,233,0.06); border: 1px solid rgba(247,242,233,0.1);">
+          <div class="w-10 h-10 bg-terracotta/20 rounded-lg flex items-center justify-center mb-6">
             <svg class="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-3" style="font-family: var(--font-display)">Custom Web Design</h3>
-          <p class="text-ink-muted text-sm leading-relaxed">Built from scratch for your brand. No templates, no cookie-cutter layouts.</p>
+          <h3 class="text-xl font-semibold mb-3 text-cream" style="font-family: var(--font-display)">Custom Web Design</h3>
+          <p class="text-sm leading-relaxed" style="color: rgba(247,242,233,0.6)">Built from scratch for your brand. No templates, no cookie-cutter layouts.</p>
         </div>
 
-        <div class="reveal reveal-delay-1 bg-cream-dark p-8 hover:bg-cream transition-colors">
-          <div class="w-10 h-10 border border-forest/30 flex items-center justify-center mb-6">
-            <svg class="w-5 h-5 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="reveal reveal-delay-1 p-8 rounded-lg hover:-translate-y-1 transition-transform duration-300" style="background: rgba(247,242,233,0.06); border: 1px solid rgba(247,242,233,0.1);">
+          <div class="w-10 h-10 bg-terracotta/20 rounded-lg flex items-center justify-center mb-6">
+            <svg class="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-3" style="font-family: var(--font-display)">Lightning Fast Hosting</h3>
-          <p class="text-ink-muted text-sm leading-relaxed">Loads in under a second. Hosting, SSL, and backups all handled and included.</p>
+          <h3 class="text-xl font-semibold mb-3 text-cream" style="font-family: var(--font-display)">Lightning Fast Hosting</h3>
+          <p class="text-sm leading-relaxed" style="color: rgba(247,242,233,0.6)">Loads in under a second. Hosting, SSL, and backups all handled and included.</p>
         </div>
 
-        <div class="reveal reveal-delay-2 bg-cream-dark p-8 hover:bg-cream transition-colors">
-          <div class="w-10 h-10 border border-ink/20 flex items-center justify-center mb-6">
-            <svg class="w-5 h-5 text-ink-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="reveal reveal-delay-2 p-8 rounded-lg hover:-translate-y-1 transition-transform duration-300" style="background: rgba(247,242,233,0.06); border: 1px solid rgba(247,242,233,0.1);">
+          <div class="w-10 h-10 bg-terracotta/20 rounded-lg flex items-center justify-center mb-6">
+            <svg class="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-3" style="font-family: var(--font-display)">Ongoing Maintenance</h3>
-          <p class="text-ink-muted text-sm leading-relaxed">Updates, security patches, and edits — all included in your monthly plan.</p>
+          <h3 class="text-xl font-semibold mb-3 text-cream" style="font-family: var(--font-display)">Ongoing Maintenance</h3>
+          <p class="text-sm leading-relaxed" style="color: rgba(247,242,233,0.6)">Updates, security patches, and edits — all included in your monthly plan.</p>
         </div>
       </div>
     </div>
@@ -214,32 +214,38 @@ const demos = [
 
       <div class="grid md:grid-cols-3 gap-6">
         {packages.map((pkg, i) => (
-          <div class={`reveal reveal-delay-${i} bg-white border border-border ${pkg.accentClass} p-8 flex flex-col ${pkg.highlight ? 'shadow-lg' : ''}`}>
-            <div class="mb-6">
-              <p class={`text-xs font-semibold uppercase tracking-[0.15em] mb-2 ${pkg.labelColor}`}>{pkg.name}</p>
-              <div class="flex items-baseline gap-1 mb-1" style="font-family: var(--font-display)">
-                <span class="text-5xl font-bold text-ink">{pkg.price}</span>
-                <span class="text-ink-muted text-sm">upfront</span>
+          <div class={`reveal reveal-delay-${i} flex flex-col rounded-xl p-8 transition-all duration-300 hover:-translate-y-1 ${pkg.highlight ? 'bg-ink text-cream' : 'bg-white border border-border'}`}
+            style={pkg.highlight ? 'box-shadow: 0 12px 40px rgba(26,21,18,0.2)' : 'box-shadow: 0 2px 12px rgba(26,21,18,0.06)'}>
+            {pkg.highlight && (
+              <div class="inline-flex self-start bg-terracotta text-cream text-xs font-bold px-3 py-1 tracking-widest uppercase mb-4 rounded-full">
+                Most Popular
               </div>
-              <p class="text-sm text-ink-muted">+ {pkg.monthly}/mo hosting & maintenance</p>
+            )}
+            <div class="mb-6">
+              <p class={`text-xs font-semibold uppercase tracking-[0.15em] mb-3 ${pkg.highlight ? 'text-terracotta' : pkg.labelColor}`}>{pkg.name}</p>
+              <div class="flex items-baseline gap-2 mb-1" style="font-family: var(--font-display)">
+                <span class="text-5xl font-bold">{pkg.price}</span>
+                <span class={`text-sm ${pkg.highlight ? 'opacity-50' : 'text-ink-muted'}`}>upfront</span>
+              </div>
+              <p class={`text-sm ${pkg.highlight ? 'opacity-50' : 'text-ink-muted'}`}>+ {pkg.monthly}/mo hosting & maintenance</p>
             </div>
 
-            <p class="text-sm text-ink-muted mb-6 leading-relaxed">{pkg.description}</p>
+            <p class={`text-sm mb-6 leading-relaxed ${pkg.highlight ? 'opacity-60' : 'text-ink-muted'}`}>{pkg.description}</p>
 
-            <ul class="space-y-2.5 mb-8 flex-1">
+            <ul class="space-y-3 mb-8 flex-1">
               {pkg.features.map((feature) => (
-                <li class="flex items-start gap-3 text-sm text-ink">
-                  <svg class={`w-4 h-4 flex-shrink-0 mt-0.5 ${pkg.highlight ? 'text-terracotta' : 'text-ink-muted'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                <li class="flex items-start gap-3 text-sm">
+                  <svg class="w-4 h-4 flex-shrink-0 mt-0.5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                   </svg>
-                  {feature}
+                  <span class={pkg.highlight ? 'text-cream' : 'text-ink'}>{feature}</span>
                 </li>
               ))}
             </ul>
 
             <a
               href={`/packages/${pkg.name.toLowerCase()}`}
-              class={`block text-center w-full py-3 text-sm font-medium tracking-wide transition-colors ${pkg.highlight ? 'bg-terracotta text-cream hover:bg-terracotta-dark' : 'border border-ink text-ink hover:bg-ink hover:text-cream'}`}
+              class={`block text-center w-full py-3.5 text-sm font-semibold rounded-lg transition-all duration-200 ${pkg.highlight ? 'bg-terracotta text-cream hover:bg-terracotta-dark' : 'bg-ink text-cream hover:bg-terracotta'}`}
             >
               See What's Included
             </a>
@@ -444,7 +450,7 @@ const demos = [
         <h2 class="text-4xl md:text-5xl font-semibold text-cream" style="font-family: var(--font-display)">
           Let's talk.
         </h2>
-        <p class="mt-3 text-sm leading-relaxed" style="color: rgba(255,255,255,0.55)">
+        <p class="mt-3 text-sm leading-relaxed" style="color: rgba(255,255,255,0.8)">
           Tell me about your business. I'll get back to you within 24 hours.
         </p>
       </div>
@@ -452,26 +458,26 @@ const demos = [
       <form action="https://formspree.io/f/mzdojrav" method="POST" class="reveal space-y-5">
         <div class="grid md:grid-cols-2 gap-5">
           <div>
-            <label for="name" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.55)">Your Name</label>
+            <label for="name" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.8)">Your Name</label>
             <input type="text" id="name" name="name" required
               class="w-full bg-white/10 border border-white/20 text-cream px-4 py-3 text-sm focus:outline-none focus:border-white/50 transition-colors placeholder:text-white/25"
               placeholder="Jane Smith" />
           </div>
           <div>
-            <label for="email" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.55)">Email</label>
+            <label for="email" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.8)">Email</label>
             <input type="email" id="email" name="email" required
               class="w-full bg-white/10 border border-white/20 text-cream px-4 py-3 text-sm focus:outline-none focus:border-white/50 transition-colors placeholder:text-white/25"
               placeholder="jane@business.com" />
           </div>
         </div>
         <div>
-          <label for="business" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.55)">Business Name</label>
+          <label for="business" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.8)">Business Name</label>
           <input type="text" id="business" name="business"
             class="w-full bg-white/10 border border-white/20 text-cream px-4 py-3 text-sm focus:outline-none focus:border-white/50 transition-colors placeholder:text-white/25"
             placeholder="Your Business" />
         </div>
         <div>
-          <label for="message" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.55)">Tell me about your project</label>
+          <label for="message" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.8)">Tell me about your project</label>
           <textarea id="message" name="message" rows="5" required
             class="w-full bg-white/10 border border-white/20 text-cream px-4 py-3 text-sm focus:outline-none focus:border-white/50 transition-colors resize-none placeholder:text-white/25"
             placeholder="What kind of site do you need? What does your business do?"></textarea>
