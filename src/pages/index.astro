@@ -258,10 +258,29 @@ const demos = [
           Live demos. Real sites.
         </h2>
         <p class="text-ink-muted mt-3 max-w-lg text-sm leading-relaxed">
-          Built with the same tools we use for every client. See what each package level adds.
+          Each package comes with a live example you can click through. See exactly what you'd get.
         </p>
       </div>
 
+      <div class="grid md:grid-cols-3 gap-4">
+        {[
+          { tier: "Starter", industry: "Restaurant", name: "Hogtown Smoke BBQ", href: "/packages/starter", color: "text-ink-muted", border: "border-border" },
+          { tier: "Plus", industry: "Coffee Shop", name: "The Perch Coffee Co.", href: "/packages/plus", color: "text-terracotta", border: "border-terracotta/30" },
+          { tier: "Pro", industry: "Spa & Wellness", name: "Solé Wellness Studio", href: "/packages/pro", color: "text-forest", border: "border-forest/30" },
+        ].map((item, i) => (
+          <a href={item.href} class={`reveal reveal-delay-${i} block group bg-white border ${item.border} p-6 hover:shadow-md transition-shadow`}>
+            <p class={`text-xs font-semibold uppercase tracking-[0.15em] mb-1 ${item.color}`}>{item.tier}</p>
+            <p class="font-semibold text-ink mb-0.5" style="font-family: var(--font-display)">{item.name}</p>
+            <p class="text-xs text-ink-muted mb-4">{item.industry}</p>
+            <span class={`text-xs font-medium ${item.color} group-hover:underline`}>View demo & details →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- UNUSED_CAROUSEL_START -->
+  <div class="hidden">
       <!-- Carousel -->
       <div class="relative">
         <button id="demo-prev" aria-label="Previous demo"
@@ -393,7 +412,8 @@ const demos = [
         ))}
       </div>
     </div>
-  </section>
+  </div>
+  <!-- UNUSED_CAROUSEL_END -->
 
   <!-- About -->
   <section id="about" class="px-6 py-24 bg-cream">
