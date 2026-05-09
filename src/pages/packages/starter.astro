@@ -4,64 +4,43 @@ import Layout from "../../layouts/Layout.astro";
 const features = [
   {
     title: "5-Page Custom Website",
-    description:
-      "Home, About, Services, Contact, plus one page of your choice. Built from scratch around your brand — no templates, no cookie-cutter layouts.",
+    description: "Home, About, Services, Contact, plus one page of your choice. Built from scratch around your brand — no templates, no cookie-cutter layouts.",
     icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
-    color: "blue",
   },
   {
     title: "Mobile Responsive Design",
-    description:
-      "Your site looks great on every screen — phone, tablet, and desktop. Over 60% of web traffic is mobile. This is non-negotiable.",
+    description: "Your site looks great on every screen — phone, tablet, and desktop. Over 60% of web traffic is mobile. This is non-negotiable.",
     icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z",
-    color: "purple",
   },
   {
     title: "Contact Form",
-    description:
-      "A working contact form that sends submissions directly to your email. Customers reach you, you close the lead.",
+    description: "A working contact form that sends submissions directly to your email. Customers reach you, you close the lead.",
     icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-    color: "green",
   },
   {
     title: "Basic On-Page SEO",
-    description:
-      "Title tags, meta descriptions, proper heading structure, image alt text, and sitemap — so Google can find and rank your site.",
+    description: "Title tags, meta descriptions, proper heading structure, image alt text, and sitemap so Google can find and rank your site.",
     icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z",
-    color: "yellow",
   },
   {
     title: "Hosting & SSL Included",
-    description:
-      "Your site is hosted on fast infrastructure with SSL (the padlock in the browser) included in your monthly plan. No extra bills.",
+    description: "Your site is hosted on fast infrastructure with SSL (the padlock in the browser) included in your monthly plan. No extra bills.",
     icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z",
-    color: "teal",
   },
   {
     title: "1 Hour of Edits Per Month",
-    description:
-      "Need to change your hours, update a photo, or fix a typo? Send me a message. Changes are made same day — no ticket system, no waiting.",
+    description: "Need to change your hours, update a photo, or fix a typo? Send me a message. Changes are made same day — no ticket system, no waiting.",
     icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z",
-    color: "pink",
   },
 ];
-
-const colorMap: Record<string, string> = {
-  blue: "bg-blue-500/10 text-blue-400",
-  purple: "bg-purple-500/10 text-purple-400",
-  green: "bg-green-500/10 text-green-400",
-  yellow: "bg-yellow-500/10 text-yellow-400",
-  teal: "bg-teal-500/10 text-teal-400",
-  pink: "bg-pink-500/10 text-pink-400",
-};
 ---
 
-<Layout title="Starter Package — Apex Web" description="Everything you need to launch your business online. 5-page custom site, mobile responsive, contact form, SEO, hosting, and monthly edits.">
+<Layout title="Starter Package — Apex Web">
   <!-- Nav -->
-  <nav class="absolute top-0 left-0 right-0 z-10 px-6 py-6">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <a href="/" class="text-xl font-bold tracking-tight">Apex Web</a>
-      <a href="/#packages" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-2">
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream border-b border-border">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="text-xl font-semibold tracking-tight" style="font-family: var(--font-display)">Apex Web</a>
+      <a href="/#packages" class="flex items-center gap-2 text-sm text-ink-muted hover:text-ink transition-colors">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
         </svg>
@@ -71,50 +50,47 @@ const colorMap: Record<string, string> = {
   </nav>
 
   <!-- Hero -->
-  <section class="relative min-h-[50vh] flex items-center px-6 pt-32 pb-16 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950"></div>
-    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.2) 0%, transparent 60%);"></div>
-    <div class="relative max-w-6xl mx-auto w-full">
-      <div class="inline-flex items-center gap-2 bg-slate-800 border border-slate-700 text-slate-300 px-4 py-1.5 rounded-full text-sm mb-6">
-        Most Affordable
+  <section class="px-6 pt-40 pb-20 bg-cream">
+    <div class="max-w-6xl mx-auto">
+      <p class="reveal text-xs font-medium text-ink-muted uppercase tracking-[0.2em] mb-4">Starter Package</p>
+      <h1 class="reveal reveal-delay-1 text-5xl md:text-7xl font-semibold leading-none mb-8" style="font-family: var(--font-display)">
+        Everything you need<br class="hidden md:block" />
+        <em class="text-ink-muted font-normal">to get online.</em>
+      </h1>
+      <div class="reveal reveal-delay-2 flex items-baseline gap-3 mb-6">
+        <span class="text-5xl font-bold text-ink" style="font-family: var(--font-display)">$1,500</span>
+        <span class="text-ink-muted">upfront</span>
+        <span class="text-ink-faint">+</span>
+        <span class="text-2xl font-semibold text-ink" style="font-family: var(--font-display)">$50<span class="text-ink-muted text-base font-normal">/mo</span></span>
       </div>
-      <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6">Starter Package</h1>
-      <div class="flex items-baseline gap-3 mb-4">
-        <span class="text-5xl font-bold">$1,500</span>
-        <span class="text-slate-400">upfront</span>
-        <span class="text-slate-600">+</span>
-        <span class="text-2xl font-semibold text-slate-300">$50<span class="text-slate-500 text-lg">/mo</span></span>
-      </div>
-      <p class="text-xl text-slate-400 max-w-2xl">
-        Everything you need to get your business online and start showing up when customers search for you.
-      </p>
-      <div class="mt-8 flex gap-4">
-        <a href="/#contact" class="bg-white text-slate-950 px-7 py-3.5 rounded-lg font-semibold hover:bg-slate-200 transition">
+      <div class="reveal reveal-delay-3 flex gap-4 flex-wrap">
+        <a href="/#contact" class="bg-ink text-cream px-8 py-3.5 text-sm font-medium hover:bg-terracotta transition-colors">
           Get Started
         </a>
-        <a href="/packages/plus" class="border border-slate-700 px-7 py-3.5 rounded-lg font-semibold hover:bg-slate-800 transition">
-          See Plus Package
+        <a href="/packages/plus" class="border border-border text-ink-muted px-8 py-3.5 text-sm font-medium hover:border-ink hover:text-ink transition-colors">
+          See Plus Package →
         </a>
       </div>
     </div>
   </section>
 
   <!-- Features -->
-  <section class="px-6 py-24 bg-slate-900">
+  <section class="px-6 py-20 bg-cream-dark">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold mb-4">What's Included</h2>
-      <p class="text-slate-400 mb-16 max-w-xl">Every feature explained — no fine print, no surprises.</p>
-
-      <div class="grid md:grid-cols-2 gap-6">
-        {features.map((f) => (
-          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8 hover:border-slate-600 transition">
-            <div class={`w-12 h-12 rounded-lg flex items-center justify-center mb-5 ${colorMap[f.color]}`}>
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={f.icon}/>
+      <div class="reveal mb-12">
+        <h2 class="text-3xl font-semibold" style="font-family: var(--font-display)">What's included</h2>
+        <p class="text-ink-muted text-sm mt-2">Every feature explained — no fine print, no surprises.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-px bg-border">
+        {features.map((f, i) => (
+          <div class={`reveal reveal-delay-${i % 3} bg-cream-dark p-8 hover:bg-cream transition-colors`}>
+            <div class="w-8 h-8 border border-ink/15 flex items-center justify-center mb-5">
+              <svg class="w-4 h-4 text-ink-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={f.icon}/>
               </svg>
             </div>
-            <h3 class="text-lg font-bold mb-2">{f.title}</h3>
-            <p class="text-slate-400 leading-relaxed">{f.description}</p>
+            <h3 class="font-semibold text-ink mb-2" style="font-family: var(--font-display)">{f.title}</h3>
+            <p class="text-ink-muted text-sm leading-relaxed">{f.description}</p>
           </div>
         ))}
       </div>
@@ -122,47 +98,47 @@ const colorMap: Record<string, string> = {
   </section>
 
   <!-- Who it's for -->
-  <section class="px-6 py-24">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-12">Who This Is For</h2>
+  <section class="px-6 py-20 bg-cream">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal mb-10">
+        <h2 class="text-3xl font-semibold" style="font-family: var(--font-display)">Who this is for</h2>
+      </div>
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="border border-slate-800 rounded-xl p-6">
-          <div class="text-2xl font-bold text-blue-400 mb-2">New businesses</div>
-          <p class="text-slate-400 text-sm">Just getting started and need a clean, credible presence online fast.</p>
-        </div>
-        <div class="border border-slate-800 rounded-xl p-6">
-          <div class="text-2xl font-bold text-blue-400 mb-2">Simple services</div>
-          <p class="text-slate-400 text-sm">Plumbers, cleaners, landscapers — businesses with a few core services and a contact number.</p>
-        </div>
-        <div class="border border-slate-800 rounded-xl p-6">
-          <div class="text-2xl font-bold text-blue-400 mb-2">Tight budgets</div>
-          <p class="text-slate-400 text-sm">You need a professional site without paying agency prices. This is it.</p>
-        </div>
+        {[
+          { title: "New businesses", body: "Just getting started and need a clean, credible presence online fast." },
+          { title: "Simple services", body: "Plumbers, cleaners, landscapers — businesses with a few core services and a contact number." },
+          { title: "Tight budgets", body: "You need a professional site without agency prices. This is it." },
+        ].map((item, i) => (
+          <div class={`reveal reveal-delay-${i} border border-border p-6`}>
+            <h3 class="font-semibold text-ink mb-2" style="font-family: var(--font-display)">{item.title}</h3>
+            <p class="text-ink-muted text-sm leading-relaxed">{item.body}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="px-6 py-24 bg-gradient-to-br from-blue-950 to-slate-950">
+  <section class="px-6 py-20 bg-forest">
     <div class="max-w-2xl mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-4">Ready to get online?</h2>
-      <p class="text-slate-400 mb-8">Send me a message and I'll get back to you within 24 hours.</p>
-      <a href="/#contact" class="inline-block bg-white text-slate-950 px-8 py-4 rounded-lg font-semibold hover:bg-slate-200 transition text-lg">
-        Get a Free Quote
-      </a>
-      <div class="mt-6">
-        <a href="/packages/plus" class="text-sm text-slate-500 hover:text-slate-300 transition">
-          Need more? See the Plus package →
+      <h2 class="reveal text-4xl font-semibold text-cream mb-4" style="font-family: var(--font-display)">Ready to get online?</h2>
+      <p class="reveal text-sm mb-8" style="color: rgba(255,255,255,0.55)">Send me a message and I'll get back to you within 24 hours.</p>
+      <div class="reveal flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/#contact" class="bg-terracotta text-cream px-8 py-4 text-sm font-medium hover:bg-terracotta-dark transition-colors">
+          Get a Free Quote
+        </a>
+        <a href="/packages/plus" class="border border-white/20 text-cream px-8 py-4 text-sm font-medium hover:bg-white/10 transition-colors">
+          Need more? See Plus →
         </a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800 px-6 py-10">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+  <footer class="border-t border-white/10 px-6 py-8 bg-ink">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs" style="color: rgba(255,255,255,0.35)">
       <div>© 2026 Apex Web. All rights reserved.</div>
-      <div>Built in Gainesville.</div>
+      <div>Built in Gainesville, FL.</div>
     </div>
   </footer>
 </Layout>

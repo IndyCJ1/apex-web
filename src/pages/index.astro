@@ -5,7 +5,7 @@ const packages = [
   {
     name: "Starter",
     price: "$1,500",
-    monthly: "$50/mo",
+    monthly: "$50",
     description: "Perfect for a clean, modern presence online.",
     features: [
       "5-page custom website",
@@ -16,12 +16,14 @@ const packages = [
       "1 hour of edits per month",
     ],
     highlight: false,
+    accentClass: "border-t-4 border-t-ink/20",
+    labelColor: "text-ink-muted",
   },
   {
     name: "Plus",
     price: "$3,500",
-    monthly: "$125/mo",
-    description: "Best for businesses that need to update their site.",
+    monthly: "$125",
+    description: "Best for businesses that need to stay current.",
     features: [
       "Everything in Starter",
       "Up to 10 pages",
@@ -31,11 +33,13 @@ const packages = [
       "Analytics dashboard",
     ],
     highlight: true,
+    accentClass: "border-t-4 border-t-terracotta",
+    labelColor: "text-terracotta",
   },
   {
     name: "Pro",
     price: "$6,000+",
-    monthly: "$300/mo",
+    monthly: "$300",
     description: "For growing businesses ready to scale online.",
     features: [
       "Everything in Plus",
@@ -46,6 +50,8 @@ const packages = [
       "Quarterly strategy calls",
     ],
     highlight: false,
+    accentClass: "border-t-4 border-t-forest",
+    labelColor: "text-forest",
   },
 ];
 
@@ -59,10 +65,10 @@ const demos = [
       starter: [
         "Custom design & branding",
         "Mobile responsive layout",
-        "Location, hours & contact info",
+        "Location, hours & contact",
       ],
       plus: [
-        "Full menu broken into sections",
+        "Full menu by section",
         "Easy content updates",
         "Google Maps embed",
       ],
@@ -76,172 +82,154 @@ const demos = [
 ];
 ---
 
-<Layout title="Apex Web — Websites for Local Businesses" description="I build fast, modern websites for local businesses in Gainesville and beyond. Affordable monthly hosting included.">
+<Layout title="Apex Web — Websites for Local Businesses">
   <!-- Nav -->
-  <nav class="absolute top-0 left-0 right-0 z-10 px-6 py-6">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <a href="/" class="text-xl font-bold tracking-tight">Apex Web</a>
-      <div class="hidden md:flex gap-8 text-sm text-slate-300">
-        <a href="#services" class="hover:text-white transition">Services</a>
-        <a href="#packages" class="hover:text-white transition">Packages</a>
-        <a href="#work" class="hover:text-white transition">Work</a>
-        <a href="#about" class="hover:text-white transition">About</a>
-        <a href="#contact" class="hover:text-white transition">Contact</a>
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-cream border-b border-border">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="text-xl font-semibold tracking-tight" style="font-family: var(--font-display)">
+        Apex Web
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-ink-muted">
+        <a href="#services" class="hover:text-ink transition-colors">Services</a>
+        <a href="#packages" class="hover:text-ink transition-colors">Packages</a>
+        <a href="#work" class="hover:text-ink transition-colors">Work</a>
+        <a href="#about" class="hover:text-ink transition-colors">About</a>
+        <a href="#contact" class="hover:text-ink transition-colors">Contact</a>
       </div>
-      <a
-        href="#contact"
-        class="hidden md:inline-block bg-white text-slate-950 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-slate-200 transition"
-      >
+      <a href="#contact" class="hidden md:inline-flex items-center bg-terracotta text-cream px-5 py-2.5 text-sm font-medium hover:bg-terracotta-dark transition-colors">
         Get a Quote
       </a>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="relative min-h-screen flex items-center px-6 pt-24 pb-16 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950"></div>
-    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 50%, rgba(59,130,246,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(139,92,246,0.15) 0%, transparent 50%);"></div>
+  <section class="min-h-screen flex items-center px-6 pt-32 pb-24 bg-cream">
+    <div class="max-w-6xl mx-auto w-full">
+      <div class="reveal inline-flex items-center gap-2.5 text-sm text-ink-muted border border-border px-4 py-2 mb-10">
+        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse flex-shrink-0"></span>
+        Now booking projects in Gainesville, FL
+      </div>
 
-    <div class="relative max-w-6xl mx-auto w-full">
-      <div class="max-w-3xl">
-        <div class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-300 px-4 py-1.5 rounded-full text-sm mb-6">
-          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-          Now booking projects in Gainesville
+      <h1 class="reveal reveal-delay-1 leading-none mb-8" style="font-family: var(--font-display)">
+        <span class="block text-5xl md:text-6xl lg:text-7xl font-medium text-ink tracking-tight">Websites that</span>
+        <span class="block text-7xl md:text-9xl lg:text-[10rem] font-bold italic text-terracotta leading-[0.9] my-1 md:my-2">actually work</span>
+        <span class="block text-5xl md:text-6xl lg:text-7xl font-medium text-ink tracking-tight">for your business.</span>
+      </h1>
+
+      <p class="reveal reveal-delay-2 text-lg text-ink-muted max-w-xl mb-10 leading-relaxed">
+        Custom-built websites for local businesses. Fast, mobile-friendly, and affordable.
+        I handle the tech so you can focus on running your business.
+      </p>
+
+      <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 mb-16">
+        <a href="#contact" class="bg-terracotta text-cream px-8 py-4 font-medium hover:bg-terracotta-dark transition-colors text-center text-sm tracking-wide">
+          Get a Free Quote
+        </a>
+        <a href="#work" class="border border-ink text-ink px-8 py-4 font-medium hover:bg-ink hover:text-cream transition-colors text-center text-sm tracking-wide">
+          See Our Work
+        </a>
+      </div>
+
+      <div class="reveal reveal-delay-4 flex flex-wrap gap-10 pt-8 border-t border-border">
+        <div>
+          <div class="text-3xl font-semibold text-ink" style="font-family: var(--font-display)">7 days</div>
+          <div class="text-sm text-ink-muted mt-0.5">Average launch time</div>
         </div>
-
-        <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.05]">
-          Websites that
-          <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            actually work
-          </span>
-          for your business.
-        </h1>
-
-        <p class="text-xl text-slate-300 mb-10 max-w-2xl leading-relaxed">
-          Custom-built websites for local businesses. Fast, mobile-friendly,
-          and affordable. I handle the tech so you can run your business.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a
-            href="#contact"
-            class="bg-white text-slate-950 px-7 py-3.5 rounded-lg font-semibold hover:bg-slate-200 transition text-center"
-          >
-            Get a Free Quote
-          </a>
-          <a
-            href="#work"
-            class="border border-slate-700 px-7 py-3.5 rounded-lg font-semibold hover:bg-slate-800 transition text-center"
-          >
-            See Our Work
-          </a>
+        <div>
+          <div class="text-3xl font-semibold text-ink" style="font-family: var(--font-display)">100%</div>
+          <div class="text-sm text-ink-muted mt-0.5">Mobile responsive</div>
         </div>
-
-        <div class="mt-16 flex flex-wrap gap-8 text-sm text-slate-400">
-          <div>
-            <div class="text-2xl font-bold text-white">7 days</div>
-            <div>Average launch time</div>
-          </div>
-          <div>
-            <div class="text-2xl font-bold text-white">100%</div>
-            <div>Mobile responsive</div>
-          </div>
-          <div>
-            <div class="text-2xl font-bold text-white">A+</div>
-            <div>Page speed scores</div>
-          </div>
+        <div>
+          <div class="text-3xl font-semibold text-ink" style="font-family: var(--font-display)">A+</div>
+          <div class="text-sm text-ink-muted mt-0.5">Page speed scores</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Services -->
-  <section id="services" class="px-6 py-24 bg-slate-900">
+  <section id="services" class="px-6 py-24 bg-cream-dark">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">What I Do</h2>
-      <p class="text-slate-400 text-lg mb-16 max-w-2xl">
-        Everything you need to get your business online and keep it running smoothly.
-      </p>
+      <div class="reveal mb-16">
+        <p class="text-xs font-medium text-ink-muted uppercase tracking-[0.2em] mb-3">What I Do</p>
+        <h2 class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-display)">
+          Everything your business<br class="hidden md:block" /> needs to get online.
+        </h2>
+      </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition">
-          <div class="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+      <div class="grid md:grid-cols-3 gap-px bg-border-dark">
+        <div class="reveal bg-cream-dark p-8 hover:bg-cream transition-colors">
+          <div class="w-10 h-10 border border-terracotta/30 flex items-center justify-center mb-6">
+            <svg class="w-5 h-5 text-terracotta" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">Custom Web Design</h3>
-          <p class="text-slate-400">Built from scratch for your brand. No templates, no cookie-cutter layouts.</p>
+          <h3 class="text-xl font-semibold mb-3" style="font-family: var(--font-display)">Custom Web Design</h3>
+          <p class="text-ink-muted text-sm leading-relaxed">Built from scratch for your brand. No templates, no cookie-cutter layouts.</p>
         </div>
 
-        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8 hover:border-purple-500/50 transition">
-          <div class="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        <div class="reveal reveal-delay-1 bg-cream-dark p-8 hover:bg-cream transition-colors">
+          <div class="w-10 h-10 border border-forest/30 flex items-center justify-center mb-6">
+            <svg class="w-5 h-5 text-forest" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">Lightning Fast Hosting</h3>
-          <p class="text-slate-400">Your site loads in under a second. Hosting, SSL, and backups all handled.</p>
+          <h3 class="text-xl font-semibold mb-3" style="font-family: var(--font-display)">Lightning Fast Hosting</h3>
+          <p class="text-ink-muted text-sm leading-relaxed">Loads in under a second. Hosting, SSL, and backups all handled and included.</p>
         </div>
 
-        <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8 hover:border-green-500/50 transition">
-          <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-5">
-            <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+        <div class="reveal reveal-delay-2 bg-cream-dark p-8 hover:bg-cream transition-colors">
+          <div class="w-10 h-10 border border-ink/20 flex items-center justify-center mb-6">
+            <svg class="w-5 h-5 text-ink-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">Ongoing Maintenance</h3>
-          <p class="text-slate-400">Updates, security patches, and edits — all included in your monthly plan.</p>
+          <h3 class="text-xl font-semibold mb-3" style="font-family: var(--font-display)">Ongoing Maintenance</h3>
+          <p class="text-ink-muted text-sm leading-relaxed">Updates, security patches, and edits — all included in your monthly plan.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Packages -->
-  <section id="packages" class="px-6 py-24">
+  <section id="packages" class="px-6 py-24 bg-cream">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">Simple, Honest Pricing</h2>
-        <p class="text-slate-400 text-lg max-w-2xl mx-auto">
-          Pick a package that fits your business. No hidden fees, no upsells.
-        </p>
+      <div class="reveal text-center mb-16">
+        <p class="text-xs font-medium text-ink-muted uppercase tracking-[0.2em] mb-3">Pricing</p>
+        <h2 class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-display)">
+          Simple, honest pricing.
+        </h2>
+        <p class="text-ink-muted mt-3 max-w-md mx-auto text-sm">No hidden fees. No upsells. Pick the package that fits.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-6">
-        {packages.map((pkg) => (
-          <div class={`relative rounded-2xl p-8 ${pkg.highlight ? 'bg-gradient-to-br from-blue-600 to-purple-600 border-0' : 'bg-slate-900 border border-slate-800'}`}>
-            {pkg.highlight && (
-              <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-slate-950 text-xs font-bold px-3 py-1 rounded-full">
-                MOST POPULAR
-              </div>
-            )}
-            <h3 class="text-2xl font-bold mb-2">{pkg.name}</h3>
-            <p class={`text-sm mb-6 ${pkg.highlight ? 'text-blue-100' : 'text-slate-400'}`}>{pkg.description}</p>
-
+        {packages.map((pkg, i) => (
+          <div class={`reveal reveal-delay-${i} bg-white border border-border ${pkg.accentClass} p-8 flex flex-col ${pkg.highlight ? 'shadow-lg' : ''}`}>
             <div class="mb-6">
-              <div class="flex items-baseline gap-2">
-                <span class="text-4xl font-bold">{pkg.price}</span>
-                <span class={`text-sm ${pkg.highlight ? 'text-blue-100' : 'text-slate-500'}`}>upfront</span>
+              <p class={`text-xs font-semibold uppercase tracking-[0.15em] mb-2 ${pkg.labelColor}`}>{pkg.name}</p>
+              <div class="flex items-baseline gap-1 mb-1" style="font-family: var(--font-display)">
+                <span class="text-5xl font-bold text-ink">{pkg.price}</span>
+                <span class="text-ink-muted text-sm">upfront</span>
               </div>
-              <div class={`text-sm mt-1 ${pkg.highlight ? 'text-blue-100' : 'text-slate-400'}`}>
-                + {pkg.monthly} hosting & maintenance
-              </div>
+              <p class="text-sm text-ink-muted">+ {pkg.monthly}/mo hosting & maintenance</p>
             </div>
 
-            <ul class="space-y-3 mb-8">
+            <p class="text-sm text-ink-muted mb-6 leading-relaxed">{pkg.description}</p>
+
+            <ul class="space-y-2.5 mb-8 flex-1">
               {pkg.features.map((feature) => (
-                <li class="flex items-start gap-3 text-sm">
-                  <svg class={`w-5 h-5 flex-shrink-0 mt-0.5 ${pkg.highlight ? 'text-white' : 'text-green-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li class="flex items-start gap-3 text-sm text-ink">
+                  <svg class={`w-4 h-4 flex-shrink-0 mt-0.5 ${pkg.highlight ? 'text-terracotta' : 'text-ink-muted'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                   </svg>
-                  <span>{feature}</span>
+                  {feature}
                 </li>
               ))}
             </ul>
 
             <a
               href={`/packages/${pkg.name.toLowerCase()}`}
-              class={`block text-center w-full py-3 rounded-lg font-semibold transition ${pkg.highlight ? 'bg-white text-slate-950 hover:bg-slate-100' : 'bg-slate-800 hover:bg-slate-700'}`}
+              class={`block text-center w-full py-3 text-sm font-medium tracking-wide transition-colors ${pkg.highlight ? 'bg-terracotta text-cream hover:bg-terracotta-dark' : 'border border-ink text-ink hover:bg-ink hover:text-cream'}`}
             >
               See What's Included
             </a>
@@ -252,60 +240,49 @@ const demos = [
   </section>
 
   <!-- Work -->
-  <section id="work" class="px-6 py-24 bg-slate-900">
+  <section id="work" class="px-6 py-24 bg-cream-dark">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">Our Work</h2>
-      <p class="text-slate-400 text-lg mb-12 max-w-2xl">
-        Live demos — real sites built with the same tools we use for every client. Scroll through and see what each package level adds.
-      </p>
+      <div class="reveal mb-12">
+        <p class="text-xs font-medium text-ink-muted uppercase tracking-[0.2em] mb-3">Our Work</p>
+        <h2 class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-display)">
+          Live demos. Real sites.
+        </h2>
+        <p class="text-ink-muted mt-3 max-w-lg text-sm leading-relaxed">
+          Built with the same tools we use for every client. See what each package level adds.
+        </p>
+      </div>
 
-      <!-- Carousel wrapper -->
+      <!-- Carousel -->
       <div class="relative">
-        <!-- Prev button -->
-        <button
-          id="demo-prev"
-          aria-label="Previous demo"
-          class="absolute left-0 top-[270px] -translate-x-5 z-10 w-10 h-10 bg-white text-slate-950 rounded-full flex items-center justify-center shadow-xl hover:bg-slate-100 transition hidden md:flex"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="demo-prev" aria-label="Previous demo"
+          class="absolute left-0 top-[270px] -translate-x-5 z-10 w-10 h-10 bg-ink text-cream flex items-center justify-center hover:bg-terracotta transition-colors hidden md:flex">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
           </svg>
         </button>
-
-        <!-- Next button -->
-        <button
-          id="demo-next"
-          aria-label="Next demo"
-          class="absolute right-0 top-[270px] translate-x-5 z-10 w-10 h-10 bg-white text-slate-950 rounded-full flex items-center justify-center shadow-xl hover:bg-slate-100 transition hidden md:flex"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button id="demo-next" aria-label="Next demo"
+          class="absolute right-0 top-[270px] translate-x-5 z-10 w-10 h-10 bg-ink text-cream flex items-center justify-center hover:bg-terracotta transition-colors hidden md:flex">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
           </svg>
         </button>
 
-        <!-- Slides -->
         {demos.map((demo, i) => (
           <div class={`demo-slide${i !== 0 ? ' hidden' : ''}`} data-index={i}>
-
             <!-- Browser mockup -->
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
+            <div class="border border-border shadow-xl bg-white overflow-hidden reveal">
               <!-- Chrome bar -->
-              <div class="flex items-center gap-3 px-4 py-3 bg-slate-950 border-b border-slate-700">
+              <div class="flex items-center gap-3 px-4 py-3 bg-cream-dark border-b border-border">
                 <div class="flex gap-1.5">
-                  <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
-                  <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
-                  <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
+                  <div class="w-3 h-3 rounded-full bg-red-400/70"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-400/70"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-400/70"></div>
                 </div>
-                <div class="flex-1 bg-slate-800 rounded-md px-3 py-1.5 text-xs text-slate-400 font-mono truncate">
+                <div class="flex-1 bg-white border border-border rounded px-3 py-1.5 text-xs text-ink-muted font-mono truncate">
                   {demo.url}
                 </div>
-                <a
-                  href={demo.url}
-                  target="_blank"
-                  rel="noopener"
-                  class="text-slate-500 hover:text-slate-200 transition flex-shrink-0"
-                  title="Open in new tab"
-                >
+                <a href={demo.url} target="_blank" rel="noopener"
+                  class="text-ink-faint hover:text-ink transition-colors flex-shrink-0" title="Open in new tab">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                   </svg>
@@ -313,115 +290,91 @@ const demos = [
               </div>
               <!-- iframe -->
               <div class="h-[520px] overflow-hidden bg-white">
-                <iframe
-                  src={demo.url}
-                  title={`${demo.name} demo`}
-                  loading="lazy"
-                  class="w-full h-full border-0 pointer-events-none"
-                ></iframe>
+                <iframe src={demo.url} title={`${demo.name} demo`} loading="lazy"
+                  class="w-full h-full border-0 pointer-events-none"></iframe>
               </div>
             </div>
 
-            <!-- Feature callouts with upward arrows -->
-            <div class="mt-2 grid md:grid-cols-3 gap-0">
-              <!-- Shared arrow row -->
-              <div class="flex justify-center pt-3 pb-1">
-                <svg class="w-5 h-5 text-blue-500/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
-                </svg>
-              </div>
-              <div class="flex justify-center pt-3 pb-1">
-                <svg class="w-5 h-5 text-purple-500/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
-                </svg>
-              </div>
-              <div class="flex justify-center pt-3 pb-1">
-                <svg class="w-5 h-5 text-pink-500/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
-                </svg>
-              </div>
+            <!-- Callout arrows -->
+            <div class="grid md:grid-cols-3 gap-0 mt-1">
+              {['text-ink-muted', 'text-terracotta', 'text-forest'].map((color) => (
+                <div class="flex justify-center py-2">
+                  <svg class={`w-4 h-4 ${color} opacity-50`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                  </svg>
+                </div>
+              ))}
             </div>
 
-            <div class="grid md:grid-cols-3 gap-4">
-              <!-- Starter callout -->
-              <div class="border border-blue-500/30 bg-blue-500/5 rounded-xl p-5">
+            <!-- Feature callout columns -->
+            <div class="grid md:grid-cols-3 gap-4 reveal">
+              <div class="border border-border bg-white p-5">
                 <div class="flex items-center gap-2 mb-4">
-                  <div class="w-2 h-2 rounded-full bg-blue-400"></div>
-                  <span class="text-xs font-bold text-blue-400 uppercase tracking-wider">Starter — $1,500</span>
+                  <div class="w-1.5 h-1.5 rounded-full bg-ink-muted"></div>
+                  <span class="text-xs font-semibold uppercase tracking-[0.15em] text-ink-muted">Starter — $1,500</span>
                 </div>
                 <ul class="space-y-2">
                   {demo.features.starter.map((f) => (
-                    <li class="flex items-start gap-2 text-sm text-slate-300">
-                      <svg class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li class="flex items-start gap-2 text-sm text-ink">
+                      <svg class="w-3.5 h-3.5 text-ink-muted flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                       </svg>
                       {f}
                     </li>
                   ))}
                 </ul>
-                <a href="/packages/starter" class="mt-4 inline-block text-xs font-semibold text-blue-400 hover:text-blue-300 transition">
-                  See full details →
-                </a>
+                <a href="/packages/starter" class="mt-4 inline-block text-xs text-ink-muted hover:text-ink transition-colors">Details →</a>
               </div>
 
-              <!-- Plus callout -->
-              <div class="border border-purple-500/30 bg-purple-500/5 rounded-xl p-5">
+              <div class="border border-terracotta/30 bg-white p-5">
                 <div class="flex items-center gap-2 mb-4">
-                  <div class="w-2 h-2 rounded-full bg-purple-400"></div>
-                  <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Plus — $3,500</span>
+                  <div class="w-1.5 h-1.5 rounded-full bg-terracotta"></div>
+                  <span class="text-xs font-semibold uppercase tracking-[0.15em] text-terracotta">Plus — $3,500</span>
                 </div>
                 <ul class="space-y-2">
                   {demo.features.plus.map((f) => (
-                    <li class="flex items-start gap-2 text-sm text-slate-300">
-                      <svg class="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li class="flex items-start gap-2 text-sm text-ink">
+                      <svg class="w-3.5 h-3.5 text-terracotta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                       </svg>
                       {f}
                     </li>
                   ))}
                 </ul>
-                <a href="/packages/plus" class="mt-4 inline-block text-xs font-semibold text-purple-400 hover:text-purple-300 transition">
-                  See full details →
-                </a>
+                <a href="/packages/plus" class="mt-4 inline-block text-xs text-terracotta hover:text-terracotta-dark transition-colors">Details →</a>
               </div>
 
-              <!-- Pro callout -->
-              <div class="border border-pink-500/30 bg-pink-500/5 rounded-xl p-5">
+              <div class="border border-forest/30 bg-white p-5">
                 <div class="flex items-center gap-2 mb-4">
-                  <div class="w-2 h-2 rounded-full bg-pink-400"></div>
-                  <span class="text-xs font-bold text-pink-400 uppercase tracking-wider">Pro — $6,000+</span>
+                  <div class="w-1.5 h-1.5 rounded-full bg-forest"></div>
+                  <span class="text-xs font-semibold uppercase tracking-[0.15em] text-forest">Pro — $6,000+</span>
                 </div>
                 <ul class="space-y-2">
                   {demo.features.pro.map((f) => (
-                    <li class="flex items-start gap-2 text-sm text-slate-300">
-                      <svg class="w-4 h-4 text-pink-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li class="flex items-start gap-2 text-sm text-ink">
+                      <svg class="w-3.5 h-3.5 text-forest flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                       </svg>
                       {f}
                     </li>
                   ))}
                 </ul>
-                <a href="/packages/pro" class="mt-4 inline-block text-xs font-semibold text-pink-400 hover:text-pink-300 transition">
-                  See full details →
-                </a>
+                <a href="/packages/pro" class="mt-4 inline-block text-xs text-forest hover:text-forest-dark transition-colors">Details →</a>
               </div>
             </div>
 
             <!-- Demo info + dots -->
-            <div class="mt-6 flex items-center justify-between">
+            <div class="mt-5 flex items-center justify-between">
               <div>
-                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">{demo.industry}</div>
-                <div class="text-lg font-bold">{demo.name}</div>
-                <p class="text-sm text-slate-400 mt-1">{demo.description}</p>
+                <p class="text-xs font-medium text-ink-muted uppercase tracking-[0.15em] mb-0.5">{demo.industry}</p>
+                <p class="font-semibold text-ink" style="font-family: var(--font-display)">{demo.name}</p>
+                <p class="text-sm text-ink-muted mt-0.5">{demo.description}</p>
               </div>
               {demos.length > 1 && (
                 <div class="flex gap-2">
                   {demos.map((_, j) => (
-                    <button
-                      class={`demo-dot w-2.5 h-2.5 rounded-full transition ${j === i ? 'bg-white' : 'bg-slate-600 hover:bg-slate-400'}`}
-                      data-index={j}
-                      aria-label={`Go to demo ${j + 1}`}
-                    ></button>
+                    <button class={`demo-dot w-2 h-2 rounded-full transition-colors ${j === i ? 'bg-ink' : 'bg-border-dark hover:bg-ink-muted'}`}
+                      data-index={j} aria-label={`Demo ${j + 1}`}></button>
                   ))}
                 </div>
               )}
@@ -433,87 +386,68 @@ const demos = [
   </section>
 
   <!-- About -->
-  <section id="about" class="px-6 py-24 bg-slate-950">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-bold mb-8">About</h2>
-      <div class="prose prose-invert prose-lg max-w-none">
-        <p class="text-xl text-slate-300 leading-relaxed mb-6">
-          I'm a developer based in Gainesville, building modern websites for
-          local businesses who deserve better than a free template.
-        </p>
-        <p class="text-slate-400 leading-relaxed mb-6">
-          Most small businesses don't need a 6-figure agency. They need a
-          working website, fair pricing, and someone who picks up the phone.
-          That's what I do.
-        </p>
-        <p class="text-slate-400 leading-relaxed">
-          Every site I build is custom, fast, and easy to update. No fluff,
-          no jargon, no surprise invoices.
-        </p>
+  <section id="about" class="px-6 py-24 bg-cream">
+    <div class="max-w-6xl mx-auto">
+      <div class="reveal md:grid md:grid-cols-5 md:gap-16 items-start">
+        <div class="md:col-span-2 mb-8 md:mb-0">
+          <p class="text-xs font-medium text-ink-muted uppercase tracking-[0.2em] mb-4">About</p>
+          <div class="text-[7rem] leading-none font-bold text-cream-deeper select-none" style="font-family: var(--font-display)">"</div>
+        </div>
+        <div class="md:col-span-3">
+          <p class="text-2xl md:text-3xl font-medium leading-snug text-ink mb-8" style="font-family: var(--font-display)">
+            I'm a developer based in Gainesville, building modern websites for local businesses who deserve better than a free template.
+          </p>
+          <div class="space-y-4 text-ink-muted leading-relaxed">
+            <p>Most small businesses don't need a 6-figure agency. They need a working website, fair pricing, and someone who picks up the phone. That's what I do.</p>
+            <p>Every site I build is custom, fast, and easy to update. No fluff, no jargon, no surprise invoices.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="px-6 py-24">
+  <section id="contact" class="px-6 py-24 bg-forest">
     <div class="max-w-2xl mx-auto">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center">Let's Talk</h2>
-      <p class="text-slate-400 text-lg mb-12 text-center">
-        Tell me about your business. I'll get back to you within 24 hours.
-      </p>
+      <div class="reveal mb-12 text-center">
+        <p class="text-xs font-medium text-forest-dark/0 uppercase tracking-[0.2em] mb-3" style="color: rgba(255,255,255,0.4)">Get In Touch</p>
+        <h2 class="text-4xl md:text-5xl font-semibold text-cream" style="font-family: var(--font-display)">
+          Let's talk.
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed" style="color: rgba(255,255,255,0.55)">
+          Tell me about your business. I'll get back to you within 24 hours.
+        </p>
+      </div>
 
-      <form
-        action="https://formspree.io/f/mzdojrav"
-        method="POST"
-        class="space-y-5"
-      >
-        <div>
-          <label for="name" class="block text-sm font-medium mb-2">Your Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition"
-          />
+      <form action="https://formspree.io/f/mzdojrav" method="POST" class="reveal space-y-5">
+        <div class="grid md:grid-cols-2 gap-5">
+          <div>
+            <label for="name" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.55)">Your Name</label>
+            <input type="text" id="name" name="name" required
+              class="w-full bg-white/10 border border-white/20 text-cream px-4 py-3 text-sm focus:outline-none focus:border-white/50 transition-colors placeholder:text-white/25"
+              placeholder="Jane Smith" />
+          </div>
+          <div>
+            <label for="email" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.55)">Email</label>
+            <input type="email" id="email" name="email" required
+              class="w-full bg-white/10 border border-white/20 text-cream px-4 py-3 text-sm focus:outline-none focus:border-white/50 transition-colors placeholder:text-white/25"
+              placeholder="jane@business.com" />
+          </div>
         </div>
-
         <div>
-          <label for="email" class="block text-sm font-medium mb-2">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition"
-          />
+          <label for="business" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.55)">Business Name</label>
+          <input type="text" id="business" name="business"
+            class="w-full bg-white/10 border border-white/20 text-cream px-4 py-3 text-sm focus:outline-none focus:border-white/50 transition-colors placeholder:text-white/25"
+            placeholder="Your Business" />
         </div>
-
         <div>
-          <label for="business" class="block text-sm font-medium mb-2">Business Name</label>
-          <input
-            type="text"
-            id="business"
-            name="business"
-            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition"
-          />
+          <label for="message" class="block text-xs font-medium uppercase tracking-[0.12em] mb-2" style="color: rgba(255,255,255,0.55)">Tell me about your project</label>
+          <textarea id="message" name="message" rows="5" required
+            class="w-full bg-white/10 border border-white/20 text-cream px-4 py-3 text-sm focus:outline-none focus:border-white/50 transition-colors resize-none placeholder:text-white/25"
+            placeholder="What kind of site do you need? What does your business do?"></textarea>
         </div>
-
-        <div>
-          <label for="message" class="block text-sm font-medium mb-2">Tell me about your project</label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            required
-            class="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 focus:outline-none focus:border-blue-500 transition resize-none"
-          ></textarea>
-        </div>
-
-        <button
-          type="submit"
-          class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold py-3.5 rounded-lg transition"
-        >
+        <button type="submit"
+          class="w-full bg-terracotta text-cream py-4 text-sm font-medium tracking-wide hover:bg-terracotta-dark transition-colors">
           Send Message
         </button>
       </form>
@@ -521,10 +455,10 @@ const demos = [
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800 px-6 py-10">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+  <footer class="border-t border-white/10 px-6 py-8 bg-ink">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-ink-muted" style="color: rgba(255,255,255,0.35)">
       <div>© 2026 Apex Web. All rights reserved.</div>
-      <div>Built in Gainesville.</div>
+      <div>Built in Gainesville, FL.</div>
     </div>
   </footer>
 </Layout>
@@ -537,22 +471,13 @@ const demos = [
   function goTo(n: number) {
     if (slides.length <= 1) return;
     slides[current].classList.add('hidden');
-    if (dots[current]) {
-      dots[current].classList.remove('bg-white');
-      dots[current].classList.add('bg-slate-600');
-    }
+    dots[current]?.classList.replace('bg-ink', 'bg-border-dark');
     current = ((n % slides.length) + slides.length) % slides.length;
     slides[current].classList.remove('hidden');
-    if (dots[current]) {
-      dots[current].classList.remove('bg-slate-600');
-      dots[current].classList.add('bg-white');
-    }
+    dots[current]?.classList.replace('bg-border-dark', 'bg-ink');
   }
 
   document.getElementById('demo-prev')?.addEventListener('click', () => goTo(current - 1));
   document.getElementById('demo-next')?.addEventListener('click', () => goTo(current + 1));
-
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => goTo(Number(dot.dataset.index)));
-  });
+  dots.forEach((dot) => dot.addEventListener('click', () => goTo(Number(dot.dataset.index))));
 </script>
