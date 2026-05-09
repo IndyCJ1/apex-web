@@ -92,17 +92,17 @@ const starterIncludes = ["5-page site", "Mobile responsive", "Contact form", "SE
         <div class="h-[680px] bg-white"><iframe id="plus-frame" src="/demos/plus" title="The Perch demo" loading="lazy" class="w-full h-full border-0"></iframe></div>
       </div>
 
-      <script>
-        function loadPlusDemo(btn: HTMLButtonElement) {
-          const url = btn.dataset.url || '';
-          const frame = document.getElementById('plus-frame') as HTMLIFrameElement;
-          const display = document.getElementById('plus-url-display');
+      <script is:inline>
+        function loadPlusDemo(btn) {
+          var url = btn.dataset.url || '';
+          var frame = document.getElementById('plus-frame');
+          var display = document.getElementById('plus-url-display');
           if (frame) frame.src = url;
           if (display) display.textContent = 'cuesseler-web.pages.dev' + url;
-          document.querySelectorAll('.plus-tab').forEach((t) => {
-            (t as HTMLElement).style.background = 'white';
-            (t as HTMLElement).style.color = '#737373';
-            (t as HTMLElement).style.borderColor = '#E5E5E5';
+          document.querySelectorAll('.plus-tab').forEach(function(t) {
+            t.style.background = 'white';
+            t.style.color = '#737373';
+            t.style.borderColor = '#E5E5E5';
           });
           btn.style.background = '#FF4500';
           btn.style.color = 'white';

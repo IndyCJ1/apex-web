@@ -91,17 +91,17 @@ const allIncludes = ["5-page site", "Mobile responsive", "Contact form", "SEO ba
         <div class="h-[680px] bg-white"><iframe id="pro-frame" src="/demos/pro" title="Solé Wellness demo" loading="lazy" class="w-full h-full border-0"></iframe></div>
       </div>
 
-      <script>
-        function loadProDemo(btn: HTMLButtonElement) {
-          const url = btn.dataset.url || '';
-          const frame = document.getElementById('pro-frame') as HTMLIFrameElement;
-          const display = document.getElementById('pro-url-display');
+      <script is:inline>
+        function loadProDemo(btn) {
+          var url = btn.dataset.url || '';
+          var frame = document.getElementById('pro-frame');
+          var display = document.getElementById('pro-url-display');
           if (frame) frame.src = url;
           if (display) display.textContent = 'cuesseler-web.pages.dev' + url;
-          document.querySelectorAll('.pro-tab').forEach((t) => {
-            (t as HTMLElement).style.background = 'white';
-            (t as HTMLElement).style.color = '#737373';
-            (t as HTMLElement).style.borderColor = '#E5E5E5';
+          document.querySelectorAll('.pro-tab').forEach(function(t) {
+            t.style.background = 'white';
+            t.style.color = '#737373';
+            t.style.borderColor = '#E5E5E5';
           });
           btn.style.background = '#FF4500';
           btn.style.color = 'white';

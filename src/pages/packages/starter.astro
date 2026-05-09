@@ -96,17 +96,17 @@ const features = [
     </div>
   </section>
 
-  <script>
-    function loadDemo(btn: HTMLButtonElement) {
-      const url = btn.dataset.url || '';
-      const frame = document.getElementById('demo-frame') as HTMLIFrameElement;
-      const display = document.getElementById('demo-url-display');
+  <script is:inline>
+    function loadDemo(btn) {
+      var url = btn.dataset.url || '';
+      var frame = document.getElementById('demo-frame');
+      var display = document.getElementById('demo-url-display');
       if (frame) frame.src = url;
       if (display) display.textContent = url.replace('https://', '');
-      document.querySelectorAll('.demo-tab').forEach((t) => {
-        (t as HTMLElement).style.background = 'white';
-        (t as HTMLElement).style.color = '#737373';
-        (t as HTMLElement).style.borderColor = '#E5E5E5';
+      document.querySelectorAll('.demo-tab').forEach(function(t) {
+        t.style.background = 'white';
+        t.style.color = '#737373';
+        t.style.borderColor = '#E5E5E5';
       });
       btn.style.background = '#FF4500';
       btn.style.color = 'white';
