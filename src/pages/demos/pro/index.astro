@@ -128,7 +128,7 @@ const testimonials = [
   <!-- Services — image cards -->
   <section style="background: var(--s-bg-alt);" class="px-6 py-20">
     <div class="max-w-7xl mx-auto">
-      <div class="reveal flex items-end justify-between mb-10">
+      <div class="reveal flex items-end justify-between gap-4 mb-10 flex-wrap">
         <div>
           <p class="text-xs uppercase tracking-[0.3em] mb-2" style="color: var(--s-sage);">Services</p>
           <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 3rem); color: var(--s-ink);">What we offer</h2>
@@ -139,7 +139,7 @@ const testimonials = [
       <div class="grid md:grid-cols-3 gap-4">
         {services.map((svc, i) => (
           <div class={`reveal reveal-delay-${i % 3} service-card`} style="aspect-ratio: 3/4; background: var(--s-bg-alt);">
-            <img src={svc.img} alt={svc.name} class="w-full h-full object-cover absolute inset-0" style="position: absolute;" />
+            <img src={svc.img} alt={svc.name} class="w-full h-full object-cover absolute inset-0" />
             <div class="overlay absolute inset-0" style="background: linear-gradient(to top, rgba(22,32,22,0.9) 0%, rgba(22,32,22,0.3) 50%, transparent 100%); opacity: 0.7;"></div>
             <div class="info absolute bottom-0 left-0 right-0 p-5" style="transform: translateY(8px);">
               <h3 class="font-semibold text-white" style="font-family: var(--font-serif); font-size: 1.1rem;">{svc.name}</h3>
@@ -212,7 +212,7 @@ const testimonials = [
   <!-- Shop -->
   <section id="shop" style="background: var(--s-bg-alt); border-bottom: 1px solid var(--s-border);" class="px-6 py-20">
     <div class="max-w-6xl mx-auto">
-      <div class="reveal flex items-end justify-between mb-10">
+      <div class="reveal flex items-end justify-between gap-4 mb-10 flex-wrap">
         <div>
           <p class="text-xs uppercase tracking-[0.3em] mb-2" style="color: var(--s-sage);">The Shop</p>
           <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 3vw, 3rem); color: var(--s-ink);">Take it home</h2>

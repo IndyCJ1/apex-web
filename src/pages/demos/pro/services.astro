@@ -74,17 +74,17 @@ const categories = [
         <!-- Services list -->
         <div class="space-y-px" style="border: 1px solid var(--s-border);">
           {cat.services.map((svc, si) => (
-            <div class={`reveal reveal-delay-${si % 3} flex flex-col md:flex-row md:items-center justify-between px-6 py-5 gap-4`}
+            <div class={`reveal reveal-delay-${si % 3} flex flex-col md:flex-row md:items-center justify-between px-4 sm:px-6 py-5 gap-4`}
               style={`background: ${ci % 2 === 0 ? 'var(--s-bg)' : 'var(--s-bg-alt)'}; ${si < cat.services.length - 1 ? 'border-bottom: 1px solid var(--s-border);' : ''}`}>
-              <div class="flex-1">
-                <div class="flex items-baseline gap-3 mb-1">
-                  <h3 class="font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">{svc.name}</h3>
-                  <span class="text-xs" style="color: var(--s-muted);">{svc.duration}</span>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-baseline gap-3 mb-1 flex-wrap">
+                  <h3 class="font-semibold break-words" style="font-family: var(--font-serif); color: var(--s-ink);">{svc.name}</h3>
+                  <span class="text-xs whitespace-nowrap" style="color: var(--s-muted);">{svc.duration}</span>
                 </div>
-                <p class="text-sm leading-relaxed max-w-lg" style="color: var(--s-muted);">{svc.description}</p>
+                <p class="text-sm leading-relaxed max-w-lg break-words" style="color: var(--s-muted);">{svc.description}</p>
               </div>
               <div class="flex items-center gap-4 flex-shrink-0">
-                <span class="font-medium" style="color: var(--s-gold);">{svc.price}</span>
+                <span class="font-medium whitespace-nowrap" style="color: var(--s-gold);">{svc.price}</span>
                 <a href="/demos/pro/book"
                   style="background: var(--s-sage); color: #fff; font-size: 0.65rem; letter-spacing: 0.1em;"
                   class="px-4 py-2 uppercase tracking-wider hover:opacity-90 transition-opacity whitespace-nowrap">

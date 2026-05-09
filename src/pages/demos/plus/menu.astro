@@ -78,11 +78,11 @@ const menu = [
           <div class="space-y-px" style="border: 1px solid var(--p-border);">
             {section.items.map((item, ii) => (
               <div class="flex items-start justify-between px-5 py-3.5 gap-4" style={`background: var(--p-bg); ${ii < section.items.length - 1 ? 'border-bottom: 1px solid var(--p-border);' : ''}`}>
-                <div>
-                  <p class="text-sm font-medium" style="color: var(--p-brown);">{item.name}</p>
-                  {item.note && <p class="text-xs mt-0.5" style="color: var(--p-muted);">{item.note}</p>}
+                <div class="min-w-0 flex-1">
+                  <p class="text-sm font-medium break-words" style="color: var(--p-brown);">{item.name}</p>
+                  {item.note && <p class="text-xs mt-0.5 break-words" style="color: var(--p-muted);">{item.note}</p>}
                 </div>
-                <p class="text-sm font-medium flex-shrink-0" style="color: var(--p-gold);">{item.price}</p>
+                <p class="text-sm font-medium flex-shrink-0 whitespace-nowrap" style="color: var(--p-gold);">{item.price}</p>
               </div>
             ))}
           </div>

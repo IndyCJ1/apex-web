@@ -39,7 +39,7 @@ const events = [
         <a href="/demos/plus/menu" style="background: var(--p-gold); color: var(--p-bg-dark); font-size: 0.75rem; letter-spacing: 0.15em; font-weight: 600;" class="px-8 py-3.5 uppercase hover:opacity-90 transition-opacity">
           See the Menu
         </a>
-        <a href="#visit" style="border: 1px solid var(--p-border); color: var(--p-muted); font-size: 0.75rem; letter-spacing: 0.15em;" class="px-8 py-3.5 uppercase hover:border-current hover:text-current transition-colors" style="color: var(--p-brown)">
+        <a href="#visit" style="border: 1px solid var(--p-border); color: var(--p-muted); font-size: 0.75rem; letter-spacing: 0.15em;" class="px-8 py-3.5 uppercase hover:opacity-80 transition-opacity">
           Find Us
         </a>
       </div>
@@ -55,11 +55,11 @@ const events = [
   <!-- 01 — What's Good -->
   <section style="background: var(--p-bg); border-bottom: 1px solid var(--p-border);" class="px-6 py-20">
     <div class="max-w-7xl mx-auto">
-      <div class="reveal flex items-baseline gap-4 mb-12 pb-4" style="border-bottom: 1px solid var(--p-border);">
+      <div class="reveal flex items-baseline gap-4 mb-12 pb-4 flex-wrap" style="border-bottom: 1px solid var(--p-border);">
         <span class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-gold);">01</span>
         <h2 class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-muted);">What's Good</h2>
         <div class="flex-1"></div>
-        <a href="/demos/plus/menu" class="text-xs uppercase tracking-[0.2em]" style="color: var(--p-gold);">Full Menu →</a>
+        <a href="/demos/plus/menu" class="text-xs uppercase tracking-[0.2em] whitespace-nowrap" style="color: var(--p-gold);">Full Menu →</a>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-px" style="background: var(--p-border);">
@@ -84,11 +84,11 @@ const events = [
   <!-- 02 — From the Blog -->
   <section style="background: var(--p-bg-alt); border-bottom: 1px solid var(--p-border);" class="px-6 py-20">
     <div class="max-w-7xl mx-auto">
-      <div class="reveal flex items-baseline gap-4 mb-12 pb-4" style="border-bottom: 1px solid var(--p-border);">
+      <div class="reveal flex items-baseline gap-4 mb-12 pb-4 flex-wrap" style="border-bottom: 1px solid var(--p-border);">
         <span class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-gold);">02</span>
         <h2 class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-muted);">From the Blog</h2>
         <div class="flex-1"></div>
-        <a href="/demos/plus/blog" class="text-xs uppercase tracking-[0.2em]" style="color: var(--p-gold);">All Posts →</a>
+        <a href="/demos/plus/blog" class="text-xs uppercase tracking-[0.2em] whitespace-nowrap" style="color: var(--p-gold);">All Posts →</a>
       </div>
 
       <div class="grid md:grid-cols-3 gap-px" style="background: var(--p-border);">
@@ -106,22 +106,22 @@ const events = [
   <!-- 03 — Events -->
   <section id="events" style="background: var(--p-bg); border-bottom: 1px solid var(--p-border);" class="px-6 py-20">
     <div class="max-w-7xl mx-auto">
-      <div class="reveal flex items-baseline gap-4 mb-12 pb-4" style="border-bottom: 1px solid var(--p-border);">
+      <div class="reveal flex items-baseline gap-4 mb-12 pb-4 flex-wrap" style="border-bottom: 1px solid var(--p-border);">
         <span class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-gold);">03</span>
         <h2 class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-muted);">Upcoming Events</h2>
       </div>
 
       <div class="space-y-px" style="border: 1px solid var(--p-border);">
         {events.map((ev, i) => (
-          <div class={`reveal reveal-delay-${i} flex items-center justify-between px-6 py-5 group`} style={`background: var(--p-bg); ${i < events.length - 1 ? `border-bottom: 1px solid var(--p-border);` : ''}`}>
-            <div class="flex items-center gap-8">
-              <span class="text-xs tabular-nums" style="color: var(--p-gold);">{ev.num}</span>
-              <div>
-                <p class="font-semibold" style="font-family: var(--font-serif); color: var(--p-brown);">{ev.title}</p>
+          <div class={`reveal reveal-delay-${i} flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-4 sm:px-6 py-5 group`} style={`background: var(--p-bg); ${i < events.length - 1 ? `border-bottom: 1px solid var(--p-border);` : ''}`}>
+            <div class="flex items-center gap-4 sm:gap-8 min-w-0 flex-1">
+              <span class="text-xs tabular-nums flex-shrink-0" style="color: var(--p-gold);">{ev.num}</span>
+              <div class="min-w-0 flex-1">
+                <p class="font-semibold break-words" style="font-family: var(--font-serif); color: var(--p-brown);">{ev.title}</p>
                 <p class="text-xs mt-0.5" style="color: var(--p-muted);">{ev.date} · {ev.time}</p>
               </div>
             </div>
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4 sm:gap-6 flex-shrink-0 pl-10 sm:pl-0">
               <span class="text-xs" style="color: var(--p-green);">{ev.spots}</span>
               <a href="#" style="border: 1px solid var(--p-border); color: var(--p-muted); font-size: 0.7rem; letter-spacing: 0.12em;" class="px-4 py-1.5 uppercase hover:border-current transition-colors whitespace-nowrap">
                 Register
@@ -136,7 +136,7 @@ const events = [
   <!-- 04 — Our Story -->
   <section id="about" style="background: var(--p-bg-alt);" class="px-6 py-24">
     <div class="max-w-7xl mx-auto">
-      <div class="reveal flex items-baseline gap-4 mb-16 pb-4" style="border-bottom: 1px solid var(--p-border);">
+      <div class="reveal flex items-baseline gap-4 mb-16 pb-4 flex-wrap" style="border-bottom: 1px solid var(--p-border);">
         <span class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-gold);">04</span>
         <h2 class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-muted);">Our Story</h2>
       </div>
@@ -159,7 +159,7 @@ const events = [
   <!-- Visit -->
   <section id="visit" style="background: var(--p-bg-dark); border-top: 1px solid var(--p-border);" class="px-6 py-20">
     <div class="max-w-7xl mx-auto">
-      <div class="reveal flex items-baseline gap-4 mb-12 pb-4" style="border-bottom: 1px solid var(--p-border);">
+      <div class="reveal flex items-baseline gap-4 mb-12 pb-4 flex-wrap" style="border-bottom: 1px solid var(--p-border);">
         <span class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-gold);">05</span>
         <h2 class="text-xs uppercase tracking-[0.25em]" style="color: var(--p-muted);">Visit Us</h2>
       </div>
