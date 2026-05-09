@@ -4,11 +4,19 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  canonical?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
 
+const SITE = "https://lanierweb.com";
+
 const {
-  title = "Apex Web — Websites for Local Businesses",
-  description = "Custom websites for local businesses in Gainesville, GA. Fast, modern, and affordable with monthly hosting included.",
+  title = "Lanier Web — Modern Websites for Local Businesses in Gainesville, GA",
+  description = "Custom-built websites for local businesses in Gainesville, GA. Fast, mobile-first, and built to bring customers in. Hosting, SSL, and monthly edits included.",
+  canonical = SITE + Astro.url.pathname,
+  ogImage = SITE + "/og.png",
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -18,21 +26,44 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Lanier Web" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#FF4500" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <slot name="head" />
   </head>
   <body class="bg-white text-ink antialiased" style="font-family: var(--font-sans)">
     <slot />
-    <script>
-      const io = new IntersectionObserver(
-        (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('is-visible'); }),
-        { threshold: 0.08, rootMargin: '0px 0px -48px 0px' }
-      );
-      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    <script is:inline>
+      (function() {
+        var io = new IntersectionObserver(
+          function(entries) { entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('is-visible'); }); },
+          { threshold: 0.08, rootMargin: '0px 0px -48px 0px' }
+        );
+        document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+      })();
     </script>
   </body>
 </html>
