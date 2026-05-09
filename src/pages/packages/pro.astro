@@ -1,0 +1,191 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const includedFeatures = [
+  "5-page custom website",
+  "Mobile responsive design",
+  "Contact form",
+  "Basic on-page SEO",
+  "Hosting & SSL included",
+  "1 hour of edits per month",
+  "Up to 10 pages",
+  "Blog or CMS",
+  "Google Business setup",
+  "Monthly content updates",
+  "Analytics dashboard",
+];
+
+const proFeatures = [
+  {
+    title: "Online Booking or E-Commerce",
+    description:
+      "Let customers book appointments, reserve tables, or buy products directly on your site. Fully integrated — payments, confirmations, and calendar sync all handled.",
+    icon: "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z",
+    color: "blue",
+  },
+  {
+    title: "Custom Integrations",
+    description:
+      "Connect your site to the tools you already use — CRMs, POS systems, email marketing platforms, scheduling apps, or anything with an API. No switching, just connecting.",
+    icon: "M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z",
+    color: "purple",
+  },
+  {
+    title: "Priority Support",
+    description:
+      "You're at the front of the line. Message me and I respond within 2 hours on business days. Site down? I'm on it immediately — no waiting for a ticket queue.",
+    icon: "M13 10V3L4 14h7v7l9-11h-7z",
+    color: "yellow",
+  },
+  {
+    title: "Monthly Performance Reports",
+    description:
+      "Every month you get a clear report: traffic, leads generated, top pages, conversion rates, and what changed. Know exactly what your site is doing for your business.",
+    icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+    color: "green",
+  },
+  {
+    title: "Quarterly Strategy Calls",
+    description:
+      "Every three months we hop on a 30-minute call. We review performance, talk through what's working, and plan what to build or change next. Your site evolves with your business.",
+    icon: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z",
+    color: "teal",
+  },
+];
+
+const colorMap: Record<string, string> = {
+  blue: "bg-blue-500/10 text-blue-400",
+  purple: "bg-purple-500/10 text-purple-400",
+  green: "bg-green-500/10 text-green-400",
+  yellow: "bg-yellow-500/10 text-yellow-400",
+  teal: "bg-teal-500/10 text-teal-400",
+};
+---
+
+<Layout title="Pro Package — Cuesseler Web" description="Full-service web presence with booking or e-commerce, custom integrations, priority support, monthly reports, and quarterly strategy calls.">
+  <!-- Nav -->
+  <nav class="absolute top-0 left-0 right-0 z-10 px-6 py-6">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-xl font-bold tracking-tight">Cuesseler Web</a>
+      <a href="/#packages" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        All Packages
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative min-h-[50vh] flex items-center px-6 pt-32 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950"></div>
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 60%, rgba(139,92,246,0.25) 0%, transparent 60%), radial-gradient(circle at 80% 30%, rgba(59,130,246,0.15) 0%, transparent 50%);"></div>
+    <div class="relative max-w-6xl mx-auto w-full">
+      <div class="inline-flex items-center gap-2 bg-purple-500/10 border border-purple-500/30 text-purple-300 px-4 py-1.5 rounded-full text-sm mb-6">
+        Full Service
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6">Pro Package</h1>
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="text-5xl font-bold">$6,000+</span>
+        <span class="text-slate-400">upfront</span>
+        <span class="text-slate-600">+</span>
+        <span class="text-2xl font-semibold text-slate-300">$300<span class="text-slate-500 text-lg">/mo</span></span>
+      </div>
+      <p class="text-xl text-slate-400 max-w-2xl">
+        For businesses ready to use their website as a serious growth tool — with booking, integrations, and ongoing strategy built in.
+      </p>
+      <div class="mt-8 flex gap-4">
+        <a href="/#contact" class="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 px-7 py-3.5 rounded-lg font-semibold transition text-white">
+          Get Started
+        </a>
+        <a href="/packages/plus" class="border border-slate-700 px-7 py-3.5 rounded-lg font-semibold hover:bg-slate-800 transition">
+          See Plus Package
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Everything included -->
+  <section class="px-6 py-16 bg-slate-900 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6">Everything in Starter + Plus, plus:</p>
+      <div class="flex flex-wrap gap-3">
+        {includedFeatures.map((f) => (
+          <div class="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            {f}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pro-specific features -->
+  <section class="px-6 py-24 bg-slate-900">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-4">What Makes Pro Different</h2>
+      <p class="text-slate-400 mb-16 max-w-xl">The capabilities that turn your website into a revenue-generating machine.</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {proFeatures.map((f) => (
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8 hover:border-purple-500/30 transition">
+            <div class={`w-12 h-12 rounded-lg flex items-center justify-center mb-5 ${colorMap[f.color]}`}>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={f.icon}/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold mb-2">{f.title}</h3>
+            <p class="text-slate-400 leading-relaxed">{f.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="px-6 py-24">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12">Who This Is For</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="border border-slate-800 rounded-xl p-6">
+          <div class="text-2xl font-bold text-purple-400 mb-2">High-volume service</div>
+          <p class="text-slate-400 text-sm">Spas, dental offices, gyms — businesses where online booking means more revenue without more admin work.</p>
+        </div>
+        <div class="border border-slate-800 rounded-xl p-6">
+          <div class="text-2xl font-bold text-purple-400 mb-2">Selling products</div>
+          <p class="text-slate-400 text-sm">You want to sell online. We build a real e-commerce store — payments, inventory, and order management included.</p>
+        </div>
+        <div class="border border-slate-800 rounded-xl p-6">
+          <div class="text-2xl font-bold text-purple-400 mb-2">Serious about growth</div>
+          <p class="text-slate-400 text-sm">You want data, strategy, and a partner who checks in quarterly — not just a site that sits there.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 py-24 bg-gradient-to-br from-purple-950 to-slate-950">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-4">Ready to scale?</h2>
+      <p class="text-slate-400 mb-8">Tell me about your business. We'll figure out exactly what you need.</p>
+      <a href="/#contact" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-8 py-4 rounded-lg font-semibold transition text-lg">
+        Get a Free Quote
+      </a>
+      <div class="mt-6">
+        <a href="/packages/plus" class="text-sm text-slate-500 hover:text-slate-300 transition">
+          ← Not quite there yet? Check out Plus
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 px-6 py-10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+      <div>© 2026 Cuesseler Web. All rights reserved.</div>
+      <div>Built in Gainesville.</div>
+    </div>
+  </footer>
+</Layout>

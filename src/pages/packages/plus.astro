@@ -1,0 +1,185 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const starterFeatures = [
+  "5-page custom website",
+  "Mobile responsive design",
+  "Contact form",
+  "Basic on-page SEO",
+  "Hosting & SSL included",
+  "1 hour of edits per month",
+];
+
+const plusFeatures = [
+  {
+    title: "Up to 10 Pages",
+    description:
+      "Room to grow. Add team bios, service detail pages, a gallery, testimonials, or a portfolio. More pages means more ways for customers to find you on Google.",
+    icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10",
+    color: "blue",
+  },
+  {
+    title: "Blog or CMS",
+    description:
+      "Update your own content without touching code. Write posts, add announcements, update your menu or specials — all from a simple dashboard. No developer needed.",
+    icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z",
+    color: "purple",
+  },
+  {
+    title: "Google Business Setup",
+    description:
+      "Get your business listed on Google Maps and local search results. This is one of the highest-ROI things a local business can do — customers searching nearby will find you.",
+    icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
+    color: "green",
+  },
+  {
+    title: "Monthly Content Updates",
+    description:
+      "Send me new photos, announcements, seasonal specials, or anything else. I'll update the site each month so your content stays fresh and relevant.",
+    icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
+    color: "yellow",
+  },
+  {
+    title: "Analytics Dashboard",
+    description:
+      "See who's visiting your site, where they're coming from, what pages they view, and what they click. Know what's working so you can make smarter decisions.",
+    icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z",
+    color: "teal",
+  },
+];
+
+const colorMap: Record<string, string> = {
+  blue: "bg-blue-500/10 text-blue-400",
+  purple: "bg-purple-500/10 text-purple-400",
+  green: "bg-green-500/10 text-green-400",
+  yellow: "bg-yellow-500/10 text-yellow-400",
+  teal: "bg-teal-500/10 text-teal-400",
+};
+---
+
+<Layout title="Plus Package — Cuesseler Web" description="Everything in Starter plus up to 10 pages, a blog or CMS, Google Business setup, monthly content updates, and analytics.">
+  <!-- Nav -->
+  <nav class="absolute top-0 left-0 right-0 z-10 px-6 py-6">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="text-xl font-bold tracking-tight">Cuesseler Web</a>
+      <a href="/#packages" class="text-sm text-slate-400 hover:text-white transition flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+        All Packages
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative min-h-[50vh] flex items-center px-6 pt-32 pb-16 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-700"></div>
+    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 60%);"></div>
+    <div class="relative max-w-6xl mx-auto w-full">
+      <div class="inline-flex items-center gap-2 bg-white/20 border border-white/30 text-white px-4 py-1.5 rounded-full text-sm mb-6 font-semibold">
+        Most Popular
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6">Plus Package</h1>
+      <div class="flex items-baseline gap-3 mb-4">
+        <span class="text-5xl font-bold">$3,500</span>
+        <span class="text-blue-100">upfront</span>
+        <span class="text-blue-300/60">+</span>
+        <span class="text-2xl font-semibold text-blue-100">$125<span class="text-blue-200/70 text-lg">/mo</span></span>
+      </div>
+      <p class="text-xl text-blue-100 max-w-2xl">
+        For businesses that want to stand out, stay current, and get found on Google — without maintaining it themselves.
+      </p>
+      <div class="mt-8 flex gap-4">
+        <a href="/#contact" class="bg-white text-slate-950 px-7 py-3.5 rounded-lg font-semibold hover:bg-slate-100 transition">
+          Get Started
+        </a>
+        <a href="/packages/pro" class="border border-white/30 bg-white/10 px-7 py-3.5 rounded-lg font-semibold hover:bg-white/20 transition">
+          See Pro Package
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included from Starter -->
+  <section class="px-6 py-16 bg-slate-900 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-sm font-semibold text-slate-500 uppercase tracking-wider mb-6">Everything in Starter, plus:</p>
+      <div class="flex flex-wrap gap-3">
+        {starterFeatures.map((f) => (
+          <div class="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 text-sm text-slate-300">
+            <svg class="w-4 h-4 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            {f}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Plus-specific features -->
+  <section class="px-6 py-24 bg-slate-900">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-4">What You Get on Top</h2>
+      <p class="text-slate-400 mb-16 max-w-xl">The features that make Plus worth upgrading to.</p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {plusFeatures.map((f) => (
+          <div class="bg-slate-800/50 border border-slate-700 rounded-xl p-8 hover:border-slate-600 transition">
+            <div class={`w-12 h-12 rounded-lg flex items-center justify-center mb-5 ${colorMap[f.color]}`}>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={f.icon}/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold mb-2">{f.title}</h3>
+            <p class="text-slate-400 leading-relaxed">{f.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="px-6 py-24">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12">Who This Is For</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="border border-slate-800 rounded-xl p-6">
+          <div class="text-2xl font-bold text-purple-400 mb-2">Growing businesses</div>
+          <p class="text-slate-400 text-sm">You've got traction and need a site that can grow with you — more pages, more content.</p>
+        </div>
+        <div class="border border-slate-800 rounded-xl p-6">
+          <div class="text-2xl font-bold text-purple-400 mb-2">Content-driven</div>
+          <p class="text-slate-400 text-sm">Restaurants, salons, gyms — businesses that need to update menus, hours, or promos regularly.</p>
+        </div>
+        <div class="border border-slate-800 rounded-xl p-6">
+          <div class="text-2xl font-bold text-purple-400 mb-2">Local search focus</div>
+          <p class="text-slate-400 text-sm">You want to rank on Google Maps and show up when someone nearby searches for what you do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 py-24 bg-gradient-to-br from-blue-950 to-purple-950">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-4">Let's build it.</h2>
+      <p class="text-slate-400 mb-8">Most popular for a reason. Get in touch and we'll talk through what you need.</p>
+      <a href="/#contact" class="inline-block bg-white text-slate-950 px-8 py-4 rounded-lg font-semibold hover:bg-slate-200 transition text-lg">
+        Get a Free Quote
+      </a>
+      <div class="mt-6 flex justify-center gap-6 text-sm text-slate-500">
+        <a href="/packages/starter" class="hover:text-slate-300 transition">← Starter</a>
+        <a href="/packages/pro" class="hover:text-slate-300 transition">Pro →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 px-6 py-10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+      <div>© 2026 Cuesseler Web. All rights reserved.</div>
+      <div>Built in Gainesville.</div>
+    </div>
+  </footer>
+</Layout>
