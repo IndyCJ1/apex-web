@@ -36,7 +36,12 @@ const therapists = [
   <!-- Booking form -->
   <section style="background: var(--s-bg-alt);" class="px-6 py-16">
     <div class="max-w-2xl mx-auto">
-      <form class="reveal space-y-8">
+      <form id="soleBookForm" action="#" method="post" novalidate class="reveal space-y-8">
+        <!-- Honeypot -->
+        <div style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+          <label for="bk_website">Leave this field empty</label>
+          <input type="text" id="bk_website" name="_gotcha" tabindex="-1" autocomplete="off" />
+        </div>
 
         <!-- Step 1: Service -->
         <div style="background: var(--s-bg); border: 1px solid var(--s-border); padding: 2rem;">
@@ -44,11 +49,11 @@ const therapists = [
             <div style="width: 28px; height: 28px; background: var(--s-sage); color: white; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
             <h2 class="font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">Choose a service</h2>
           </div>
-          <div class="space-y-2">
+          <div class="space-y-2" role="radiogroup" aria-label="Service">
             {services.map((svc) => (
-              <label class="s-option flex items-center justify-between gap-3 px-4 py-3 cursor-pointer">
+              <label class="s-option flex items-center justify-between gap-3 px-4 py-3 cursor-pointer" for={`svc_${svc.id}`}>
                 <div class="flex items-center gap-3 min-w-0 flex-1">
-                  <input type="radio" name="service" value={svc.id} style="accent-color: var(--s-sage); flex-shrink: 0;" />
+                  <input type="radio" id={`svc_${svc.id}`} name="service" value={svc.id} required style="accent-color: var(--s-sage); flex-shrink: 0;" />
                   <span class="text-sm break-words min-w-0" style="color: var(--s-ink);">{svc.name}</span>
                 </div>
                 <span class="text-sm font-medium flex-shrink-0 whitespace-nowrap" style="color: var(--s-gold);">{svc.price}</span>
@@ -63,10 +68,10 @@ const therapists = [
             <div style="width: 28px; height: 28px; background: var(--s-sage); color: white; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
             <h2 class="font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">Choose a therapist</h2>
           </div>
-          <div class="grid md:grid-cols-2 gap-3">
-            {therapists.map((t) => (
-              <label class="s-option flex items-start gap-3 px-4 py-3 cursor-pointer">
-                <input type="radio" name="therapist" value={t.name} style="accent-color: var(--s-sage); margin-top: 2px; flex-shrink: 0;" />
+          <div class="grid md:grid-cols-2 gap-3" role="radiogroup" aria-label="Therapist">
+            {therapists.map((t, ti) => (
+              <label class="s-option flex items-start gap-3 px-4 py-3 cursor-pointer" for={`th_${ti}`}>
+                <input type="radio" id={`th_${ti}`} name="therapist" value={t.name} style="accent-color: var(--s-sage); margin-top: 2px; flex-shrink: 0;" />
                 <div class="min-w-0 flex-1">
                   <p class="text-sm font-medium break-words" style="color: var(--s-ink);">{t.name}</p>
                   <p class="text-xs mt-0.5 break-words" style="color: var(--s-muted);">{t.note}</p>
@@ -84,12 +89,12 @@ const therapists = [
           </div>
           <div class="grid md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Date</label>
-              <input type="date" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; font-family: var(--font-sans);" />
+              <label for="bk_date" class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Date</label>
+              <input type="date" id="bk_date" name="date" required style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; font-family: var(--font-sans);" />
             </div>
             <div>
-              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Preferred time</label>
-              <select style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; font-family: var(--font-sans);">
+              <label for="bk_time" class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Preferred time</label>
+              <select id="bk_time" name="time" required style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; font-family: var(--font-sans);">
                 <option>9:00 AM</option>
                 <option>9:30 AM</option>
                 <option>10:00 AM</option>
@@ -116,25 +121,25 @@ const therapists = [
           </div>
           <div class="grid md:grid-cols-2 gap-4">
             <div>
-              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">First Name</label>
-              <input type="text" placeholder="Jane" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
+              <label for="bk_first" class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">First Name</label>
+              <input type="text" id="bk_first" name="first_name" placeholder="Jane" required maxlength="100" autocomplete="given-name" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
             </div>
             <div>
-              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Last Name</label>
-              <input type="text" placeholder="Smith" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
+              <label for="bk_last" class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Last Name</label>
+              <input type="text" id="bk_last" name="last_name" placeholder="Smith" required maxlength="100" autocomplete="family-name" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
             </div>
             <div>
-              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Email</label>
-              <input type="email" placeholder="jane@email.com" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
+              <label for="bk_email" class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Email</label>
+              <input type="email" id="bk_email" name="email" placeholder="jane@email.com" required maxlength="254" autocomplete="email" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
             </div>
             <div>
-              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Phone</label>
-              <input type="tel" placeholder="(352) 555-0100" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
+              <label for="bk_phone" class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Phone</label>
+              <input type="tel" id="bk_phone" name="phone" placeholder="(762) 555-0100" required maxlength="20" autocomplete="tel" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
             </div>
           </div>
           <div class="mt-4">
-            <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Notes (optional)</label>
-            <textarea rows="3" placeholder="Any areas to focus on, health concerns, or first-time notes..." style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; resize: none;"></textarea>
+            <label for="bk_notes" class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Notes (optional)</label>
+            <textarea id="bk_notes" name="notes" rows="3" placeholder="Any areas to focus on, health concerns, or first-time notes..." maxlength="2000" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; resize: none;"></textarea>
           </div>
         </div>
 
@@ -145,7 +150,26 @@ const therapists = [
           Request Appointment
         </button>
         <p class="text-center text-xs" style="color: var(--s-muted);">We'll confirm your appointment by email within 2 hours.</p>
+        <p id="soleBookSuccess" class="text-center text-xs hidden" style="color: var(--s-sage);">
+          Demo only — your real site would deliver this booking to your inbox via Formspree.
+        </p>
       </form>
     </div>
   </section>
+
+  <script is:inline>
+    (function() {
+      var form = document.getElementById('soleBookForm');
+      var success = document.getElementById('soleBookSuccess');
+      if (form && success) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var honey = form.querySelector('input[name="_gotcha"]');
+          if (honey && honey.value) return;
+          success.classList.remove('hidden');
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      }
+    })();
+  </script>
 </SoleLayout>
