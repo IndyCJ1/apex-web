@@ -1,0 +1,76 @@
+---
+import PerchLayout from "../../../layouts/PerchLayout.astro";
+
+const posts = [
+  {
+    title: "Our new cold brew is here for summer",
+    date: "May 2, 2026",
+    category: "Menu News",
+    excerpt: "We've been dialing in our summer cold brew since March. Finally happy with it — an 18-hour steep with our Colombian Huila beans, served straight or over tonic.",
+  },
+  {
+    title: "The story behind our single-origin Ethiopian",
+    date: "April 18, 2026",
+    category: "Coffee Education",
+    excerpt: "We've been sourcing from the Yirgacheffe region for three years. Here's what makes this particular washing station special and why the cup tastes the way it does.",
+  },
+  {
+    title: "Perch x Cade Museum: Art & Coffee Night",
+    date: "April 5, 2026",
+    category: "Events",
+    excerpt: "We're teaming up with the Cade Museum for an evening of local art, live music, and of course, good coffee. All proceeds benefit the museum's youth STEM programs.",
+  },
+  {
+    title: "How we're reducing waste in the shop",
+    date: "March 22, 2026",
+    category: "Sustainability",
+    excerpt: "We switched to compostable cups last year. This month we're launching a 10¢ discount for bringing your own mug and partnering with a local farm for spent grounds.",
+  },
+  {
+    title: "Seasonal: Brown Sugar Horchata Latte",
+    date: "March 10, 2026",
+    category: "Menu News",
+    excerpt: "Spring is here and so is our limited horchata latte. Cinnamon, brown sugar, a splash of cream, and a double shot of our house espresso blend.",
+  },
+  {
+    title: "Beginner's guide to pour-over at home",
+    date: "February 28, 2026",
+    category: "Coffee Education",
+    excerpt: "You don't need fancy equipment to brew great coffee at home. We break down the basics — grind size, water temperature, and the right ratio to start with.",
+  },
+];
+---
+
+<PerchLayout title="Blog — The Perch Coffee Co." page="Blog">
+  <!-- Header -->
+  <section style="background: var(--p-bg); border-bottom: 1px solid var(--p-border);" class="px-6 py-16">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-xs uppercase tracking-[0.2em] mb-3" style="color: var(--p-green)">News & Stories</p>
+      <h1 class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-serif); color: var(--p-brown);">
+        From the Blog
+      </h1>
+    </div>
+  </section>
+
+  <!-- Post grid -->
+  <section style="background: var(--p-bg-alt);" class="px-6 py-16">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((post, i) => (
+        <article class={`reveal reveal-delay-${i % 3}`} style="background: var(--p-bg); border: 1px solid var(--p-border);">
+          <div style="background: var(--p-bg-alt); border-bottom: 1px solid var(--p-border); height: 160px; display: flex; align-items: center; justify-content: center;">
+            <p class="text-xs uppercase tracking-widest" style="color: var(--p-muted);">Post Image</p>
+          </div>
+          <div class="p-5">
+            <p class="text-xs uppercase tracking-wider mb-2" style="color: var(--p-green);">{post.category}</p>
+            <h2 class="font-semibold leading-snug mb-3" style="font-family: var(--font-serif); color: var(--p-brown);">{post.title}</h2>
+            <p class="text-sm leading-relaxed mb-4" style="color: var(--p-muted);">{post.excerpt}</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs" style="color: var(--p-muted);">{post.date}</span>
+              <a href="#" class="text-xs font-medium" style="color: var(--p-gold);">Read more →</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</PerchLayout>

@@ -1,0 +1,151 @@
+---
+import SoleLayout from "../../../layouts/SoleLayout.astro";
+
+const services = [
+  { id: "swedish-60", name: "Swedish Massage — 60 min", price: "$95" },
+  { id: "swedish-90", name: "Swedish Massage — 90 min", price: "$130" },
+  { id: "deep-60", name: "Deep Tissue — 60 min", price: "$110" },
+  { id: "deep-90", name: "Deep Tissue — 90 min", price: "$145" },
+  { id: "hot-stone", name: "Hot Stone Therapy — 90 min", price: "$140" },
+  { id: "prenatal", name: "Prenatal Massage — 60 min", price: "$105" },
+  { id: "facial-sig", name: "Signature Facial — 60 min", price: "$115" },
+  { id: "facial-vit", name: "Brightening Vitamin C Facial — 60 min", price: "$125" },
+  { id: "couples", name: "Couples Retreat — 90 min", price: "$240" },
+];
+
+const therapists = [
+  { name: "No preference", note: "First available" },
+  { name: "Maria L.", note: "Specializes in deep tissue & prenatal" },
+  { name: "James W.", note: "Specializes in hot stone & sports massage" },
+  { name: "Keisha T.", note: "Specializes in relaxation & facials" },
+];
+---
+
+<SoleLayout title="Book an Appointment — Solé Wellness Studio" page="Book">
+  <!-- Header -->
+  <section style="background: var(--s-bg); border-bottom: 1px solid var(--s-border);" class="px-6 py-16">
+    <div class="max-w-3xl mx-auto text-center">
+      <p class="text-xs uppercase tracking-[0.2em] mb-3" style="color: var(--s-sage)">Online Booking</p>
+      <h1 class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">
+        Book an Appointment
+      </h1>
+      <p class="mt-3 text-sm" style="color: var(--s-muted);">Select a service and your preferred time. We'll confirm within 2 hours.</p>
+    </div>
+  </section>
+
+  <!-- Booking form -->
+  <section style="background: var(--s-bg-alt);" class="px-6 py-16">
+    <div class="max-w-2xl mx-auto">
+      <form class="reveal space-y-8">
+
+        <!-- Step 1: Service -->
+        <div style="background: var(--s-bg); border: 1px solid var(--s-border); padding: 2rem;">
+          <div class="flex items-center gap-3 mb-5">
+            <div style="width: 28px; height: 28px; background: var(--s-sage); color: white; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <h2 class="font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">Choose a service</h2>
+          </div>
+          <div class="space-y-2">
+            {services.map((svc) => (
+              <label class="flex items-center justify-between px-4 py-3 cursor-pointer transition-colors" style="border: 1px solid var(--s-border); background: var(--s-bg-alt);" onmouseover="this.style.borderColor='var(--s-sage)'" onmouseout="this.style.borderColor='var(--s-border)'">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="service" value={svc.id} style="accent-color: var(--s-sage);" />
+                  <span class="text-sm" style="color: var(--s-ink);">{svc.name}</span>
+                </div>
+                <span class="text-sm font-medium" style="color: var(--s-gold);">{svc.price}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <!-- Step 2: Therapist -->
+        <div style="background: var(--s-bg); border: 1px solid var(--s-border); padding: 2rem;">
+          <div class="flex items-center gap-3 mb-5">
+            <div style="width: 28px; height: 28px; background: var(--s-sage); color: white; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <h2 class="font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">Choose a therapist</h2>
+          </div>
+          <div class="grid md:grid-cols-2 gap-3">
+            {therapists.map((t) => (
+              <label class="flex items-start gap-3 px-4 py-3 cursor-pointer transition-colors" style="border: 1px solid var(--s-border); background: var(--s-bg-alt);" onmouseover="this.style.borderColor='var(--s-sage)'" onmouseout="this.style.borderColor='var(--s-border)'">
+                <input type="radio" name="therapist" value={t.name} style="accent-color: var(--s-sage); margin-top: 2px;" />
+                <div>
+                  <p class="text-sm font-medium" style="color: var(--s-ink);">{t.name}</p>
+                  <p class="text-xs mt-0.5" style="color: var(--s-muted);">{t.note}</p>
+                </div>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <!-- Step 3: Date & Time -->
+        <div style="background: var(--s-bg); border: 1px solid var(--s-border); padding: 2rem;">
+          <div class="flex items-center gap-3 mb-5">
+            <div style="width: 28px; height: 28px; background: var(--s-sage); color: white; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <h2 class="font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">Select date & time</h2>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Date</label>
+              <input type="date" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; font-family: var(--font-sans);" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Preferred time</label>
+              <select style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; font-family: var(--font-sans);">
+                <option>9:00 AM</option>
+                <option>9:30 AM</option>
+                <option>10:00 AM</option>
+                <option>10:30 AM</option>
+                <option>11:00 AM</option>
+                <option>11:30 AM</option>
+                <option>12:00 PM</option>
+                <option>1:00 PM</option>
+                <option>2:00 PM</option>
+                <option>3:00 PM</option>
+                <option>4:00 PM</option>
+                <option>5:00 PM</option>
+                <option>6:00 PM</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Your info -->
+        <div style="background: var(--s-bg); border: 1px solid var(--s-border); padding: 2rem;">
+          <div class="flex items-center gap-3 mb-5">
+            <div style="width: 28px; height: 28px; background: var(--s-sage); color: white; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+            <h2 class="font-semibold" style="font-family: var(--font-serif); color: var(--s-ink);">Your information</h2>
+          </div>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">First Name</label>
+              <input type="text" placeholder="Jane" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Last Name</label>
+              <input type="text" placeholder="Smith" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Email</label>
+              <input type="email" placeholder="jane@email.com" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Phone</label>
+              <input type="tel" placeholder="(352) 555-0100" style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none;" />
+            </div>
+          </div>
+          <div class="mt-4">
+            <label class="block text-xs uppercase tracking-[0.12em] mb-2" style="color: var(--s-muted);">Notes (optional)</label>
+            <textarea rows="3" placeholder="Any areas to focus on, health concerns, or first-time notes..." style="width: 100%; background: var(--s-bg-alt); border: 1px solid var(--s-border); color: var(--s-ink); padding: 0.75rem 1rem; font-size: 0.875rem; outline: none; resize: none;"></textarea>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+          style="width: 100%; background: var(--s-sage); color: white; padding: 1.125rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border: none;"
+          onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+          Request Appointment
+        </button>
+        <p class="text-center text-xs" style="color: var(--s-muted);">We'll confirm your appointment by email within 2 hours.</p>
+      </form>
+    </div>
+  </section>
+</SoleLayout>

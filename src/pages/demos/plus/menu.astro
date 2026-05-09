@@ -1,0 +1,103 @@
+---
+import PerchLayout from "../../../layouts/PerchLayout.astro";
+
+const menu = [
+  {
+    category: "Espresso",
+    items: [
+      { name: "Espresso", price: "$3.75", note: "Single or double shot, 2oz" },
+      { name: "Americano", price: "$4.25", note: "Espresso + hot water" },
+      { name: "Cappuccino", price: "$5.25", note: "Equal parts espresso, steamed milk, foam" },
+      { name: "Latte", price: "$5.75", note: "Espresso + steamed milk, your choice of milk" },
+      { name: "Cortado", price: "$4.75", note: "Equal parts espresso and warm milk" },
+      { name: "Oat Honey Latte", price: "$6.50", note: "Espresso, oat milk, raw honey, sea salt" },
+      { name: "Vanilla Bean Latte", price: "$6.25", note: "House-made vanilla, whole or oat milk" },
+    ],
+  },
+  {
+    category: "Cold Brew & Iced",
+    items: [
+      { name: "Cold Brew", price: "$5.25", note: "18-hour steep, served over ice" },
+      { name: "Nitro Cold Brew", price: "$5.75", note: "Silky smooth on tap" },
+      { name: "Cold Brew Tonic", price: "$5.75", note: "Cold brew over sparkling tonic water" },
+      { name: "Iced Latte", price: "$5.75", note: "Espresso over ice with your choice of milk" },
+      { name: "Shaken Espresso", price: "$6.00", note: "Espresso shaken with ice and oat milk" },
+    ],
+  },
+  {
+    category: "Specialty & Seasonal",
+    items: [
+      { name: "Lavender Matcha", price: "$6.25", note: "Ceremonial matcha, lavender syrup, oat milk" },
+      { name: "Brown Sugar Horchata Latte", price: "$6.50", note: "Seasonal · while supplies last" },
+      { name: "Turmeric Golden Milk", price: "$5.75", note: "Turmeric, ginger, cinnamon, oat or whole milk" },
+      { name: "Dirty Chai", price: "$6.00", note: "Masala chai concentrate + a shot of espresso" },
+    ],
+  },
+  {
+    category: "Pour-Over & Drip",
+    items: [
+      { name: "Ethiopian Yirgacheffe", price: "$5.50", note: "Washed · bright, floral, citrus" },
+      { name: "Colombia Huila", price: "$5.25", note: "Natural · chocolate, fruit, caramel" },
+      { name: "House Blend Drip", price: "$3.50", note: "Medium roast, free refills" },
+      { name: "Decaf Blend Drip", price: "$3.50", note: "Swiss water process, medium roast" },
+    ],
+  },
+  {
+    category: "Food",
+    items: [
+      { name: "Avocado Toast", price: "$9.00", note: "Sourdough, smashed avocado, everything seasoning, chili flake" },
+      { name: "Almond Croissant", price: "$5.50", note: "Twice-baked, almond cream, sliced almonds" },
+      { name: "Banana Bread", price: "$4.50", note: "House-made, walnuts, brown butter glaze" },
+      { name: "Granola Bowl", price: "$8.00", note: "House granola, Greek yogurt, seasonal fruit, honey" },
+      { name: "Egg & Cheese Sandwich", price: "$7.50", note: "Brioche bun, cage-free egg, white cheddar, arugula" },
+    ],
+  },
+];
+---
+
+<PerchLayout title="Menu — The Perch Coffee Co." page="Menu">
+  <!-- Header -->
+  <section style="background: var(--p-bg); border-bottom: 1px solid var(--p-border);" class="px-6 py-16">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-xs uppercase tracking-[0.2em] mb-3" style="color: var(--p-green)">What We're Serving</p>
+      <h1 class="text-4xl md:text-5xl font-semibold" style="font-family: var(--font-serif); color: var(--p-brown);">
+        Our Menu
+      </h1>
+      <p class="mt-3 text-sm" style="color: var(--p-muted);">Seasonal items rotate. Ask your barista what's fresh.</p>
+    </div>
+  </section>
+
+  <!-- Menu sections -->
+  <section style="background: var(--p-bg-alt);" class="px-6 py-16">
+    <div class="max-w-4xl mx-auto space-y-14">
+      {menu.map((section, si) => (
+        <div class="reveal">
+          <h2 class="text-2xl font-semibold mb-6 pb-4" style={`font-family: var(--font-serif); color: var(--p-brown); border-bottom: 2px solid var(--p-border);`}>
+            {section.category}
+          </h2>
+          <div class="space-y-px" style="border: 1px solid var(--p-border);">
+            {section.items.map((item, ii) => (
+              <div class="flex items-start justify-between px-5 py-3.5 gap-4" style={`background: var(--p-bg); ${ii < section.items.length - 1 ? 'border-bottom: 1px solid var(--p-border);' : ''}`}>
+                <div>
+                  <p class="text-sm font-medium" style="color: var(--p-brown);">{item.name}</p>
+                  {item.note && <p class="text-xs mt-0.5" style="color: var(--p-muted);">{item.note}</p>}
+                </div>
+                <p class="text-sm font-medium flex-shrink-0" style="color: var(--p-gold);">{item.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Milk note -->
+  <section style="background: var(--p-bg); border-top: 1px solid var(--p-border);" class="px-6 py-10">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-xs leading-relaxed" style="color: var(--p-muted);">
+        <strong style="color: var(--p-brown);">Milk options:</strong> Whole, 2%, oat (Oatly), almond, coconut (+$0.75 for non-dairy).
+        All espresso drinks available iced. Please let us know about any allergies.
+      </p>
+    </div>
+  </section>
+</PerchLayout>
