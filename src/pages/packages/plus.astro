@@ -1,76 +1,56 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-
 const plusFeatures = [
-  { title: "Up to 10 Pages", desc: "Room to grow — team pages, service details, gallery, portfolio. More pages = more ways Google finds you.", icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" },
-  { title: "Blog or CMS", desc: "Update your own content without touching code. Write posts, update menus, add photos — from a simple dashboard.", icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" },
-  { title: "Google Business Setup", desc: "Get listed on Google Maps and local search. One of the highest-ROI things a local business can do.", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" },
-  { title: "Monthly Content Updates", desc: "Send me new photos, announcements, or specials. I update the site each month so it stays fresh.", icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" },
-  { title: "Analytics Dashboard", desc: "See who visits, where they come from, and what they click. Know what's working.", icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" },
+  { title: "Up to 10 Pages", desc: "Room to grow — team pages, service details, gallery. More pages means more ways Google finds you.", icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" },
+  { title: "Blog or CMS", desc: "Update content without touching code. Write posts, update menus, add photos from a simple dashboard.", icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" },
+  { title: "Google Business Setup", desc: "Listed on Google Maps and local search. One of the highest-ROI things a local business can do.", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" },
+  { title: "Monthly Content Updates", desc: "Send me photos, specials, or announcements. I update the site each month so it stays fresh.", icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" },
+  { title: "Analytics Dashboard", desc: "See who visits, where they come from, and what they click. Know what's working for your business.", icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" },
 ];
-
-const starterIncludes = ["5-page site", "Mobile responsive", "Contact form", "SEO basics", "Hosting & SSL", "1hr edits/mo"];
+const starterIncludes = ["5-page site", "Mobile responsive", "Contact form", "SEO basics", "Hosting & SSL", "1 hr edits/mo"];
 ---
-
 <Layout title="Plus Package — Apex Web">
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-edge" style="background: rgba(7,7,15,0.8); backdrop-filter: blur(16px);">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="text-lg font-bold text-text" style="font-family: var(--font-display)">Apex<span class="gradient-text">Web</span></a>
-      <a href="/#packages" class="flex items-center gap-2 text-sm text-muted hover:text-text transition-colors">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-        All Packages
-      </a>
+      <a href="/" class="flex items-center gap-2 text-lg font-extrabold text-ink"><span class="w-2.5 h-2.5 rounded-full bg-accent"></span>Apex Web</a>
+      <a href="/#packages" class="flex items-center gap-2 text-sm font-medium text-muted hover:text-ink transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>All Packages</a>
     </div>
-  </nav>
+  </header>
 
-  <section class="px-6 pt-40 pb-20 bg-bg dot-grid relative overflow-hidden">
-    <div class="absolute -top-20 left-1/4 w-[600px] h-[600px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 65%); filter: blur(60px);"></div>
+  <section class="px-6 pt-40 pb-20 bg-ink-2 relative overflow-hidden">
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 text-[18rem] font-extrabold select-none pointer-events-none" style="color: rgba(255,69,0,0.08); line-height: 1;">P</div>
     <div class="max-w-6xl mx-auto relative">
-      <div class="reveal inline-flex items-center gap-2 gradient-bg text-white text-xs font-bold px-3 py-1.5 rounded-full tracking-widest uppercase mb-6">Most Popular</div>
-      <p class="reveal text-xs font-medium uppercase tracking-[0.25em] text-muted mb-3" style="font-family: var(--font-mono)">// plus package</p>
-      <h1 class="reveal reveal-delay-1 text-5xl md:text-7xl font-extrabold text-text mb-6 leading-none" style="font-family: var(--font-display)">
-        For businesses that<br/><span class="gradient-text">need to stay current.</span>
+      <div class="reveal inline-flex items-center gap-2 bg-accent text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-widest mb-6">Most Popular</div>
+      <p class="reveal text-xs font-bold uppercase tracking-[0.2em] text-accent mb-4">Plus Package</p>
+      <h1 class="reveal reveal-delay-1 font-extrabold leading-none mb-6 text-white" style="font-size: clamp(3rem, 7vw, 6rem)">
+        For businesses that<br/>need to stay <span class="text-accent">current.</span>
       </h1>
-      <div class="reveal reveal-delay-2 flex items-baseline gap-3 mb-6">
-        <span class="text-5xl font-extrabold text-text" style="font-family: var(--font-display)">$3,500</span>
-        <span class="text-muted">upfront</span>
-        <span class="text-faint">+</span>
-        <span class="text-2xl font-bold text-text" style="font-family: var(--font-display)">$125<span class="text-muted text-base font-normal">/mo</span></span>
+      <div class="reveal reveal-delay-2 flex items-baseline gap-3 mb-8">
+        <span class="text-5xl font-extrabold text-white">$3,500</span><span class="text-white/50">upfront</span>
+        <span class="text-white/30">+</span><span class="text-2xl font-extrabold text-white">$125<span class="text-white/50 font-normal text-base">/mo</span></span>
       </div>
-      <div class="reveal reveal-delay-3 flex gap-3 flex-wrap">
-        <a href="/#contact" class="gradient-bg text-white px-8 py-3.5 text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">Get Started</a>
-        <a href="/packages/pro" class="glass text-text px-8 py-3.5 text-sm font-semibold rounded-lg hover:border-edge-2 transition-colors">See Pro →</a>
+      <div class="reveal reveal-delay-3 flex flex-wrap gap-3">
+        <a href="/#contact" class="bg-accent text-white px-8 py-3.5 font-bold text-sm rounded-full hover:bg-accent-dark transition-colors">Get Started →</a>
+        <a href="/packages/pro" class="bg-white/10 text-white px-8 py-3.5 font-bold text-sm rounded-full hover:bg-white/20 transition-colors">See Pro →</a>
       </div>
     </div>
   </section>
 
-  <section class="px-6 py-10 bg-surface border-b border-edge">
+  <section class="px-6 py-8 bg-white border-b border-border">
     <div class="max-w-6xl mx-auto">
-      <p class="text-xs text-muted uppercase tracking-[0.2em] mb-3" style="font-family: var(--font-mono)">Everything in Starter, plus:</p>
-      <div class="flex flex-wrap gap-2">
-        {starterIncludes.map((f) => (
-          <div class="glass rounded-full px-3 py-1.5 text-xs text-muted flex items-center gap-2">
-            <svg class="w-3 h-3 text-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-            {f}
-          </div>
-        ))}
-      </div>
+      <p class="text-xs font-bold uppercase tracking-[0.2em] text-muted mb-3">Everything in Starter, plus:</p>
+      <div class="flex flex-wrap gap-2">{starterIncludes.map((f) => (<div class="flex items-center gap-2 bg-off border border-border rounded-full px-3 py-1.5 text-xs font-medium text-ink"><svg class="w-3 h-3 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>{f}</div>))}</div>
     </div>
   </section>
 
-  <section class="px-6 py-20 bg-surface">
+  <section class="px-6 py-20 bg-off">
     <div class="max-w-6xl mx-auto">
-      <div class="reveal mb-10">
-        <p class="text-xs font-medium uppercase tracking-[0.25em] text-muted mb-2" style="font-family: var(--font-mono)">// what you get on top</p>
-        <h2 class="text-3xl font-bold text-text" style="font-family: var(--font-display)">The features worth upgrading for.</h2>
-      </div>
+      <div class="reveal mb-10"><p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-2">What You Get on Top</p><h2 class="text-3xl font-extrabold text-ink">The features worth upgrading for.</h2></div>
       <div class="grid md:grid-cols-2 gap-4">
         {plusFeatures.map((f, i) => (
-          <div class={`reveal reveal-delay-${i % 3} glass rounded-xl p-6 hover:border-violet/25 transition-all duration-300`}>
-            <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center mb-4">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d={f.icon}/></svg>
-            </div>
-            <h3 class="font-semibold text-text mb-1.5" style="font-family: var(--font-display)">{f.title}</h3>
+          <div class={`reveal reveal-delay-${i % 3} bg-white rounded-2xl p-6 border border-border hover:border-accent/30 hover:shadow-md transition-all duration-300`}>
+            <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4"><svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={f.icon}/></svg></div>
+            <h3 class="font-bold text-ink mb-1.5">{f.title}</h3>
             <p class="text-sm text-muted leading-relaxed">{f.desc}</p>
           </div>
         ))}
@@ -78,43 +58,37 @@ const starterIncludes = ["5-page site", "Mobile responsive", "Contact form", "SE
     </div>
   </section>
 
-  <section class="px-6 py-16 bg-bg">
+  <section class="px-6 py-16 bg-white">
     <div class="max-w-6xl mx-auto">
-      <div class="reveal mb-8">
-        <p class="text-xs font-medium uppercase tracking-[0.25em] text-muted mb-2" style="font-family: var(--font-mono)">// demo site</p>
-        <h2 class="text-3xl font-bold text-text" style="font-family: var(--font-display)">See it in action.</h2>
-        <p class="text-muted text-sm mt-2">A real Plus-tier site — click around and explore.</p>
-      </div>
-      <div class="reveal glass rounded-xl overflow-hidden">
-        <div class="flex items-center gap-3 px-4 py-3 border-b border-edge" style="background: rgba(255,255,255,0.02)">
-          <div class="flex gap-1.5"><div class="w-3 h-3 rounded-full bg-red-500/60"></div><div class="w-3 h-3 rounded-full bg-yellow-500/60"></div><div class="w-3 h-3 rounded-full bg-green-500/60"></div></div>
-          <div class="flex-1 glass rounded px-3 py-1.5 text-xs text-faint font-mono truncate">cuesseler-web.pages.dev/demos/plus</div>
-          <a href="/demos/plus" target="_blank" rel="noopener" class="text-faint hover:text-text transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </a>
+      <div class="reveal mb-8"><p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-2">Live Demo</p><h2 class="text-3xl font-extrabold text-ink">See it in action.</h2><p class="text-muted text-sm mt-2">A real Plus-tier site — click around.</p></div>
+      <div class="reveal rounded-2xl overflow-hidden border border-border shadow-lg">
+        <div class="flex items-center gap-3 px-4 py-3 bg-off border-b border-border">
+          <div class="flex gap-1.5"><div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-yellow-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div></div>
+          <div class="flex-1 bg-white border border-border rounded-lg px-3 py-1.5 text-xs text-faint font-mono truncate">cuesseler-web.pages.dev/demos/plus</div>
+          <a href="/demos/plus" target="_blank" rel="noopener" class="text-faint hover:text-ink transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
         </div>
-        <div class="h-[600px] bg-white"><iframe src="/demos/plus" title="The Perch Coffee demo" loading="lazy" class="w-full h-full border-0"></iframe></div>
+        <div class="h-[600px] bg-white"><iframe src="/demos/plus" title="The Perch demo" loading="lazy" class="w-full h-full border-0"></iframe></div>
       </div>
     </div>
   </section>
 
-  <section class="px-6 py-16 bg-surface">
+  <section class="px-6 py-16 bg-accent">
     <div class="max-w-2xl mx-auto text-center">
-      <h2 class="reveal text-3xl font-bold text-text mb-3" style="font-family: var(--font-display)">Let's build it.</h2>
-      <p class="reveal text-muted text-sm mb-8">Most popular for a reason. Get in touch and we'll talk through what you need.</p>
+      <h2 class="reveal text-3xl font-extrabold text-white mb-3">Let's build it.</h2>
+      <p class="reveal text-white/80 text-sm mb-8">Most popular for a reason. Get in touch and we'll talk through what you need.</p>
       <div class="reveal flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/#contact" class="gradient-bg text-white px-8 py-4 text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">Get a Free Quote</a>
+        <a href="/#contact" class="bg-white text-accent px-8 py-4 font-bold text-sm rounded-full hover:bg-off transition-colors">Get a Free Quote →</a>
         <div class="flex gap-3 justify-center">
-          <a href="/packages/starter" class="glass text-text px-6 py-4 text-sm font-semibold rounded-lg hover:border-edge-2 transition-colors">← Starter</a>
-          <a href="/packages/pro" class="glass text-text px-6 py-4 text-sm font-semibold rounded-lg hover:border-edge-2 transition-colors">Pro →</a>
+          <a href="/packages/starter" class="bg-white/20 text-white px-6 py-4 font-bold text-sm rounded-full hover:bg-white/30 transition-colors">← Starter</a>
+          <a href="/packages/pro" class="bg-white/20 text-white px-6 py-4 font-bold text-sm rounded-full hover:bg-white/30 transition-colors">Pro →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <footer class="border-t border-edge px-6 py-8 bg-bg">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-faint">
-      <div class="font-semibold text-muted" style="font-family: var(--font-display)">Apex<span class="gradient-text">Web</span></div>
+  <footer class="border-t border-border px-6 py-8 bg-white">
+    <div class="max-w-6xl mx-auto flex items-center justify-between text-xs text-faint">
+      <div class="flex items-center gap-2 font-extrabold text-ink text-sm"><span class="w-2 h-2 rounded-full bg-accent"></span>Apex Web</div>
       <div>© 2026 Apex Web · Gainesville, GA</div>
     </div>
   </footer>

@@ -1,58 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #07070F;
-  --color-surface: #0E0E1C;
-  --color-surface-2: #161628;
-  --color-text: #E4E4F0;
-  --color-muted: #8484A0;
-  --color-faint: #52526A;
-  --color-edge: rgba(255,255,255,0.07);
-  --color-edge-2: rgba(255,255,255,0.13);
-  --color-violet: #7C3AED;
-  --color-violet-dark: #6D28D9;
-  --color-cyan: #06B6D4;
-  --font-display: 'Syne', system-ui, sans-serif;
-  --font-sans: 'DM Sans', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #A78BFA 0%, #38BDF8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.gradient-bg {
-  background: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
-}
-
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-.glass {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.07);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-.glass-violet {
-  background: linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(6,182,212,0.07) 100%);
-  border: 1px solid rgba(124,58,237,0.3);
+  --color-white: #FFFFFF;
+  --color-off: #F7F7F7;
+  --color-ink: #0D0D0D;
+  --color-ink-2: #1A1A1A;
+  --color-muted: #737373;
+  --color-faint: #A3A3A3;
+  --color-border: #E5E5E5;
+  --color-accent: #FF4500;
+  --color-accent-dark: #CC3700;
+  --color-accent-light: #FFF0EB;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
 }
 
 /* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }

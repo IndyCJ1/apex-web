@@ -6,90 +6,86 @@ const packages = [
     name: "Starter",
     price: "$1,500",
     monthly: "$50",
-    description: "Perfect for a clean, modern presence online.",
-    features: ["5-page custom website", "Mobile responsive design", "Contact form", "Basic on-page SEO", "Hosting & SSL included", "1 hr edits/month"],
+    features: ["5-page custom website", "Mobile responsive", "Contact form", "Basic SEO", "Hosting & SSL", "1 hr edits/month"],
     highlight: false,
   },
   {
     name: "Plus",
     price: "$3,500",
     monthly: "$125",
-    description: "Best for businesses that need to stay current.",
-    features: ["Everything in Starter", "Up to 10 pages", "Blog or CMS", "Google Business setup", "Monthly content updates", "Analytics dashboard"],
+    features: ["Everything in Starter", "Up to 10 pages", "Blog or CMS", "Google Business setup", "Monthly content updates", "Analytics"],
     highlight: true,
   },
   {
     name: "Pro",
     price: "$6,000+",
     monthly: "$300",
-    description: "For growing businesses ready to scale online.",
-    features: ["Everything in Plus", "Online booking or e-commerce", "Custom integrations", "Priority support", "Monthly performance reports", "Quarterly strategy calls"],
+    features: ["Everything in Plus", "Online booking / e-commerce", "Custom integrations", "Priority support", "Monthly reports", "Quarterly strategy calls"],
     highlight: false,
   },
 ];
 ---
 
-<Layout title="Apex Web — Websites for Local Businesses">
+<Layout>
   <!-- Nav -->
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-edge" style="background: rgba(7,7,15,0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="text-lg font-bold tracking-tight text-text" style="font-family: var(--font-display)">
-        Apex<span class="gradient-text">Web</span>
+      <a href="/" class="flex items-center gap-2 text-lg font-extrabold text-ink tracking-tight">
+        <span class="w-2.5 h-2.5 rounded-full bg-accent flex-shrink-0"></span>
+        Apex Web
       </a>
-      <div class="hidden md:flex items-center gap-8 text-sm text-muted">
-        <a href="#services" class="hover:text-text transition-colors">Services</a>
-        <a href="#packages" class="hover:text-text transition-colors">Packages</a>
-        <a href="#work" class="hover:text-text transition-colors">Work</a>
-        <a href="#about" class="hover:text-text transition-colors">About</a>
-        <a href="#contact" class="hover:text-text transition-colors">Contact</a>
-      </div>
-      <a href="#contact" class="hidden md:inline-flex gradient-bg text-white px-5 py-2.5 text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-muted">
+        <a href="#services" class="hover:text-ink transition-colors">Services</a>
+        <a href="#packages" class="hover:text-ink transition-colors">Packages</a>
+        <a href="#work" class="hover:text-ink transition-colors">Work</a>
+        <a href="#about" class="hover:text-ink transition-colors">About</a>
+        <a href="#contact" class="hover:text-ink transition-colors">Contact</a>
+      </nav>
+      <a href="#contact" class="hidden md:inline-flex items-center bg-accent text-white px-5 py-2.5 text-sm font-bold rounded-full hover:bg-accent-dark transition-colors">
         Get a Quote
       </a>
     </div>
-  </nav>
+  </header>
 
   <!-- Hero -->
-  <section class="relative min-h-screen flex items-center px-6 pt-32 pb-24 dot-grid overflow-hidden">
-    <!-- Glow blobs -->
-    <div class="absolute -top-32 -left-32 w-[700px] h-[700px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 65%); filter: blur(60px);"></div>
-    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(6,182,212,0.1) 0%, transparent 65%); filter: blur(60px);"></div>
+  <section class="min-h-screen flex items-center px-6 pt-32 pb-20 bg-white overflow-hidden relative">
+    <!-- Big background number -->
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 text-[20rem] font-extrabold leading-none select-none pointer-events-none" style="color: #F0F0F0; line-height: 1;">01</div>
 
     <div class="relative max-w-6xl mx-auto w-full">
-      <div class="reveal inline-flex items-center gap-2.5 border border-edge rounded-full px-4 py-2 mb-10 text-xs text-muted" style="font-family: var(--font-mono); background: rgba(255,255,255,0.03)">
-        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse flex-shrink-0"></span>
-        actively_booking · Gainesville, GA
+      <div class="reveal inline-flex items-center gap-2 bg-accent-light border border-accent/20 rounded-full px-4 py-2 text-xs font-semibold text-accent mb-10 uppercase tracking-widest">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
+        Now booking · Gainesville, GA
       </div>
 
-      <h1 class="reveal reveal-delay-1 leading-[1.05] mb-8" style="font-family: var(--font-display)">
-        <span class="block text-5xl md:text-7xl lg:text-8xl font-extrabold text-text">Websites that</span>
-        <span class="block text-5xl md:text-7xl lg:text-8xl font-extrabold gradient-text">actually work</span>
-        <span class="block text-5xl md:text-7xl lg:text-8xl font-extrabold text-text">for your business.</span>
+      <h1 class="reveal reveal-delay-1 font-extrabold leading-[1.0] mb-8 max-w-4xl" style="font-size: clamp(3.5rem, 8vw, 7.5rem)">
+        We build websites<br/>
+        that <span class="text-accent">win customers</span><br/>
+        for your business.
       </h1>
 
-      <p class="reveal reveal-delay-2 text-lg text-muted max-w-xl mb-10 leading-relaxed">
-        Custom-built websites for local businesses. Fast, mobile-ready, and affordable.
-        I handle the tech so you can run your business.
+      <p class="reveal reveal-delay-2 text-lg text-muted max-w-lg mb-10 leading-relaxed">
+        Custom sites for local businesses in Gainesville. Fast, mobile-ready, and affordable — I handle the tech so you can run your business.
       </p>
 
-      <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 mb-16">
-        <a href="#contact" class="gradient-bg text-white px-8 py-4 font-semibold rounded-lg hover:opacity-90 transition-opacity text-center text-sm">
-          Get a Free Quote
+      <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-3 mb-20">
+        <a href="#contact" class="bg-accent text-white px-8 py-4 font-bold text-sm rounded-full hover:bg-accent-dark transition-colors text-center">
+          Get a Free Quote →
         </a>
-        <a href="#work" class="glass text-text px-8 py-4 font-semibold rounded-lg hover:border-edge-2 transition-colors text-center text-sm">
+        <a href="#work" class="bg-off text-ink px-8 py-4 font-bold text-sm rounded-full hover:bg-border transition-colors text-center">
           See Our Work
         </a>
       </div>
 
-      <div class="reveal reveal-delay-4 flex flex-wrap gap-4 pt-8 border-t border-edge">
+      <div class="reveal reveal-delay-4 grid grid-cols-3 gap-8 pt-10 border-t border-border max-w-lg">
         {[
-          { value: "7 days", label: "avg. launch time" },
-          { value: "100%", label: "mobile responsive" },
-          { value: "A+", label: "page speed score" },
-        ].map((stat) => (
-          <div class="glass rounded-xl px-5 py-3">
-            <div class="text-2xl font-bold text-text" style="font-family: var(--font-display)">{stat.value}</div>
-            <div class="text-xs text-muted mt-0.5">{stat.label}</div>
+          { n: "7", unit: "days", label: "avg. launch time" },
+          { n: "100", unit: "%", label: "mobile responsive" },
+          { n: "A+", unit: "", label: "page speed score" },
+        ].map((s) => (
+          <div>
+            <div class="text-3xl font-extrabold text-ink leading-none">{s.n}<span class="text-accent">{s.unit}</span></div>
+            <div class="text-xs text-muted mt-1">{s.label}</div>
           </div>
         ))}
       </div>
@@ -97,40 +93,25 @@ const packages = [
   </section>
 
   <!-- Services -->
-  <section id="services" class="px-6 py-24 bg-surface">
+  <section id="services" class="px-6 py-24 bg-off">
     <div class="max-w-6xl mx-auto">
-      <div class="reveal mb-16">
-        <p class="text-xs font-medium uppercase tracking-[0.25em] mb-3 text-muted" style="font-family: var(--font-mono)">// services</p>
-        <h2 class="text-4xl md:text-5xl font-bold text-text" style="font-family: var(--font-display)">
-          Everything you need<br/>to get online.
-        </h2>
+      <div class="reveal flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-3">Services</p>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink">What I do.</h2>
+        </div>
+        <p class="text-muted max-w-xs text-sm leading-relaxed">Everything you need to get online and stay ahead — under one monthly plan.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-4">
         {[
-          {
-            title: "Custom Web Design",
-            desc: "Built from scratch for your brand. No templates, no cookie-cutter layouts. Every pixel intentional.",
-            icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
-          },
-          {
-            title: "Lightning Fast Hosting",
-            desc: "Loads in under a second. Hosting, SSL, CDN, and automatic backups — all handled.",
-            icon: "M13 10V3L4 14h7v7l9-11h-7z",
-          },
-          {
-            title: "Ongoing Maintenance",
-            desc: "Updates, security patches, and edits included. One monthly bill, no surprises.",
-            icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15",
-          },
+          { num: "01", title: "Custom Web Design", desc: "Built from scratch for your brand. No templates, no cookie-cutter layouts. Every pixel intentional.", icon: "M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
+          { num: "02", title: "Lightning Fast Hosting", desc: "Loads in under a second. SSL, CDN, and daily backups all handled — no separate hosting bill.", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
+          { num: "03", title: "Ongoing Maintenance", desc: "Monthly edits, security patches, and updates — all included. One plan, no surprises.", icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" },
         ].map((svc, i) => (
-          <div class={`reveal reveal-delay-${i} glass rounded-xl p-7 group hover:border-violet/30 transition-all duration-300 hover:-translate-y-1`}>
-            <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mb-5">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d={svc.icon}/>
-              </svg>
-            </div>
-            <h3 class="text-base font-semibold text-text mb-2" style="font-family: var(--font-display)">{svc.title}</h3>
+          <div class={`reveal reveal-delay-${i} bg-white rounded-2xl p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-all duration-300 group`}>
+            <p class="text-5xl font-extrabold text-border mb-6 group-hover:text-accent-light transition-colors">{svc.num}</p>
+            <h3 class="text-lg font-bold text-ink mb-3">{svc.title}</h3>
             <p class="text-sm text-muted leading-relaxed">{svc.desc}</p>
           </div>
         ))}
@@ -139,45 +120,43 @@ const packages = [
   </section>
 
   <!-- Packages -->
-  <section id="packages" class="px-6 py-24 bg-bg dot-grid">
+  <section id="packages" class="px-6 py-24 bg-white">
     <div class="max-w-6xl mx-auto">
       <div class="reveal text-center mb-16">
-        <p class="text-xs font-medium uppercase tracking-[0.25em] mb-3 text-muted" style="font-family: var(--font-mono)">// pricing</p>
-        <h2 class="text-4xl md:text-5xl font-bold text-text" style="font-family: var(--font-display)">Simple, honest pricing.</h2>
-        <p class="text-muted mt-3 max-w-sm mx-auto text-sm">No hidden fees. No upsells. Pick the package that fits.</p>
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-3">Pricing</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink">Simple, honest pricing.</h2>
+        <p class="text-muted mt-3 text-sm">No hidden fees. No upsells. Pick the plan that fits.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-5">
+      <div class="grid md:grid-cols-3 gap-5 items-start">
         {packages.map((pkg, i) => (
-          <div class={`reveal reveal-delay-${i} flex flex-col rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${pkg.highlight ? 'glass-violet' : 'glass'}`}
-            style={pkg.highlight ? 'box-shadow: 0 0 60px rgba(124,58,237,0.15)' : ''}>
+          <div class={`reveal reveal-delay-${i} flex flex-col rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${pkg.highlight ? 'bg-ink text-white shadow-2xl' : 'bg-off border border-border'}`}>
             {pkg.highlight && (
-              <div class="inline-flex self-start gradient-bg text-white text-xs font-bold px-3 py-1 rounded-full tracking-wide uppercase mb-4">
+              <div class="inline-flex self-start bg-accent text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
                 Most Popular
               </div>
             )}
-            <p class="text-xs font-semibold uppercase tracking-[0.2em] mb-3 text-muted" style="font-family: var(--font-mono)">{pkg.name}</p>
+            <p class={`text-xs font-bold uppercase tracking-[0.2em] mb-3 ${pkg.highlight ? 'text-accent' : 'text-muted'}`}>{pkg.name}</p>
             <div class="flex items-baseline gap-2 mb-1">
-              <span class="text-5xl font-extrabold text-text" style="font-family: var(--font-display)">{pkg.price}</span>
-              <span class="text-sm text-faint">upfront</span>
+              <span class={`text-5xl font-extrabold ${pkg.highlight ? 'text-white' : 'text-ink'}`}>{pkg.price}</span>
+              <span class={`text-sm ${pkg.highlight ? 'text-white/50' : 'text-faint'}`}>upfront</span>
             </div>
-            <p class="text-sm text-faint mb-5">+ {pkg.monthly}/mo hosting & maintenance</p>
-            <p class="text-sm text-muted mb-6 leading-relaxed">{pkg.description}</p>
+            <p class={`text-sm mb-6 ${pkg.highlight ? 'text-white/50' : 'text-faint'}`}>+ {pkg.monthly}/mo hosting</p>
 
             <ul class="space-y-2.5 mb-8 flex-1">
               {pkg.features.map((f) => (
-                <li class="flex items-start gap-3 text-sm text-text">
-                  <svg class="w-4 h-4 flex-shrink-0 mt-0.5 text-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <li class="flex items-start gap-3 text-sm">
+                  <svg class={`w-4 h-4 flex-shrink-0 mt-0.5 ${pkg.highlight ? 'text-accent' : 'text-accent'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
                   </svg>
-                  {f}
+                  <span class={pkg.highlight ? 'text-white/80' : 'text-ink'}>{f}</span>
                 </li>
               ))}
             </ul>
 
             <a href={`/packages/${pkg.name.toLowerCase()}`}
-              class={`block text-center w-full py-3.5 text-sm font-semibold rounded-xl transition-all duration-200 ${pkg.highlight ? 'gradient-bg text-white hover:opacity-90' : 'glass text-text hover:border-violet/30'}`}>
-              See What's Included
+              class={`block text-center w-full py-3.5 text-sm font-bold rounded-full transition-all duration-200 ${pkg.highlight ? 'bg-accent text-white hover:bg-accent-dark' : 'bg-ink text-white hover:bg-accent'}`}>
+              See What's Included →
             </a>
           </div>
         ))}
@@ -186,98 +165,115 @@ const packages = [
   </section>
 
   <!-- Work -->
-  <section id="work" class="px-6 py-24 bg-surface">
+  <section id="work" class="px-6 py-24 bg-off">
     <div class="max-w-6xl mx-auto">
-      <div class="reveal mb-12">
-        <p class="text-xs font-medium uppercase tracking-[0.25em] mb-3 text-muted" style="font-family: var(--font-mono)">// our work</p>
-        <h2 class="text-4xl md:text-5xl font-bold text-text" style="font-family: var(--font-display)">Live demos. Real sites.</h2>
-        <p class="text-muted mt-3 max-w-lg text-sm leading-relaxed">Click into any package to see a fully interactive example of what we build.</p>
+      <div class="reveal flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-3">Our Work</p>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-ink">Live demos.</h2>
+        </div>
+        <p class="text-muted text-sm max-w-xs leading-relaxed">Click any package to see a real, interactive example of what we build.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-4">
         {[
-          { tier: "Starter", name: "Hogtown Smoke BBQ", industry: "Restaurant", href: "/packages/starter", tag: "$1,500" },
-          { tier: "Plus", name: "The Perch Coffee Co.", industry: "Coffee Shop", href: "/packages/plus", tag: "$3,500", accent: true },
-          { tier: "Pro", name: "Solé Wellness Studio", industry: "Spa & Wellness", href: "/packages/pro", tag: "$6,000+" },
+          { tier: "Starter", name: "Hogtown Smoke BBQ", industry: "Restaurant", href: "/packages/starter", price: "$1,500" },
+          { tier: "Plus", name: "The Perch Coffee Co.", industry: "Coffee Shop", href: "/packages/plus", price: "$3,500", accent: true },
+          { tier: "Pro", name: "Solé Wellness Studio", industry: "Spa & Wellness", href: "/packages/pro", price: "$6,000+" },
         ].map((item, i) => (
-          <a href={item.href} class={`reveal reveal-delay-${i} block group rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 ${item.accent ? 'glass-violet' : 'glass'}`}>
+          <a href={item.href} class={`reveal reveal-delay-${i} block group rounded-2xl p-6 border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${item.accent ? 'bg-ink border-ink' : 'bg-white border-border'}`}>
             <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-mono text-muted" style="font-family: var(--font-mono)">{item.tier}</span>
-              <span class="text-xs font-semibold text-muted glass px-2.5 py-1 rounded-full">{item.tag}</span>
+              <span class={`text-xs font-bold uppercase tracking-widest ${item.accent ? 'text-accent' : 'text-muted'}`}>{item.tier}</span>
+              <span class={`text-xs font-semibold px-2.5 py-1 rounded-full ${item.accent ? 'bg-white/10 text-white/60' : 'bg-off text-muted'}`}>{item.price}</span>
             </div>
-            <p class="font-semibold text-text mb-0.5" style="font-family: var(--font-display)">{item.name}</p>
-            <p class="text-xs text-muted mb-5">{item.industry}</p>
-            <span class="text-xs font-medium text-violet group-hover:underline">View demo & details →</span>
+            <p class={`font-bold text-base mb-0.5 ${item.accent ? 'text-white' : 'text-ink'}`}>{item.name}</p>
+            <p class={`text-xs mb-5 ${item.accent ? 'text-white/50' : 'text-muted'}`}>{item.industry}</p>
+            <span class={`text-xs font-bold group-hover:underline ${item.accent ? 'text-accent' : 'text-accent'}`}>View demo & details →</span>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- About -->
-  <section id="about" class="px-6 py-24 bg-bg">
-    <div class="max-w-6xl mx-auto md:grid md:grid-cols-5 md:gap-16 items-center">
-      <div class="reveal md:col-span-2 mb-10 md:mb-0">
-        <p class="text-xs font-medium uppercase tracking-[0.25em] mb-4 text-muted" style="font-family: var(--font-mono)">// about</p>
-        <div class="text-8xl font-extrabold gradient-text leading-none select-none" style="font-family: var(--font-display)">&lt;/&gt;</div>
+  <!-- About — dark bold section -->
+  <section id="about" class="px-6 py-24 bg-ink-2">
+    <div class="max-w-6xl mx-auto md:grid md:grid-cols-2 gap-20 items-center">
+      <div class="reveal mb-12 md:mb-0">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-4">About</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-6">
+          Local dev.<br/>Modern sites.<br/><span class="text-accent">Fair prices.</span>
+        </h2>
+        <a href="#contact" class="inline-flex bg-accent text-white px-7 py-3.5 font-bold text-sm rounded-full hover:bg-accent-dark transition-colors">
+          Let's Talk →
+        </a>
       </div>
-      <div class="reveal reveal-delay-1 md:col-span-3">
-        <p class="text-2xl md:text-3xl font-semibold text-text leading-snug mb-6" style="font-family: var(--font-display)">
-          Local developer. Modern stack. Fair prices.
+      <div class="reveal reveal-delay-1 space-y-6">
+        <p class="text-white/70 leading-relaxed">
+          I'm based in Gainesville, GA and build modern websites for local businesses who deserve better than a free template or a bloated agency quote.
         </p>
-        <div class="space-y-4 text-muted leading-relaxed text-sm">
-          <p>I'm based in Gainesville, GA and build modern websites for local businesses who deserve better than a free template or a $10,000 agency quote.</p>
-          <p>Every site is fast, mobile-ready, and actually works — no fluff, no jargon, no surprise invoices. Just clean code and a site you'll be proud to share.</p>
+        <p class="text-white/70 leading-relaxed">
+          Every site I build is fast, mobile-ready, and actually converts visitors into customers. No fluff, no jargon, no surprise invoices.
+        </p>
+        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+          {[{ n: "7 days", l: "to launch" }, { n: "100%", l: "mobile" }, { n: "A+", l: "speed" }].map((s) => (
+            <div>
+              <div class="text-2xl font-extrabold text-accent">{s.n}</div>
+              <div class="text-xs text-white/40 mt-0.5">{s.l}</div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="px-6 py-24 bg-surface">
+  <section id="contact" class="px-6 py-24 bg-white">
     <div class="max-w-2xl mx-auto">
-      <div class="reveal mb-12 text-center">
-        <p class="text-xs font-medium uppercase tracking-[0.25em] mb-3 text-muted" style="font-family: var(--font-mono)">// contact</p>
-        <h2 class="text-4xl md:text-5xl font-bold text-text" style="font-family: var(--font-display)">Let's build something.</h2>
-        <p class="mt-3 text-sm text-muted">Tell me about your business. I'll get back to you within 24 hours.</p>
+      <div class="reveal text-center mb-12">
+        <p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-3">Contact</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-ink">Let's build something.</h2>
+        <p class="text-muted mt-3 text-sm">Tell me about your business. Back to you within 24 hours.</p>
       </div>
 
       <form action="https://formspree.io/f/mzdojrav" method="POST" class="reveal space-y-4">
         <div class="grid md:grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-medium uppercase tracking-[0.15em] text-muted mb-2">Your Name</label>
+            <label class="block text-xs font-bold uppercase tracking-[0.15em] text-ink mb-2">Name</label>
             <input type="text" name="name" required placeholder="Jane Smith"
-              class="w-full glass rounded-lg px-4 py-3 text-sm text-text placeholder:text-faint focus:outline-none focus:border-violet/50 transition-colors" />
+              class="w-full bg-off border border-border rounded-xl px-4 py-3 text-sm text-ink placeholder:text-faint focus:outline-none focus:border-accent transition-colors" />
           </div>
           <div>
-            <label class="block text-xs font-medium uppercase tracking-[0.15em] text-muted mb-2">Email</label>
-            <input type="email" name="email" required placeholder="jane@business.com"
-              class="w-full glass rounded-lg px-4 py-3 text-sm text-text placeholder:text-faint focus:outline-none focus:border-violet/50 transition-colors" />
+            <label class="block text-xs font-bold uppercase tracking-[0.15em] text-ink mb-2">Email</label>
+            <input type="email" name="email" required placeholder="jane@yourbusiness.com"
+              class="w-full bg-off border border-border rounded-xl px-4 py-3 text-sm text-ink placeholder:text-faint focus:outline-none focus:border-accent transition-colors" />
           </div>
         </div>
         <div>
-          <label class="block text-xs font-medium uppercase tracking-[0.15em] text-muted mb-2">Business Name</label>
+          <label class="block text-xs font-bold uppercase tracking-[0.15em] text-ink mb-2">Business Name</label>
           <input type="text" name="business" placeholder="Your Business"
-            class="w-full glass rounded-lg px-4 py-3 text-sm text-text placeholder:text-faint focus:outline-none focus:border-violet/50 transition-colors" />
+            class="w-full bg-off border border-border rounded-xl px-4 py-3 text-sm text-ink placeholder:text-faint focus:outline-none focus:border-accent transition-colors" />
         </div>
         <div>
-          <label class="block text-xs font-medium uppercase tracking-[0.15em] text-muted mb-2">Tell me about your project</label>
+          <label class="block text-xs font-bold uppercase tracking-[0.15em] text-ink mb-2">Project Details</label>
           <textarea name="message" rows="5" required placeholder="What kind of site do you need? What does your business do?"
-            class="w-full glass rounded-lg px-4 py-3 text-sm text-text placeholder:text-faint focus:outline-none focus:border-violet/50 transition-colors resize-none"></textarea>
+            class="w-full bg-off border border-border rounded-xl px-4 py-3 text-sm text-ink placeholder:text-faint focus:outline-none focus:border-accent transition-colors resize-none"></textarea>
         </div>
-        <button type="submit" class="w-full gradient-bg text-white font-semibold py-4 rounded-lg hover:opacity-90 transition-opacity text-sm">
-          Send Message
+        <button type="submit" class="w-full bg-accent text-white font-bold py-4 rounded-full hover:bg-accent-dark transition-colors text-sm">
+          Send Message →
         </button>
       </form>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-edge px-6 py-8 bg-bg">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-faint">
-      <div class="font-semibold text-muted" style="font-family: var(--font-display)">Apex<span class="gradient-text">Web</span></div>
-      <div>© 2026 Apex Web · Gainesville, GA</div>
-      <div>Built with Astro + Tailwind</div>
+  <footer class="border-t border-border px-6 py-8 bg-white">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-sm">
+      <div class="flex items-center gap-2 font-extrabold text-ink">
+        <span class="w-2 h-2 rounded-full bg-accent"></span>
+        Apex Web
+      </div>
+      <div class="text-faint text-xs">© 2026 Apex Web · Gainesville, GA</div>
+      <div class="text-faint text-xs">Built with Astro + Tailwind</div>
     </div>
   </footer>
 </Layout>

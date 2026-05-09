@@ -1,60 +1,52 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-
 const features = [
-  { title: "5-Page Custom Website", desc: "Home, About, Services, Contact, plus one page of your choice. Built for your brand — no templates.", icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" },
-  { title: "Mobile Responsive Design", desc: "Looks great on every screen. Over 60% of traffic is mobile — this is non-negotiable.", icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" },
+  { title: "5-Page Custom Website", desc: "Home, About, Services, Contact + one more. Built for your brand — no templates.", icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" },
+  { title: "Mobile Responsive", desc: "Looks perfect on every screen — phones, tablets, desktops. Over 60% of traffic is mobile.", icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" },
   { title: "Contact Form", desc: "Submissions go straight to your email. Customers reach you, you close the lead.", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
   { title: "Basic On-Page SEO", desc: "Title tags, meta descriptions, heading structure, and sitemap so Google can find you.", icon: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" },
-  { title: "Hosting & SSL Included", desc: "Fast servers, the padlock in the browser, and automatic backups. All in your monthly plan.", icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" },
-  { title: "1 Hour of Edits/Month", desc: "Change your hours, update a photo, fix a typo. Same-day turnaround, no ticket system.", icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" },
+  { title: "Hosting & SSL Included", desc: "Fast servers, the padlock in the browser, and automatic backups — all in your monthly plan.", icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" },
+  { title: "1 Hour of Edits/Month", desc: "Update hours, swap a photo, fix a typo. Same-day turnaround, no ticket system needed.", icon: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" },
 ];
 ---
-
 <Layout title="Starter Package — Apex Web">
-  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-edge" style="background: rgba(7,7,15,0.8); backdrop-filter: blur(16px);">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-border">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="/" class="text-lg font-bold text-text" style="font-family: var(--font-display)">Apex<span class="gradient-text">Web</span></a>
-      <a href="/#packages" class="flex items-center gap-2 text-sm text-muted hover:text-text transition-colors">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-        All Packages
+      <a href="/" class="flex items-center gap-2 text-lg font-extrabold text-ink"><span class="w-2.5 h-2.5 rounded-full bg-accent"></span>Apex Web</a>
+      <a href="/#packages" class="flex items-center gap-2 text-sm font-medium text-muted hover:text-ink transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>All Packages
       </a>
     </div>
-  </nav>
+  </header>
 
-  <section class="px-6 pt-40 pb-20 bg-bg dot-grid relative overflow-hidden">
-    <div class="absolute -top-20 -left-20 w-[500px] h-[500px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 65%); filter: blur(50px);"></div>
+  <section class="px-6 pt-40 pb-20 bg-white relative overflow-hidden">
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 text-[18rem] font-extrabold select-none pointer-events-none" style="color: #F0F0F0; line-height: 1;">S</div>
     <div class="max-w-6xl mx-auto relative">
-      <p class="reveal text-xs font-medium uppercase tracking-[0.25em] text-muted mb-3" style="font-family: var(--font-mono)">// starter package</p>
-      <h1 class="reveal reveal-delay-1 text-5xl md:text-7xl font-extrabold text-text mb-6 leading-none" style="font-family: var(--font-display)">
-        Everything you need<br/><span class="gradient-text">to get online.</span>
+      <p class="reveal text-xs font-bold uppercase tracking-[0.2em] text-accent mb-4">Starter Package</p>
+      <h1 class="reveal reveal-delay-1 font-extrabold leading-none mb-6" style="font-size: clamp(3rem, 7vw, 6rem)">
+        Everything you need<br/>to get <span class="text-accent">online.</span>
       </h1>
-      <div class="reveal reveal-delay-2 flex items-baseline gap-3 mb-6">
-        <span class="text-5xl font-extrabold text-text" style="font-family: var(--font-display)">$1,500</span>
-        <span class="text-muted">upfront</span>
-        <span class="text-faint">+</span>
-        <span class="text-2xl font-bold text-text" style="font-family: var(--font-display)">$50<span class="text-muted text-base font-normal">/mo</span></span>
+      <div class="reveal reveal-delay-2 flex items-baseline gap-3 mb-8">
+        <span class="text-5xl font-extrabold text-ink">$1,500</span><span class="text-muted">upfront</span>
+        <span class="text-faint">+</span><span class="text-2xl font-extrabold text-ink">$50<span class="text-muted font-normal text-base">/mo</span></span>
       </div>
-      <div class="reveal reveal-delay-3 flex gap-3 flex-wrap">
-        <a href="/#contact" class="gradient-bg text-white px-8 py-3.5 text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">Get Started</a>
-        <a href="/packages/plus" class="glass text-text px-8 py-3.5 text-sm font-semibold rounded-lg hover:border-edge-2 transition-colors">See Plus →</a>
+      <div class="reveal reveal-delay-3 flex flex-wrap gap-3">
+        <a href="/#contact" class="bg-accent text-white px-8 py-3.5 font-bold text-sm rounded-full hover:bg-accent-dark transition-colors">Get Started →</a>
+        <a href="/packages/plus" class="bg-off text-ink px-8 py-3.5 font-bold text-sm rounded-full hover:bg-border transition-colors">See Plus →</a>
       </div>
     </div>
   </section>
 
-  <section class="px-6 py-20 bg-surface">
+  <section class="px-6 py-20 bg-off">
     <div class="max-w-6xl mx-auto">
-      <div class="reveal mb-10">
-        <p class="text-xs font-medium uppercase tracking-[0.25em] text-muted mb-2" style="font-family: var(--font-mono)">// what's included</p>
-        <h2 class="text-3xl font-bold text-text" style="font-family: var(--font-display)">Every feature, explained.</h2>
-      </div>
+      <div class="reveal mb-10"><p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-2">What's Included</p><h2 class="text-3xl font-extrabold text-ink">Every feature, explained.</h2></div>
       <div class="grid md:grid-cols-2 gap-4">
         {features.map((f, i) => (
-          <div class={`reveal reveal-delay-${i % 3} glass rounded-xl p-6 hover:border-violet/25 transition-all duration-300`}>
-            <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center mb-4">
-              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d={f.icon}/></svg>
+          <div class={`reveal reveal-delay-${i % 3} bg-white rounded-2xl p-6 border border-border hover:border-accent/30 hover:shadow-md transition-all duration-300`}>
+            <div class="w-8 h-8 bg-accent-light rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={f.icon}/></svg>
             </div>
-            <h3 class="font-semibold text-text mb-1.5" style="font-family: var(--font-display)">{f.title}</h3>
+            <h3 class="font-bold text-ink mb-1.5">{f.title}</h3>
             <p class="text-sm text-muted leading-relaxed">{f.desc}</p>
           </div>
         ))}
@@ -62,40 +54,34 @@ const features = [
     </div>
   </section>
 
-  <section class="px-6 py-16 bg-bg">
+  <section class="px-6 py-16 bg-white">
     <div class="max-w-6xl mx-auto">
-      <div class="reveal mb-8">
-        <p class="text-xs font-medium uppercase tracking-[0.25em] text-muted mb-2" style="font-family: var(--font-mono)">// demo site</p>
-        <h2 class="text-3xl font-bold text-text" style="font-family: var(--font-display)">See it in action.</h2>
-        <p class="text-muted text-sm mt-2">A real Starter-tier site — click around and explore.</p>
-      </div>
-      <div class="reveal glass rounded-xl overflow-hidden">
-        <div class="flex items-center gap-3 px-4 py-3 border-b border-edge" style="background: rgba(255,255,255,0.02)">
-          <div class="flex gap-1.5"><div class="w-3 h-3 rounded-full bg-red-500/60"></div><div class="w-3 h-3 rounded-full bg-yellow-500/60"></div><div class="w-3 h-3 rounded-full bg-green-500/60"></div></div>
-          <div class="flex-1 glass rounded px-3 py-1.5 text-xs text-faint font-mono truncate">hogtown-smoke.pages.dev</div>
-          <a href="https://hogtown-smoke.pages.dev" target="_blank" rel="noopener" class="text-faint hover:text-text transition-colors">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-          </a>
+      <div class="reveal mb-8"><p class="text-xs font-bold uppercase tracking-[0.2em] text-accent mb-2">Live Demo</p><h2 class="text-3xl font-extrabold text-ink">See it in action.</h2><p class="text-muted text-sm mt-2">A real Starter-tier site — click around.</p></div>
+      <div class="reveal rounded-2xl overflow-hidden border border-border shadow-lg">
+        <div class="flex items-center gap-3 px-4 py-3 bg-off border-b border-border">
+          <div class="flex gap-1.5"><div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-yellow-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div></div>
+          <div class="flex-1 bg-white border border-border rounded-lg px-3 py-1.5 text-xs text-faint font-mono truncate">hogtown-smoke.pages.dev</div>
+          <a href="https://hogtown-smoke.pages.dev" target="_blank" rel="noopener" class="text-faint hover:text-ink transition-colors"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
         </div>
         <div class="h-[600px] bg-white"><iframe src="https://hogtown-smoke.pages.dev" title="Hogtown Smoke demo" loading="lazy" class="w-full h-full border-0"></iframe></div>
       </div>
     </div>
   </section>
 
-  <section class="px-6 py-16 bg-surface">
+  <section class="px-6 py-16 bg-accent">
     <div class="max-w-2xl mx-auto text-center">
-      <h2 class="reveal text-3xl font-bold text-text mb-3" style="font-family: var(--font-display)">Ready to get online?</h2>
-      <p class="reveal text-muted text-sm mb-8">I'll get back to you within 24 hours.</p>
+      <h2 class="reveal text-3xl font-extrabold text-white mb-3">Ready to get online?</h2>
+      <p class="reveal text-white/80 text-sm mb-8">I'll get back to you within 24 hours.</p>
       <div class="reveal flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/#contact" class="gradient-bg text-white px-8 py-4 text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">Get a Free Quote</a>
-        <a href="/packages/plus" class="glass text-text px-8 py-4 text-sm font-semibold rounded-lg hover:border-edge-2 transition-colors">Need more? See Plus →</a>
+        <a href="/#contact" class="bg-white text-accent px-8 py-4 font-bold text-sm rounded-full hover:bg-off transition-colors">Get a Free Quote →</a>
+        <a href="/packages/plus" class="bg-white/20 text-white px-8 py-4 font-bold text-sm rounded-full hover:bg-white/30 transition-colors">Need more? See Plus →</a>
       </div>
     </div>
   </section>
 
-  <footer class="border-t border-edge px-6 py-8 bg-bg">
-    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-faint">
-      <div class="font-semibold text-muted" style="font-family: var(--font-display)">Apex<span class="gradient-text">Web</span></div>
+  <footer class="border-t border-border px-6 py-8 bg-white">
+    <div class="max-w-6xl mx-auto flex items-center justify-between text-xs text-faint">
+      <div class="flex items-center gap-2 font-extrabold text-ink text-sm"><span class="w-2 h-2 rounded-full bg-accent"></span>Apex Web</div>
       <div>© 2026 Apex Web · Gainesville, GA</div>
     </div>
   </footer>
