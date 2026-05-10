@@ -121,23 +121,23 @@ import { business } from "./_business";
             <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=1000&q=85" alt="HVAC technician servicing a residential air conditioning unit" style="width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) saturate(0.85);" />
           </div>
           <div style="background: var(--gh-ink); color: var(--gh-bg); padding: 1.5rem 1.75rem; margin-top: -2px; border: 2px solid var(--gh-line);">
-            <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.45);">FIELD SPEC — UPDATED THIS WEEK</p>
+            <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.45);">WHAT YOU CAN COUNT ON</p>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 1rem;">
               <div class="gh-spec">
-                <span class="gh-spec-label" style="color: rgba(255,255,255,0.45);">AVG RESPONSE</span>
-                <span class="gh-display" style="display: block; color: var(--gh-bg); font-size: 1.9rem; margin-top: 0.25rem;">3.4 HRS</span>
+                <span class="gh-spec-label" style="color: rgba(255,255,255,0.45);">RESPONSE</span>
+                <span class="gh-display" style="display: block; color: var(--gh-bg); font-size: 1.55rem; margin-top: 0.25rem;">SAME DAY</span>
               </div>
               <div class="gh-spec">
-                <span class="gh-spec-label" style="color: rgba(255,255,255,0.45);">FIRST-CALL FIX</span>
-                <span class="gh-display" style="display: block; color: var(--gh-orange); font-size: 1.9rem; margin-top: 0.25rem;">92%</span>
+                <span class="gh-spec-label" style="color: rgba(255,255,255,0.45);">EMERGENCY</span>
+                <span class="gh-display" style="display: block; color: var(--gh-orange); font-size: 1.55rem; margin-top: 0.25rem;">24 / 7</span>
               </div>
               <div class="gh-spec">
-                <span class="gh-spec-label" style="color: rgba(255,255,255,0.45);">CALLS THIS MONTH</span>
-                <span class="gh-display" style="display: block; color: var(--gh-bg); font-size: 1.9rem; margin-top: 0.25rem;">147</span>
+                <span class="gh-spec-label" style="color: rgba(255,255,255,0.45);">QUOTES</span>
+                <span class="gh-display" style="display: block; color: var(--gh-bg); font-size: 1.55rem; margin-top: 0.25rem;">UPFRONT</span>
               </div>
               <div class="gh-spec">
-                <span class="gh-spec-label" style="color: rgba(255,255,255,0.45);">5-STAR REVIEWS</span>
-                <span class="gh-display" style="display: block; color: var(--gh-bg); font-size: 1.9rem; margin-top: 0.25rem;">340+</span>
+                <span class="gh-spec-label" style="color: rgba(255,255,255,0.45);">WARRANTY</span>
+                <span class="gh-display" style="display: block; color: var(--gh-bg); font-size: 1.55rem; margin-top: 0.25rem;">FACTORY</span>
               </div>
             </div>
           </div>
@@ -190,13 +190,13 @@ import { business } from "./_business";
       <div class="gh-reveal" style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.5rem; margin-bottom: 3.5rem;">
         <div>
           <p class="gh-section-num" style="margin-bottom: 0.85rem;">04 / WHAT NEIGHBORS SAY</p>
-          <h2 class="gh-display" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); color: var(--gh-ink);">
-            340+ five-star calls.
+          <h2 class="gh-display" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); color: var(--gh-ink); max-width: 16ch;">
+            Recent reviews from Google.
           </h2>
         </div>
         <div class="gh-spec" style="text-align: right;">
-          <span class="gh-spec-label">RATING — GOOGLE</span>
-          <span class="gh-display" style="display: block; font-size: 2.2rem; color: var(--gh-orange); letter-spacing: 0.05em; margin-top: 0.4rem;">4.9 / 5</span>
+          <span class="gh-spec-label">VERIFIED RATING</span>
+          <span class="gh-display" style="display: block; font-size: 2.2rem; color: var(--gh-orange); letter-spacing: 0.05em; margin-top: 0.4rem;">★ ★ ★ ★ ★</span>
         </div>
       </div>
 
@@ -216,7 +216,7 @@ import { business } from "./_business";
             <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;">
               <div>
                 <p class="gh-display" style="font-size: 1rem; color: var(--gh-ink);">{r.name}</p>
-                <p class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.12em; color: var(--gh-muted); text-transform: uppercase; margin-top: 0.2rem;">{r.city}</p>
+                <p class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.12em; color: var(--gh-muted); text-transform: uppercase; margin-top: 0.2rem;">Verified · {r.date}</p>
               </div>
               <p class="gh-mono" style="font-size: 0.62rem; letter-spacing: 0.1em; color: var(--gh-muted); text-transform: uppercase; text-align: right;">{r.service}</p>
             </div>
