@@ -6,16 +6,18 @@ interface Props {
   title?: string;
   description?: string;
   page?: string;
+  snap?: boolean;
 }
 const {
   title = `${business.name} — ${business.tagline}`,
   description = `${business.name} — heating and cooling repair, installation, and maintenance for Gainesville and the surrounding North Georgia area. Licensed, insured, and locally owned since ${business.established}.`,
   page = "",
+  snap = false,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class={snap ? 'gh-snap' : ''}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,17 +29,23 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <style>
       :root {
-        --gh-bg:        #F4EFE6;  /* warm bone */
-        --gh-bg-2:      #ECE4D5;  /* deeper bone */
-        --gh-paper:     #FBF8F1;  /* paper highlight */
-        --gh-ink:       #14181F;  /* near-black */
-        --gh-steel:     #2A323F;  /* deep gunmetal */
-        --gh-steel-2:   #3F4A5C;
-        --gh-muted:     #6E6960;
-        --gh-line:      #1A1F28;  /* hard line color */
-        --gh-rule:      #C7BEA8;  /* soft rule */
-        --gh-orange:    #DD4B1A;  /* heritage safety orange */
-        --gh-orange-2:  #B83A12;
+        --gh-bg:        #0F1622;  /* midnight navy — primary dark */
+        --gh-bg-2:      #15202E;  /* slightly elevated panel */
+        --gh-paper:     #1C2A39;  /* card highlight */
+        --gh-ink:       #F0E8D6;  /* warm bone — primary text */
+        --gh-ink-2:     #FFFFFF;
+        --gh-steel:     #2A3845;  /* dark steel divider */
+        --gh-steel-2:   #3A4A5A;
+        --gh-cool:      #4A8FB8;  /* cool steel blue — cooling accent */
+        --gh-cool-2:    #2F6B96;
+        --gh-warm:      #E89154;  /* warm amber/copper — primary accent */
+        --gh-warm-2:    #C77640;
+        --gh-muted:     #8593A8;  /* cool muted text */
+        --gh-line:      #2A3845;  /* hard divider */
+        --gh-rule:      #1E2A37;  /* soft rule */
+        /* legacy aliases so existing markup keeps working */
+        --gh-orange:    #E89154;
+        --gh-orange-2:  #C77640;
         --font-display: 'Big Shoulders Display', 'Impact', sans-serif;
         --font-body:    'Manrope', system-ui, sans-serif;
         --font-mono:    'JetBrains Mono', 'Menlo', monospace;
@@ -48,20 +56,38 @@ const {
         font-family: var(--font-body);
         -webkit-font-smoothing: antialiased;
       }
+      input::placeholder, textarea::placeholder, select { color: var(--gh-muted) !important; opacity: 0.85; }
+      select option { background: var(--gh-bg-2); color: var(--gh-ink); }
+
+      /* Section snap — home page only, desktop only */
+      @media (min-width: 768px) {
+        html.gh-snap {
+          scroll-snap-type: y mandatory;
+          scroll-padding-top: 108px;
+        }
+        html.gh-snap .gh-snap-section {
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
       .gh-display { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.005em; line-height: 0.9; text-transform: uppercase; }
       .gh-mono { font-family: var(--font-mono); }
 
-      /* Marquee ticker */
+      /* Marquee ticker — bright cool stripe on dark page */
       .gh-ticker {
-        background: var(--gh-ink);
-        color: var(--gh-bg);
+        background: var(--gh-bg-2);
+        color: var(--gh-ink);
         font-family: var(--font-mono);
         font-size: 0.7rem;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         padding: 0.45rem 0;
         overflow: hidden;
-        border-bottom: 2px solid var(--gh-orange);
+        border-bottom: 2px solid var(--gh-warm);
       }
       .gh-ticker-track {
         display: inline-flex;
@@ -72,7 +98,7 @@ const {
       }
       .gh-ticker-track > span:nth-child(odd)::before {
         content: "◉ ";
-        color: var(--gh-orange);
+        color: var(--gh-warm);
       }
       @keyframes gh-ticker-scroll {
         from { transform: translateX(0); }
@@ -85,8 +111,10 @@ const {
         font-size: 0.72rem;
         font-weight: 600;
         letter-spacing: 0.2em;
-        color: var(--gh-orange);
+        color: var(--gh-warm);
       }
+      /* Cool variant for cooling-themed sections */
+      .gh-section-num-cool { color: var(--gh-cool) !important; }
 
       /* Spec block — used for trust signals + small data callouts */
       .gh-spec {
@@ -100,14 +128,14 @@ const {
 
       /* Hard horizontal rule */
       .gh-rule { border: none; border-top: 1px solid var(--gh-rule); height: 0; margin: 0; }
-      .gh-rule-strong { border-top: 2px solid var(--gh-line); }
+      .gh-rule-strong { border-top: 2px solid var(--gh-warm); }
 
-      /* Crosshatch background */
+      /* Crosshatch background — subtle warm pattern on dark */
       .gh-hatch {
-        background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(20,24,31,0.04) 6px 7px);
+        background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(232,145,84,0.035) 6px 7px);
       }
 
-      /* Buttons */
+      /* Buttons — light-text-on-dark inverted from the prior theme */
       .gh-btn {
         display: inline-flex;
         align-items: center;
@@ -123,12 +151,12 @@ const {
         color: var(--gh-bg);
         text-decoration: none;
         cursor: pointer;
-        transition: transform 0.15s ease, background 0.15s, color 0.15s;
+        transition: transform 0.15s ease, background 0.15s, color 0.15s, border-color 0.15s;
       }
-      .gh-btn:hover { background: var(--gh-orange); border-color: var(--gh-orange); transform: translate(2px, -2px); }
-      .gh-btn-orange { background: var(--gh-orange); border-color: var(--gh-orange); }
-      .gh-btn-orange:hover { background: var(--gh-ink); border-color: var(--gh-ink); }
-      .gh-btn-ghost { background: transparent; color: var(--gh-ink); }
+      .gh-btn:hover { background: var(--gh-warm); border-color: var(--gh-warm); color: var(--gh-bg); transform: translate(2px, -2px); }
+      .gh-btn-orange { background: var(--gh-warm); border-color: var(--gh-warm); color: var(--gh-bg); }
+      .gh-btn-orange:hover { background: var(--gh-ink); border-color: var(--gh-ink); color: var(--gh-bg); }
+      .gh-btn-ghost { background: transparent; color: var(--gh-ink); border-color: var(--gh-ink); }
       .gh-btn-ghost:hover { background: var(--gh-ink); color: var(--gh-bg); }
 
       /* Nav */
@@ -138,17 +166,19 @@ const {
         font-weight: 600;
         letter-spacing: 0.16em;
         text-transform: uppercase;
-        color: var(--gh-ink);
+        color: var(--gh-muted);
         text-decoration: none;
         position: relative;
         padding: 0.4rem 0;
+        transition: color 0.2s;
       }
+      .gh-nav-link:hover, .gh-nav-link[data-active] { color: var(--gh-ink); }
       .gh-nav-link::after {
         content: "";
         position: absolute;
         left: 0; right: 0; bottom: -2px;
         height: 2px;
-        background: var(--gh-orange);
+        background: var(--gh-warm);
         transform: scaleX(0);
         transform-origin: left;
         transition: transform 0.25s ease;
@@ -194,7 +224,7 @@ const {
       .gh-callbar {
         position: fixed;
         bottom: 0; left: 0; right: 0;
-        background: var(--gh-orange);
+        background: var(--gh-warm);
         color: var(--gh-bg);
         padding: 0.85rem 1rem;
         font-family: var(--font-mono);
@@ -204,7 +234,7 @@ const {
         text-transform: uppercase;
         text-align: center;
         text-decoration: none;
-        border-top: 2px solid var(--gh-ink);
+        border-top: 2px solid var(--gh-line);
         z-index: 100;
         display: block;
       }
@@ -243,12 +273,12 @@ const {
     </div>
 
     <!-- Header -->
-    <header style="background: var(--gh-bg); border-bottom: 2px solid var(--gh-line); position: sticky; top: 0; z-index: 50;">
+    <header style="background: rgba(15,22,34,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--gh-line); position: sticky; top: 0; z-index: 50;">
       <div style="max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 2rem;">
         <a href="/mockups/gainesville-hvac/" style="text-decoration: none; color: var(--gh-ink); display: flex; align-items: center; gap: 0.85rem; flex-shrink: 0;">
-          <span aria-hidden="true" style="display: inline-block; width: 36px; height: 36px; background: var(--gh-orange); position: relative; transform: rotate(45deg);">
+          <span aria-hidden="true" style="display: inline-block; width: 36px; height: 36px; background: var(--gh-warm); position: relative; transform: rotate(45deg);">
             <span style="position: absolute; inset: 6px; background: var(--gh-bg);"></span>
-            <span style="position: absolute; inset: 11px; background: var(--gh-ink);"></span>
+            <span style="position: absolute; inset: 11px; background: var(--gh-warm);"></span>
           </span>
           <span style="display: flex; flex-direction: column; line-height: 1;">
             <span class="gh-display" style="font-size: 1.15rem;">{business.shortName}</span>
@@ -262,9 +292,9 @@ const {
           ))}
         </nav>
 
-        <a href={`tel:${business.phoneDigits}`} class="gh-nav-desktop" style="display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--gh-ink); padding-left: 1.5rem; border-left: 1px solid var(--gh-rule);">
+        <a href={`tel:${business.phoneDigits}`} class="gh-nav-desktop" style="display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--gh-ink); padding-left: 1.5rem; border-left: 1px solid var(--gh-line);">
           <span style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; color: var(--gh-muted); text-transform: uppercase;">CALL DIRECT</span>
-          <span class="gh-display" style="font-size: 1.4rem; color: var(--gh-orange);">{business.phone}</span>
+          <span class="gh-display" style="font-size: 1.4rem; color: var(--gh-warm);">{business.phone}</span>
         </a>
 
         <button id="ghNavToggle" class="gh-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="ghMobilePanel">
@@ -272,7 +302,7 @@ const {
         </button>
       </div>
 
-      <div id="ghMobilePanel" class="gh-mobile-panel" style="border-top: 2px solid var(--gh-line); background: var(--gh-bg);">
+      <div id="ghMobilePanel" class="gh-mobile-panel" style="border-top: 1px solid var(--gh-line); background: var(--gh-bg-2);">
         <nav style="padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem;" aria-label="Mobile">
           {nav.map((n) => (
             <a href={n.href} class="gh-nav-link" data-active={page === n.label || undefined}>{n.label}</a>
@@ -289,28 +319,28 @@ const {
     </main>
 
     <!-- Footer -->
-    <footer style="background: var(--gh-ink); color: var(--gh-bg); padding: 4rem 1.5rem 2rem; margin-top: 5rem;">
+    <footer style="background: var(--gh-bg-2); color: var(--gh-ink); padding: 4rem 1.5rem 2rem; margin-top: 0; border-top: 1px solid var(--gh-line);">
       <div style="max-width: 1280px; margin: 0 auto;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem 2rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.12);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem 2rem; padding-bottom: 3rem; border-bottom: 1px solid var(--gh-line);">
 
           <div>
             <p class="gh-display" style="font-size: 1.5rem; color: var(--gh-bg);">{business.shortName}</p>
-            <p class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.5); margin-top: 0.4rem; text-transform: uppercase;">SERVICES — EST. {business.established}</p>
-            <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.65;">
+            <p class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.18em; color: var(--gh-muted); margin-top: 0.4rem; text-transform: uppercase;">SERVICES — EST. {business.established}</p>
+            <p style="margin-top: 1.5rem; color: var(--gh-muted); font-size: 0.85rem; line-height: 1.65;">
               Heating, cooling, and indoor air quality for North Georgia homes and small businesses. Locally owned since {business.established}.
             </p>
           </div>
 
           <div>
-            <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.45); margin-bottom: 1rem;">CONTACT</p>
+            <p class="gh-spec gh-spec-label" style="color: var(--gh-muted); margin-bottom: 1rem;">CONTACT</p>
             <a href={`tel:${business.phoneDigits}`} class="gh-display" style="font-size: 1.85rem; color: var(--gh-orange); text-decoration: none; display: block;">{business.phone}</a>
-            <a href={`mailto:${business.email}`} style="color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none; display: inline-block; margin-top: 0.5rem;">{business.email}</a>
-            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 1rem;">{business.address.city}, {business.address.state} {business.address.zip}</p>
+            <a href={`mailto:${business.email}`} style="color: var(--gh-ink); font-size: 0.85rem; text-decoration: none; display: inline-block; margin-top: 0.5rem;">{business.email}</a>
+            <p style="color: var(--gh-muted); font-size: 0.85rem; margin-top: 1rem;">{business.address.city}, {business.address.state} {business.address.zip}</p>
           </div>
 
           <div>
-            <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.45); margin-bottom: 1rem;">HOURS</p>
-            <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; line-height: 1.85;">
+            <p class="gh-spec gh-spec-label" style="color: var(--gh-muted); margin-bottom: 1rem;">HOURS</p>
+            <p style="color: var(--gh-ink); font-size: 0.85rem; line-height: 1.85;">
               {business.hours.weekdays}<br/>
               {business.hours.saturday}<br/>
               {business.hours.sunday}<br/>
@@ -319,8 +349,8 @@ const {
           </div>
 
           <div>
-            <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.45); margin-bottom: 1rem;">CREDENTIALS</p>
-            <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.7); font-size: 0.85rem; line-height: 1.85;">
+            <p class="gh-spec gh-spec-label" style="color: var(--gh-muted); margin-bottom: 1rem;">CREDENTIALS</p>
+            <ul style="list-style: none; padding: 0; margin: 0; color: var(--gh-ink); font-size: 0.85rem; line-height: 1.85;">
               <li>License {business.licenseNumber}</li>
               {business.certifications.map((c) => <li>{c}</li>)}
             </ul>
@@ -328,9 +358,9 @@ const {
         </div>
 
         <div style="display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
-          <p class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.35); text-transform: uppercase;">© 2026 {business.name} · All rights reserved</p>
-          <p class="gh-mono" style="font-size: 0.6rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.25); text-transform: uppercase;">
-            Site preview by <a href="/" style="color: rgba(255,255,255,0.45); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.15);">Lanier Web</a>
+          <p class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.18em; color: var(--gh-muted); text-transform: uppercase;">© 2026 {business.name} · All rights reserved</p>
+          <p class="gh-mono" style="font-size: 0.6rem; letter-spacing: 0.18em; color: var(--gh-muted); text-transform: uppercase;">
+            Site preview by <a href="/" style="color: var(--gh-muted); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.15);">Lanier Web</a>
           </p>
         </div>
       </div>

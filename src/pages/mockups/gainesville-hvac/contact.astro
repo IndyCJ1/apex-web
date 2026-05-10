@@ -24,13 +24,13 @@ import { business } from "./_business";
       <hr class="gh-rule-strong" style="margin-bottom: 3rem;" />
 
       <!-- Big phone callout -->
-      <div class="gh-reveal" style="background: var(--gh-ink); color: var(--gh-bg); padding: 2rem 1.5rem; text-align: center; margin-bottom: 3rem; position: relative; overflow: hidden;">
-        <div aria-hidden="true" style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gh-orange);"></div>
-        <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.5);">FASTEST WAY TO REACH US</p>
-        <a href={`tel:${business.phoneDigits}`} class="gh-display" style="display: block; font-size: clamp(2.25rem, 6vw, 3.75rem); color: var(--gh-orange); text-decoration: none; margin: 0.6rem 0; letter-spacing: 0.02em;">
+      <div class="gh-reveal" style="background: var(--gh-bg-2); color: var(--gh-ink); padding: 2rem 1.5rem; text-align: center; margin-bottom: 3rem; position: relative; overflow: hidden; border: 1px solid var(--gh-line);">
+        <div aria-hidden="true" style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gh-warm);"></div>
+        <p class="gh-spec gh-spec-label" style="color: var(--gh-muted);">FASTEST WAY TO REACH US</p>
+        <a href={`tel:${business.phoneDigits}`} class="gh-display" style="display: block; font-size: clamp(2.25rem, 6vw, 3.75rem); color: var(--gh-warm); text-decoration: none; margin: 0.6rem 0; letter-spacing: 0.02em;">
           {business.phone}
         </a>
-        <p class="gh-mono" style="font-size: 0.75rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); text-transform: uppercase;">
+        <p class="gh-mono" style="font-size: 0.75rem; letter-spacing: 0.18em; color: var(--gh-muted); text-transform: uppercase;">
           {business.hours.weekdays}  ·  {business.hours.saturday}  ·  {business.hours.emergency}
         </p>
       </div>
@@ -138,13 +138,13 @@ import { business } from "./_business";
             </ul>
           </div>
 
-          <div style="background: var(--gh-ink); color: var(--gh-bg); border: 2px solid var(--gh-line); padding: 1.75rem;">
-            <p class="gh-section-num" style="color: var(--gh-orange); margin-bottom: 1rem;">EMERGENCY SERVICE</p>
+          <div style="background: var(--gh-warm); color: var(--gh-bg); border: 2px solid var(--gh-warm); padding: 1.75rem;">
+            <p class="gh-section-num" style="color: var(--gh-bg); margin-bottom: 1rem; opacity: 0.7;">EMERGENCY SERVICE</p>
             <h3 class="gh-display" style="font-size: 1.5rem; color: var(--gh-bg); margin-bottom: 0.85rem;">Available 24 / 7.</h3>
-            <p style="font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.55; margin-bottom: 1.25rem;">
+            <p style="font-size: 0.88rem; color: var(--gh-bg); opacity: 0.85; line-height: 1.55; margin-bottom: 1.25rem;">
               For urgent issues — no heat, no cooling, suspected gas leaks, or any HVAC concern that cannot wait — please call directly rather than using the form.
             </p>
-            <a href={`tel:${business.phoneDigits}`} class="gh-btn gh-btn-orange">
+            <a href={`tel:${business.phoneDigits}`} class="gh-btn" style="background: var(--gh-bg); border-color: var(--gh-bg); color: var(--gh-warm);">
               ◉ Call now
             </a>
           </div>
