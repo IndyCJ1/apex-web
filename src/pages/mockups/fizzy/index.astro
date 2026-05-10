@@ -1,0 +1,599 @@
+---
+// Fizzy mockup — Starter package single-page site
+// SWAP before sending: today's location, real menu prices, owner names if found
+import "../../../styles/global.css";
+
+const business = {
+  name: "Fizzy",
+  tagline: "Get Fizzy With It.",
+  subtitle: "Dirty sodas + fizzy drinks",
+  region: "Jackson County, GA",
+  phone: "(706) 555-0148",      // SWAP
+  phoneDigits: "7065550148",
+  email: "hello@drinkfizzy.com",  // SWAP — or use their IG DMs
+  instagram: "drinkfizzyga",
+  facebook: "drinkfizzyga",
+  todayLocation: "Jefferson Town Square",  // SWAP daily
+  todayHours: "11am – 8pm",
+};
+
+const menu = {
+  dirtySodas: [
+    { name: "The OG", desc: "Dr Pepper · coconut cream · lime", price: "$6" },
+    { name: "Pink Sky", desc: "Sprite · coconut · strawberry purée", price: "$6" },
+    { name: "Sunshine", desc: "Diet Coke · vanilla cream · peach", price: "$6" },
+    { name: "Cotton Candy", desc: "Sprite · raspberry · cream · cotton candy syrup", price: "$7" },
+    { name: "Tiger's Eye", desc: "Mountain Dew · pineapple · cream", price: "$6" },
+    { name: "Berry Crush", desc: "Coke · blueberry · raspberry · cream", price: "$6" },
+  ],
+  refreshers: [
+    { name: "Strawberry Acai", desc: "Fresh strawberry · acai · sparkling lemonade", price: "$7" },
+    { name: "Watermelon Mint", desc: "Watermelon purée · mint · soda water", price: "$7" },
+    { name: "Mango Tango", desc: "Mango · passion fruit · sparkling water", price: "$7" },
+    { name: "Peach Fizz", desc: "Peach purée · ginger · soda", price: "$7" },
+  ],
+  addOns: [
+    { name: "Whipped cream", price: "+$0.50" },
+    { name: "Popping boba (any flavor)", price: "+$1" },
+    { name: "Extra purée", price: "+$0.75" },
+    { name: "Make it a large (24oz)", price: "+$2" },
+  ],
+};
+
+const schedule = [
+  { day: "Today", spot: "Jefferson Town Square", time: "11am – 8pm", featured: true },
+  { day: "Friday", spot: "Talmo Friday Market", time: "4pm – 9pm" },
+  { day: "Saturday", spot: "Private event (Hoschton)", time: "Booked", booked: true },
+  { day: "Sunday", spot: "Pendergrass Pop-up", time: "12pm – 6pm" },
+  { day: "Monday", spot: "Closed — restocking", time: "—", booked: true },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="description" content="Fizzy — dirty sodas and fizzy drinks served at events and pop-ups across Jackson County and North Georgia." />
+    <title>Fizzy — Get Fizzy With It.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+    <style is:global>
+      :root {
+        --fz-pink:        #FCE0E5;  /* primary soft pink */
+        --fz-pink-2:      #F8C9D2;  /* deeper pink */
+        --fz-pink-3:      #FFE9EE;  /* lightest pink */
+        --fz-cream:       #FFF6EE;  /* warm cream */
+        --fz-yellow:      #FFD93B;  /* smiley yellow */
+        --fz-yellow-2:    #FFC700;  /* deeper yellow */
+        --fz-coral:       #FF8474;  /* peach/coral pop */
+        --fz-mint:        #B8E5DC;  /* soft mint accent */
+        --fz-ink:         #0A0A0A;  /* near-black */
+        --fz-ink-2:       #1A1A1A;
+        --fz-muted:       #6B5C5F;  /* warm muted */
+        --fz-line:        #0A0A0A;  /* hard divider */
+        --font-display:   'Archivo Black', 'Impact', sans-serif;
+        --font-body:      'Manrope', system-ui, sans-serif;
+        --font-script:    'Caveat', cursive;
+      }
+      html, body { background: var(--fz-pink); }
+      body { color: var(--fz-ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+
+      .fz-display { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 0.92; text-transform: uppercase; }
+      .fz-script { font-family: var(--font-script); }
+
+      /* Logo square — recreates the IG profile mark */
+      .fz-logomark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        background: var(--fz-pink);
+        border: 3px solid var(--fz-ink);
+        color: var(--fz-ink);
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+
+      /* Buttons */
+      .fz-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 1rem 1.75rem;
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        border: 3px solid var(--fz-ink);
+        background: var(--fz-ink);
+        color: var(--fz-pink);
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 999px;
+        box-shadow: 4px 4px 0 var(--fz-ink);
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s, color 0.15s;
+      }
+      .fz-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--fz-ink); }
+      .fz-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--fz-ink); }
+      .fz-btn-yellow { background: var(--fz-yellow); color: var(--fz-ink); }
+      .fz-btn-white  { background: var(--fz-cream); color: var(--fz-ink); }
+      .fz-btn-pink   { background: var(--fz-pink-2); color: var(--fz-ink); }
+
+      /* Tag chips */
+      .fz-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.9rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        border: 2px solid var(--fz-ink);
+        border-radius: 999px;
+        background: var(--fz-cream);
+        color: var(--fz-ink);
+      }
+
+      /* Polaroid card */
+      .fz-polaroid {
+        background: var(--fz-cream);
+        padding: 0.75rem 0.75rem 1rem;
+        border: 2px solid var(--fz-ink);
+        box-shadow: 6px 6px 0 var(--fz-ink);
+        transition: transform 0.3s ease;
+      }
+      .fz-polaroid:hover { transform: rotate(0deg) translateY(-4px); }
+      .fz-tilt-l { transform: rotate(-3deg); }
+      .fz-tilt-r { transform: rotate(2.5deg); }
+
+      /* Sticker — yellow smiley */
+      .fz-sticker {
+        position: absolute;
+        background: var(--fz-yellow);
+        border: 3px solid var(--fz-ink);
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+      }
+
+      /* Reveal */
+      .fz-reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+      .fz-reveal.is-visible { opacity: 1; transform: none; }
+      .fz-d-1 { transition-delay: 0.10s; }
+      .fz-d-2 { transition-delay: 0.20s; }
+      .fz-d-3 { transition-delay: 0.30s; }
+      .fz-d-4 { transition-delay: 0.40s; }
+      .fz-d-5 { transition-delay: 0.50s; }
+      .fz-d-6 { transition-delay: 0.60s; }
+      @media (prefers-reduced-motion: reduce) {
+        .fz-reveal { opacity: 1; transform: none; transition: none; }
+      }
+
+      input::placeholder, textarea::placeholder, select { color: var(--fz-muted); opacity: 0.85; }
+
+      /* Mobile tightening */
+      @media (max-width: 600px) {
+        section { padding-left: 1.1rem !important; padding-right: 1.1rem !important; }
+        .fz-mobile-stack { grid-template-columns: 1fr !important; }
+        .fz-btn { width: 100%; }
+        .fz-btn-row .fz-btn { width: auto; }
+        .fz-tilt-l, .fz-tilt-r { transform: rotate(0deg); }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Today's location sticky banner -->
+    <div style="background: var(--fz-yellow); color: var(--fz-ink); border-bottom: 3px solid var(--fz-ink); padding: 0.55rem 1rem; position: sticky; top: 0; z-index: 50;">
+      <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem 1rem; font-size: 0.85rem; font-weight: 700;">
+        <span style="font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.15em; background: var(--fz-ink); color: var(--fz-yellow); padding: 0.2rem 0.55rem; border-radius: 4px;">TODAY</span>
+        <span>📍 {business.todayLocation}</span>
+        <span style="opacity: 0.7;">·</span>
+        <span>{business.todayHours}</span>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section style="position: relative; padding: 3.5rem 1.5rem 4rem; overflow: hidden;">
+      <!-- Decorative smileys -->
+      <div aria-hidden="true" class="fz-sticker fz-reveal" style="top: 8%; right: 6%; width: 64px; height: 64px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.8" stroke-linecap="round" width="36" height="36">
+          <circle cx="9" cy="10" r="1" fill="#0A0A0A" stroke="none"/>
+          <circle cx="15" cy="10" r="1" fill="#0A0A0A" stroke="none"/>
+          <path d="M8 14 Q12 17 16 14"/>
+        </svg>
+      </div>
+      <div aria-hidden="true" class="fz-sticker fz-reveal fz-d-3" style="bottom: 12%; left: 4%; width: 70px; height: 70px; background: var(--fz-coral);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.8" stroke-linecap="round" width="40" height="40">
+          <circle cx="9" cy="10" r="1" fill="#0A0A0A" stroke="none"/>
+          <circle cx="15" cy="10" r="1" fill="#0A0A0A" stroke="none"/>
+          <path d="M8 14 Q12 17 16 14"/>
+        </svg>
+      </div>
+
+      <div style="max-width: 1100px; margin: 0 auto; position: relative; text-align: center;">
+
+        <!-- Logo mark -->
+        <div class="fz-reveal" style="display: flex; justify-content: center; margin-bottom: 1.75rem;">
+          <span class="fz-logomark" style="width: 110px; height: 110px; font-size: 2rem;">FIZZY</span>
+        </div>
+
+        <!-- Tagline -->
+        <h1 class="fz-display fz-reveal fz-d-1" style="font-size: clamp(3rem, 9vw, 7rem); color: var(--fz-ink); margin-bottom: 1rem;">
+          Get Fizzy<br/>With It.
+        </h1>
+
+        <p class="fz-script fz-reveal fz-d-2" style="font-size: clamp(1.5rem, 3vw, 2.25rem); color: var(--fz-ink); margin-bottom: 2rem;">
+          dirty sodas + fizzy drinks · {business.region}
+        </p>
+
+        <!-- Chips -->
+        <div class="fz-reveal fz-d-3" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 2.5rem;">
+          <span class="fz-chip">🍹 18+ drinks</span>
+          <span class="fz-chip">🎉 events &amp; pop-ups</span>
+          <span class="fz-chip">📅 catering available</span>
+        </div>
+
+        <!-- Buttons -->
+        <div class="fz-reveal fz-d-4 fz-btn-row" style="display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: center;">
+          <a href="#menu" class="fz-btn">See the menu</a>
+          <a href="#book" class="fz-btn fz-btn-yellow">Book us for your event</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- This Week / Where to Find Us -->
+    <section style="padding: 5rem 1.5rem; background: var(--fz-cream); border-top: 3px solid var(--fz-ink); border-bottom: 3px solid var(--fz-ink); position: relative; overflow: hidden;">
+      <div style="max-width: 1100px; margin: 0 auto;">
+
+        <div class="fz-reveal" style="text-align: center; margin-bottom: 2.5rem;">
+          <p class="fz-script" style="font-size: 1.5rem; color: var(--fz-coral); margin-bottom: 0.25rem;">come hang.</p>
+          <h2 class="fz-display" style="font-size: clamp(2.25rem, 6vw, 4rem); color: var(--fz-ink);">Where to find us</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
+          {schedule.map((s, i) => (
+            <div class={`fz-reveal fz-d-${(i % 5) + 1}`} style={`background: ${s.featured ? 'var(--fz-yellow)' : (s.booked ? 'var(--fz-pink-3)' : 'var(--fz-pink)')}; border: 3px solid var(--fz-ink); padding: 1.4rem 1.65rem; box-shadow: 5px 5px 0 var(--fz-ink); display: grid; grid-template-columns: 110px 1fr auto; gap: 1.25rem; align-items: center;`} class:list={[`fz-reveal fz-d-${(i % 5) + 1}`, "fz-mobile-stack-row"]}>
+              <p class="fz-display" style="font-size: 1.25rem; color: var(--fz-ink);">{s.day}</p>
+              <div>
+                <p style="font-size: 1.05rem; font-weight: 700; color: var(--fz-ink);">{s.spot}</p>
+                {s.featured && <p class="fz-script" style="font-size: 1.1rem; color: var(--fz-coral); margin-top: 0.15rem;">we're here right now ✨</p>}
+              </div>
+              <p class="fz-display" style="font-size: 0.9rem; letter-spacing: 0.08em; color: var(--fz-ink); white-space: nowrap;">{s.time}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="fz-reveal" style="text-align: center; margin-top: 2.5rem;">
+          <p style="font-size: 0.9rem; color: var(--fz-muted); margin-bottom: 0.85rem;">Schedule changes — always check our Instagram for the latest.</p>
+          <a href={`https://instagram.com/${business.instagram}`} target="_blank" rel="noopener noreferrer" class="fz-btn fz-btn-pink">
+            @{business.instagram} on Instagram →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" style="padding: 5rem 1.5rem; background: var(--fz-pink); position: relative; overflow: hidden;">
+
+      <div aria-hidden="true" style="position: absolute; top: 4%; left: 5%; opacity: 0.5;" class="fz-display">
+        <span style="font-size: clamp(4rem, 8vw, 8rem); color: var(--fz-pink-2);">MENU</span>
+      </div>
+
+      <div style="max-width: 1100px; margin: 0 auto; position: relative;">
+
+        <div class="fz-reveal" style="text-align: center; margin-bottom: 3rem;">
+          <p class="fz-script" style="font-size: 1.5rem; color: var(--fz-coral); margin-bottom: 0.25rem;">order up.</p>
+          <h2 class="fz-display" style="font-size: clamp(2.25rem, 6vw, 4rem); color: var(--fz-ink);">The Menu</h2>
+        </div>
+
+        <!-- Dirty Sodas -->
+        <div class="fz-reveal" style="background: var(--fz-cream); border: 3px solid var(--fz-ink); padding: 2rem 1.75rem; box-shadow: 6px 6px 0 var(--fz-ink); margin-bottom: 2rem;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px dashed var(--fz-ink);">
+            <h3 class="fz-display" style="font-size: clamp(1.6rem, 3.5vw, 2.25rem); color: var(--fz-ink);">Dirty Sodas</h3>
+            <p class="fz-script" style="font-size: 1.35rem; color: var(--fz-coral);">our signature</p>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 0.85rem;">
+            {menu.dirtySodas.map((item, i) => (
+              <div class={`fz-reveal fz-d-${(i % 6) + 1}`} style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline; padding: 0.65rem 0; border-bottom: 1px dotted var(--fz-ink);">
+                <div>
+                  <p style="font-weight: 800; font-size: 1.05rem; color: var(--fz-ink);">{item.name}</p>
+                  <p style="font-size: 0.85rem; color: var(--fz-muted); margin-top: 0.1rem;">{item.desc}</p>
+                </div>
+                <p class="fz-display" style="font-size: 1.15rem; color: var(--fz-coral); white-space: nowrap;">{item.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Refreshers -->
+        <div class="fz-reveal" style="background: var(--fz-mint); border: 3px solid var(--fz-ink); padding: 2rem 1.75rem; box-shadow: 6px 6px 0 var(--fz-ink); margin-bottom: 2rem;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px dashed var(--fz-ink);">
+            <h3 class="fz-display" style="font-size: clamp(1.6rem, 3.5vw, 2.25rem); color: var(--fz-ink);">Fizzy Refreshers</h3>
+            <p class="fz-script" style="font-size: 1.35rem; color: var(--fz-ink);">light &amp; bright</p>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 0.85rem;">
+            {menu.refreshers.map((item, i) => (
+              <div class={`fz-reveal fz-d-${(i % 4) + 1}`} style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline; padding: 0.65rem 0; border-bottom: 1px dotted var(--fz-ink);">
+                <div>
+                  <p style="font-weight: 800; font-size: 1.05rem; color: var(--fz-ink);">{item.name}</p>
+                  <p style="font-size: 0.85rem; color: var(--fz-muted); margin-top: 0.1rem;">{item.desc}</p>
+                </div>
+                <p class="fz-display" style="font-size: 1.15rem; color: var(--fz-ink); white-space: nowrap;">{item.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Add-ons -->
+        <div class="fz-reveal" style="background: var(--fz-yellow); border: 3px solid var(--fz-ink); padding: 1.75rem; box-shadow: 6px 6px 0 var(--fz-ink);">
+          <h3 class="fz-display" style="font-size: 1.4rem; color: var(--fz-ink); margin-bottom: 1rem;">Add a little extra</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.65rem 1.5rem;">
+            {menu.addOns.map((item) => (
+              <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; font-size: 0.95rem;">
+                <span style="font-weight: 600; color: var(--fz-ink);">{item.name}</span>
+                <span style="font-weight: 800; color: var(--fz-ink);">{item.price}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <p class="fz-reveal" style="text-align: center; margin-top: 2rem; color: var(--fz-muted); font-size: 0.85rem;">Cash, card, and Apple Pay accepted at every event.</p>
+
+      </div>
+    </section>
+
+    <!-- About -->
+    <section style="padding: 5rem 1.5rem; background: var(--fz-cream); border-top: 3px solid var(--fz-ink); border-bottom: 3px solid var(--fz-ink); position: relative; overflow: hidden;">
+      <div aria-hidden="true" class="fz-sticker fz-reveal" style="top: 8%; right: 8%;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A0A0A" stroke-width="1.8" stroke-linecap="round" width="44" height="44">
+          <circle cx="9" cy="10" r="1" fill="#0A0A0A" stroke="none"/>
+          <circle cx="15" cy="10" r="1" fill="#0A0A0A" stroke="none"/>
+          <path d="M8 14 Q12 17 16 14"/>
+        </svg>
+      </div>
+
+      <div style="max-width: 1100px; margin: 0 auto;">
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center;" class="fz-mobile-stack" id="aboutGrid">
+          <style>
+            @media (min-width: 800px) {
+              #aboutGrid { grid-template-columns: 1.1fr 1fr !important; gap: 4rem !important; }
+            }
+          </style>
+
+          <div class="fz-reveal">
+            <p class="fz-script" style="font-size: 1.5rem; color: var(--fz-coral); margin-bottom: 0.25rem;">hey, hi, hello.</p>
+            <h2 class="fz-display" style="font-size: clamp(2.25rem, 5vw, 3.5rem); color: var(--fz-ink); margin-bottom: 1.5rem;">
+              We're Fizzy.
+            </h2>
+            <div style="display: flex; flex-direction: column; gap: 1.1rem; font-size: 1rem; line-height: 1.65; color: var(--fz-ink);">
+              <p>We're a small family-run drink truck based in Jackson County. We make dirty sodas, fizzy refreshers, and the kind of drinks that make a regular afternoon feel like a celebration.</p>
+              <p>You'll find us at private events, school functions, weekend pop-ups, and anywhere there's a crowd that wants something a little more fun than a bottle of water.</p>
+              <p class="fz-script" style="font-size: 1.5rem; color: var(--fz-coral);">— the Fizzy crew ✨</p>
+            </div>
+          </div>
+
+          <!-- Polaroid stack -->
+          <div class="fz-reveal fz-d-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; padding: 1rem;">
+            <div class="fz-polaroid fz-tilt-l">
+              <div style="aspect-ratio: 4/5; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1546171753-97d7676e4602?w=600&q=85" alt="Pink fizzy drink with cream" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
+              <p class="fz-script" style="text-align: center; font-size: 1.2rem; margin-top: 0.5rem; color: var(--fz-ink);">pink sky</p>
+            </div>
+            <div class="fz-polaroid fz-tilt-r" style="margin-top: 2rem;">
+              <div style="aspect-ratio: 4/5; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=85" alt="Iced refresher in glass" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
+              <p class="fz-script" style="text-align: center; font-size: 1.2rem; margin-top: 0.5rem; color: var(--fz-ink);">strawberry acai</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Catering / Book Us -->
+    <section id="book" style="padding: 5rem 1.5rem; background: var(--fz-pink-2); position: relative; overflow: hidden;">
+
+      <div aria-hidden="true" style="position: absolute; top: -2rem; right: -2rem; transform: rotate(15deg); opacity: 0.35;">
+        <span class="fz-display" style="font-size: clamp(5rem, 12vw, 12rem); color: var(--fz-pink);">FIZZY</span>
+      </div>
+
+      <div style="max-width: 1100px; margin: 0 auto; position: relative;">
+
+        <div class="fz-reveal" style="text-align: center; margin-bottom: 2.5rem;">
+          <p class="fz-script" style="font-size: 1.5rem; color: var(--fz-ink); margin-bottom: 0.25rem;">your event, but make it fizzy.</p>
+          <h2 class="fz-display" style="font-size: clamp(2.25rem, 6vw, 4rem); color: var(--fz-ink); margin-bottom: 1rem;">Book Fizzy</h2>
+          <p style="font-size: 1rem; color: var(--fz-ink); max-width: 38rem; margin: 0 auto; line-height: 1.65;">
+            Birthdays, weddings, school events, corporate gatherings, fundraisers — we've done them all. Booking starts 2 weeks out.
+          </p>
+        </div>
+
+        <!-- Event types -->
+        <div class="fz-reveal fz-d-1" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center; margin-bottom: 2.5rem;">
+          {["🎂 Birthdays", "💍 Weddings", "🎓 School events", "🏢 Corporate", "💝 Fundraisers", "🏘 Block parties"].map((t) => (
+            <span class="fz-chip" style="background: var(--fz-cream);">{t}</span>
+          ))}
+        </div>
+
+        <!-- Form card -->
+        <div class="fz-reveal fz-d-2" style="background: var(--fz-cream); border: 3px solid var(--fz-ink); padding: 2rem 1.75rem; box-shadow: 8px 8px 0 var(--fz-ink); max-width: 720px; margin: 0 auto;">
+          <form id="fzForm" action="#" method="post" novalidate style="display: flex; flex-direction: column; gap: 1.1rem;">
+            <!-- Honeypot -->
+            <div style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+              <label for="fz_website">Leave this field empty</label>
+              <input type="text" id="fz_website" name="_gotcha" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div>
+              <label for="fz_name" style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fz-ink); margin-bottom: 0.4rem; display: block;">Your name</label>
+              <input type="text" id="fz_name" name="name" required maxlength="100" autocomplete="name" placeholder="First &amp; last name"
+                style="width: 100%; background: var(--fz-pink-3); border: 2px solid var(--fz-ink); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--fz-ink); outline: none; border-radius: 6px;" />
+            </div>
+
+            <div class="fz-mobile-stack" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label for="fz_phone" style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fz-ink); margin-bottom: 0.4rem; display: block;">Phone</label>
+                <input type="tel" id="fz_phone" name="phone" required maxlength="20" autocomplete="tel" placeholder="(706) 555-0100"
+                  style="width: 100%; background: var(--fz-pink-3); border: 2px solid var(--fz-ink); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--fz-ink); outline: none; border-radius: 6px;" />
+              </div>
+              <div>
+                <label for="fz_email" style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fz-ink); margin-bottom: 0.4rem; display: block;">Email</label>
+                <input type="email" id="fz_email" name="email" maxlength="254" autocomplete="email" placeholder="optional"
+                  style="width: 100%; background: var(--fz-pink-3); border: 2px solid var(--fz-ink); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--fz-ink); outline: none; border-radius: 6px;" />
+              </div>
+            </div>
+
+            <div class="fz-mobile-stack" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+              <div>
+                <label for="fz_date" style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fz-ink); margin-bottom: 0.4rem; display: block;">Event date</label>
+                <input type="date" id="fz_date" name="date" required
+                  style="width: 100%; background: var(--fz-pink-3); border: 2px solid var(--fz-ink); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--fz-ink); outline: none; border-radius: 6px;" />
+              </div>
+              <div>
+                <label for="fz_count" style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fz-ink); margin-bottom: 0.4rem; display: block;">Headcount</label>
+                <input type="text" id="fz_count" name="count" required maxlength="20" placeholder="approx. 75"
+                  style="width: 100%; background: var(--fz-pink-3); border: 2px solid var(--fz-ink); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--fz-ink); outline: none; border-radius: 6px;" />
+              </div>
+              <div>
+                <label for="fz_type" style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fz-ink); margin-bottom: 0.4rem; display: block;">Event type</label>
+                <select id="fz_type" name="type" required
+                  style="width: 100%; background: var(--fz-pink-3); border: 2px solid var(--fz-ink); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--fz-ink); outline: none; border-radius: 6px;">
+                  <option value="">— Pick one —</option>
+                  <option>Birthday</option>
+                  <option>Wedding</option>
+                  <option>School event</option>
+                  <option>Corporate</option>
+                  <option>Fundraiser</option>
+                  <option>Block party</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="fz_loc" style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fz-ink); margin-bottom: 0.4rem; display: block;">Event location</label>
+              <input type="text" id="fz_loc" name="location" required maxlength="120" placeholder="Address, venue name, or 'TBD'"
+                style="width: 100%; background: var(--fz-pink-3); border: 2px solid var(--fz-ink); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--fz-ink); outline: none; border-radius: 6px;" />
+            </div>
+
+            <div>
+              <label for="fz_notes" style="font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fz-ink); margin-bottom: 0.4rem; display: block;">Anything else?</label>
+              <textarea id="fz_notes" name="notes" rows="4" maxlength="2000" placeholder="Drink preferences, theme colors, parking situation — anything we should know."
+                style="width: 100%; background: var(--fz-pink-3); border: 2px solid var(--fz-ink); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--fz-ink); outline: none; border-radius: 6px; resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="fz-btn fz-btn-yellow" style="width: 100%; padding: 1.15rem;">
+              Send Booking Request 🎉
+            </button>
+            <p id="fzFormSuccess" style="display: none; text-align: center; font-family: var(--font-script); font-size: 1.4rem; color: var(--fz-coral);">
+              ✨ thanks! demo only — your real site would email this straight to your inbox.
+            </p>
+          </form>
+        </div>
+
+        <p class="fz-reveal" style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--fz-ink);">
+          Prefer to text? Just call or text <a href={`tel:${business.phoneDigits}`} style="font-weight: 800; color: var(--fz-ink);">{business.phone}</a>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Follow / Contact -->
+    <section style="padding: 5rem 1.5rem; background: var(--fz-ink); color: var(--fz-pink); position: relative; overflow: hidden;">
+
+      <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+
+        <div class="fz-reveal" style="display: flex; justify-content: center; margin-bottom: 1.5rem;">
+          <span class="fz-logomark" style="width: 90px; height: 90px; font-size: 1.65rem; background: var(--fz-pink); color: var(--fz-ink); border-color: var(--fz-pink);">FIZZY</span>
+        </div>
+
+        <h2 class="fz-display fz-reveal fz-d-1" style="font-size: clamp(2.25rem, 6vw, 4rem); color: var(--fz-pink); margin-bottom: 1rem;">
+          Follow Along
+        </h2>
+
+        <p class="fz-script fz-reveal fz-d-2" style="font-size: 1.5rem; color: var(--fz-yellow); margin-bottom: 2rem;">
+          location updates, new flavors, behind the scenes
+        </p>
+
+        <div class="fz-reveal fz-d-3 fz-btn-row" style="display: flex; flex-wrap: wrap; gap: 0.85rem; justify-content: center; margin-bottom: 2.5rem;">
+          <a href={`https://instagram.com/${business.instagram}`} target="_blank" rel="noopener noreferrer" class="fz-btn fz-btn-pink">
+            📸 @{business.instagram}
+          </a>
+          <a href={`https://facebook.com/${business.facebook}`} target="_blank" rel="noopener noreferrer" class="fz-btn fz-btn-yellow">
+            👥 Find us on Facebook
+          </a>
+          <a href={`tel:${business.phoneDigits}`} class="fz-btn fz-btn-white">
+            📞 {business.phone}
+          </a>
+        </div>
+
+        <p class="fz-reveal fz-d-4" style="font-size: 0.85rem; color: var(--fz-pink); opacity: 0.6;">
+          Catering inquiries: <a href={`mailto:${business.email}`} style="color: var(--fz-yellow); font-weight: 700;">{business.email}</a>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--fz-pink); border-top: 3px solid var(--fz-ink); padding: 2rem 1.5rem; text-align: center;">
+      <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center; font-size: 0.78rem; color: var(--fz-ink);">
+        <span style="font-weight: 800;">© 2026 Fizzy</span>
+        <span style="opacity: 0.4;">·</span>
+        <span>Jackson County, GA</span>
+        <span style="opacity: 0.4;">·</span>
+        <span>Site preview by <a href="/" style="color: var(--fz-ink); font-weight: 800; text-decoration: underline;">Lanier Web</a></span>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function() {
+        var io = new IntersectionObserver(
+          function(entries) {
+            entries.forEach(function(e) {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -100px 0px' }
+        );
+        document.querySelectorAll('.fz-reveal').forEach(function(el) { io.observe(el); });
+
+        var form = document.getElementById('fzForm');
+        var success = document.getElementById('fzFormSuccess');
+        if (form && success) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var honey = form.querySelector('input[name="_gotcha"]');
+            if (honey && honey.value) return;
+            form.reset();
+            success.style.display = 'block';
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+        }
+      })();
+    </script>
+
+  </body>
+</html>
