@@ -29,23 +29,23 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
     <style is:global>
       :root {
-        --gh-bg:        #0F1622;  /* midnight navy — primary dark */
-        --gh-bg-2:      #15202E;  /* slightly elevated panel */
-        --gh-paper:     #1C2A39;  /* card highlight */
-        --gh-ink:       #F0E8D6;  /* warm bone — primary text */
-        --gh-ink-2:     #FFFFFF;
-        --gh-steel:     #2A3845;  /* dark steel divider */
+        --gh-bg:        #F7F8FA;  /* cool off-white — primary light */
+        --gh-bg-2:      #EFF1F5;  /* slightly elevated bg */
+        --gh-paper:     #FFFFFF;  /* card highlight */
+        --gh-ink:       #14181F;  /* near-black navy-tinted text */
+        --gh-ink-2:     #000000;
+        --gh-steel:     #2A3845;  /* dark steel for dividers */
         --gh-steel-2:   #3A4A5A;
-        --gh-cool:      #4A8FB8;  /* cool steel blue — cooling accent */
-        --gh-cool-2:    #2F6B96;
-        --gh-warm:      #E89154;  /* warm amber/copper — primary accent */
-        --gh-warm-2:    #C77640;
-        --gh-muted:     #8593A8;  /* cool muted text */
-        --gh-line:      #2A3845;  /* hard divider */
-        --gh-rule:      #1E2A37;  /* soft rule */
-        /* legacy aliases so existing markup keeps working */
-        --gh-orange:    #E89154;
-        --gh-orange-2:  #C77640;
+        --gh-cool:      #2F6B96;  /* cool steel blue — cooling accent (darker for light bg) */
+        --gh-cool-2:    #1F4F75;
+        --gh-warm:      #DD6B1A;  /* warm copper accent — heating (darker for light bg contrast) */
+        --gh-warm-2:    #B85515;
+        --gh-muted:     #687080;  /* cool muted text */
+        --gh-line:      #14181F;  /* hard divider — same as ink */
+        --gh-rule:      #DCE0E7;  /* soft rule */
+        /* legacy aliases */
+        --gh-orange:    #DD6B1A;
+        --gh-orange-2:  #B85515;
         --font-display: 'Big Shoulders Display', 'Impact', sans-serif;
         --font-body:    'Manrope', system-ui, sans-serif;
         --font-mono:    'JetBrains Mono', 'Menlo', monospace;
@@ -130,9 +130,9 @@ const {
       .gh-rule { border: none; border-top: 1px solid var(--gh-rule); height: 0; margin: 0; }
       .gh-rule-strong { border-top: 2px solid var(--gh-warm); }
 
-      /* Crosshatch background — subtle warm pattern on dark */
+      /* Crosshatch background — subtle dark pattern on light */
       .gh-hatch {
-        background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(232,145,84,0.035) 6px 7px);
+        background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(20,24,31,0.04) 6px 7px);
       }
 
       /* Buttons — light-text-on-dark inverted from the prior theme */
@@ -292,7 +292,7 @@ const {
     </div>
 
     <!-- Header -->
-    <header style="background: rgba(15,22,34,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--gh-line); position: sticky; top: 0; z-index: 50;">
+    <header style="background: rgba(247,248,250,0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 2px solid var(--gh-line); position: sticky; top: 0; z-index: 50;">
       <div class="gh-header-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 1.1rem; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem;">
         <style>
           @media (min-width: 600px) {

@@ -116,27 +116,28 @@ const packages = [
   </script>
 
   <!-- Hero -->
-  <section class="px-6 pt-28 pb-12 bg-white overflow-hidden relative">
-    <!-- Big background number -->
-    <div class="absolute right-0 top-1/2 -translate-y-1/2 text-[20rem] font-extrabold leading-none select-none pointer-events-none" style="color: #F0F0F0; line-height: 1;">01</div>
-
+  <section class="px-6 pt-24 pb-16 bg-white overflow-hidden relative">
     <div class="relative max-w-6xl mx-auto w-full">
-      <div class="reveal inline-flex items-center gap-2 bg-accent-light border border-accent/20 rounded-full px-4 py-2 text-xs font-semibold text-accent mb-10 uppercase tracking-widest">
+      <!-- Big background number — clamped so it doesn't overlap content on small laptops -->
+      <div aria-hidden="true" class="absolute right-0 top-1/2 -translate-y-1/2 font-extrabold leading-none select-none pointer-events-none hidden lg:block"
+        style="color: #F0F0F0; font-size: clamp(8rem, 14vw, 16rem); line-height: 0.85;">01</div>
+
+      <div class="reveal inline-flex items-center gap-2 bg-accent-light border border-accent/20 rounded-full px-4 py-2 text-xs font-semibold text-accent mb-8 uppercase tracking-widest">
         <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
         Booking new clients · Gainesville, GA
       </div>
 
-      <h1 class="reveal reveal-delay-1 font-extrabold leading-[1.05] mb-6 max-w-3xl" style="font-size: clamp(2rem, 4vw, 3.5rem)">
+      <h1 class="reveal reveal-delay-1 font-extrabold leading-[1.05] mb-6 max-w-3xl relative" style="font-size: clamp(2rem, 4vw, 3.25rem)">
         Modern websites<br/>
         for the businesses<br/>
         that <span class="text-accent">built Gainesville</span>.
       </h1>
 
-      <p class="reveal reveal-delay-2 text-base text-muted max-w-lg mb-8 leading-relaxed">
+      <p class="reveal reveal-delay-2 text-base text-muted max-w-lg mb-8 leading-relaxed relative">
         Custom-built sites for local restaurants, gyms, contractors, and shops. Fast, mobile-first, and built to bring customers in. You run the business — I handle the rest.
       </p>
 
-      <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-3 mb-12">
+      <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-3 mb-12 relative">
         <a href="#contact" class="bg-accent text-white px-8 py-4 font-bold text-sm rounded-full hover:bg-accent-dark transition-colors text-center">
           Get a Free Quote →
         </a>
@@ -145,7 +146,7 @@ const packages = [
         </a>
       </div>
 
-      <div class="reveal reveal-delay-4 grid grid-cols-3 gap-8 pt-10 border-t border-border max-w-lg">
+      <div class="reveal reveal-delay-4 grid grid-cols-3 gap-8 pt-10 border-t border-border max-w-lg relative">
         {[
           { n: "7", unit: "days", label: "avg. launch time" },
           { n: "100", unit: "%", label: "mobile-first build" },
