@@ -6,10 +6,10 @@ import { business } from "./_business";
 <GHvacLayout title={`Services — ${business.name}`} page="Services">
 
   <!-- Page header -->
-  <section style="padding: 5rem 1.5rem 3rem; background: var(--gh-bg);" class="gh-hatch">
+  <section style="padding: 2.5rem 1.5rem 2rem; background: var(--gh-bg);" class="gh-hatch">
     <div style="max-width: 1280px; margin: 0 auto;">
       <p class="gh-section-num gh-reveal">SECTION 01 / SERVICES</p>
-      <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(3rem, 8vw, 7rem); color: var(--gh-ink); margin-top: 1rem; max-width: 14ch;">
+      <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(2.25rem, 5vw, 3.75rem); color: var(--gh-ink); margin-top: 1rem; max-width: 14ch;">
         Our <span style="color: var(--gh-orange);">services.</span>
       </h1>
       <p class="gh-reveal gh-reveal-2" style="font-size: 1.05rem; line-height: 1.65; color: var(--gh-ink); max-width: 38rem; margin-top: 2rem;">
@@ -19,17 +19,17 @@ import { business } from "./_business";
   </section>
 
   <!-- Services list -->
-  <section style="padding: 4rem 1.5rem 6rem; background: var(--gh-bg);">
+  <section style="padding: 3rem 1.5rem 4rem; background: var(--gh-bg);">
     <div style="max-width: 1280px; margin: 0 auto;">
       <hr class="gh-rule-strong" />
 
       {business.services.map((svc, i) => (
-        <article class={`gh-reveal gh-reveal-${i % 3}`} style="display: grid; grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 0; border-bottom: 1px solid var(--gh-rule);">
+        <article class={`gh-reveal gh-reveal-${(i % 3) + 1}`} style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--gh-rule);">
 
-          <header style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: baseline;">
-            <span class="gh-display" style="font-size: clamp(3rem, 6vw, 5rem); color: var(--gh-orange); line-height: 1;">{svc.num}</span>
+          <header style="display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: baseline;">
+            <span class="gh-display" style="font-size: clamp(2rem, 4vw, 3rem); color: var(--gh-orange); line-height: 1;">{svc.num}</span>
             <div>
-              <h2 class="gh-display" style="font-size: clamp(2rem, 4.5vw, 3.5rem); color: var(--gh-ink); line-height: 1;">{svc.name}</h2>
+              <h2 class="gh-display" style="font-size: clamp(1.65rem, 3.5vw, 2.25rem); color: var(--gh-ink); line-height: 1;">{svc.name}</h2>
               <p class="gh-mono" style="font-size: 0.7rem; letter-spacing: 0.18em; color: var(--gh-muted); text-transform: uppercase; margin-top: 0.85rem;">{svc.starting}</p>
             </div>
           </header>
@@ -74,9 +74,9 @@ import { business } from "./_business";
   </section>
 
   <!-- Bottom CTA -->
-  <section style="padding: 5rem 1.5rem; background: var(--gh-ink); color: var(--gh-bg);">
+  <section style="padding: 4rem 1.5rem; background: var(--gh-ink); color: var(--gh-bg);">
     <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-      <h2 class="gh-display gh-reveal" style="font-size: clamp(2rem, 5vw, 3.5rem); color: var(--gh-bg);">
+      <h2 class="gh-display gh-reveal" style="font-size: clamp(1.85rem, 4vw, 2.75rem); color: var(--gh-bg);">
         Need something not listed?<br/><span style="color: var(--gh-orange);">We can still help.</span>
       </h2>
       <p class="gh-reveal gh-reveal-1" style="margin-top: 1.5rem; color: rgba(255,255,255,0.65); line-height: 1.65;">

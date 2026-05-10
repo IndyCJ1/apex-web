@@ -6,28 +6,28 @@ import { business } from "./_business";
 <GHvacLayout page="Home">
 
   <!-- Hero -->
-  <section style="padding: 5rem 1.5rem 4rem; position: relative; overflow: hidden;" class="gh-hatch">
+  <section style="padding: 2.5rem 1.5rem 2.5rem; position: relative; overflow: hidden;" class="gh-hatch">
     <div style="max-width: 1280px; margin: 0 auto; position: relative;">
 
       <!-- Top spec row -->
-      <div class="gh-reveal" style="display: flex; flex-wrap: wrap; gap: 0.6rem 1.25rem; margin-bottom: 3rem; align-items: center;">
-        <span class="gh-spec" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.65rem; background: var(--gh-ink); color: var(--gh-bg); font-weight: 600;">
+      <div class="gh-reveal" style="display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-bottom: 1.5rem; align-items: center;">
+        <span class="gh-spec" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.6rem; background: var(--gh-ink); color: var(--gh-bg); font-weight: 600;">
           <span style="display: inline-block; width: 6px; height: 6px; background: var(--gh-orange); border-radius: 50%;"></span>
           NOW SCHEDULING
         </span>
         <span class="gh-spec" style="color: var(--gh-muted);">SERVING HALL COUNTY AND SURROUNDING AREAS</span>
       </div>
 
-      <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(3rem, 9vw, 8.5rem); color: var(--gh-ink); max-width: 12ch;">
-        Heating &amp;<br/>cooling, done<br/><span style="color: var(--gh-orange);">right.</span>
+      <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(2.25rem, 5vw, 3.75rem); color: var(--gh-ink); max-width: 16ch;">
+        Heating &amp; cooling, done <span style="color: var(--gh-orange);">right.</span>
       </h1>
 
-      <div style="display: grid; grid-template-columns: 1fr; gap: 2.5rem; margin-top: 3rem;" class="gh-grid-split">
-        <p class="gh-reveal gh-reveal-2" style="font-size: 1.05rem; line-height: 1.65; color: var(--gh-ink); max-width: 38rem;">
+      <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem;" class="gh-grid-split">
+        <p class="gh-reveal gh-reveal-2" style="font-size: 1rem; line-height: 1.6; color: var(--gh-ink); max-width: 38rem;">
           {business.name} is a locally owned heating and cooling company serving Gainesville and the surrounding North Georgia area since {business.established}. Honest diagnostics, transparent pricing, and same-visit repairs on most service calls.
         </p>
 
-        <div class="gh-reveal gh-reveal-3" style="display: flex; flex-wrap: wrap; gap: 0.85rem;">
+        <div class="gh-reveal gh-reveal-3" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
           <a href={`tel:${business.phoneDigits}`} class="gh-btn gh-btn-orange">
             ◉ Call {business.phone}
           </a>
@@ -37,14 +37,14 @@ import { business } from "./_business";
         </div>
       </div>
 
-      <hr class="gh-rule-strong" style="margin-top: 4.5rem;" />
+      <hr class="gh-rule-strong" style="margin-top: 2rem;" />
 
       <!-- Trust signals row -->
-      <div class="gh-reveal gh-reveal-4" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid var(--gh-rule);">
+      <div class="gh-reveal gh-reveal-4" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.25rem; padding: 1.25rem 0 0;">
         {business.trustSignals.map((s) => (
           <div class="gh-spec">
             <span class="gh-spec-label">{s.label}</span>
-            <span class="gh-spec-value" style="font-size: 1.1rem; letter-spacing: 0.12em;">{s.value}</span>
+            <span class="gh-spec-value" style="font-size: 1rem; letter-spacing: 0.1em;">{s.value}</span>
           </div>
         ))}
       </div>
@@ -52,13 +52,13 @@ import { business } from "./_business";
   </section>
 
   <!-- 01 — Services -->
-  <section style="padding: 6rem 1.5rem; background: var(--gh-bg-2);">
+  <section style="padding: 4rem 1.5rem; background: var(--gh-bg-2);">
     <div style="max-width: 1280px; margin: 0 auto;">
 
       <div class="gh-reveal" style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3.5rem; align-items: end;">
         <div>
           <p class="gh-section-num" style="margin-bottom: 0.85rem;">01 / SERVICES</p>
-          <h2 class="gh-display" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); color: var(--gh-ink); max-width: 18ch;">
+          <h2 class="gh-display" style="font-size: clamp(1.85rem, 4vw, 3rem); color: var(--gh-ink); max-width: 18ch;">
             Heating, cooling, and indoor air services.
           </h2>
         </div>
@@ -70,12 +70,12 @@ import { business } from "./_business";
           @media (min-width: 980px)  { .gh-services-grid { grid-template-columns: repeat(3, 1fr) !important; } }
         </style>
         {business.services.map((svc, i) => (
-          <a href="/mockups/gainesville-hvac/services" class={`gh-reveal gh-reveal-${i % 4} gh-service-card`} style="background: var(--gh-bg); padding: 2.25rem 2rem; text-decoration: none; color: var(--gh-ink); display: flex; flex-direction: column; gap: 1rem; transition: background 0.2s;">
+          <a href="/mockups/gainesville-hvac/services" class={`gh-reveal gh-reveal-${(i % 6) + 1} gh-service-card`} style="background: var(--gh-bg); padding: 1.85rem 1.65rem; text-decoration: none; color: var(--gh-ink); display: flex; flex-direction: column; gap: 0.85rem; transition: background 0.2s;">
             <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;">
               <span class="gh-section-num">{svc.num}</span>
               <span class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.15em; color: var(--gh-muted); text-transform: uppercase;">{svc.starting}</span>
             </div>
-            <h3 class="gh-display" style="font-size: 1.85rem; color: var(--gh-ink);">{svc.name}</h3>
+            <h3 class="gh-display" style="font-size: 1.4rem; color: var(--gh-ink);">{svc.name}</h3>
             <p style="font-size: 0.92rem; line-height: 1.6; color: var(--gh-muted); flex: 1;">{svc.summary}</p>
             <span class="gh-mono" style="font-size: 0.7rem; letter-spacing: 0.15em; color: var(--gh-orange); text-transform: uppercase; margin-top: auto;">DETAILS →</span>
           </a>
@@ -89,12 +89,12 @@ import { business } from "./_business";
   </section>
 
   <!-- 02 — Why us / split with image -->
-  <section style="padding: 6rem 1.5rem; background: var(--gh-bg);">
+  <section style="padding: 4rem 1.5rem; background: var(--gh-bg);">
     <div style="max-width: 1280px; margin: 0 auto;">
 
       <div class="gh-reveal" style="margin-bottom: 3.5rem;">
         <p class="gh-section-num" style="margin-bottom: 0.85rem;">02 / WHY HOMEOWNERS CHOOSE US</p>
-        <h2 class="gh-display" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); color: var(--gh-ink); max-width: 18ch;">
+        <h2 class="gh-display" style="font-size: clamp(1.85rem, 4vw, 3rem); color: var(--gh-ink); max-width: 18ch;">
           Built on craftsmanship, fair pricing, and reliability.
         </h2>
       </div>
@@ -109,10 +109,10 @@ import { business } from "./_business";
             { num: "C", title: "Flat-rate pricing on common services.", body: "Tune-ups, routine repairs, and maintenance plans are flat-rate, not billed hourly — so you know the exact cost before we begin." },
             { num: "D", title: "Maintenance plans that pay for themselves.", body: "Two scheduled visits per year, priority service, no diagnostic fees, and 15% off repairs. Most plan customers recover the cost within the first year." },
           ].map((r, i) => (
-            <div class={`gh-reveal gh-reveal-${i}`} style="display: grid; grid-template-columns: 64px 1fr; gap: 1.5rem; padding: 1.75rem 0; border-bottom: 1px solid var(--gh-rule);">
-              <div class="gh-display" style="font-size: 2.5rem; color: var(--gh-orange); line-height: 1;">{r.num}</div>
+            <div class={`gh-reveal gh-reveal-${i + 1}`} style="display: grid; grid-template-columns: 50px 1fr; gap: 1.25rem; padding: 1.4rem 0; border-bottom: 1px solid var(--gh-rule);">
+              <div class="gh-display" style="font-size: 2rem; color: var(--gh-orange); line-height: 1;">{r.num}</div>
               <div>
-                <h3 class="gh-display" style="font-size: 1.4rem; color: var(--gh-ink); margin-bottom: 0.5rem;">{r.title}</h3>
+                <h3 class="gh-display" style="font-size: 1.2rem; color: var(--gh-ink); margin-bottom: 0.4rem;">{r.title}</h3>
                 <p style="font-size: 0.92rem; line-height: 1.65; color: var(--gh-muted);">{r.body}</p>
               </div>
             </div>
@@ -157,13 +157,13 @@ import { business } from "./_business";
   </section>
 
   <!-- 03 — Service area band -->
-  <section style="padding: 5rem 1.5rem; background: var(--gh-ink); color: var(--gh-bg); position: relative; overflow: hidden;">
+  <section style="padding: 4rem 1.5rem; background: var(--gh-ink); color: var(--gh-bg); position: relative; overflow: hidden;">
     <!-- Diagonal stripe accent -->
     <div aria-hidden="true" style="position: absolute; top: 0; right: 0; width: 200px; height: 100%; background: repeating-linear-gradient(45deg, var(--gh-orange) 0 12px, transparent 12px 24px); opacity: 0.18;"></div>
 
     <div style="max-width: 1280px; margin: 0 auto; position: relative;">
       <p class="gh-section-num gh-reveal" style="margin-bottom: 0.85rem;">03 / SERVICE AREA</p>
-      <h2 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); color: var(--gh-bg); max-width: 18ch; margin-bottom: 2.5rem;">
+      <h2 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(1.85rem, 4vw, 3rem); color: var(--gh-bg); max-width: 18ch; margin-bottom: 2.5rem;">
         Serving <span style="color: var(--gh-orange);">North Georgia</span> communities.
       </h2>
 
@@ -188,13 +188,13 @@ import { business } from "./_business";
   </section>
 
   <!-- 04 — Reviews -->
-  <section style="padding: 6rem 1.5rem; background: var(--gh-bg);">
+  <section style="padding: 4rem 1.5rem; background: var(--gh-bg);">
     <div style="max-width: 1280px; margin: 0 auto;">
 
       <div class="gh-reveal" style="display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.5rem; margin-bottom: 3.5rem;">
         <div>
           <p class="gh-section-num" style="margin-bottom: 0.85rem;">04 / WHAT NEIGHBORS SAY</p>
-          <h2 class="gh-display" style="font-size: clamp(2.5rem, 5.5vw, 4.5rem); color: var(--gh-ink); max-width: 16ch;">
+          <h2 class="gh-display" style="font-size: clamp(1.85rem, 4vw, 3rem); color: var(--gh-ink); max-width: 16ch;">
             Recent reviews from Google.
           </h2>
         </div>
@@ -206,7 +206,7 @@ import { business } from "./_business";
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
         {business.reviews.map((r, i) => (
-          <article class={`gh-reveal gh-reveal-${i % 4}`} style="background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 2rem 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; position: relative;">
+          <article class={`gh-reveal gh-reveal-${(i % 4) + 1}`} style="background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 1.75rem 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; position: relative;">
             <span aria-hidden="true" style="position: absolute; top: -1rem; left: 1.5rem; background: var(--gh-orange); color: var(--gh-bg); font-family: var(--font-display); font-size: 1.5rem; padding: 0 0.6rem; line-height: 1.6;">✦</span>
 
             <div style="display: flex; gap: 0.2rem; color: var(--gh-orange); font-size: 0.95rem;">
@@ -231,14 +231,14 @@ import { business } from "./_business";
   </section>
 
   <!-- 05 — Big CTA -->
-  <section style="padding: 6rem 1.5rem 7rem; background: var(--gh-orange); color: var(--gh-ink); position: relative; overflow: hidden;">
+  <section style="padding: 4rem 1.5rem 4.5rem; background: var(--gh-orange); color: var(--gh-ink); position: relative; overflow: hidden;">
     <!-- Subtle pattern -->
     <div aria-hidden="true" style="position: absolute; inset: 0; background-image: repeating-linear-gradient(135deg, transparent 0 14px, rgba(20,24,31,0.06) 14px 15px); pointer-events: none;"></div>
 
     <div style="max-width: 1280px; margin: 0 auto; position: relative;">
-      <p class="gh-section-num gh-reveal" style="color: var(--gh-ink); margin-bottom: 0.85rem;">05 / READY?</p>
+      <p class="gh-section-num gh-reveal" style="color: var(--gh-ink); margin-bottom: 0.5rem;">05 / GET STARTED</p>
 
-      <h2 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(3rem, 8vw, 7rem); color: var(--gh-ink); max-width: 16ch; line-height: 0.92;">
+      <h2 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(2.25rem, 5.5vw, 4rem); color: var(--gh-ink); max-width: 16ch; line-height: 0.95;">
         Schedule service today.
       </h2>
 

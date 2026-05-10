@@ -6,17 +6,17 @@ import { business } from "./_business";
 <GHvacLayout title={`About — ${business.name}`} page="About">
 
   <!-- Page header -->
-  <section style="padding: 5rem 1.5rem 3rem; background: var(--gh-bg);" class="gh-hatch">
+  <section style="padding: 2.5rem 1.5rem 2rem; background: var(--gh-bg);" class="gh-hatch">
     <div style="max-width: 1280px; margin: 0 auto;">
       <p class="gh-section-num gh-reveal">SECTION 03 / ABOUT US</p>
-      <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(3rem, 8vw, 7rem); color: var(--gh-ink); margin-top: 1rem; max-width: 18ch;">
+      <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(2.25rem, 5vw, 3.75rem); color: var(--gh-ink); margin-top: 1rem; max-width: 18ch;">
         Locally owned <br/>since <span style="color: var(--gh-orange);">{business.established}</span>.
       </h1>
     </div>
   </section>
 
   <!-- Story -->
-  <section style="padding: 4rem 1.5rem; background: var(--gh-bg);">
+  <section style="padding: 3rem 1.5rem; background: var(--gh-bg);">
     <div style="max-width: 1280px; margin: 0 auto;">
       <hr class="gh-rule-strong" style="margin-bottom: 4rem;" />
 
@@ -47,10 +47,10 @@ import { business } from "./_business";
   </section>
 
   <!-- What you can expect -->
-  <section style="padding: 5rem 1.5rem; background: var(--gh-bg-2);">
+  <section style="padding: 3.5rem 1.5rem; background: var(--gh-bg-2);">
     <div style="max-width: 1280px; margin: 0 auto;">
       <p class="gh-section-num gh-reveal" style="margin-bottom: 1.5rem;">WHAT YOU CAN EXPECT</p>
-      <h2 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(2.25rem, 5vw, 3.75rem); color: var(--gh-ink); margin-bottom: 3rem;">
+      <h2 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(1.85rem, 4vw, 2.75rem); color: var(--gh-ink); margin-bottom: 2.5rem;">
         How we <span style="color: var(--gh-orange);">do business.</span>
       </h2>
 
@@ -65,7 +65,7 @@ import { business } from "./_business";
           { num: "Local", label: "OWNERSHIP", note: "No corporate hotline" },
           { num: "No subs", label: "ALWAYS OUR TRUCK", note: "Every job, every visit" },
         ].map((s, i) => (
-          <div class={`gh-reveal gh-reveal-${i % 4}`} style="padding: 2rem 1.5rem; border-right: 1px solid var(--gh-rule); border-bottom: 1px solid var(--gh-rule); background: var(--gh-bg);">
+          <div class={`gh-reveal gh-reveal-${(i % 6) + 1}`} style="padding: 1.5rem 1.25rem; border-right: 1px solid var(--gh-rule); border-bottom: 1px solid var(--gh-rule); background: var(--gh-bg);">
             <p class="gh-display" style="font-size: clamp(1.6rem, 2.8vw, 2.25rem); color: var(--gh-ink); line-height: 1.05;">{s.num}</p>
             <p class="gh-spec gh-spec-label" style="margin-top: 1rem;">{s.label}</p>
             <p style="font-size: 0.8rem; color: var(--gh-muted); margin-top: 0.4rem;">{s.note}</p>
@@ -76,11 +76,11 @@ import { business } from "./_business";
   </section>
 
   <!-- Credentials -->
-  <section style="padding: 5rem 1.5rem; background: var(--gh-bg);">
+  <section style="padding: 3.5rem 1.5rem; background: var(--gh-bg);">
     <div style="max-width: 1280px; margin: 0 auto;">
       <div class="gh-reveal" style="margin-bottom: 3rem;">
         <p class="gh-section-num" style="margin-bottom: 1rem;">CREDENTIALS</p>
-        <h2 class="gh-display" style="font-size: clamp(2.25rem, 5vw, 3.75rem); color: var(--gh-ink); max-width: 18ch;">
+        <h2 class="gh-display" style="font-size: clamp(1.85rem, 4vw, 2.75rem); color: var(--gh-ink); max-width: 22ch;">
           Licensed, certified, and insured. The way it should be.
         </h2>
       </div>
@@ -93,10 +93,10 @@ import { business } from "./_business";
           { num: "04", title: "Manufacturer Authorized — Carrier, Trane, Rheem, Lennox", body: "Authorized installation partner for the major equipment manufacturers. Means warranty work goes smoothly and you get factory-backed pricing on parts." },
           { num: "05", title: "BBB Accredited — A+ Rating", body: "Twelve years on file with the Better Business Bureau. Zero unresolved complaints." },
         ].map((c, i) => (
-          <div class={`gh-reveal gh-reveal-${i % 3}`} style="display: grid; grid-template-columns: 60px 1fr; gap: 1.5rem; padding: 2rem 1.5rem; border-bottom: 1px solid var(--gh-rule); background: var(--gh-bg);">
-            <span class="gh-display" style="font-size: 2rem; color: var(--gh-orange); line-height: 1;">{c.num}</span>
+          <div class={`gh-reveal gh-reveal-${(i % 5) + 1}`} style="display: grid; grid-template-columns: 50px 1fr; gap: 1.25rem; padding: 1.5rem 1.25rem; border-bottom: 1px solid var(--gh-rule); background: var(--gh-bg);">
+            <span class="gh-display" style="font-size: 1.65rem; color: var(--gh-orange); line-height: 1;">{c.num}</span>
             <div>
-              <h3 class="gh-display" style="font-size: 1.4rem; color: var(--gh-ink); margin-bottom: 0.6rem;">{c.title}</h3>
+              <h3 class="gh-display" style="font-size: 1.2rem; color: var(--gh-ink); margin-bottom: 0.5rem;">{c.title}</h3>
               <p style="font-size: 0.92rem; line-height: 1.65; color: var(--gh-muted);">{c.body}</p>
             </div>
           </div>
@@ -106,10 +106,10 @@ import { business } from "./_business";
   </section>
 
   <!-- CTA -->
-  <section style="padding: 5rem 1.5rem; background: var(--gh-orange); color: var(--gh-ink); position: relative; overflow: hidden;">
+  <section style="padding: 3.5rem 1.5rem; background: var(--gh-orange); color: var(--gh-ink); position: relative; overflow: hidden;">
     <div aria-hidden="true" style="position: absolute; inset: 0; background-image: repeating-linear-gradient(135deg, transparent 0 14px, rgba(20,24,31,0.06) 14px 15px); pointer-events: none;"></div>
     <div style="max-width: 800px; margin: 0 auto; text-align: center; position: relative;">
-      <h2 class="gh-display gh-reveal" style="font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--gh-ink);">
+      <h2 class="gh-display gh-reveal" style="font-size: clamp(1.85rem, 4vw, 2.75rem); color: var(--gh-ink);">
         Ready to schedule service?
       </h2>
       <a href={`tel:${business.phoneDigits}`} class="gh-btn gh-reveal gh-reveal-1" style="margin-top: 2.5rem;">
