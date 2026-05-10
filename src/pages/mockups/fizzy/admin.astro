@@ -1,7 +1,7 @@
 ---
-// Fizzy admin — single page for editing today's location
+// Fizzy admin — tabbed interface for editing site content
 // Lives at /mockups/fizzy/admin
-// Backend: /functions/api/fizzy/{login,location,check-auth}
+// Backend: /functions/api/fizzy/{login,location,menu,bookings,check-auth}
 ---
 
 <!doctype html>
@@ -37,35 +37,53 @@
         background: var(--fz-ink);
         color: var(--fz-pink);
         padding: 0.65rem 1.25rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 1rem; font-size: 0.78rem; font-weight: 700;
+        letter-spacing: 0.08em; text-transform: uppercase;
       }
       .top a { color: var(--fz-yellow); text-decoration: none; font-weight: 800; }
       .top a:hover { text-decoration: underline; }
 
-      .wrap {
-        max-width: 580px;
-        margin: 0 auto;
-        padding: 2.5rem 1.25rem 4rem;
-      }
+      .wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
       .logo {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 86px; height: 86px;
-        background: var(--fz-pink);
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 72px; height: 72px;
+        background: var(--fz-pink); border: 3px solid var(--fz-ink);
+        font-family: 'Archivo Black', Impact, sans-serif; font-size: 1.3rem;
+        line-height: 1; margin-bottom: 1rem;
+      }
+
+      /* Tabs */
+      .tabs {
+        display: flex; gap: 0.5rem; flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+      .tab {
+        padding: 0.7rem 1.1rem;
+        background: var(--fz-cream);
         border: 3px solid var(--fz-ink);
         font-family: 'Archivo Black', Impact, sans-serif;
-        font-size: 1.55rem;
-        line-height: 1;
-        margin-bottom: 1.25rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        border-radius: 999px;
+        color: var(--fz-ink);
+        transition: transform 0.1s;
+        position: relative;
+      }
+      .tab:hover { transform: translateY(-2px); }
+      .tab.is-active { background: var(--fz-yellow); }
+      .tab .badge {
+        display: inline-block;
+        background: var(--fz-coral);
+        color: var(--fz-cream);
+        padding: 0.05rem 0.45rem;
+        font-size: 0.6rem;
+        border-radius: 999px;
+        margin-left: 0.45rem;
+        vertical-align: 1px;
       }
 
       .card {
@@ -74,55 +92,39 @@
         box-shadow: 8px 8px 0 var(--fz-ink);
         padding: 1.75rem 1.5rem;
         border-radius: 6px;
+        margin-bottom: 1.5rem;
       }
 
-      .label {
-        display: block;
-        font-size: 0.7rem;
-        font-weight: 800;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        margin-bottom: 0.4rem;
-      }
+      h1.section-title { font-family: 'Archivo Black', Impact, sans-serif; font-size: 1.55rem; margin: 0 0 0.5rem; text-transform: uppercase; }
+      .sub { font-size: 0.9rem; color: var(--fz-muted); margin: 0 0 1.25rem; }
+
+      .label { display: block; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
       .input, select.input, textarea.input {
         width: 100%;
         background: var(--fz-pink-3);
         border: 2px solid var(--fz-ink);
-        padding: 0.85rem 1rem;
-        font-family: inherit;
-        font-size: 16px;
-        color: var(--fz-ink);
-        outline: none;
+        padding: 0.75rem 0.9rem;
+        font-family: inherit; font-size: 16px;
+        color: var(--fz-ink); outline: none;
         border-radius: 6px;
       }
+      .input.small { padding: 0.55rem 0.75rem; font-size: 14px; }
       .input:focus { border-color: var(--fz-coral); }
 
       .field { margin-bottom: 1.1rem; }
       .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-      @media (max-width: 520px) {
-        .field-row { grid-template-columns: 1fr; }
-      }
+      @media (max-width: 600px) { .field-row { grid-template-columns: 1fr; } }
 
       .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.95rem 1.4rem;
-        font-family: inherit;
-        font-size: 0.85rem;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
+        display: inline-flex; align-items: center; justify-content: center;
+        gap: 0.5rem; padding: 0.85rem 1.3rem;
+        font-family: inherit; font-size: 0.8rem; font-weight: 800;
+        letter-spacing: 0.04em; text-transform: uppercase;
         border: 3px solid var(--fz-ink);
-        background: var(--fz-ink);
-        color: var(--fz-pink);
-        cursor: pointer;
-        border-radius: 999px;
-        text-decoration: none;
+        background: var(--fz-ink); color: var(--fz-pink);
+        cursor: pointer; border-radius: 999px; text-decoration: none;
         box-shadow: 4px 4px 0 var(--fz-ink);
         transition: transform 0.12s, box-shadow 0.12s;
-        width: 100%;
       }
       .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--fz-ink); }
       .btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--fz-ink); }
@@ -130,18 +132,15 @@
       .btn-yellow { background: var(--fz-yellow); color: var(--fz-ink); }
       .btn-ghost { background: transparent; color: var(--fz-ink); box-shadow: none; }
       .btn-ghost:hover { background: var(--fz-pink); transform: none; box-shadow: none; }
+      .btn-small { padding: 0.5rem 0.9rem; font-size: 0.7rem; box-shadow: 2px 2px 0 var(--fz-ink); }
+      .btn-small:hover { box-shadow: 3px 3px 0 var(--fz-ink); }
+      .btn-block { width: 100%; }
 
       .toggle {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.65rem;
-        padding: 0.85rem 1rem;
-        background: var(--fz-pink-3);
-        border: 2px solid var(--fz-ink);
-        border-radius: 6px;
-        cursor: pointer;
-        user-select: none;
-        font-weight: 700;
+        display: inline-flex; align-items: center; gap: 0.65rem;
+        padding: 0.85rem 1rem; background: var(--fz-pink-3);
+        border: 2px solid var(--fz-ink); border-radius: 6px;
+        cursor: pointer; user-select: none; font-weight: 700;
       }
       .toggle input { width: 1.15rem; height: 1.15rem; accent-color: var(--fz-coral); margin: 0; }
 
@@ -150,29 +149,84 @@
       .msg-success { background: #DEF1E2; color: var(--fz-success); border: 2px solid var(--fz-success); }
       .msg-info { background: var(--fz-mint); color: var(--fz-ink); border: 2px solid var(--fz-ink); }
 
-      .meta {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        font-size: 0.75rem;
-        color: var(--fz-muted);
-        margin-top: 1rem;
-      }
-
+      .meta { display: flex; gap: 0.5rem; flex-wrap: wrap; font-size: 0.75rem; color: var(--fz-muted); margin-top: 1rem; }
       .hidden { display: none !important; }
 
-      .tag {
-        display: inline-block;
-        background: var(--fz-yellow);
-        padding: 0.15rem 0.5rem;
-        font-size: 0.65rem;
-        font-weight: 800;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+      .tag { display: inline-block; background: var(--fz-yellow); padding: 0.15rem 0.5rem; font-size: 0.65rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; border: 2px solid var(--fz-ink); border-radius: 4px; color: var(--fz-ink); }
+
+      /* Menu editor */
+      .menu-cat {
+        background: var(--fz-pink-3);
         border: 2px solid var(--fz-ink);
-        border-radius: 4px;
-        color: var(--fz-ink);
+        border-radius: 8px;
+        padding: 1.1rem 1rem;
+        margin-bottom: 1.25rem;
       }
+      .menu-cat h3 {
+        font-family: 'Archivo Black', Impact, sans-serif;
+        font-size: 1rem;
+        margin: 0 0 0.85rem;
+        text-transform: uppercase;
+      }
+      .menu-row {
+        display: grid;
+        grid-template-columns: 1.1fr 2fr 0.7fr auto;
+        gap: 0.55rem;
+        margin-bottom: 0.55rem;
+        align-items: center;
+      }
+      .menu-row.no-desc {
+        grid-template-columns: 2.4fr 0.8fr auto;
+      }
+      @media (max-width: 700px) {
+        .menu-row, .menu-row.no-desc { grid-template-columns: 1fr; gap: 0.4rem; padding-bottom: 0.7rem; border-bottom: 1px dashed var(--fz-ink); }
+      }
+      .menu-del {
+        background: transparent;
+        border: 2px solid var(--fz-error);
+        color: var(--fz-error);
+        font-size: 1.1rem;
+        line-height: 1;
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-weight: 800;
+      }
+      .menu-del:hover { background: var(--fz-error); color: var(--fz-cream); }
+      .menu-add {
+        margin-top: 0.5rem;
+        background: var(--fz-cream);
+        border: 2px dashed var(--fz-ink);
+        padding: 0.55rem 1rem;
+        font-family: inherit; font-size: 0.78rem; font-weight: 700;
+        cursor: pointer; border-radius: 999px;
+        text-transform: uppercase; letter-spacing: 0.06em;
+      }
+      .menu-add:hover { background: var(--fz-yellow); }
+
+      /* Bookings list */
+      .booking {
+        background: var(--fz-pink-3);
+        border: 2px solid var(--fz-ink);
+        border-radius: 6px;
+        padding: 1rem 1.15rem;
+        margin-bottom: 0.85rem;
+      }
+      .booking-head {
+        display: flex; flex-wrap: wrap; gap: 0.5rem 1rem;
+        align-items: baseline; justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+      .booking-head .name { font-weight: 800; font-size: 1rem; }
+      .booking-head .when { font-family: 'Archivo Black', Impact, sans-serif; font-size: 0.85rem; color: var(--fz-coral); text-transform: uppercase; letter-spacing: 0.06em; }
+      .booking-meta { font-size: 0.85rem; color: var(--fz-muted); margin-bottom: 0.5rem; }
+      .booking-meta a { color: var(--fz-ink); text-decoration: none; font-weight: 700; }
+      .booking-meta a:hover { text-decoration: underline; }
+      .booking-notes { font-size: 0.88rem; line-height: 1.5; color: var(--fz-ink); margin: 0.5rem 0; padding: 0.6rem 0.75rem; background: var(--fz-cream); border-radius: 4px; }
+      .booking-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem; font-size: 0.75rem; color: var(--fz-muted); }
+
+      .empty { text-align: center; padding: 2rem 1rem; color: var(--fz-muted); font-size: 0.95rem; }
+      .empty .script { font-size: 1.5rem; color: var(--fz-coral); display: block; margin-bottom: 0.4rem; }
     </style>
   </head>
 
@@ -185,74 +239,118 @@
     <div class="wrap">
       <div class="logo">FIZZY</div>
 
-      <!-- LOGIN PANEL -->
-      <div id="loginPanel" class="card hidden">
-        <h1 class="display" style="font-size: 1.75rem; margin: 0 0 0.6rem;">Sign in</h1>
-        <p style="font-size: 0.95rem; color: var(--fz-muted); margin: 0 0 1.5rem;">Enter the admin password to update today's location.</p>
-
-        <div id="loginMsg"></div>
-
-        <form id="loginForm" autocomplete="off">
-          <div class="field">
-            <label class="label" for="password">Password</label>
-            <input type="password" class="input" id="password" name="password" required autocomplete="current-password" />
-          </div>
-          <button type="submit" class="btn btn-yellow" id="loginBtn">Sign in</button>
-        </form>
-      </div>
-
-      <!-- EDITOR PANEL -->
-      <div id="editorPanel" class="card hidden">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem;">
-          <h1 class="display" style="font-size: 1.55rem; margin: 0;">Today's location</h1>
-          <button type="button" class="btn btn-ghost" id="logoutBtn" style="width: auto; padding: 0.4rem 0.85rem; font-size: 0.7rem;">Log out</button>
-        </div>
-
-        <div id="editorMsg"></div>
-
-        <form id="editorForm">
-          <div class="field">
-            <label class="label" for="location">Where are you today?</label>
-            <input type="text" class="input" id="location" name="location" required maxlength="200" placeholder="e.g. Jefferson Town Square" />
-          </div>
-
-          <div class="field-row field">
-            <div>
-              <label class="label" for="hours">Hours</label>
-              <input type="text" class="input" id="hours" name="hours" maxlength="100" placeholder="e.g. 11am – 8pm" />
-            </div>
-            <div>
-              <label class="label">Status</label>
-              <label class="toggle">
-                <input type="checkbox" id="closedToggle" />
-                <span id="toggleLabel">Open today</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label" for="note">Optional note</label>
-            <input type="text" class="input" id="note" name="note" maxlength="200" placeholder="e.g. Cash only · Free for kids · Find us by the gazebo" />
-          </div>
-
-          <button type="submit" class="btn btn-yellow" id="saveBtn">Save changes</button>
-
-          <div class="meta" id="metaRow"></div>
-        </form>
-      </div>
-
-      <!-- LOADING / SETUP -->
+      <!-- LOADING -->
       <div id="loadingPanel" class="card">
         <p class="script" style="font-size: 1.4rem; margin: 0 0 0.5rem; color: var(--fz-coral);">one sec…</p>
         <p style="font-size: 0.9rem; margin: 0; color: var(--fz-muted);">Checking sign-in status.</p>
       </div>
 
-      <!-- SETUP HELP -->
+      <!-- LOGIN -->
+      <div id="loginPanel" class="card hidden">
+        <h1 class="section-title">Sign in</h1>
+        <p class="sub">Enter the admin password to update Fizzy's site.</p>
+        <div id="loginMsg"></div>
+        <form id="loginForm" autocomplete="off">
+          <div class="field">
+            <label class="label" for="password">Password</label>
+            <input type="password" class="input" id="password" name="password" required autocomplete="current-password" />
+          </div>
+          <button type="submit" class="btn btn-yellow btn-block" id="loginBtn">Sign in</button>
+        </form>
+      </div>
+
+      <!-- ADMIN APP -->
+      <div id="appPanel" class="hidden">
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button type="button" class="tab is-active" data-tab="today">Today</button>
+          <button type="button" class="tab" data-tab="menu">Menu</button>
+          <button type="button" class="tab" data-tab="bookings">Bookings <span id="bookingCount" class="badge hidden">0</span></button>
+          <button type="button" class="tab" data-tab="account" style="margin-left: auto;">Log out</button>
+        </div>
+
+        <!-- TODAY TAB -->
+        <div id="tab-today" class="tab-panel">
+          <div class="card">
+            <h1 class="section-title">Today's location</h1>
+            <p class="sub">Updates the yellow banner on your site within ~60 seconds.</p>
+            <div id="todayMsg"></div>
+            <form id="todayForm">
+              <div class="field">
+                <label class="label" for="loc">Where are you today?</label>
+                <input type="text" class="input" id="loc" required maxlength="200" placeholder="e.g. Jefferson Town Square" />
+              </div>
+              <div class="field-row field">
+                <div>
+                  <label class="label" for="hrs">Hours</label>
+                  <input type="text" class="input" id="hrs" maxlength="100" placeholder="e.g. 11am – 8pm" />
+                </div>
+                <div>
+                  <label class="label">Status</label>
+                  <label class="toggle">
+                    <input type="checkbox" id="closedToggle" />
+                    <span id="toggleLabel">Open today</span>
+                  </label>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label" for="note">Optional note</label>
+                <input type="text" class="input" id="note" maxlength="200" placeholder="e.g. Cash only · Find us by the gazebo" />
+              </div>
+              <button type="submit" class="btn btn-yellow btn-block" id="todaySaveBtn">Save changes</button>
+              <div class="meta" id="todayMeta"></div>
+            </form>
+          </div>
+        </div>
+
+        <!-- MENU TAB -->
+        <div id="tab-menu" class="tab-panel hidden">
+          <div class="card">
+            <h1 class="section-title">Menu</h1>
+            <p class="sub">Add, edit, or remove drinks. Click Save Menu to publish your changes.</p>
+            <div id="menuMsg"></div>
+
+            <div class="menu-cat">
+              <h3>🥤 Dirty Sodas</h3>
+              <div id="menu-dirtySodas-rows"></div>
+              <button type="button" class="menu-add" data-cat="dirtySodas" data-desc="1">+ Add a dirty soda</button>
+            </div>
+
+            <div class="menu-cat" style="background: var(--fz-mint);">
+              <h3>🍓 Fizzy Refreshers</h3>
+              <div id="menu-refreshers-rows"></div>
+              <button type="button" class="menu-add" data-cat="refreshers" data-desc="1">+ Add a refresher</button>
+            </div>
+
+            <div class="menu-cat" style="background: var(--fz-yellow);">
+              <h3>✨ Add-ons</h3>
+              <div id="menu-addOns-rows"></div>
+              <button type="button" class="menu-add" data-cat="addOns" data-desc="0">+ Add an add-on</button>
+            </div>
+
+            <button type="button" class="btn btn-yellow btn-block" id="menuSaveBtn" style="margin-top: 1rem;">Save Menu</button>
+          </div>
+        </div>
+
+        <!-- BOOKINGS TAB -->
+        <div id="tab-bookings" class="tab-panel hidden">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap;">
+              <h1 class="section-title">Bookings</h1>
+              <button type="button" class="btn btn-ghost btn-small" id="bookingsRefresh">↻ Refresh</button>
+            </div>
+            <p class="sub">Booking requests submitted through your website. Most recent at the top.</p>
+            <div id="bookingsList"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- SETUP PANEL -->
       <div id="setupPanel" class="card hidden" style="background: var(--fz-mint);">
-        <h2 class="display" style="font-size: 1.25rem; margin: 0 0 0.75rem;">Almost there</h2>
-        <p style="font-size: 0.9rem; line-height: 1.55; margin: 0 0 0.85rem;">
-          The admin backend isn't fully configured yet. To enable saving:
-        </p>
+        <h2 class="section-title">Almost there</h2>
+        <p style="font-size: 0.9rem; line-height: 1.55; margin: 0 0 0.85rem;">The admin backend isn't fully configured. To enable saving:</p>
         <ol style="font-size: 0.88rem; line-height: 1.65; padding-left: 1.25rem; margin: 0;">
           <li>In Cloudflare → Pages → your project → <strong>Settings → Variables and Secrets</strong>, add <code>FIZZY_PASSWORD</code></li>
           <li>In <strong>Settings → Bindings</strong>, add a KV namespace bound as <code>FIZZY_KV</code></li>
@@ -267,144 +365,338 @@
 
     <script is:inline>
       (function () {
-        var els = {
-          loading:   document.getElementById('loadingPanel'),
-          login:     document.getElementById('loginPanel'),
-          editor:    document.getElementById('editorPanel'),
-          setup:     document.getElementById('setupPanel'),
-          loginForm: document.getElementById('loginForm'),
-          loginMsg:  document.getElementById('loginMsg'),
-          loginBtn:  document.getElementById('loginBtn'),
-          password:  document.getElementById('password'),
-          editorForm:document.getElementById('editorForm'),
-          editorMsg: document.getElementById('editorMsg'),
-          saveBtn:   document.getElementById('saveBtn'),
-          location:  document.getElementById('location'),
-          hours:     document.getElementById('hours'),
-          note:      document.getElementById('note'),
-          closedToggle: document.getElementById('closedToggle'),
-          toggleLabel:  document.getElementById('toggleLabel'),
-          logoutBtn: document.getElementById('logoutBtn'),
-          meta:      document.getElementById('metaRow'),
-        };
-
-        function show(panel) {
-          [els.loading, els.login, els.editor, els.setup].forEach(function (p) { p.classList.add('hidden'); });
-          panel.classList.remove('hidden');
+        // -----------------------------------------------------------------------
+        // Helpers
+        // -----------------------------------------------------------------------
+        function $(id) { return document.getElementById(id); }
+        function show(panelId, alsoHide) {
+          (alsoHide || ['loadingPanel', 'loginPanel', 'appPanel', 'setupPanel']).forEach(function (id) {
+            var el = $(id); if (el) el.classList.add('hidden');
+          });
+          var target = $(panelId); if (target) target.classList.remove('hidden');
         }
-        function setMsg(box, type, text) {
+        function setMsg(boxId, type, text) {
+          var box = $(boxId);
+          if (!box) return;
           if (!text) { box.innerHTML = ''; return; }
-          box.innerHTML = '<div class="msg msg-' + type + '">' + text + '</div>';
+          box.innerHTML = '<div class="msg msg-' + type + '">' + escapeHtml(text) + '</div>';
+        }
+        function escapeHtml(str) {
+          return String(str)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function fmtDate(iso) {
+          if (!iso) return '';
+          try { return new Date(iso).toLocaleString(); } catch (e) { return iso; }
+        }
+        function fmtEventDate(d) {
+          if (!d) return '';
+          try {
+            var dt = new Date(d + 'T12:00:00');
+            return dt.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+          } catch (e) { return d; }
+        }
+        function relTime(iso) {
+          if (!iso) return '';
+          try {
+            var diff = (Date.now() - new Date(iso).getTime()) / 1000;
+            if (diff < 60) return 'just now';
+            if (diff < 3600) return Math.floor(diff / 60) + ' min ago';
+            if (diff < 86400) return Math.floor(diff / 3600) + ' hr ago';
+            return Math.floor(diff / 86400) + ' days ago';
+          } catch (e) { return ''; }
         }
 
-        els.closedToggle.addEventListener('change', function () {
-          els.toggleLabel.textContent = els.closedToggle.checked ? 'Closed today' : 'Open today';
-        });
-
-        async function checkAuth() {
+        // -----------------------------------------------------------------------
+        // Auth check
+        // -----------------------------------------------------------------------
+        async function init() {
           try {
             var res = await fetch('/api/fizzy/check-auth', { credentials: 'same-origin' });
-            if (res.status === 500) {
-              show(els.setup);
-              return;
-            }
-            if (res.ok) {
-              await loadCurrent();
-              show(els.editor);
-            } else {
-              show(els.login);
-            }
-          } catch (e) {
-            show(els.setup);
-          }
+            if (res.status === 500) { show('setupPanel'); return; }
+            if (res.ok) { await enterApp(); }
+            else { show('loginPanel'); }
+          } catch (e) { show('setupPanel'); }
         }
 
-        async function loadCurrent() {
-          try {
-            var res = await fetch('/api/fizzy/location');
-            if (!res.ok) return;
-            var data = await res.json();
-            els.location.value = data.location || '';
-            els.hours.value    = data.hours || '';
-            els.note.value     = data.note || '';
-            els.closedToggle.checked = data.status === 'closed';
-            els.toggleLabel.textContent = els.closedToggle.checked ? 'Closed today' : 'Open today';
-            if (data.updatedAt) {
-              var d = new Date(data.updatedAt);
-              els.meta.innerHTML = 'Last updated ' + d.toLocaleString();
-            }
-          } catch (e) { /* swallow */ }
-        }
-
-        els.loginForm.addEventListener('submit', async function (e) {
+        // -----------------------------------------------------------------------
+        // Login form
+        // -----------------------------------------------------------------------
+        $('loginForm').addEventListener('submit', async function (e) {
           e.preventDefault();
-          setMsg(els.loginMsg, 'info', 'Signing in…');
-          els.loginBtn.disabled = true;
+          var btn = $('loginBtn');
+          var pw = $('password');
+          setMsg('loginMsg', 'info', 'Signing in…');
+          btn.disabled = true;
           try {
             var res = await fetch('/api/fizzy/login', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               credentials: 'same-origin',
-              body: JSON.stringify({ password: els.password.value }),
+              body: JSON.stringify({ password: pw.value }),
             });
             var json = await res.json();
             if (res.ok && json.ok) {
-              setMsg(els.loginMsg, '', '');
-              els.password.value = '';
-              await loadCurrent();
-              show(els.editor);
+              setMsg('loginMsg', '', '');
+              pw.value = '';
+              await enterApp();
             } else {
-              setMsg(els.loginMsg, 'error', json.error || 'Login failed');
+              setMsg('loginMsg', 'error', json.error || 'Login failed');
             }
-          } catch (e) {
-            setMsg(els.loginMsg, 'error', 'Network error — try again');
+          } catch (err) {
+            setMsg('loginMsg', 'error', 'Network error — try again');
           } finally {
-            els.loginBtn.disabled = false;
+            btn.disabled = false;
           }
         });
 
-        els.editorForm.addEventListener('submit', async function (e) {
+        async function enterApp() {
+          show('appPanel');
+          // load all three at once
+          await Promise.all([loadToday(), loadMenu(), loadBookings()]);
+        }
+
+        // -----------------------------------------------------------------------
+        // Tabs
+        // -----------------------------------------------------------------------
+        document.querySelectorAll('.tab').forEach(function (t) {
+          t.addEventListener('click', function () {
+            var tab = t.getAttribute('data-tab');
+            if (tab === 'account') {
+              return logout();
+            }
+            document.querySelectorAll('.tab').forEach(function (x) { x.classList.remove('is-active'); });
+            t.classList.add('is-active');
+            document.querySelectorAll('.tab-panel').forEach(function (p) { p.classList.add('hidden'); });
+            var panel = $('tab-' + tab);
+            if (panel) panel.classList.remove('hidden');
+            if (tab === 'bookings') loadBookings(); // refresh on view
+          });
+        });
+
+        async function logout() {
+          await fetch('/api/fizzy/login', { method: 'DELETE', credentials: 'same-origin' });
+          location.reload();
+        }
+
+        // -----------------------------------------------------------------------
+        // TODAY
+        // -----------------------------------------------------------------------
+        $('closedToggle').addEventListener('change', function () {
+          $('toggleLabel').textContent = $('closedToggle').checked ? 'Closed today' : 'Open today';
+        });
+
+        async function loadToday() {
+          try {
+            var res = await fetch('/api/fizzy/location');
+            if (!res.ok) return;
+            var data = await res.json();
+            $('loc').value  = data.location || '';
+            $('hrs').value  = data.hours || '';
+            $('note').value = data.note || '';
+            $('closedToggle').checked = data.status === 'closed';
+            $('toggleLabel').textContent = $('closedToggle').checked ? 'Closed today' : 'Open today';
+            if (data.updatedAt) $('todayMeta').textContent = 'Last updated ' + fmtDate(data.updatedAt);
+          } catch (e) {}
+        }
+
+        $('todayForm').addEventListener('submit', async function (e) {
           e.preventDefault();
-          setMsg(els.editorMsg, 'info', 'Saving…');
-          els.saveBtn.disabled = true;
+          var btn = $('todaySaveBtn');
+          setMsg('todayMsg', 'info', 'Saving…');
+          btn.disabled = true;
           try {
             var res = await fetch('/api/fizzy/location', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               credentials: 'same-origin',
               body: JSON.stringify({
-                location: els.location.value,
-                hours: els.hours.value,
-                note: els.note.value,
-                status: els.closedToggle.checked ? 'closed' : 'open',
+                location: $('loc').value,
+                hours: $('hrs').value,
+                note: $('note').value,
+                status: $('closedToggle').checked ? 'closed' : 'open',
               }),
             });
             var json = await res.json();
             if (res.ok && json.ok) {
-              setMsg(els.editorMsg, 'success', '✓ Saved — your site is updated');
-              if (json.data && json.data.updatedAt) {
-                var d = new Date(json.data.updatedAt);
-                els.meta.innerHTML = 'Last updated ' + d.toLocaleString();
-              }
+              setMsg('todayMsg', 'success', '✓ Saved — your site is updated');
+              if (json.data && json.data.updatedAt) $('todayMeta').textContent = 'Last updated ' + fmtDate(json.data.updatedAt);
             } else if (res.status === 401) {
-              setMsg(els.editorMsg, 'error', 'Session expired — sign in again');
-              setTimeout(function () { show(els.login); }, 1200);
+              setMsg('todayMsg', 'error', 'Session expired — sign in again');
+              setTimeout(function () { location.reload(); }, 1200);
             } else {
-              setMsg(els.editorMsg, 'error', json.error || 'Save failed');
+              setMsg('todayMsg', 'error', json.error || 'Save failed');
             }
+          } catch (err) { setMsg('todayMsg', 'error', 'Network error — try again'); }
+          finally { btn.disabled = false; }
+        });
+
+        // -----------------------------------------------------------------------
+        // MENU
+        // -----------------------------------------------------------------------
+        var menuState = { dirtySodas: [], refreshers: [], addOns: [] };
+
+        async function loadMenu() {
+          try {
+            var res = await fetch('/api/fizzy/menu');
+            if (!res.ok) return;
+            var data = await res.json();
+            menuState = {
+              dirtySodas: Array.isArray(data.dirtySodas) ? data.dirtySodas : [],
+              refreshers: Array.isArray(data.refreshers) ? data.refreshers : [],
+              addOns:     Array.isArray(data.addOns)     ? data.addOns     : [],
+            };
+            renderMenu();
+          } catch (e) {}
+        }
+
+        function renderMenu() {
+          renderCat('dirtySodas', true);
+          renderCat('refreshers', true);
+          renderCat('addOns', false);
+        }
+
+        function renderCat(cat, hasDesc) {
+          var container = $('menu-' + cat + '-rows');
+          container.innerHTML = '';
+          menuState[cat].forEach(function (item, idx) {
+            var row = document.createElement('div');
+            row.className = 'menu-row' + (hasDesc ? '' : ' no-desc');
+            if (hasDesc) {
+              row.innerHTML =
+                '<input type="text" class="input small" placeholder="Name" value="' + escapeHtml(item.name) + '" data-field="name" />' +
+                '<input type="text" class="input small" placeholder="Description" value="' + escapeHtml(item.desc || '') + '" data-field="desc" />' +
+                '<input type="text" class="input small" placeholder="Price" value="' + escapeHtml(item.price) + '" data-field="price" />' +
+                '<button type="button" class="menu-del" title="Delete">×</button>';
+            } else {
+              row.innerHTML =
+                '<input type="text" class="input small" placeholder="Name" value="' + escapeHtml(item.name) + '" data-field="name" />' +
+                '<input type="text" class="input small" placeholder="Price" value="' + escapeHtml(item.price) + '" data-field="price" />' +
+                '<button type="button" class="menu-del" title="Delete">×</button>';
+            }
+            // wire field changes back to state
+            row.querySelectorAll('input').forEach(function (inp) {
+              inp.addEventListener('input', function () {
+                menuState[cat][idx][inp.getAttribute('data-field')] = inp.value;
+              });
+            });
+            row.querySelector('.menu-del').addEventListener('click', function () {
+              menuState[cat].splice(idx, 1);
+              renderCat(cat, hasDesc);
+            });
+            container.appendChild(row);
+          });
+        }
+
+        document.querySelectorAll('.menu-add').forEach(function (b) {
+          b.addEventListener('click', function () {
+            var cat = b.getAttribute('data-cat');
+            var hasDesc = b.getAttribute('data-desc') === '1';
+            var blank = hasDesc ? { name: '', desc: '', price: '' } : { name: '', price: '' };
+            menuState[cat].push(blank);
+            renderCat(cat, hasDesc);
+            // focus first input on the new row
+            var rows = $('menu-' + cat + '-rows').children;
+            var lastRow = rows[rows.length - 1];
+            if (lastRow) lastRow.querySelector('input').focus();
+          });
+        });
+
+        $('menuSaveBtn').addEventListener('click', async function () {
+          var btn = $('menuSaveBtn');
+          setMsg('menuMsg', 'info', 'Saving…');
+          btn.disabled = true;
+          try {
+            var res = await fetch('/api/fizzy/menu', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'same-origin',
+              body: JSON.stringify(menuState),
+            });
+            var json = await res.json();
+            if (res.ok && json.ok) {
+              setMsg('menuMsg', 'success', '✓ Menu saved — visible on your site within 60 seconds');
+            } else if (res.status === 401) {
+              setMsg('menuMsg', 'error', 'Session expired — sign in again');
+              setTimeout(function () { location.reload(); }, 1200);
+            } else {
+              setMsg('menuMsg', 'error', json.error || 'Save failed');
+            }
+          } catch (err) { setMsg('menuMsg', 'error', 'Network error — try again'); }
+          finally { btn.disabled = false; }
+        });
+
+        // -----------------------------------------------------------------------
+        // BOOKINGS
+        // -----------------------------------------------------------------------
+        async function loadBookings() {
+          var list = $('bookingsList');
+          var countBadge = $('bookingCount');
+          list.innerHTML = '<div class="empty"><span class="script">loading…</span></div>';
+          try {
+            var res = await fetch('/api/fizzy/bookings', { credentials: 'same-origin' });
+            if (!res.ok) {
+              if (res.status === 401) {
+                list.innerHTML = '<div class="empty">Session expired — please sign in again.</div>';
+                setTimeout(function () { location.reload(); }, 1500);
+                return;
+              }
+              list.innerHTML = '<div class="empty">Could not load bookings.</div>';
+              return;
+            }
+            var json = await res.json();
+            var bookings = (json.bookings || []);
+            if (bookings.length === 0) {
+              list.innerHTML = '<div class="empty"><span class="script">no bookings yet</span>When someone fills out your booking form, they\'ll show up here.</div>';
+              countBadge.classList.add('hidden');
+              return;
+            }
+            countBadge.textContent = bookings.length;
+            countBadge.classList.remove('hidden');
+            list.innerHTML = '';
+            bookings.forEach(function (b) {
+              var card = document.createElement('div');
+              card.className = 'booking';
+              card.innerHTML =
+                '<div class="booking-head">' +
+                  '<div><span class="name">' + escapeHtml(b.name) + '</span> &nbsp; <span style="color: var(--fz-muted); font-size: 0.85rem;">' + escapeHtml(b.type) + '</span></div>' +
+                  '<div class="when">' + escapeHtml(fmtEventDate(b.date)) + '</div>' +
+                '</div>' +
+                '<div class="booking-meta">' +
+                  '📞 <a href="tel:' + escapeHtml(b.phone) + '">' + escapeHtml(b.phone) + '</a>' +
+                  (b.email ? ' &nbsp; ✉ <a href="mailto:' + escapeHtml(b.email) + '">' + escapeHtml(b.email) + '</a>' : '') +
+                  ' &nbsp; 👥 ' + escapeHtml(b.count) +
+                  ' &nbsp; 📍 ' + escapeHtml(b.location) +
+                '</div>' +
+                (b.notes ? '<div class="booking-notes">' + escapeHtml(b.notes) + '</div>' : '') +
+                '<div class="booking-foot">' +
+                  '<span>Submitted ' + escapeHtml(relTime(b.submittedAt)) + '</span>' +
+                  '<button type="button" class="btn btn-ghost btn-small" data-id="' + escapeHtml(b.id) + '">Mark handled</button>' +
+                '</div>';
+              card.querySelector('button[data-id]').addEventListener('click', function (e) {
+                deleteBooking(e.currentTarget.getAttribute('data-id'));
+              });
+              list.appendChild(card);
+            });
           } catch (e) {
-            setMsg(els.editorMsg, 'error', 'Network error — try again');
-          } finally {
-            els.saveBtn.disabled = false;
+            list.innerHTML = '<div class="empty">Network error.</div>';
           }
-        });
+        }
 
-        els.logoutBtn.addEventListener('click', async function () {
-          await fetch('/api/fizzy/login', { method: 'DELETE', credentials: 'same-origin' });
-          show(els.login);
-        });
+        async function deleteBooking(id) {
+          if (!confirm('Mark this booking as handled? It will be removed from the list.')) return;
+          try {
+            await fetch('/api/fizzy/bookings?id=' + encodeURIComponent(id), {
+              method: 'DELETE', credentials: 'same-origin',
+            });
+            await loadBookings();
+          } catch (e) {}
+        }
 
-        checkAuth();
+        $('bookingsRefresh').addEventListener('click', loadBookings);
+
+        init();
       })();
     </script>
   </body>

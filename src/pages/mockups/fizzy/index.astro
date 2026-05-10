@@ -8,12 +8,12 @@ const business = {
   tagline: "Get Fizzy With It.",
   subtitle: "Dirty sodas + fizzy drinks",
   region: "Jackson County, GA",
-  phone: "(706) 555-0148",      // SWAP
-  phoneDigits: "7065550148",
-  email: "hello@drinkfizzy.com",  // SWAP — or use their IG DMs
+  phone: "(615) 961-7732",      // from their Instagram bio
+  phoneDigits: "6159617732",
+  email: "drinkfizzyga@gmail.com",
   instagram: "drinkfizzyga",
   facebook: "drinkfizzyga",
-  todayLocation: "Jefferson Town Square",  // SWAP daily
+  todayLocation: "Jefferson Town Square",  // SWAP daily via /admin or set initial in KV
   todayHours: "11am – 8pm",
 };
 
@@ -311,7 +311,7 @@ const schedule = [
             <h3 class="fz-display" style="font-size: clamp(1.6rem, 3.5vw, 2.25rem); color: var(--fz-ink);">Dirty Sodas</h3>
             <p class="fz-script" style="font-size: 1.35rem; color: var(--fz-coral);">our signature</p>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr; gap: 0.85rem;">
+          <div id="fzMenuDirtySodas" style="display: grid; grid-template-columns: 1fr; gap: 0.85rem;">
             {menu.dirtySodas.map((item, i) => (
               <div class={`fz-reveal fz-d-${(i % 6) + 1}`} style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline; padding: 0.65rem 0; border-bottom: 1px dotted var(--fz-ink);">
                 <div>
@@ -330,7 +330,7 @@ const schedule = [
             <h3 class="fz-display" style="font-size: clamp(1.6rem, 3.5vw, 2.25rem); color: var(--fz-ink);">Fizzy Refreshers</h3>
             <p class="fz-script" style="font-size: 1.35rem; color: var(--fz-ink);">light &amp; bright</p>
           </div>
-          <div style="display: grid; grid-template-columns: 1fr; gap: 0.85rem;">
+          <div id="fzMenuRefreshers" style="display: grid; grid-template-columns: 1fr; gap: 0.85rem;">
             {menu.refreshers.map((item, i) => (
               <div class={`fz-reveal fz-d-${(i % 4) + 1}`} style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline; padding: 0.65rem 0; border-bottom: 1px dotted var(--fz-ink);">
                 <div>
@@ -346,7 +346,7 @@ const schedule = [
         <!-- Add-ons -->
         <div class="fz-reveal" style="background: var(--fz-yellow); border: 3px solid var(--fz-ink); padding: 1.75rem; box-shadow: 6px 6px 0 var(--fz-ink);">
           <h3 class="fz-display" style="font-size: 1.4rem; color: var(--fz-ink); margin-bottom: 1rem;">Add a little extra</h3>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.65rem 1.5rem;">
+          <div id="fzMenuAddOns" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.65rem 1.5rem;">
             {menu.addOns.map((item) => (
               <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; font-size: 0.95rem;">
                 <span style="font-weight: 600; color: var(--fz-ink);">{item.name}</span>
@@ -503,12 +503,13 @@ const schedule = [
                 style="width: 100%; background: var(--fz-pink-3); border: 2px solid var(--fz-ink); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--fz-ink); outline: none; border-radius: 6px; resize: vertical;"></textarea>
             </div>
 
-            <button type="submit" class="fz-btn fz-btn-yellow" style="width: 100%; padding: 1.15rem;">
+            <button type="submit" class="fz-btn fz-btn-yellow" id="fzSubmitBtn" style="width: 100%; padding: 1.15rem;">
               Send Booking Request 🎉
             </button>
-            <p id="fzFormSuccess" style="display: none; text-align: center; font-family: var(--font-script); font-size: 1.4rem; color: var(--fz-coral);">
-              ✨ thanks! demo only — your real site would email this straight to your inbox.
+            <p id="fzFormSuccess" style="display: none; text-align: center; font-family: var(--font-script); font-size: 1.4rem; color: var(--fz-coral); margin: 0;">
+              ✨ thanks! we'll get back to you within a day.
             </p>
+            <p id="fzFormError" style="display: none; text-align: center; font-size: 0.9rem; color: #C73650; font-weight: 700; margin: 0;"></p>
           </form>
         </div>
 
@@ -583,16 +584,88 @@ const schedule = [
 
         var form = document.getElementById('fzForm');
         var success = document.getElementById('fzFormSuccess');
+        var error = document.getElementById('fzFormError');
+        var submitBtn = document.getElementById('fzSubmitBtn');
         if (form && success) {
-          form.addEventListener('submit', function(e) {
+          form.addEventListener('submit', async function(e) {
             e.preventDefault();
             var honey = form.querySelector('input[name="_gotcha"]');
             if (honey && honey.value) return;
-            form.reset();
-            success.style.display = 'block';
-            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            error.style.display = 'none';
+            submitBtn.disabled = true;
+            var origText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending…';
+            try {
+              var fd = new FormData(form);
+              var payload = {
+                name:     fd.get('name'),
+                phone:    fd.get('phone'),
+                email:    fd.get('email'),
+                date:     fd.get('date'),
+                count:    fd.get('count'),
+                type:     fd.get('type'),
+                location: fd.get('location'),
+                notes:    fd.get('notes'),
+                _gotcha:  fd.get('_gotcha'),
+              };
+              var res = await fetch('/api/fizzy/bookings', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+              });
+              var data = await res.json();
+              if (res.ok && data.ok) {
+                form.reset();
+                form.style.display = 'none';
+                success.style.display = 'block';
+                success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              } else {
+                error.textContent = data.error || 'Something went wrong. Please try again or text us at the number below.';
+                error.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = origText;
+              }
+            } catch (err) {
+              error.textContent = 'Network error. Please try again or text us directly.';
+              error.style.display = 'block';
+              submitBtn.disabled = false;
+              submitBtn.textContent = origText;
+            }
           });
         }
+
+        // Hot-swap menu from /api/fizzy/menu (admin-controlled). Falls back to static.
+        function renderMenuItems(containerId, items, opts) {
+          var c = document.getElementById(containerId);
+          if (!c || !Array.isArray(items)) return;
+          c.innerHTML = items.map(function (item, i) {
+            if (opts.compact) {
+              return '<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; font-size: 0.95rem;">' +
+                '<span style="font-weight: 600; color: var(--fz-ink);">' + escapeHtml(item.name) + '</span>' +
+                '<span style="font-weight: 800; color: var(--fz-ink);">' + escapeHtml(item.price) + '</span>' +
+              '</div>';
+            }
+            return '<div class="fz-reveal is-visible" style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline; padding: 0.65rem 0; border-bottom: 1px dotted var(--fz-ink);">' +
+              '<div>' +
+                '<p style="font-weight: 800; font-size: 1.05rem; color: var(--fz-ink);">' + escapeHtml(item.name) + '</p>' +
+                (item.desc ? '<p style="font-size: 0.85rem; color: var(--fz-muted); margin-top: 0.1rem;">' + escapeHtml(item.desc) + '</p>' : '') +
+              '</div>' +
+              '<p class="fz-display" style="font-size: 1.15rem; color: ' + opts.priceColor + '; white-space: nowrap;">' + escapeHtml(item.price) + '</p>' +
+            '</div>';
+          }).join('');
+        }
+        function escapeHtml(str) {
+          return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        }
+        fetch('/api/fizzy/menu', { credentials: 'same-origin' })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (data) {
+            if (!data) return;
+            renderMenuItems('fzMenuDirtySodas', data.dirtySodas, { priceColor: 'var(--fz-coral)' });
+            renderMenuItems('fzMenuRefreshers', data.refreshers, { priceColor: 'var(--fz-ink)' });
+            renderMenuItems('fzMenuAddOns', data.addOns, { compact: true });
+          })
+          .catch(function () {});
 
         // Hot-swap today's location from the admin-controlled API.
         // Falls back silently to the static placeholder if the API is unreachable.
