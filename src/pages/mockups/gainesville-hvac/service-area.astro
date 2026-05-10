@@ -23,12 +23,12 @@ const cityDetail: Record<string, { county: string; zips: string; note: string }>
   <!-- Page header -->
   <section style="padding: 5rem 1.5rem 3rem; background: var(--gh-bg);" class="gh-hatch">
     <div style="max-width: 1280px; margin: 0 auto;">
-      <p class="gh-section-num gh-reveal">SECTION 02 / WHERE WE WORK</p>
+      <p class="gh-section-num gh-reveal">SECTION 02 / SERVICE AREA</p>
       <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(3rem, 8vw, 7rem); color: var(--gh-ink); margin-top: 1rem; max-width: 16ch;">
-        North Georgia.<br/><span style="color: var(--gh-orange);">Not all of it.</span>
+        Communities<br/><span style="color: var(--gh-orange);">we serve.</span>
       </h1>
       <p class="gh-reveal gh-reveal-2" style="font-size: 1.05rem; line-height: 1.65; color: var(--gh-ink); max-width: 42rem; margin-top: 2rem;">
-        We stay close to home so we can keep response times honest. If you're in one of the towns below, you're in our service area. If you're outside it — call anyway. We may know someone good.
+        We focus our coverage on Hall and the surrounding counties to maintain consistent response times and service quality. The communities listed below are within our standard service area. For locations outside this area, please contact us — we may still be able to help or refer you to a trusted partner.
       </p>
     </div>
   </section>
@@ -56,12 +56,12 @@ const cityDetail: Record<string, { county: string; zips: string; note: string }>
 
       <!-- Outside service area block -->
       <div class="gh-reveal" style="margin-top: 4rem; padding: 2.5rem; background: var(--gh-ink); color: var(--gh-bg); border: 2px solid var(--gh-line);">
-        <p class="gh-section-num" style="color: var(--gh-orange);">OUTSIDE OUR ZONE?</p>
+        <p class="gh-section-num" style="color: var(--gh-orange);">OUTSIDE OUR STANDARD AREA</p>
         <h3 class="gh-display" style="font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--gh-bg); margin-top: 1rem;">
-          We'll still pick up the phone.
+          Contact us — we may still be able to help.
         </h3>
         <p style="margin-top: 1rem; color: rgba(255,255,255,0.7); line-height: 1.65; max-width: 50rem;">
-          If you're in Hall County or one of the surrounding counties but not on the list, call us. We may be able to make it work, or point you toward someone we trust.
+          For locations in surrounding counties not listed above, give us a call. We may still be able to schedule service, or refer you to a trusted partner in your area.
         </p>
         <a href={`tel:${business.phoneDigits}`} class="gh-btn gh-btn-orange" style="margin-top: 1.75rem;">
           ◉ Call {business.phone}
