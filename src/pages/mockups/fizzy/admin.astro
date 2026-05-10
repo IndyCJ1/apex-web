@@ -1,0 +1,411 @@
+---
+// Fizzy admin — single page for editing today's location
+// Lives at /mockups/fizzy/admin
+// Backend: /functions/api/fizzy/{login,location,check-auth}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Fizzy · Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --fz-pink: #FCE0E5;
+        --fz-pink-2: #F8C9D2;
+        --fz-pink-3: #FFE9EE;
+        --fz-cream: #FFF6EE;
+        --fz-yellow: #FFD93B;
+        --fz-coral: #FF8474;
+        --fz-mint: #B8E5DC;
+        --fz-ink: #0A0A0A;
+        --fz-muted: #6B5C5F;
+        --fz-error: #C73650;
+        --fz-success: #2A8A4A;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; background: var(--fz-pink); color: var(--fz-ink); font-family: 'Manrope', system-ui, sans-serif; min-height: 100vh; }
+      .display { font-family: 'Archivo Black', Impact, sans-serif; text-transform: uppercase; letter-spacing: -0.01em; line-height: 0.95; }
+      .script { font-family: 'Caveat', cursive; }
+
+      .top {
+        background: var(--fz-ink);
+        color: var(--fz-pink);
+        padding: 0.65rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .top a { color: var(--fz-yellow); text-decoration: none; font-weight: 800; }
+      .top a:hover { text-decoration: underline; }
+
+      .wrap {
+        max-width: 580px;
+        margin: 0 auto;
+        padding: 2.5rem 1.25rem 4rem;
+      }
+
+      .logo {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 86px; height: 86px;
+        background: var(--fz-pink);
+        border: 3px solid var(--fz-ink);
+        font-family: 'Archivo Black', Impact, sans-serif;
+        font-size: 1.55rem;
+        line-height: 1;
+        margin-bottom: 1.25rem;
+      }
+
+      .card {
+        background: var(--fz-cream);
+        border: 3px solid var(--fz-ink);
+        box-shadow: 8px 8px 0 var(--fz-ink);
+        padding: 1.75rem 1.5rem;
+        border-radius: 6px;
+      }
+
+      .label {
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 0.4rem;
+      }
+      .input, select.input, textarea.input {
+        width: 100%;
+        background: var(--fz-pink-3);
+        border: 2px solid var(--fz-ink);
+        padding: 0.85rem 1rem;
+        font-family: inherit;
+        font-size: 16px;
+        color: var(--fz-ink);
+        outline: none;
+        border-radius: 6px;
+      }
+      .input:focus { border-color: var(--fz-coral); }
+
+      .field { margin-bottom: 1.1rem; }
+      .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      @media (max-width: 520px) {
+        .field-row { grid-template-columns: 1fr; }
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.95rem 1.4rem;
+        font-family: inherit;
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        border: 3px solid var(--fz-ink);
+        background: var(--fz-ink);
+        color: var(--fz-pink);
+        cursor: pointer;
+        border-radius: 999px;
+        text-decoration: none;
+        box-shadow: 4px 4px 0 var(--fz-ink);
+        transition: transform 0.12s, box-shadow 0.12s;
+        width: 100%;
+      }
+      .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--fz-ink); }
+      .btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--fz-ink); }
+      .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: 4px 4px 0 var(--fz-ink); }
+      .btn-yellow { background: var(--fz-yellow); color: var(--fz-ink); }
+      .btn-ghost { background: transparent; color: var(--fz-ink); box-shadow: none; }
+      .btn-ghost:hover { background: var(--fz-pink); transform: none; box-shadow: none; }
+
+      .toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.85rem 1rem;
+        background: var(--fz-pink-3);
+        border: 2px solid var(--fz-ink);
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+        font-weight: 700;
+      }
+      .toggle input { width: 1.15rem; height: 1.15rem; accent-color: var(--fz-coral); margin: 0; }
+
+      .msg { padding: 0.85rem 1rem; border-radius: 6px; font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+      .msg-error { background: #FBE3E8; color: var(--fz-error); border: 2px solid var(--fz-error); }
+      .msg-success { background: #DEF1E2; color: var(--fz-success); border: 2px solid var(--fz-success); }
+      .msg-info { background: var(--fz-mint); color: var(--fz-ink); border: 2px solid var(--fz-ink); }
+
+      .meta {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        font-size: 0.75rem;
+        color: var(--fz-muted);
+        margin-top: 1rem;
+      }
+
+      .hidden { display: none !important; }
+
+      .tag {
+        display: inline-block;
+        background: var(--fz-yellow);
+        padding: 0.15rem 0.5rem;
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border: 2px solid var(--fz-ink);
+        border-radius: 4px;
+        color: var(--fz-ink);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="top">
+      <span><span class="tag">ADMIN</span> &nbsp; Fizzy</span>
+      <a href="/mockups/fizzy/" target="_blank" rel="noopener">View site →</a>
+    </div>
+
+    <div class="wrap">
+      <div class="logo">FIZZY</div>
+
+      <!-- LOGIN PANEL -->
+      <div id="loginPanel" class="card hidden">
+        <h1 class="display" style="font-size: 1.75rem; margin: 0 0 0.6rem;">Sign in</h1>
+        <p style="font-size: 0.95rem; color: var(--fz-muted); margin: 0 0 1.5rem;">Enter the admin password to update today's location.</p>
+
+        <div id="loginMsg"></div>
+
+        <form id="loginForm" autocomplete="off">
+          <div class="field">
+            <label class="label" for="password">Password</label>
+            <input type="password" class="input" id="password" name="password" required autocomplete="current-password" />
+          </div>
+          <button type="submit" class="btn btn-yellow" id="loginBtn">Sign in</button>
+        </form>
+      </div>
+
+      <!-- EDITOR PANEL -->
+      <div id="editorPanel" class="card hidden">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1.25rem;">
+          <h1 class="display" style="font-size: 1.55rem; margin: 0;">Today's location</h1>
+          <button type="button" class="btn btn-ghost" id="logoutBtn" style="width: auto; padding: 0.4rem 0.85rem; font-size: 0.7rem;">Log out</button>
+        </div>
+
+        <div id="editorMsg"></div>
+
+        <form id="editorForm">
+          <div class="field">
+            <label class="label" for="location">Where are you today?</label>
+            <input type="text" class="input" id="location" name="location" required maxlength="200" placeholder="e.g. Jefferson Town Square" />
+          </div>
+
+          <div class="field-row field">
+            <div>
+              <label class="label" for="hours">Hours</label>
+              <input type="text" class="input" id="hours" name="hours" maxlength="100" placeholder="e.g. 11am – 8pm" />
+            </div>
+            <div>
+              <label class="label">Status</label>
+              <label class="toggle">
+                <input type="checkbox" id="closedToggle" />
+                <span id="toggleLabel">Open today</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="note">Optional note</label>
+            <input type="text" class="input" id="note" name="note" maxlength="200" placeholder="e.g. Cash only · Free for kids · Find us by the gazebo" />
+          </div>
+
+          <button type="submit" class="btn btn-yellow" id="saveBtn">Save changes</button>
+
+          <div class="meta" id="metaRow"></div>
+        </form>
+      </div>
+
+      <!-- LOADING / SETUP -->
+      <div id="loadingPanel" class="card">
+        <p class="script" style="font-size: 1.4rem; margin: 0 0 0.5rem; color: var(--fz-coral);">one sec…</p>
+        <p style="font-size: 0.9rem; margin: 0; color: var(--fz-muted);">Checking sign-in status.</p>
+      </div>
+
+      <!-- SETUP HELP -->
+      <div id="setupPanel" class="card hidden" style="background: var(--fz-mint);">
+        <h2 class="display" style="font-size: 1.25rem; margin: 0 0 0.75rem;">Almost there</h2>
+        <p style="font-size: 0.9rem; line-height: 1.55; margin: 0 0 0.85rem;">
+          The admin backend isn't fully configured yet. To enable saving:
+        </p>
+        <ol style="font-size: 0.88rem; line-height: 1.65; padding-left: 1.25rem; margin: 0;">
+          <li>In Cloudflare → Pages → your project → <strong>Settings → Variables and Secrets</strong>, add <code>FIZZY_PASSWORD</code></li>
+          <li>In <strong>Settings → Bindings</strong>, add a KV namespace bound as <code>FIZZY_KV</code></li>
+          <li>Trigger a new deployment and reload this page</li>
+        </ol>
+      </div>
+
+      <p style="text-align: center; font-size: 0.75rem; color: var(--fz-muted); margin-top: 2rem;">
+        Site preview by <a href="/" style="color: var(--fz-muted); font-weight: 700;">Lanier Web</a>
+      </p>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var els = {
+          loading:   document.getElementById('loadingPanel'),
+          login:     document.getElementById('loginPanel'),
+          editor:    document.getElementById('editorPanel'),
+          setup:     document.getElementById('setupPanel'),
+          loginForm: document.getElementById('loginForm'),
+          loginMsg:  document.getElementById('loginMsg'),
+          loginBtn:  document.getElementById('loginBtn'),
+          password:  document.getElementById('password'),
+          editorForm:document.getElementById('editorForm'),
+          editorMsg: document.getElementById('editorMsg'),
+          saveBtn:   document.getElementById('saveBtn'),
+          location:  document.getElementById('location'),
+          hours:     document.getElementById('hours'),
+          note:      document.getElementById('note'),
+          closedToggle: document.getElementById('closedToggle'),
+          toggleLabel:  document.getElementById('toggleLabel'),
+          logoutBtn: document.getElementById('logoutBtn'),
+          meta:      document.getElementById('metaRow'),
+        };
+
+        function show(panel) {
+          [els.loading, els.login, els.editor, els.setup].forEach(function (p) { p.classList.add('hidden'); });
+          panel.classList.remove('hidden');
+        }
+        function setMsg(box, type, text) {
+          if (!text) { box.innerHTML = ''; return; }
+          box.innerHTML = '<div class="msg msg-' + type + '">' + text + '</div>';
+        }
+
+        els.closedToggle.addEventListener('change', function () {
+          els.toggleLabel.textContent = els.closedToggle.checked ? 'Closed today' : 'Open today';
+        });
+
+        async function checkAuth() {
+          try {
+            var res = await fetch('/api/fizzy/check-auth', { credentials: 'same-origin' });
+            if (res.status === 500) {
+              show(els.setup);
+              return;
+            }
+            if (res.ok) {
+              await loadCurrent();
+              show(els.editor);
+            } else {
+              show(els.login);
+            }
+          } catch (e) {
+            show(els.setup);
+          }
+        }
+
+        async function loadCurrent() {
+          try {
+            var res = await fetch('/api/fizzy/location');
+            if (!res.ok) return;
+            var data = await res.json();
+            els.location.value = data.location || '';
+            els.hours.value    = data.hours || '';
+            els.note.value     = data.note || '';
+            els.closedToggle.checked = data.status === 'closed';
+            els.toggleLabel.textContent = els.closedToggle.checked ? 'Closed today' : 'Open today';
+            if (data.updatedAt) {
+              var d = new Date(data.updatedAt);
+              els.meta.innerHTML = 'Last updated ' + d.toLocaleString();
+            }
+          } catch (e) { /* swallow */ }
+        }
+
+        els.loginForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          setMsg(els.loginMsg, 'info', 'Signing in…');
+          els.loginBtn.disabled = true;
+          try {
+            var res = await fetch('/api/fizzy/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'same-origin',
+              body: JSON.stringify({ password: els.password.value }),
+            });
+            var json = await res.json();
+            if (res.ok && json.ok) {
+              setMsg(els.loginMsg, '', '');
+              els.password.value = '';
+              await loadCurrent();
+              show(els.editor);
+            } else {
+              setMsg(els.loginMsg, 'error', json.error || 'Login failed');
+            }
+          } catch (e) {
+            setMsg(els.loginMsg, 'error', 'Network error — try again');
+          } finally {
+            els.loginBtn.disabled = false;
+          }
+        });
+
+        els.editorForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          setMsg(els.editorMsg, 'info', 'Saving…');
+          els.saveBtn.disabled = true;
+          try {
+            var res = await fetch('/api/fizzy/location', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              credentials: 'same-origin',
+              body: JSON.stringify({
+                location: els.location.value,
+                hours: els.hours.value,
+                note: els.note.value,
+                status: els.closedToggle.checked ? 'closed' : 'open',
+              }),
+            });
+            var json = await res.json();
+            if (res.ok && json.ok) {
+              setMsg(els.editorMsg, 'success', '✓ Saved — your site is updated');
+              if (json.data && json.data.updatedAt) {
+                var d = new Date(json.data.updatedAt);
+                els.meta.innerHTML = 'Last updated ' + d.toLocaleString();
+              }
+            } else if (res.status === 401) {
+              setMsg(els.editorMsg, 'error', 'Session expired — sign in again');
+              setTimeout(function () { show(els.login); }, 1200);
+            } else {
+              setMsg(els.editorMsg, 'error', json.error || 'Save failed');
+            }
+          } catch (e) {
+            setMsg(els.editorMsg, 'error', 'Network error — try again');
+          } finally {
+            els.saveBtn.disabled = false;
+          }
+        });
+
+        els.logoutBtn.addEventListener('click', async function () {
+          await fetch('/api/fizzy/login', { method: 'DELETE', credentials: 'same-origin' });
+          show(els.login);
+        });
+
+        checkAuth();
+      })();
+    </script>
+  </body>
+</html>

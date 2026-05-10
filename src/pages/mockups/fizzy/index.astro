@@ -200,13 +200,14 @@ const schedule = [
 
   <body>
 
-    <!-- Today's location sticky banner -->
-    <div style="background: var(--fz-yellow); color: var(--fz-ink); border-bottom: 3px solid var(--fz-ink); padding: 0.55rem 1rem; position: sticky; top: 0; z-index: 50;">
+    <!-- Today's location sticky banner — values get hot-swapped from /api/fizzy/location after page load -->
+    <div id="fzTodayBanner" style="background: var(--fz-yellow); color: var(--fz-ink); border-bottom: 3px solid var(--fz-ink); padding: 0.55rem 1rem; position: sticky; top: 0; z-index: 50;">
       <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem 1rem; font-size: 0.85rem; font-weight: 700;">
-        <span style="font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.15em; background: var(--fz-ink); color: var(--fz-yellow); padding: 0.2rem 0.55rem; border-radius: 4px;">TODAY</span>
-        <span>📍 {business.todayLocation}</span>
-        <span style="opacity: 0.7;">·</span>
-        <span>{business.todayHours}</span>
+        <span id="fzTodayTag" style="font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.15em; background: var(--fz-ink); color: var(--fz-yellow); padding: 0.2rem 0.55rem; border-radius: 4px;">TODAY</span>
+        <span id="fzTodayLocation">📍 {business.todayLocation}</span>
+        <span id="fzTodaySep" style="opacity: 0.7;">·</span>
+        <span id="fzTodayHours">{business.todayHours}</span>
+        <span id="fzTodayNote" style="display: none; opacity: 0.85; font-style: italic; font-weight: 600;"></span>
       </div>
     </div>
 
@@ -592,6 +593,36 @@ const schedule = [
             success.scrollIntoView({ behavior: 'smooth', block: 'center' });
           });
         }
+
+        // Hot-swap today's location from the admin-controlled API.
+        // Falls back silently to the static placeholder if the API is unreachable.
+        fetch('/api/fizzy/location', { credentials: 'same-origin' })
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (data) {
+            if (!data) return;
+            var banner = document.getElementById('fzTodayBanner');
+            var tag    = document.getElementById('fzTodayTag');
+            var loc    = document.getElementById('fzTodayLocation');
+            var sep    = document.getElementById('fzTodaySep');
+            var hrs    = document.getElementById('fzTodayHours');
+            var note   = document.getElementById('fzTodayNote');
+            if (data.status === 'closed') {
+              if (banner) banner.style.background = '#FFE9EE';
+              if (tag) { tag.textContent = 'CLOSED'; tag.style.background = '#0A0A0A'; tag.style.color = '#FFE9EE'; }
+              if (loc) loc.textContent = data.location ? '🚫 ' + data.location : 'Not out today';
+              if (sep) sep.style.display = 'none';
+              if (hrs) hrs.style.display = 'none';
+            } else {
+              if (loc) loc.textContent = '📍 ' + (data.location || '');
+              if (hrs) hrs.textContent = data.hours || '';
+              if (!data.hours) { if (sep) sep.style.display = 'none'; if (hrs) hrs.style.display = 'none'; }
+            }
+            if (note && data.note) {
+              note.textContent = '— ' + data.note;
+              note.style.display = 'inline';
+            }
+          })
+          .catch(function () { /* silently keep static fallback */ });
       })();
     </script>
 
