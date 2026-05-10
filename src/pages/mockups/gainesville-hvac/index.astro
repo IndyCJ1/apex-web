@@ -171,9 +171,13 @@ import { business } from "./_business";
         We focus our coverage area to keep response times short and service quality consistent. If you're in any of these communities, you're within our service area.
       </p>
 
-      <ul class="gh-reveal gh-reveal-3" style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.5rem 1.5rem;">
+      <ul class="gh-reveal gh-reveal-3 gh-cities" style="list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem 1.25rem;">
+        <style>
+          @media (min-width: 700px) { .gh-cities { grid-template-columns: repeat(3, 1fr) !important; gap: 0.5rem 1.5rem !important; } }
+          @media (min-width: 1100px) { .gh-cities { grid-template-columns: repeat(4, 1fr) !important; } }
+        </style>
         {business.serviceArea.map((city) => (
-          <li class="gh-display" style="font-size: 1.6rem; color: var(--gh-ink); padding-bottom: 0.5rem; border-bottom: 1px solid var(--gh-line);">
+          <li class="gh-display" style="font-size: 1.25rem; color: var(--gh-ink); padding-bottom: 0.4rem; border-bottom: 1px solid var(--gh-line);">
             {city}
           </li>
         ))}

@@ -26,7 +26,10 @@ import { business } from "./_business";
       {business.services.map((svc, i) => (
         <article class={`gh-reveal gh-reveal-${(i % 3) + 1}`} style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--gh-rule);">
 
-          <header style="display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: baseline;">
+          <header class="gh-svc-header" style="display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: baseline;">
+            <style>
+              @media (min-width: 600px) { .gh-svc-header { gap: 1.5rem !important; } }
+            </style>
             <span class="gh-display" style="font-size: clamp(2rem, 4vw, 3rem); color: var(--gh-orange); line-height: 1;">{svc.num}</span>
             <div>
               <h2 class="gh-display" style="font-size: clamp(1.65rem, 3.5vw, 2.25rem); color: var(--gh-ink); line-height: 1;">{svc.name}</h2>

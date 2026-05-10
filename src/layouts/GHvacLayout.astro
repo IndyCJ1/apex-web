@@ -220,6 +220,25 @@ const {
         .gh-reveal { opacity: 1; transform: none; transition: none; }
       }
 
+      /* Mobile-tightening overrides */
+      @media (max-width: 600px) {
+        section {
+          padding-left: 1.1rem !important;
+          padding-right: 1.1rem !important;
+          padding-top: 2.5rem !important;
+          padding-bottom: 2.5rem !important;
+        }
+        .gh-mobile-stack { grid-template-columns: 1fr !important; gap: 0.85rem !important; }
+        .gh-btn { width: 100%; justify-content: center; }
+        .gh-btn-row .gh-btn { width: auto; }
+        /* Footer columns get a single-column flow */
+        footer > div > div:first-child { grid-template-columns: 1fr !important; gap: 1.75rem !important; }
+        /* Trim the top ticker padding */
+        .gh-ticker { padding: 0.4rem 0; font-size: 0.62rem !important; letter-spacing: 0.14em !important; }
+        /* Tighter rule margins */
+        .gh-rule-strong { margin-top: 1.5rem !important; }
+      }
+
       /* Sticky call-bar (mobile) */
       .gh-callbar {
         position: fixed;
@@ -274,15 +293,23 @@ const {
 
     <!-- Header -->
     <header style="background: rgba(15,22,34,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--gh-line); position: sticky; top: 0; z-index: 50;">
-      <div style="max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 2rem;">
-        <a href="/mockups/gainesville-hvac/" style="text-decoration: none; color: var(--gh-ink); display: flex; align-items: center; gap: 0.85rem; flex-shrink: 0;">
-          <span aria-hidden="true" style="display: inline-block; width: 36px; height: 36px; background: var(--gh-warm); position: relative; transform: rotate(45deg);">
-            <span style="position: absolute; inset: 6px; background: var(--gh-bg);"></span>
-            <span style="position: absolute; inset: 11px; background: var(--gh-warm);"></span>
+      <div class="gh-header-inner" style="max-width: 1280px; margin: 0 auto; padding: 0 1.1rem; display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 1rem;">
+        <style>
+          @media (min-width: 600px) {
+            .gh-header-inner { padding: 0 1.5rem !important; height: 76px !important; gap: 2rem !important; }
+          }
+          @media (max-width: 600px) {
+            .gh-header-sub { display: none !important; }
+          }
+        </style>
+        <a href="/mockups/gainesville-hvac/" style="text-decoration: none; color: var(--gh-ink); display: flex; align-items: center; gap: 0.7rem; flex-shrink: 0; min-width: 0;">
+          <span aria-hidden="true" style="display: inline-block; width: 30px; height: 30px; background: var(--gh-warm); position: relative; transform: rotate(45deg); flex-shrink: 0;">
+            <span style="position: absolute; inset: 5px; background: var(--gh-bg);"></span>
+            <span style="position: absolute; inset: 9px; background: var(--gh-warm);"></span>
           </span>
-          <span style="display: flex; flex-direction: column; line-height: 1;">
-            <span class="gh-display" style="font-size: 1.15rem;">{business.shortName}</span>
-            <span class="gh-mono" style="font-size: 0.55rem; letter-spacing: 0.18em; color: var(--gh-muted); margin-top: 3px;">SERVICES — GAINESVILLE, GA</span>
+          <span style="display: flex; flex-direction: column; line-height: 1; min-width: 0;">
+            <span class="gh-display" style="font-size: 1.05rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{business.shortName}</span>
+            <span class="gh-mono gh-header-sub" style="font-size: 0.55rem; letter-spacing: 0.18em; color: var(--gh-muted); margin-top: 3px;">SERVICES — GAINESVILLE, GA</span>
           </span>
         </a>
 

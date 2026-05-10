@@ -53,32 +53,32 @@ import { business } from "./_business";
             <div>
               <label for="gh_name" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">NAME</label>
               <input type="text" id="gh_name" name="name" required maxlength="100" autocomplete="name" placeholder="Your name"
-                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;" />
+                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--gh-ink); outline: none;" />
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="gh-mobile-stack" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
               <div>
                 <label for="gh_phone" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">PHONE</label>
                 <input type="tel" id="gh_phone" name="phone" required maxlength="20" autocomplete="tel" placeholder="(770) 555-0100"
-                  style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;" />
+                  style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--gh-ink); outline: none;" />
               </div>
               <div>
                 <label for="gh_email" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">EMAIL</label>
                 <input type="email" id="gh_email" name="email" maxlength="254" autocomplete="email" placeholder="optional"
-                  style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;" />
+                  style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--gh-ink); outline: none;" />
               </div>
             </div>
 
             <div>
               <label for="gh_city" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">CITY</label>
               <input type="text" id="gh_city" name="city" required maxlength="60" autocomplete="address-level2" placeholder="Gainesville, Oakwood, Cumming…"
-                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;" />
+                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--gh-ink); outline: none;" />
             </div>
 
             <div>
               <label for="gh_service" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">WHAT DO YOU NEED?</label>
               <select id="gh_service" name="service" required
-                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;">
+                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--gh-ink); outline: none;">
                 <option value="">— Pick the closest —</option>
                 <option>AC not cooling / not running</option>
                 <option>Heat not working</option>
@@ -93,7 +93,7 @@ import { business } from "./_business";
             <div>
               <label for="gh_notes" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">DESCRIBE THE PROBLEM</label>
               <textarea id="gh_notes" name="notes" rows="5" maxlength="3000" placeholder="When did it start? What's it doing? Anything we should know before we head out?"
-                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none; resize: vertical;"></textarea>
+                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 16px; color: var(--gh-ink); outline: none; resize: vertical;"></textarea>
             </div>
 
             <button type="submit" class="gh-btn gh-btn-orange" style="justify-content: center; padding: 1.15rem 1.6rem;">

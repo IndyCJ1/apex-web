@@ -54,7 +54,10 @@ import { business } from "./_business";
         How we <span style="color: var(--gh-orange);">do business.</span>
       </h2>
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0;">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0;" class="gh-numbers-grid">
+        <style>
+          @media (min-width: 720px) { .gh-numbers-grid { grid-template-columns: repeat(4, 1fr) !important; } }
+        </style>
         {[
           { num: "Same day", label: "RESPONSE", note: "Routine service calls" },
           { num: "24 / 7", label: "EMERGENCY LINE", note: "No heat. No cool. We answer." },
