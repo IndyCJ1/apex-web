@@ -1,0 +1,73 @@
+---
+import GHvacLayout from "../../../layouts/GHvacLayout.astro";
+import { business } from "./_business";
+
+const cityDetail: Record<string, { county: string; zips: string; note: string }> = {
+  "Gainesville":     { county: "Hall County",      zips: "30501 / 30504 / 30506 / 30507", note: "Headquarters town. Average response under 90 minutes." },
+  "Oakwood":         { county: "Hall County",      zips: "30566",                          note: "Right down 985. Often same-hour service." },
+  "Flowery Branch":  { county: "Hall County",      zips: "30542",                          note: "Lake Lanier homes — we know the lakefront mechanical layouts well." },
+  "Buford":          { county: "Hall / Gwinnett",  zips: "30518 / 30519",                  note: "Service available Mon–Sat. Routes run morning and afternoon." },
+  "Cumming":         { county: "Forsyth County",   zips: "30040 / 30041 / 30028",          note: "Forsyth route runs daily. Expect under 4 hours response." },
+  "Dawsonville":     { county: "Dawson County",    zips: "30534",                          note: "Tuesday and Friday routes. Emergency calls outside those days are case-by-case." },
+  "Cleveland":       { county: "White County",     zips: "30528",                          note: "Once a week routine, emergency service available." },
+  "Dahlonega":       { county: "Lumpkin County",   zips: "30533",                          note: "Mountain homes, well water, propane heating — we know the territory." },
+  "Hoschton":        { county: "Jackson County",   zips: "30548",                          note: "Standard service area, Mon–Sat." },
+  "Braselton":       { county: "Jackson County",   zips: "30517",                          note: "Standard service area. Routes coordinate with Hoschton." },
+  "Lula":            { county: "Hall County",      zips: "30554",                          note: "Service available, 1-day scheduling typical." },
+  "Murrayville":     { county: "Hall County",      zips: "30564",                          note: "Service available, 1-day scheduling typical." },
+};
+---
+
+<GHvacLayout title={`Service Area — ${business.name}`} page="Service Area">
+
+  <!-- Page header -->
+  <section style="padding: 5rem 1.5rem 3rem; background: var(--gh-bg);" class="gh-hatch">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <p class="gh-section-num gh-reveal">SECTION 02 / WHERE WE WORK</p>
+      <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(3rem, 8vw, 7rem); color: var(--gh-ink); margin-top: 1rem; max-width: 16ch;">
+        North Georgia.<br/><span style="color: var(--gh-orange);">Not all of it.</span>
+      </h1>
+      <p class="gh-reveal gh-reveal-2" style="font-size: 1.05rem; line-height: 1.65; color: var(--gh-ink); max-width: 42rem; margin-top: 2rem;">
+        We stay close to home so we can keep response times honest. If you're in one of the towns below, you're in our service area. If you're outside it — call anyway. We may know someone good.
+      </p>
+    </div>
+  </section>
+
+  <!-- Cities -->
+  <section style="padding: 4rem 1.5rem 6rem; background: var(--gh-bg);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <hr class="gh-rule-strong" style="margin-bottom: 3rem;" />
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--gh-line); border: 2px solid var(--gh-line);">
+        {business.serviceArea.map((city, i) => {
+          const d = cityDetail[city];
+          return (
+            <article class={`gh-reveal gh-reveal-${i % 4}`} style="background: var(--gh-bg); padding: 2.25rem 2rem; display: grid; grid-template-columns: 1fr; gap: 1rem;">
+              <header style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1rem;">
+                <h2 class="gh-display" style="font-size: clamp(1.85rem, 3.5vw, 2.5rem); color: var(--gh-ink); line-height: 1;">{city}</h2>
+                <span class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.18em; color: var(--gh-muted); text-transform: uppercase;">{d?.county}</span>
+              </header>
+              <p class="gh-mono" style="font-size: 0.7rem; letter-spacing: 0.12em; color: var(--gh-orange); text-transform: uppercase;">ZIP / {d?.zips}</p>
+              <p style="font-size: 0.92rem; line-height: 1.65; color: var(--gh-muted);">{d?.note}</p>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- Outside service area block -->
+      <div class="gh-reveal" style="margin-top: 4rem; padding: 2.5rem; background: var(--gh-ink); color: var(--gh-bg); border: 2px solid var(--gh-line);">
+        <p class="gh-section-num" style="color: var(--gh-orange);">OUTSIDE OUR ZONE?</p>
+        <h3 class="gh-display" style="font-size: clamp(1.75rem, 3vw, 2.25rem); color: var(--gh-bg); margin-top: 1rem;">
+          We'll still pick up the phone.
+        </h3>
+        <p style="margin-top: 1rem; color: rgba(255,255,255,0.7); line-height: 1.65; max-width: 50rem;">
+          If you're in Hall County or one of the surrounding counties but not on the list, call us. We may be able to make it work, or point you toward someone we trust.
+        </p>
+        <a href={`tel:${business.phoneDigits}`} class="gh-btn gh-btn-orange" style="margin-top: 1.75rem;">
+          ◉ Call {business.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</GHvacLayout>

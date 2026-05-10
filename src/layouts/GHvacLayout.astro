@@ -1,0 +1,352 @@
+---
+import "../styles/global.css";
+import { business, nav } from "../pages/mockups/gainesville-hvac/_business";
+
+interface Props {
+  title?: string;
+  description?: string;
+  page?: string;
+}
+const {
+  title = `${business.name} — ${business.tagline}`,
+  description = `${business.name} — heating and cooling repair, installation, and maintenance for Gainesville and the surrounding North Georgia area. Licensed, insured, and locally owned since ${business.established}.`,
+  page = "",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --gh-bg:        #F4EFE6;  /* warm bone */
+        --gh-bg-2:      #ECE4D5;  /* deeper bone */
+        --gh-paper:     #FBF8F1;  /* paper highlight */
+        --gh-ink:       #14181F;  /* near-black */
+        --gh-steel:     #2A323F;  /* deep gunmetal */
+        --gh-steel-2:   #3F4A5C;
+        --gh-muted:     #6E6960;
+        --gh-line:      #1A1F28;  /* hard line color */
+        --gh-rule:      #C7BEA8;  /* soft rule */
+        --gh-orange:    #DD4B1A;  /* heritage safety orange */
+        --gh-orange-2:  #B83A12;
+        --font-display: 'Big Shoulders Display', 'Impact', sans-serif;
+        --font-body:    'Manrope', system-ui, sans-serif;
+        --font-mono:    'JetBrains Mono', 'Menlo', monospace;
+      }
+      html, body { background: var(--gh-bg); }
+      body {
+        color: var(--gh-ink);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+      }
+      .gh-display { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.005em; line-height: 0.9; text-transform: uppercase; }
+      .gh-mono { font-family: var(--font-mono); }
+
+      /* Marquee ticker */
+      .gh-ticker {
+        background: var(--gh-ink);
+        color: var(--gh-bg);
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        padding: 0.45rem 0;
+        overflow: hidden;
+        border-bottom: 2px solid var(--gh-orange);
+      }
+      .gh-ticker-track {
+        display: inline-flex;
+        gap: 3rem;
+        white-space: nowrap;
+        animation: gh-ticker-scroll 38s linear infinite;
+        padding-left: 3rem;
+      }
+      .gh-ticker-track > span:nth-child(odd)::before {
+        content: "◉ ";
+        color: var(--gh-orange);
+      }
+      @keyframes gh-ticker-scroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+
+      /* Section number */
+      .gh-section-num {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        color: var(--gh-orange);
+      }
+
+      /* Spec block — used for trust signals + small data callouts */
+      .gh-spec {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .gh-spec-label { color: var(--gh-muted); display: block; }
+      .gh-spec-value { color: var(--gh-ink); display: block; font-weight: 600; margin-top: 0.2rem; }
+
+      /* Hard horizontal rule */
+      .gh-rule { border: none; border-top: 1px solid var(--gh-rule); height: 0; margin: 0; }
+      .gh-rule-strong { border-top: 2px solid var(--gh-line); }
+
+      /* Crosshatch background */
+      .gh-hatch {
+        background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgba(20,24,31,0.04) 6px 7px);
+      }
+
+      /* Buttons */
+      .gh-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 0.95rem 1.6rem;
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        border: 2px solid var(--gh-ink);
+        background: var(--gh-ink);
+        color: var(--gh-bg);
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 0.15s ease, background 0.15s, color 0.15s;
+      }
+      .gh-btn:hover { background: var(--gh-orange); border-color: var(--gh-orange); transform: translate(2px, -2px); }
+      .gh-btn-orange { background: var(--gh-orange); border-color: var(--gh-orange); }
+      .gh-btn-orange:hover { background: var(--gh-ink); border-color: var(--gh-ink); }
+      .gh-btn-ghost { background: transparent; color: var(--gh-ink); }
+      .gh-btn-ghost:hover { background: var(--gh-ink); color: var(--gh-bg); }
+
+      /* Nav */
+      .gh-nav-link {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--gh-ink);
+        text-decoration: none;
+        position: relative;
+        padding: 0.4rem 0;
+      }
+      .gh-nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0; right: 0; bottom: -2px;
+        height: 2px;
+        background: var(--gh-orange);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+      .gh-nav-link:hover::after, .gh-nav-link[data-active]::after { transform: scaleX(1); }
+
+      /* Mobile menu */
+      .gh-mobile-panel { display: none; }
+      .gh-mobile-panel.is-open { display: block; }
+      .gh-mobile-toggle { background: transparent; border: 2px solid var(--gh-ink); color: var(--gh-ink); padding: 0.5rem 0.75rem; cursor: pointer; }
+      @media (min-width: 900px) {
+        .gh-mobile-toggle, .gh-mobile-panel { display: none !important; }
+      }
+      @media (max-width: 899px) {
+        .gh-nav-desktop { display: none !important; }
+      }
+
+      /* Reveal */
+      .gh-reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+      .gh-reveal.is-visible { opacity: 1; transform: none; }
+      .gh-reveal-1 { transition-delay: 0.08s; }
+      .gh-reveal-2 { transition-delay: 0.16s; }
+      .gh-reveal-3 { transition-delay: 0.24s; }
+      .gh-reveal-4 { transition-delay: 0.32s; }
+
+      /* Sticky call-bar (mobile) */
+      .gh-callbar {
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        background: var(--gh-orange);
+        color: var(--gh-bg);
+        padding: 0.85rem 1rem;
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        text-align: center;
+        text-decoration: none;
+        border-top: 2px solid var(--gh-ink);
+        z-index: 100;
+        display: block;
+      }
+      @media (min-width: 900px) {
+        .gh-callbar { display: none; }
+      }
+      body { padding-bottom: 64px; }
+      @media (min-width: 900px) {
+        body { padding-bottom: 0; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Top ticker -->
+    <div class="gh-ticker" role="complementary" aria-label="Service notices">
+      <div class="gh-ticker-track">
+        <span>24/7 EMERGENCY SERVICE</span>
+        <span>LICENSED &amp; INSURED</span>
+        <span>{business.licenseNumber}</span>
+        <span>EST. {business.established}</span>
+        <span>NATE-CERTIFIED TECHS</span>
+        <span>FINANCING AVAILABLE</span>
+        <span>FREE ESTIMATES</span>
+        <span>LOCALLY OWNED</span>
+        <!-- duplicate for seamless loop -->
+        <span>24/7 EMERGENCY SERVICE</span>
+        <span>LICENSED &amp; INSURED</span>
+        <span>{business.licenseNumber}</span>
+        <span>EST. {business.established}</span>
+        <span>NATE-CERTIFIED TECHS</span>
+        <span>FINANCING AVAILABLE</span>
+        <span>FREE ESTIMATES</span>
+        <span>LOCALLY OWNED</span>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header style="background: var(--gh-bg); border-bottom: 2px solid var(--gh-line); position: sticky; top: 0; z-index: 50;">
+      <div style="max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 76px; gap: 2rem;">
+        <a href="/mockups/gainesville-hvac/" style="text-decoration: none; color: var(--gh-ink); display: flex; align-items: center; gap: 0.85rem; flex-shrink: 0;">
+          <span aria-hidden="true" style="display: inline-block; width: 36px; height: 36px; background: var(--gh-orange); position: relative; transform: rotate(45deg);">
+            <span style="position: absolute; inset: 6px; background: var(--gh-bg);"></span>
+            <span style="position: absolute; inset: 11px; background: var(--gh-ink);"></span>
+          </span>
+          <span style="display: flex; flex-direction: column; line-height: 1;">
+            <span class="gh-display" style="font-size: 1.15rem;">{business.shortName}</span>
+            <span class="gh-mono" style="font-size: 0.55rem; letter-spacing: 0.18em; color: var(--gh-muted); margin-top: 3px;">SERVICES — GAINESVILLE, GA</span>
+          </span>
+        </a>
+
+        <nav class="gh-nav-desktop" style="display: flex; align-items: center; gap: 1.85rem;" aria-label="Primary">
+          {nav.map((n) => (
+            <a href={n.href} class="gh-nav-link" data-active={page === n.label || undefined}>{n.label}</a>
+          ))}
+        </nav>
+
+        <a href={`tel:${business.phoneDigits}`} class="gh-nav-desktop" style="display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--gh-ink); padding-left: 1.5rem; border-left: 1px solid var(--gh-rule);">
+          <span style="font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; color: var(--gh-muted); text-transform: uppercase;">CALL DIRECT</span>
+          <span class="gh-display" style="font-size: 1.4rem; color: var(--gh-orange);">{business.phone}</span>
+        </a>
+
+        <button id="ghNavToggle" class="gh-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="ghMobilePanel">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div id="ghMobilePanel" class="gh-mobile-panel" style="border-top: 2px solid var(--gh-line); background: var(--gh-bg);">
+        <nav style="padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 1rem;" aria-label="Mobile">
+          {nav.map((n) => (
+            <a href={n.href} class="gh-nav-link" data-active={page === n.label || undefined}>{n.label}</a>
+          ))}
+          <a href={`tel:${business.phoneDigits}`} class="gh-btn gh-btn-orange" style="margin-top: 0.5rem; align-self: flex-start;">
+            Call {business.phone}
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: var(--gh-ink); color: var(--gh-bg); padding: 4rem 1.5rem 2rem; margin-top: 5rem;">
+      <div style="max-width: 1280px; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem 2rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.12);">
+
+          <div>
+            <p class="gh-display" style="font-size: 1.5rem; color: var(--gh-bg);">{business.shortName}</p>
+            <p class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.5); margin-top: 0.4rem; text-transform: uppercase;">SERVICES — EST. {business.established}</p>
+            <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.6); font-size: 0.85rem; line-height: 1.65;">
+              Heating, cooling, and indoor air quality for North Georgia homes and small businesses. Locally owned since {business.established}.
+            </p>
+          </div>
+
+          <div>
+            <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.45); margin-bottom: 1rem;">CONTACT</p>
+            <a href={`tel:${business.phoneDigits}`} class="gh-display" style="font-size: 1.85rem; color: var(--gh-orange); text-decoration: none; display: block;">{business.phone}</a>
+            <a href={`mailto:${business.email}`} style="color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none; display: inline-block; margin-top: 0.5rem;">{business.email}</a>
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-top: 1rem;">{business.address.city}, {business.address.state} {business.address.zip}</p>
+          </div>
+
+          <div>
+            <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.45); margin-bottom: 1rem;">HOURS</p>
+            <p style="color: rgba(255,255,255,0.7); font-size: 0.85rem; line-height: 1.85;">
+              {business.hours.weekdays}<br/>
+              {business.hours.saturday}<br/>
+              {business.hours.sunday}<br/>
+              <span style="color: var(--gh-orange); font-weight: 600;">{business.hours.emergency}</span>
+            </p>
+          </div>
+
+          <div>
+            <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.45); margin-bottom: 1rem;">CREDENTIALS</p>
+            <ul style="list-style: none; padding: 0; margin: 0; color: rgba(255,255,255,0.7); font-size: 0.85rem; line-height: 1.85;">
+              <li>License {business.licenseNumber}</li>
+              {business.certifications.map((c) => <li>{c}</li>)}
+            </ul>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem 2rem; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+          <p class="gh-mono" style="font-size: 0.65rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.35); text-transform: uppercase;">© 2026 {business.name} · All rights reserved</p>
+          <p class="gh-mono" style="font-size: 0.6rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.25); text-transform: uppercase;">
+            Site preview by <a href="/" style="color: rgba(255,255,255,0.45); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.15);">Lanier Web</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <a href={`tel:${business.phoneDigits}`} class="gh-callbar">
+      ◉ Call {business.phone}
+    </a>
+
+    <script is:inline>
+      (function() {
+        var io = new IntersectionObserver(
+          function(entries) { entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('is-visible'); }); },
+          { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        );
+        document.querySelectorAll('.gh-reveal').forEach(function(el) { io.observe(el); });
+
+        var btn = document.getElementById('ghNavToggle');
+        var panel = document.getElementById('ghMobilePanel');
+        if (btn && panel) {
+          btn.addEventListener('click', function() {
+            var open = panel.classList.toggle('is-open');
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          });
+          panel.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+              panel.classList.remove('is-open');
+              btn.setAttribute('aria-expanded', 'false');
+            }
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

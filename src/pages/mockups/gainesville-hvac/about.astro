@@ -1,0 +1,121 @@
+---
+import GHvacLayout from "../../../layouts/GHvacLayout.astro";
+import { business } from "./_business";
+---
+
+<GHvacLayout title={`About — ${business.name}`} page="About">
+
+  <!-- Page header -->
+  <section style="padding: 5rem 1.5rem 3rem; background: var(--gh-bg);" class="gh-hatch">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <p class="gh-section-num gh-reveal">SECTION 03 / WHO WE ARE</p>
+      <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(3rem, 8vw, 7rem); color: var(--gh-ink); margin-top: 1rem; max-width: 14ch;">
+        Started in <span style="color: var(--gh-orange);">{business.established}</span>. Still <br/>here in 2026.
+      </h1>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section style="padding: 4rem 1.5rem; background: var(--gh-bg);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <hr class="gh-rule-strong" style="margin-bottom: 4rem;" />
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;" class="gh-about-split">
+
+        <div class="gh-reveal">
+          <p class="gh-section-num" style="margin-bottom: 1rem;">THE STORY</p>
+          <div style="font-size: 1.05rem; line-height: 1.75; color: var(--gh-ink); display: flex; flex-direction: column; gap: 1.25rem;">
+            <p>{business.name} started in {business.established} as a one-truck operation working out of a garage in Hall County. The job hasn't changed much: keep your house comfortable, charge what's fair, show up when we say we will.</p>
+            <p>What's grown is the team and the route. We now run a small fleet across Hall and the surrounding counties, with NATE-certified technicians who've been with us long enough to know each other's coffee orders.</p>
+            <p>We don't subcontract. Every truck that pulls up is one of ours. Every quote is ours. Every warranty call is ours. That's the difference between a company that picks up the phone and a company that disappears after the install.</p>
+          </div>
+        </div>
+
+        <aside class="gh-reveal gh-reveal-2" style="position: relative;">
+          <div style="position: relative; aspect-ratio: 4/5; overflow: hidden; border: 2px solid var(--gh-line);">
+            <img src="https://images.unsplash.com/photo-1545454675-3531b543be5d?w=1000&q=85" alt="HVAC technician working on commercial unit" style="width: 100%; height: 100%; object-fit: cover; filter: contrast(1.05) saturate(0.85);" />
+          </div>
+        </aside>
+
+        <style>
+          @media (min-width: 900px) {
+            .gh-about-split { grid-template-columns: 1.4fr 1fr !important; gap: 5rem !important; }
+          }
+        </style>
+      </div>
+    </div>
+  </section>
+
+  <!-- By the numbers -->
+  <section style="padding: 5rem 1.5rem; background: var(--gh-bg-2);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <p class="gh-section-num gh-reveal" style="margin-bottom: 1.5rem;">BY THE NUMBERS</p>
+      <h2 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(2.25rem, 5vw, 3.75rem); color: var(--gh-ink); margin-bottom: 3rem;">
+        Twelve years of <span style="color: var(--gh-orange);">field data.</span>
+      </h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0;">
+        {[
+          { num: "12+", label: "YEARS IN BUSINESS", note: "Since 2014" },
+          { num: "4,200+", label: "JOBS COMPLETED", note: "Through 2025" },
+          { num: "92%", label: "FIRST-CALL FIX RATE", note: "12-month avg" },
+          { num: "340+", label: "5-STAR REVIEWS", note: "Google + BBB" },
+          { num: "3.4 hr", label: "AVG RESPONSE TIME", note: "Routine calls" },
+          { num: "Under 60 min", label: "EMERGENCY RESPONSE", note: "Service area median" },
+          { num: "10 yr", label: "PARTS WARRANTY", note: "On installations" },
+          { num: "$0", label: "DIAGNOSTIC FEE", note: "For plan members" },
+        ].map((s, i) => (
+          <div class={`gh-reveal gh-reveal-${i % 4}`} style="padding: 2rem 1.5rem; border-right: 1px solid var(--gh-rule); border-bottom: 1px solid var(--gh-rule); background: var(--gh-bg);">
+            <p class="gh-display" style="font-size: clamp(2rem, 3.5vw, 2.85rem); color: var(--gh-ink); line-height: 1;">{s.num}</p>
+            <p class="gh-spec gh-spec-label" style="margin-top: 1rem;">{s.label}</p>
+            <p style="font-size: 0.8rem; color: var(--gh-muted); margin-top: 0.4rem;">{s.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section style="padding: 5rem 1.5rem; background: var(--gh-bg);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <div class="gh-reveal" style="margin-bottom: 3rem;">
+        <p class="gh-section-num" style="margin-bottom: 1rem;">CREDENTIALS</p>
+        <h2 class="gh-display" style="font-size: clamp(2.25rem, 5vw, 3.75rem); color: var(--gh-ink); max-width: 18ch;">
+          Licensed, certified, and insured. The way it should be.
+        </h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr; gap: 0; border: 2px solid var(--gh-line);">
+        {[
+          { num: "01", title: "Georgia Conditioned Air License", body: `License ${business.licenseNumber}. Required by Georgia state law for any HVAC contractor working on residential or commercial systems. Full insurance and bond on file.` },
+          { num: "02", title: "EPA Section 608 Certification", body: "Federal certification required to handle refrigerants. Every technician on our team holds at least a Universal certification — the highest tier." },
+          { num: "03", title: "NATE Certified Technicians", body: "North American Technician Excellence certification, the industry standard for HVAC competency. Recertified every two years across both heating and air conditioning." },
+          { num: "04", title: "Manufacturer Authorized — Carrier, Trane, Rheem, Lennox", body: "Authorized installation partner for the major equipment manufacturers. Means warranty work goes smoothly and you get factory-backed pricing on parts." },
+          { num: "05", title: "BBB Accredited — A+ Rating", body: "Twelve years on file with the Better Business Bureau. Zero unresolved complaints." },
+        ].map((c, i) => (
+          <div class={`gh-reveal gh-reveal-${i % 3}`} style="display: grid; grid-template-columns: 60px 1fr; gap: 1.5rem; padding: 2rem 1.5rem; border-bottom: 1px solid var(--gh-rule); background: var(--gh-bg);">
+            <span class="gh-display" style="font-size: 2rem; color: var(--gh-orange); line-height: 1;">{c.num}</span>
+            <div>
+              <h3 class="gh-display" style="font-size: 1.4rem; color: var(--gh-ink); margin-bottom: 0.6rem;">{c.title}</h3>
+              <p style="font-size: 0.92rem; line-height: 1.65; color: var(--gh-muted);">{c.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="padding: 5rem 1.5rem; background: var(--gh-orange); color: var(--gh-ink); position: relative; overflow: hidden;">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background-image: repeating-linear-gradient(135deg, transparent 0 14px, rgba(20,24,31,0.06) 14px 15px); pointer-events: none;"></div>
+    <div style="max-width: 800px; margin: 0 auto; text-align: center; position: relative;">
+      <h2 class="gh-display gh-reveal" style="font-size: clamp(2.5rem, 6vw, 4.5rem); color: var(--gh-ink);">
+        Now you know us. Let's hear from you.
+      </h2>
+      <a href={`tel:${business.phoneDigits}`} class="gh-btn gh-reveal gh-reveal-1" style="margin-top: 2.5rem;">
+        ◉ Call {business.phone}
+      </a>
+    </div>
+  </section>
+
+</GHvacLayout>

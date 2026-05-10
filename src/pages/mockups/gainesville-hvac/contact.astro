@@ -1,0 +1,179 @@
+---
+import GHvacLayout from "../../../layouts/GHvacLayout.astro";
+import { business } from "./_business";
+---
+
+<GHvacLayout title={`Contact — ${business.name}`} page="Contact">
+
+  <!-- Page header -->
+  <section style="padding: 5rem 1.5rem 3rem; background: var(--gh-bg);" class="gh-hatch">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <p class="gh-section-num gh-reveal">SECTION 04 / GET IN TOUCH</p>
+      <h1 class="gh-display gh-reveal gh-reveal-1" style="font-size: clamp(3rem, 8vw, 7rem); color: var(--gh-ink); margin-top: 1rem; max-width: 14ch;">
+        Phone first.<br/><span style="color: var(--gh-orange);">Form's fine too.</span>
+      </h1>
+      <p class="gh-reveal gh-reveal-2" style="font-size: 1.05rem; line-height: 1.65; color: var(--gh-ink); max-width: 38rem; margin-top: 2rem;">
+        Real person picks up — no phone tree, no offshore call center. If we're on a job site, leave a voicemail and we call back the same day.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact methods -->
+  <section style="padding: 4rem 1.5rem; background: var(--gh-bg);">
+    <div style="max-width: 1280px; margin: 0 auto;">
+      <hr class="gh-rule-strong" style="margin-bottom: 3rem;" />
+
+      <!-- Big phone callout -->
+      <div class="gh-reveal" style="background: var(--gh-ink); color: var(--gh-bg); padding: 3rem 2rem; text-align: center; margin-bottom: 4rem; position: relative; overflow: hidden;">
+        <div aria-hidden="true" style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--gh-orange);"></div>
+        <p class="gh-spec gh-spec-label" style="color: rgba(255,255,255,0.5);">CALL US — FASTEST WAY</p>
+        <a href={`tel:${business.phoneDigits}`} class="gh-display" style="display: block; font-size: clamp(3rem, 9vw, 6rem); color: var(--gh-orange); text-decoration: none; margin: 1rem 0; letter-spacing: 0.02em;">
+          {business.phone}
+        </a>
+        <p class="gh-mono" style="font-size: 0.75rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); text-transform: uppercase;">
+          {business.hours.weekdays}  ·  {business.hours.saturday}  ·  {business.hours.emergency}
+        </p>
+      </div>
+
+      <!-- Form + info split -->
+      <div style="display: grid; grid-template-columns: 1fr; gap: 3rem;" class="gh-contact-split">
+
+        <!-- Form -->
+        <div class="gh-reveal">
+          <p class="gh-section-num" style="margin-bottom: 1rem;">REQUEST SERVICE</p>
+          <h2 class="gh-display" style="font-size: 2rem; color: var(--gh-ink); margin-bottom: 2rem;">Tell us what's going on.</h2>
+
+          <form id="ghForm" action="#" method="post" novalidate style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <!-- Honeypot -->
+            <div style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;" aria-hidden="true">
+              <label for="gh_website">Leave this field empty</label>
+              <input type="text" id="gh_website" name="_gotcha" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div>
+              <label for="gh_name" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">NAME</label>
+              <input type="text" id="gh_name" name="name" required maxlength="100" autocomplete="name" placeholder="Your name"
+                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;" />
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div>
+                <label for="gh_phone" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">PHONE</label>
+                <input type="tel" id="gh_phone" name="phone" required maxlength="20" autocomplete="tel" placeholder="(770) 555-0100"
+                  style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;" />
+              </div>
+              <div>
+                <label for="gh_email" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">EMAIL</label>
+                <input type="email" id="gh_email" name="email" maxlength="254" autocomplete="email" placeholder="optional"
+                  style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;" />
+              </div>
+            </div>
+
+            <div>
+              <label for="gh_city" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">CITY</label>
+              <input type="text" id="gh_city" name="city" required maxlength="60" autocomplete="address-level2" placeholder="Gainesville, Oakwood, Cumming…"
+                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;" />
+            </div>
+
+            <div>
+              <label for="gh_service" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">WHAT DO YOU NEED?</label>
+              <select id="gh_service" name="service" required
+                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none;">
+                <option value="">— Pick the closest —</option>
+                <option>AC not cooling / not running</option>
+                <option>Heat not working</option>
+                <option>Strange noises or smells</option>
+                <option>Quote — new system</option>
+                <option>Maintenance plan info</option>
+                <option>Indoor air quality</option>
+                <option>Other / not sure</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="gh_notes" class="gh-spec gh-spec-label" style="margin-bottom: 0.5rem;">DESCRIBE THE PROBLEM</label>
+              <textarea id="gh_notes" name="notes" rows="5" maxlength="3000" placeholder="When did it start? What's it doing? Anything we should know before we head out?"
+                style="width: 100%; background: var(--gh-paper); border: 2px solid var(--gh-line); padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 0.95rem; color: var(--gh-ink); outline: none; resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" class="gh-btn gh-btn-orange" style="justify-content: center; padding: 1.15rem 1.6rem;">
+              ◉ Send Request
+            </button>
+            <p id="ghFormSuccess" class="gh-mono" style="display: none; font-size: 0.75rem; letter-spacing: 0.12em; color: var(--gh-orange); text-transform: uppercase; text-align: center;">
+              ✓ MOCKUP — your real site would email this to you instantly.
+            </p>
+          </form>
+        </div>
+
+        <!-- Info sidebar -->
+        <aside class="gh-reveal gh-reveal-2" style="display: flex; flex-direction: column; gap: 2rem;">
+
+          <div style="background: var(--gh-bg-2); border: 2px solid var(--gh-line); padding: 1.75rem;">
+            <p class="gh-section-num" style="margin-bottom: 1.25rem;">DIRECT CONTACT</p>
+            <p class="gh-spec gh-spec-label">PHONE</p>
+            <a href={`tel:${business.phoneDigits}`} class="gh-display" style="display: block; font-size: 1.85rem; color: var(--gh-orange); text-decoration: none; margin: 0.4rem 0 1.25rem;">{business.phone}</a>
+            <p class="gh-spec gh-spec-label">EMAIL</p>
+            <a href={`mailto:${business.email}`} style="display: block; color: var(--gh-ink); text-decoration: none; margin-top: 0.4rem; font-weight: 600;">{business.email}</a>
+          </div>
+
+          <div style="background: var(--gh-bg-2); border: 2px solid var(--gh-line); padding: 1.75rem;">
+            <p class="gh-section-num" style="margin-bottom: 1.25rem;">HOURS OF OPERATION</p>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+              <li style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding-bottom: 0.75rem; border-bottom: 1px dashed var(--gh-rule);">
+                <span class="gh-mono" style="font-size: 0.78rem; color: var(--gh-muted); letter-spacing: 0.1em; text-transform: uppercase;">Mon–Fri</span>
+                <span style="color: var(--gh-ink); font-weight: 600;">8:00 am – 6:00 pm</span>
+              </li>
+              <li style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding-bottom: 0.75rem; border-bottom: 1px dashed var(--gh-rule);">
+                <span class="gh-mono" style="font-size: 0.78rem; color: var(--gh-muted); letter-spacing: 0.1em; text-transform: uppercase;">Saturday</span>
+                <span style="color: var(--gh-ink); font-weight: 600;">9:00 am – 3:00 pm</span>
+              </li>
+              <li style="display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding-bottom: 0.75rem; border-bottom: 1px dashed var(--gh-rule);">
+                <span class="gh-mono" style="font-size: 0.78rem; color: var(--gh-muted); letter-spacing: 0.1em; text-transform: uppercase;">Sunday</span>
+                <span style="color: var(--gh-ink); font-weight: 600;">By appointment</span>
+              </li>
+              <li style="display: grid; grid-template-columns: 1fr auto; gap: 1rem;">
+                <span class="gh-mono" style="font-size: 0.78rem; color: var(--gh-orange); letter-spacing: 0.1em; text-transform: uppercase;">Emergency</span>
+                <span style="color: var(--gh-orange); font-weight: 700;">24 / 7</span>
+              </li>
+            </ul>
+          </div>
+
+          <div style="background: var(--gh-ink); color: var(--gh-bg); border: 2px solid var(--gh-line); padding: 1.75rem;">
+            <p class="gh-section-num" style="color: var(--gh-orange); margin-bottom: 1rem;">EMERGENCY?</p>
+            <h3 class="gh-display" style="font-size: 1.5rem; color: var(--gh-bg); margin-bottom: 0.85rem;">Skip the form. Call.</h3>
+            <p style="font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.55; margin-bottom: 1.25rem;">
+              No heat in January. No AC in July. Smell of gas. Anything that can't wait — call directly. We answer 24/7.
+            </p>
+            <a href={`tel:${business.phoneDigits}`} class="gh-btn gh-btn-orange">
+              ◉ Call now
+            </a>
+          </div>
+        </aside>
+
+        <style>
+          @media (min-width: 900px) {
+            .gh-contact-split { grid-template-columns: 1.6fr 1fr !important; gap: 4rem !important; }
+          }
+        </style>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function() {
+      var form = document.getElementById('ghForm');
+      var success = document.getElementById('ghFormSuccess');
+      if (form && success) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var honey = form.querySelector('input[name="_gotcha"]');
+          if (honey && honey.value) return;
+          form.reset();
+          success.style.display = 'block';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      }
+    })();
+  </script>
+
+</GHvacLayout>
