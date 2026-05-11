@@ -185,7 +185,42 @@ const schedule = [
         .fz-reveal { opacity: 1; transform: none; transition: none; }
       }
 
-      input::placeholder, textarea::placeholder, select { color: var(--fz-muted); opacity: 0.85; }
+      input::placeholder, textarea::placeholder { color: var(--fz-muted); opacity: 0.85; }
+
+      /* Normalize date / select inputs across iOS Safari / Chrome / Firefox */
+      input[type="date"], input[type="time"], select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        min-height: 50px;             /* match text input visual height */
+        line-height: 1.2;
+        text-align: left;
+        background-image: none;
+        cursor: pointer;
+      }
+      /* Pull dropdown arrow back in via a CSS chevron so select doesn't look bare */
+      select {
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A0A0A' stroke-width='2.5'><polyline points='6 9 12 15 18 9'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 0.85rem center;
+        background-size: 16px;
+        padding-right: 2.4rem !important;
+      }
+      /* Style the calendar icon on date inputs (Webkit / Blink) */
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        opacity: 0.7;
+        margin-left: 4px;
+      }
+      input[type="date"]::-webkit-date-and-time-value {
+        text-align: left;
+        min-height: 1.2em;
+      }
+      /* iOS shows mm/dd/yyyy placeholder text in light gray that's hard to read on pink — boost contrast */
+      input[type="date"]:not(:focus):invalid::-webkit-datetime-edit {
+        color: var(--fz-muted);
+        opacity: 0.85;
+      }
 
       /* Schedule rows — day + time on top, location below; consistent across all sizes */
       .fz-sched-head {
