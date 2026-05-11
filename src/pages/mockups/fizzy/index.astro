@@ -95,7 +95,8 @@ const schedule = [
         color: var(--fz-ink);
         line-height: 1;
         text-transform: uppercase;
-        letter-spacing: 0.02em;
+        letter-spacing: -0.02em;
+        white-space: nowrap; /* Keeps FIZZY on one line */
       }
 
       /* Buttons */
@@ -251,7 +252,12 @@ const schedule = [
   <body>
 
     <!-- Today's location sticky banner — values get hot-swapped from /api/fizzy/location after page load -->
-    <div id="fzTodayBanner" style="background: var(--fz-yellow); color: var(--fz-ink); border-bottom: 3px solid var(--fz-ink); padding: 0.55rem 1rem; position: sticky; top: 0; z-index: 50;">
+    <!-- data-* attrs let the inline script read today's hours + schedule without a second fetch -->
+    <div id="fzTodayBanner"
+         data-today-hours={business.todayHours}
+         data-today-location={business.todayLocation}
+         data-schedule={JSON.stringify(schedule)}
+         style="background: var(--fz-yellow); color: var(--fz-ink); border-bottom: 3px solid var(--fz-ink); padding: 0.55rem 1rem; position: sticky; top: 0; z-index: 50;">
       <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 0.5rem 1rem; font-size: 0.85rem; font-weight: 700;">
         <span id="fzTodayTag" style="font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.15em; background: var(--fz-ink); color: var(--fz-yellow); padding: 0.2rem 0.55rem; border-radius: 4px;">TODAY</span>
         <span id="fzTodayLocation">📍 {business.todayLocation}</span>
@@ -719,35 +725,136 @@ const schedule = [
           })
           .catch(function () {});
 
-        // Hot-swap today's location from the admin-controlled API.
-        // Falls back silently to the static placeholder if the API is unreachable.
+        // Time-of-day banner: parses today's hours ("11am – 8pm") + the schedule
+        // and shows OPEN NOW / OPENS LATER / CLOSED based on the visitor's clock.
+        // Admin can still force CLOSED via /api/fizzy/location.
+        function fzParseTime(t) {
+          var m = String(t || '').toLowerCase().trim().match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/);
+          if (!m) return null;
+          var h = parseInt(m[1], 10);
+          var min = m[2] ? parseInt(m[2], 10) : 0;
+          if (m[3] === 'pm' && h !== 12) h += 12;
+          if (m[3] === 'am' && h === 12) h = 0;
+          return h * 60 + min;
+        }
+        function fzParseRange(s) {
+          if (!s) return null;
+          var parts = String(s).split(/\s*[–—−\-]\s*/);
+          if (parts.length !== 2) return null;
+          var o = fzParseTime(parts[0]);
+          var c = fzParseTime(parts[1]);
+          if (o == null || c == null) return null;
+          return { open: o, close: c };
+        }
+        function fzFormatTime(mins) {
+          var h = Math.floor(mins / 60), m = mins % 60;
+          var ampm = h >= 12 ? 'pm' : 'am';
+          var h12 = h % 12; if (h12 === 0) h12 = 12;
+          return h12 + (m ? ':' + (m < 10 ? '0' + m : m) : '') + ampm;
+        }
+        function fzNowMinutes() { var d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
+        function fzNextOpenFromSchedule(schedule) {
+          if (!Array.isArray(schedule)) return null;
+          for (var i = 1; i < schedule.length; i++) {
+            var s = schedule[i];
+            if (!s) continue;
+            if (s.booked) continue;
+            var r = fzParseRange(s.time);
+            if (r) return { day: s.day, spot: s.spot, time: s.time };
+          }
+          return null;
+        }
+
+        function fzApplyBanner(state) {
+          var banner = document.getElementById('fzTodayBanner');
+          var tag    = document.getElementById('fzTodayTag');
+          var loc    = document.getElementById('fzTodayLocation');
+          var sep    = document.getElementById('fzTodaySep');
+          var hrs    = document.getElementById('fzTodayHours');
+          var note   = document.getElementById('fzTodayNote');
+          var location = state.location || '';
+          var range    = fzParseRange(state.hours);
+          var schedule = state.schedule || [];
+          var now      = fzNowMinutes();
+
+          // Reset display
+          if (sep) sep.style.display = 'inline';
+          if (hrs) hrs.style.display = 'inline';
+
+          if (state.status === 'closed') {
+            if (banner) banner.style.background = '#FFE9EE';
+            if (tag) { tag.textContent = 'CLOSED'; tag.style.background = '#0A0A0A'; tag.style.color = '#FFE9EE'; }
+            if (loc) loc.textContent = location ? '🚫 ' + location : 'Not out today';
+            if (sep) sep.style.display = 'none';
+            if (hrs) hrs.style.display = 'none';
+          } else if (range && now < range.open) {
+            if (banner) banner.style.background = '#FFD93B';
+            if (tag) { tag.textContent = 'OPENS LATER'; tag.style.background = '#0A0A0A'; tag.style.color = '#FFD93B'; }
+            if (loc) loc.textContent = '📍 ' + location;
+            if (hrs) hrs.textContent = 'opens at ' + fzFormatTime(range.open);
+          } else if (range && now < range.close) {
+            if (banner) banner.style.background = '#FFD93B';
+            if (tag) { tag.textContent = 'OPEN NOW'; tag.style.background = '#0A0A0A'; tag.style.color = '#FFD93B'; }
+            if (loc) loc.textContent = '📍 ' + location;
+            if (hrs) hrs.textContent = 'until ' + fzFormatTime(range.close);
+          } else if (range) {
+            // Past close — show next open from schedule
+            var next = fzNextOpenFromSchedule(schedule);
+            if (banner) banner.style.background = '#FFE9EE';
+            if (tag) { tag.textContent = 'CLOSED'; tag.style.background = '#0A0A0A'; tag.style.color = '#FFE9EE'; }
+            if (next) {
+              if (loc) loc.textContent = '🚫 Closed for the night';
+              if (hrs) hrs.textContent = 'back ' + String(next.day).toLowerCase() + ' · ' + next.time + ' at ' + next.spot;
+            } else {
+              if (loc) loc.textContent = '🚫 Closed';
+              if (sep) sep.style.display = 'none';
+              if (hrs) hrs.style.display = 'none';
+            }
+          } else {
+            // Unparseable hours — fall back to raw display
+            if (banner) banner.style.background = '#FFD93B';
+            if (tag) { tag.textContent = 'TODAY'; tag.style.background = '#0A0A0A'; tag.style.color = '#FFD93B'; }
+            if (loc) loc.textContent = '📍 ' + location;
+            if (hrs) hrs.textContent = state.hours || '';
+          }
+
+          if (note) {
+            if (state.note) { note.textContent = '— ' + state.note; note.style.display = 'inline'; }
+            else { note.style.display = 'none'; }
+          }
+        }
+
+        // Read baked-in defaults from the banner's data attrs.
+        var fzBannerEl = document.getElementById('fzTodayBanner');
+        var fzSchedule = [];
+        try { fzSchedule = JSON.parse((fzBannerEl && fzBannerEl.dataset.schedule) || '[]'); } catch (e) {}
+        var fzState = {
+          location: (fzBannerEl && fzBannerEl.dataset.todayLocation) || '',
+          hours:    (fzBannerEl && fzBannerEl.dataset.todayHours) || '',
+          status:   'open',
+          note:     '',
+          schedule: fzSchedule,
+        };
+        fzApplyBanner(fzState);
+
+        // Hot-swap from the admin-controlled API. Admin can override status/hours/location.
         fetch('/api/fizzy/location', { credentials: 'same-origin' })
           .then(function (r) { return r.ok ? r.json() : null; })
           .then(function (data) {
             if (!data) return;
-            var banner = document.getElementById('fzTodayBanner');
-            var tag    = document.getElementById('fzTodayTag');
-            var loc    = document.getElementById('fzTodayLocation');
-            var sep    = document.getElementById('fzTodaySep');
-            var hrs    = document.getElementById('fzTodayHours');
-            var note   = document.getElementById('fzTodayNote');
-            if (data.status === 'closed') {
-              if (banner) banner.style.background = '#FFE9EE';
-              if (tag) { tag.textContent = 'CLOSED'; tag.style.background = '#0A0A0A'; tag.style.color = '#FFE9EE'; }
-              if (loc) loc.textContent = data.location ? '🚫 ' + data.location : 'Not out today';
-              if (sep) sep.style.display = 'none';
-              if (hrs) hrs.style.display = 'none';
-            } else {
-              if (loc) loc.textContent = '📍 ' + (data.location || '');
-              if (hrs) hrs.textContent = data.hours || '';
-              if (!data.hours) { if (sep) sep.style.display = 'none'; if (hrs) hrs.style.display = 'none'; }
-            }
-            if (note && data.note) {
-              note.textContent = '— ' + data.note;
-              note.style.display = 'inline';
-            }
+            fzState = {
+              location: data.location || fzState.location,
+              hours:    data.hours    || fzState.hours,
+              status:   data.status   || 'open',
+              note:     data.note     || '',
+              schedule: fzSchedule,
+            };
+            fzApplyBanner(fzState);
           })
-          .catch(function () { /* silently keep static fallback */ });
+          .catch(function () { /* keep current state */ });
+
+        // Re-evaluate every minute so the banner flips OPEN↔CLOSED as time passes.
+        setInterval(function () { fzApplyBanner(fzState); }, 60000);
       })();
     </script>
 
