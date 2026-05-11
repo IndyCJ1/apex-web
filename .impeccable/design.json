@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-11T00:00:00Z",
+  "title": "Design System: Lanier Web",
+  "extensions": {
+    "colorMeta": {
+      "ember": {
+        "role": "primary",
+        "displayName": "Ember",
+        "canonical": "oklch(61% 0.24 39)",
+        "tonalRamp": [
+          "oklch(15% 0.08 39)",
+          "oklch(25% 0.12 39)",
+          "oklch(35% 0.16 39)",
+          "oklch(45% 0.20 39)",
+          "oklch(52% 0.22 39)",
+          "oklch(61% 0.24 39)",
+          "oklch(72% 0.18 39)",
+          "oklch(96% 0.02 39)"
+        ]
+      },
+      "ember-dark": {
+        "role": "primary-hover",
+        "displayName": "Ember Dark",
+        "canonical": "oklch(52% 0.22 39)",
+        "tonalRamp": []
+      },
+      "ember-light": {
+        "role": "primary-tint",
+        "displayName": "Ember Light",
+        "canonical": "oklch(96% 0.02 39)",
+        "tonalRamp": []
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface White",
+        "canonical": "oklch(99.5% 0.004 39)",
+        "tonalRamp": [
+          "oklch(8% 0 0)",
+          "oklch(20% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(49% 0 0)",
+          "oklch(67% 0 0)",
+          "oklch(80% 0 0)",
+          "oklch(91% 0 0)",
+          "oklch(97.5% 0 0)"
+        ]
+      },
+      "surface-off": {
+        "role": "neutral-alt",
+        "displayName": "Surface Off-White",
+        "canonical": "oklch(97.5% 0 0)",
+        "tonalRamp": []
+      },
+      "ink": {
+        "role": "neutral-dark",
+        "displayName": "Ink",
+        "canonical": "oklch(8% 0 0)",
+        "tonalRamp": []
+      },
+      "ink-deep": {
+        "role": "neutral-section",
+        "displayName": "Ink Deep",
+        "canonical": "oklch(12% 0 0)",
+        "tonalRamp": []
+      },
+      "muted": {
+        "role": "neutral-secondary-text",
+        "displayName": "Muted Gray",
+        "canonical": "oklch(49% 0 0)",
+        "tonalRamp": []
+      },
+      "faint": {
+        "role": "neutral-tertiary-text",
+        "displayName": "Faint Gray",
+        "canonical": "oklch(67% 0 0)",
+        "tonalRamp": []
+      },
+      "border": {
+        "role": "neutral-divider",
+        "displayName": "Border",
+        "canonical": "oklch(91% 0 0)",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headlines only. Max three lines. Line breaks set intentionally." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles: Services, Packages, Work, About, Contact." },
+      "title": { "displayName": "Title", "purpose": "Card headings, feature names, pricing tier names." },
+      "body": { "displayName": "Body", "purpose": "All descriptor copy. Max line length 65ch enforced at the container level." },
+      "label": { "displayName": "Label", "purpose": "Section eyebrow labels and form field labels. Always uppercase, always tracked." }
+    },
+    "shadows": [
+      {
+        "name": "hover-lift",
+        "value": "0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10)",
+        "purpose": "Interactive card hover. Always paired with translateY(-4px). Never applied at rest."
+      },
+      {
+        "name": "feature-emphasis",
+        "value": "0 25px 50px -12px rgba(0,0,0,0.25)",
+        "purpose": "Featured pricing card only. One instance per pricing layout. Never used for decoration."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-reveal",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Scroll reveal ease. Aggressive ease-out that settles with authority. Used on all .reveal transitions."
+      },
+      {
+        "name": "ease-state",
+        "value": "linear",
+        "purpose": "Color transitions on hover (200ms). Fast and direct."
+      },
+      {
+        "name": "reveal-duration",
+        "value": "650ms",
+        "purpose": "Duration for .reveal enter transitions."
+      },
+      {
+        "name": "stagger-step",
+        "value": "80ms",
+        "purpose": "Stagger increment for sibling .reveal elements (0.08s, 0.16s, 0.24s, 0.32s)."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main CTA. Ember fill, pill shape. Used wherever a single primary action is needed.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Get a Free Quote →</a>",
+      "css": "@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap'); .ds-btn-primary { display: inline-flex; align-items: center; background: #FF4500; color: #FFFFFF; padding: 16px 32px; border-radius: 9999px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px; font-weight: 700; text-decoration: none; transition: background 200ms; border: none; cursor: pointer; } .ds-btn-primary:hover { background: #CC3700; } .ds-btn-primary:focus-visible { outline: 2px solid #FF4500; outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Parallel non-primary action. Off-white fill, same pill shape. Sits beside a primary CTA.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">See Live Examples</a>",
+      "css": "@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap'); .ds-btn-secondary { display: inline-flex; align-items: center; background: #F7F7F7; color: #0D0D0D; padding: 16px 32px; border-radius: 9999px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px; font-weight: 700; text-decoration: none; transition: background 200ms; border: none; cursor: pointer; } .ds-btn-secondary:hover { background: #E5E5E5; } .ds-btn-secondary:focus-visible { outline: 2px solid #FF4500; outline-offset: 3px; }"
+    },
+    {
+      "name": "Dark Button",
+      "kind": "button",
+      "refersTo": "button-dark",
+      "description": "Used inside dark sections (About) or as the non-featured pricing card CTA. Hover shifts to Ember.",
+      "html": "<a class=\"ds-btn-dark\" href=\"#\">Let's Talk →</a>",
+      "css": "@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap'); .ds-btn-dark { display: inline-flex; align-items: center; background: #0D0D0D; color: #FFFFFF; padding: 16px 32px; border-radius: 9999px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 14px; font-weight: 700; text-decoration: none; transition: background 200ms; border: none; cursor: pointer; } .ds-btn-dark:hover { background: #FF4500; } .ds-btn-dark:focus-visible { outline: 2px solid #FF4500; outline-offset: 3px; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Numbered feature card. Flat at rest, lifts and shows Ember border on hover. Used in the Services section.",
+      "html": "<div class=\"ds-card-service\"><p class=\"ds-card-num\">01</p><h3 class=\"ds-card-title\">Designed around your customers</h3><p class=\"ds-card-body\">Built for what your visitors actually want to do — call, book, order, or stop in. No templates. No filler pages.</p></div>",
+      "css": "@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap'); .ds-card-service { background: #FFFFFF; border: 1px solid #E5E5E5; border-radius: 16px; padding: 32px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; transition: border-color 300ms, box-shadow 300ms, transform 300ms; cursor: default; } .ds-card-service:hover { border-color: rgba(255,69,0,0.3); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.10), 0 4px 6px -4px rgba(0,0,0,0.10); transform: translateY(-4px); } .ds-card-num { font-size: 48px; font-weight: 800; color: #E5E5E5; margin: 0 0 24px 0; line-height: 1; transition: color 300ms; } .ds-card-service:hover .ds-card-num { color: #FFF0EB; } .ds-card-title { font-size: 18px; font-weight: 700; color: #0D0D0D; margin: 0 0 12px 0; line-height: 1.4; } .ds-card-body { font-size: 14px; color: #737373; line-height: 1.625; margin: 0; }"
+    },
+    {
+      "name": "Featured Pricing Card",
+      "kind": "card",
+      "refersTo": "card-pricing-featured",
+      "description": "The highlighted Plus tier. Ink background, Ember badge and checkmarks. One per pricing layout.",
+      "html": "<div class=\"ds-card-featured\"><div class=\"ds-featured-badge\">Most Popular</div><p class=\"ds-featured-label\">Plus</p><div class=\"ds-featured-price\"><span class=\"ds-featured-amount\">$3,500</span><span class=\"ds-featured-suffix\">upfront</span></div><p class=\"ds-featured-monthly\">+ $125/mo hosting</p><ul class=\"ds-featured-list\"><li>Everything in Starter</li><li>Up to 10 pages</li><li>Blog or CMS</li></ul><a class=\"ds-featured-cta\" href=\"#\">See What's Included →</a></div>",
+      "css": "@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap'); .ds-card-featured { background: #0D0D0D; border-radius: 16px; padding: 32px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); transition: transform 300ms; } .ds-card-featured:hover { transform: translateY(-4px); } .ds-featured-badge { display: inline-flex; background: #FF4500; color: #FFFFFF; font-size: 10px; font-weight: 700; padding: 4px 12px; border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; } .ds-featured-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #FF4500; margin: 0 0 12px 0; } .ds-featured-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; } .ds-featured-amount { font-size: 48px; font-weight: 800; color: #FFFFFF; line-height: 1; } .ds-featured-suffix { font-size: 14px; color: rgba(255,255,255,0.5); } .ds-featured-monthly { font-size: 14px; color: rgba(255,255,255,0.5); margin: 0 0 24px 0; } .ds-featured-list { list-style: none; padding: 0; margin: 0 0 32px 0; } .ds-featured-list li { font-size: 14px; color: rgba(255,255,255,0.8); padding: 5px 0 5px 22px; position: relative; } .ds-featured-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 14px; height: 14px; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23FF4500' stroke-width='2.5' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M5 13l4 4L19 7'/%3E%3C/svg%3E\"); background-size: contain; background-repeat: no-repeat; } .ds-featured-cta { display: block; text-align: center; background: #FF4500; color: #FFFFFF; padding: 14px; border-radius: 9999px; font-size: 14px; font-weight: 700; text-decoration: none; transition: background 200ms; } .ds-featured-cta:hover { background: #CC3700; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Standard form field. Off-white fill, Ember border on focus. No glow ring.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-input-ex\">Name</label><input class=\"ds-input\" id=\"ds-input-ex\" type=\"text\" placeholder=\"Jane Smith\" /></div>",
+      "css": "@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap'); .ds-field { display: flex; flex-direction: column; gap: 8px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; } .ds-field-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #0D0D0D; } .ds-input { background: #F7F7F7; border: 1px solid #E5E5E5; border-radius: 12px; padding: 12px 16px; font-size: 14px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #0D0D0D; outline: none; transition: border-color 200ms; width: 100%; box-sizing: border-box; } .ds-input::placeholder { color: #A3A3A3; } .ds-input:focus { border-color: #FF4500; }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "custom",
+      "description": "Availability chip. Ember-tinted lozenge with pulsing dot. Hero signature element.",
+      "html": "<div class=\"ds-status-badge\"><span class=\"ds-status-dot\"></span>Booking new clients · Gainesville, GA</div>",
+      "css": ".ds-status-badge { display: inline-flex; align-items: center; gap: 8px; background: #FFF0EB; border: 1px solid rgba(255,69,0,0.2); border-radius: 9999px; padding: 8px 16px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 12px; font-weight: 600; color: #FF4500; text-transform: uppercase; letter-spacing: 0.1em; } .ds-status-dot { width: 6px; height: 6px; border-radius: 50%; background: #FF4500; animation: ds-pulse 2s ease-in-out infinite; flex-shrink: 0; } @keyframes ds-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }"
+    },
+    {
+      "name": "Section Header",
+      "kind": "custom",
+      "description": "Eyebrow label + headline. The consistent entry pattern for every section on the page.",
+      "html": "<div class=\"ds-section-header\"><p class=\"ds-eyebrow\">Services</p><h2 class=\"ds-headline\">What you get.</h2></div>",
+      "css": "@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&display=swap'); .ds-section-header { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; } .ds-eyebrow { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #FF4500; margin: 0 0 12px 0; } .ds-headline { font-size: clamp(2.25rem, 5vw, 3rem); font-weight: 800; color: #0D0D0D; line-height: 1.1; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Local Authority",
+    "overview": "Lanier Web's design system is built around one premise: the site itself is the most powerful sales tool in the business. A small-business owner opens lanierweb.com, sees precise typography, purposeful spacing, and a single strong accent used with restraint, and the argument for hiring Lanier Web is made before they read a word. The system communicates authority through what it doesn't do: no stock-photo hero, no gradient blob, no decorative card grid, no startup shimmer.\n\nThe aesthetic is the best-run business on the block — clean storefront, clear signage, nothing to prove. White is the default. Ink anchors structure. Ember fires sparingly, only where attention is genuinely required. The result feels settled, local, and competent — not hungry.\n\nThis system explicitly rejects the SaaS/Webflow showcase lane: dark backgrounds, glowing cards, gradient blobs, neon CTAs. That aesthetic signals 'I build for tech startups.' Lanier Web builds for restaurants, gyms, HVAC companies, and barbers.",
+    "keyCharacteristics": [
+      "Single typeface: Plus Jakarta Sans across every weight. No decorative type, no serifs.",
+      "One accent: Ember (#FF4500), used at under 10% of any surface. Rarity is the authority.",
+      "Flat by default: shadows appear only on hover or as structural emphasis on a single featured element.",
+      "White and off-white alternate between sections for rhythm without palette noise.",
+      "Pill-shaped buttons throughout: confident, current, consistent."
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Ember appears on 10% or less of any screen at any time. Its rarity is its authority. If a second element on the same view is asking for Ember, the first instance probably shouldn't have it.", "section": "colors" },
+      { "name": "The No-Decoration Rule", "body": "No color is used for atmosphere alone. Every Ember instance must point at something: a call to action, a status, an active state, a critical label. Background washes, gradient accents, and tinted hero sections are forbidden.", "section": "colors" },
+      { "name": "The Single Font Rule", "body": "Plus Jakarta Sans is the only typeface in this system. Adding a display serif or decorative mono would undercut The Local Authority — authority doesn't need styling tricks.", "section": "typography" },
+      { "name": "The Label Discipline Rule", "body": "Section eyebrow labels are always: text-xs font-bold uppercase tracking-[0.2em] text-ember mb-3. Input labels use text-ink instead — they describe fields, not sections. Never vary either pattern.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Cards, containers, and nav are flat at rest. Shadows are a state response, not a styling choice. A surface that starts with a shadow has nothing left to say on hover.", "section": "elevation" },
+      { "name": "The No Nested Cards Rule", "body": "Cards never contain cards. When a card section needs internal structure, use spacing and divider lines, not inner card frames.", "section": "components" }
+    ],
+    "dos": [
+      "Do use text-xs font-bold uppercase tracking-[0.2em] text-ember mb-3 for every section eyebrow label.",
+      "Do alternate section backgrounds between white (#FFFFFF) and off-white (#F7F7F7) for section rhythm.",
+      "Do use pill-shaped buttons (border-radius: 9999px) everywhere buttons appear.",
+      "Do keep Ember to under 10% of any given viewport.",
+      "Do cap body copy line length at 65ch via max-w-lg or max-w-xs containers.",
+      "Do pair hover:-translate-y-1 with hover:shadow-lg on interactive cards — lift and shadow always travel together.",
+      "Do use cubic-bezier(0.16, 1, 0.3, 1) for all enter animations. No bounce, no elastic, no spring.",
+      "Do use a single dark section break (Ink Deep, #1A1A1A) per page, maximum."
+    ],
+    "donts": [
+      "Don't use dark backgrounds, gradient blobs, glowing cards, or neon accent fills — this rejects the SaaS/Webflow showcase aesthetic.",
+      "Don't introduce a second typeface.",
+      "Don't use gradient text (background-clip: text).",
+      "Don't use border-left or border-right greater than 1px as a colored stripe accent on cards or list items.",
+      "Don't add shadows to surfaces at rest.",
+      "Don't fill large background areas with Ember — it is a signal color, not a surface color.",
+      "Don't add a second accent color.",
+      "Don't repeat heading text in the body copy beneath it — every word earns its place.",
+      "Don't use em dashes. Commas, colons, semicolons, or periods only.",
+      "Don't replicate the hero-metric template (big number, small label, gradient accent)."
+    ]
+  }
+}
