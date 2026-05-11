@@ -146,26 +146,13 @@ const packages = [
         Custom-built sites for local restaurants, gyms, contractors, and shops. Fast, mobile-first, and built to bring customers in. You run the business. I handle the rest.
       </p>
 
-      <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-3 mb-12 relative">
+      <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-3 relative">
         <a href="#work" class="bg-accent text-white px-8 py-4 font-bold text-sm rounded-full hover:bg-accent-dark transition-colors text-center">
           See Live Examples →
         </a>
         <a href="#contact" class="bg-off text-ink px-8 py-4 font-bold text-sm rounded-full hover:bg-border transition-colors text-center">
           Get a Free Quote
         </a>
-      </div>
-
-      <div class="reveal reveal-delay-4 grid grid-cols-3 gap-8 pt-10 border-t border-border max-w-lg relative">
-        {[
-          { n: "7", unit: "days", label: "avg. launch time" },
-          { n: "100", unit: "%", label: "mobile-first build" },
-          { n: "A+", unit: "", label: "page-speed score" },
-        ].map((s) => (
-          <div>
-            <div class="text-3xl font-extrabold text-ink leading-none">{s.n}<span class="text-accent">{s.unit}</span></div>
-            <div class="text-xs text-muted mt-1">{s.label}</div>
-          </div>
-        ))}
       </div>
     </div>
   </section>
@@ -217,16 +204,18 @@ const packages = [
         <p class="text-muted max-w-xs text-sm leading-relaxed">A site that works the way your customers actually use the internet, under one monthly plan.</p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-4">
+      <div class="divide-y divide-border border-t border-b border-border">
         {[
           { num: "01", title: "Designed around your customers", desc: "Built for what your visitors actually want to do: call, book, order, or stop in. No templates. No filler pages." },
           { num: "02", title: "Fast on every device", desc: "Cloudflare hosting and a modern build. Loads in under a second on any phone, any laptop, anywhere." },
           { num: "03", title: "Maintained every month", desc: "Edits, security patches, and content updates are part of your plan. No tickets, no surprise invoices, no out-of-date plugins." },
         ].map((svc, i) => (
-          <div class={`reveal reveal-delay-${i} bg-off rounded-2xl p-8 border border-border hover:border-accent/30 hover:shadow-lg transition-[border-color,box-shadow,transform] duration-300 group`}>
-            <p class="text-5xl font-extrabold text-border mb-6 group-hover:text-accent-light transition-colors">{svc.num}</p>
-            <h3 class="text-lg font-bold text-ink mb-3">{svc.title}</h3>
-            <p class="text-sm text-muted leading-relaxed">{svc.desc}</p>
+          <div class={`reveal reveal-delay-${i} flex gap-8 md:gap-16 py-10 group`}>
+            <span class="text-4xl font-extrabold text-border leading-none flex-shrink-0 w-12 pt-1 transition-colors group-hover:text-accent/20">{svc.num}</span>
+            <div>
+              <h3 class="text-lg font-bold text-ink mb-2 group-hover:text-accent transition-colors">{svc.title}</h3>
+              <p class="text-sm text-muted leading-relaxed max-w-2xl">{svc.desc}</p>
+            </div>
           </div>
         ))}
       </div>
