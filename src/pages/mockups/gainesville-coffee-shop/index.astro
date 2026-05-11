@@ -1,0 +1,1295 @@
+---
+// Gainesville Coffee Shop @ Lawrence Pharmacy — Starter tier mockup
+// SWAP before walking in: real menu items + prices, real photos of the counter,
+// confirm Stephen Adams is the contact (or get coffee-shop operator's name).
+import "../../../styles/global.css";
+
+const business = {
+  name: "The Coffee Shop",
+  host: "at Lawrence Pharmacy",
+  tagline: "Breakfast and lunch from the corner of Broad.",
+  pharmacyFounded: "1958",
+  pharmacyOwner: "Stephen Adams, RPh",
+  address: "631 Broad Street SE",
+  cityState: "Gainesville, GA 30501",
+  phone: "(770) 534-3231",
+  phoneDigits: "7705343231",
+  email: "info@gainesvillecoffeeshop.com",
+  chownow: "https://ordering.chownow.com/order/3192/locations",
+  sister: "Skogies at Gainesville Marina",
+};
+
+const hours = [
+  { day: "Monday",    open: "8 AM – 2 PM" },
+  { day: "Tuesday",   open: "8 AM – 2 PM" },
+  { day: "Wednesday", open: "8 AM – 2 PM" },
+  { day: "Thursday",  open: "8 AM – 2 PM" },
+  { day: "Friday",    open: "8 AM – 2 PM" },
+  { day: "Saturday",  open: "Closed",      closed: true },
+  { day: "Sunday",    open: "Closed",      closed: true },
+];
+
+// Menu pulled directly from their 2024 PDF (gainesvillecoffeeshop.com/wp/wp-content/uploads/2024/06/Menu-2024.pdf)
+// Breakfast served 8:00 – 11:00 am  ·  Lunch served 11:00 am – 2:00 pm
+const breakfast = [
+  { name: '"Cathead" biscuit with jelly',          desc: "",                                                                                                                                price: "$2.99" },
+  { name: "Bowl of Oatmeal",                       desc: "",                                                                                                                                price: "$3.99" },
+  { name: '"Cathead" biscuit with sausage gravy',  desc: "",                                                                                                                                price: "$3.99" },
+  { name: "One Egg",                               desc: "with toast & a side item",                                                                                                        price: "$3.99" },
+  { name: "Tot's Eggs in a Blanket",               desc: "two slices of toast with the centers cut out and filled with eggs to order",                                                       price: "$4.99" },
+  { name: "Two Eggs",                              desc: "with choice of meat, toast, and a side item",                                                                                      price: "$5.99" },
+  { name: "Breakfast Sandwich",                    desc: "choice of toast, meat, cheese & 2 eggs",                                                                                            price: "$5.99" },
+  { name: "Three Eggs",                            desc: "with choice of meat, toast, and a side item",                                                                                      price: "$6.99" },
+  { name: "Omelette · four fillings",              desc: "bacon, ham, sausage, tomato, peppers, jalapeños, mushrooms, onions, cheddar, American, pepperjack or Swiss · choice of bread & side · $0.99 each extra", price: "$7.99" },
+  { name: "Kai Kai Special",                       desc: "scrambled eggs with sausage, potatoes, peppers, onion, tomato, cheddar · served with toast",                                       price: "$7.99", flag: "house favorite" },
+  { name: "French Toast",                          desc: "with syrup · choice of bacon, ham or sausage",                                                                                     price: "$7.99" },
+  { name: "Buttermilk Pancakes",                   desc: "with syrup · choice of bacon, ham or sausage",                                                                                     price: "$7.99" },
+];
+
+const breakfastAlacarte = [
+  { name: "Biscuit, bacon, sausage, home fries, cheese grits or sausage gravy",  price: "$2.49" },
+  { name: "English muffin, white, wheat, rye toast, or one egg",                 price: "$1.49" },
+];
+
+const sandwiches = [
+  { name: "All-beef Hot Dog · plain or with slaw",  desc: "",                                                                          price: "$2.99" },
+  { name: "All-beef Chili or Cheese Dog",           desc: "",                                                                          price: "$3.49", flag: "house favorite" },
+  { name: "PB&J · Egg Salad · Pimento · Grilled Cheese", desc: "",                                                                     price: "$4.99" },
+  { name: "BLT",                                    desc: "bacon, lettuce, tomato, mayo · white or wheat",                              price: "$5.99" },
+  { name: "1/3 lb Black Angus Burger",              desc: "on a bun with choice of toppings & condiments",                              price: "$6.99" },
+  { name: "Veggie Burger",                          desc: "on a bun with choice of toppings & condiments",                              price: "$6.99" },
+  { name: "Grilled Chicken",                        desc: "on a bun with choice of toppings & condiments",                              price: "$6.99" },
+  { name: "Tuna Salad Sandwich",                    desc: "wheat, white, rye, or bun",                                                  price: "$6.99" },
+  { name: "Chicken Salad Sandwich",                 desc: "wheat, white, rye, or bun",                                                  price: "$6.99" },
+  { name: "Smoked Pulled Pork",                     desc: "Kaiser bun with dill pickle chips",                                          price: "$6.99" },
+  { name: "Blackjack Chicken",                      desc: "bacon, pepperjack, lettuce, tomato",                                         price: "$7.99" },
+  { name: "Patty Melt on Rye",                      desc: "two patties, grilled onions, American cheese, 1000 Island",                  price: "$7.99" },
+  { name: "Turkey Reuben on Rye",                   desc: "Swiss, sauerkraut, 1000 Island",                                             price: "$7.99" },
+  { name: "Smoked Ham Reuben on Rye",               desc: "Swiss, sauerkraut, 1000 Island",                                             price: "$7.99" },
+  { name: "Hot Sicilian on a Kaiser",               desc: "ham, pepperoni, provolone, lettuce, tomato, Italian dressing",               price: "$7.99" },
+  { name: "Roast Beef, Ham, or Turkey Melt",        desc: "Swiss, cheddar, or pepperjack · wheat or white",                              price: "$7.99" },
+  { name: "Philly Cheesesteak",                     desc: "grilled onions, peppers, choice of cheese",                                  price: "$8.99" },
+  { name: "Thai Steak on a Kaiser",                 desc: "grilled onions, sweet chili sauce, pepperjack",                              price: "$8.99" },
+  { name: "Grilled or Blackened Fish",              desc: "hoagie roll, lettuce, tomato, tartar sauce",                                 price: "$8.99" },
+  { name: "Club Sandwich",                          desc: "ham, turkey, bacon, cheddar · wheat or white · mayo, lettuce, tomato",       price: "$8.99" },
+  { name: "Italian Club",                           desc: "ham, pepperoni, provolone, lettuce, tomato · Italian dressing on side",      price: "$8.99" },
+  { name: "Cuban Sandwich",                         desc: "smoked ham, pulled pork, mustard, pickles · cuban bread",                    price: "$8.99" },
+  { name: "Grilled Crabcake BLT",                   desc: "Kaiser bun, lettuce, tomato, tartar sauce",                                  price: "$8.99" },
+];
+
+const soups = [
+  { name: "Chicken & Rice or Vegetable Beef Soup",  desc: "cup / bowl",  price: "$3.49 / $4.99" },
+  { name: "Homemade Chili",                         desc: "cup / bowl",  price: "$3.99 / $5.99" },
+  { name: "Seafood Gumbo",                          desc: "",            price: "$5.99" },
+];
+
+const salads = [
+  { name: "Side Salad",                            desc: "romaine, tomato, cucumber, onion, croutons, cheddar",                price: "$3.99" },
+  { name: "House Salad",                           desc: "a larger side salad",                                                price: "$5.99" },
+  { name: "Chicken or Tuna Salad on Romaine",      desc: "with tomatoes",                                                       price: "$6.99" },
+  { name: "Cold Plate",                            desc: "tuna or chicken salad, potato salad or coleslaw, tomato, cheese, Jello", price: "$7.99" },
+  { name: "Caesar Salad",                          desc: "romaine, caesar, parmesan, croutons",                                 price: "$7.99" },
+  { name: "Chef Salad",                            desc: "romaine, tomato, cucumber, croutons, ham, turkey, cheddar",          price: "$7.99" },
+];
+
+const drinks = [
+  { name: "Coffee",         desc: "free refills",    price: "$2.49" },
+  { name: "Hot Tea",        desc: "free refills",    price: "$2.49" },
+  { name: "Iced Tea",       desc: "free refills",    price: "$2.49" },
+  { name: "Soft Drinks",    desc: "free refills",    price: "$2.49" },
+  { name: "Orange Juice",   desc: "regular / large", price: "$2.49 / $3.49" },
+  { name: "Bottled Water",  desc: "",                price: "$2.49" },
+  { name: "Milk",           desc: "",                price: "$2.49" },
+];
+
+const sides = [
+  { name: "Coleslaw or Potato Salad",                                       desc: "sub for Ruffles with any sandwich + $1.00", price: "$2.49" },
+  { name: "Assorted Chips",                                                 desc: "",                                          price: "$1.49" },
+  { name: "Add bacon, mushrooms, onions, cheddar, pepperjack, or Swiss",    desc: "to any sandwich",                           price: "+$0.99" },
+];
+
+const testimonials = [
+  { quote: "The chili dog is exactly what you remember. I've been coming here since I was a kid riding shotgun on a prescription run.", name: "Robert L.", detail: "Regular since the '80s" },
+  { quote: "Best breakfast on Broad. The Counter Plate, sweet tea, and a wave from whoever's behind the register. Done by 9 AM.", name: "Marcy W.", detail: "Gainesville local" },
+  { quote: "I ordered delivery for the whole office. Showed up in 20 minutes, no minimum, no fees. Where does that still happen?", name: "Eli T.", detail: "Office manager" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="description" content="The Coffee Shop at Lawrence Pharmacy — breakfast, lunch, and free delivery in Gainesville, GA since 1958." />
+    <title>The Coffee Shop at Lawrence Pharmacy · Gainesville, GA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      :root {
+        --gcs-paper:    #FAF6EC;
+        --gcs-cream:    #F2E9D5;
+        --gcs-cream-2:  #E8DCC0;
+        --gcs-red:      #B5402E;
+        --gcs-red-2:    #8E2F22;
+        --gcs-green:    #3E5C46;
+        --gcs-green-2:  #2C4231;
+        --gcs-mustard:  #C99A2E;
+        --gcs-mustard-2:#A87E20;
+        --gcs-ink:      #1A1714;
+        --gcs-ink-2:    #2B2723;
+        --gcs-muted:    #6B6357;
+        --gcs-line:     rgba(26, 23, 20, 0.12);
+
+        --gcs-display:  'DM Serif Display', 'Cormorant Garamond', Georgia, serif;
+        --gcs-body:     'Inter', system-ui, -apple-system, sans-serif;
+        --gcs-script:   'Caveat', cursive;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      html, body { background: var(--gcs-paper); margin: 0; padding: 0; }
+      body {
+        color: var(--gcs-ink);
+        font-family: var(--gcs-body);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        min-height: 100vh;
+        width: 100%;
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4 { font-family: var(--gcs-display); font-weight: 400; letter-spacing: -0.015em; line-height: 1.1; margin: 0; }
+      p { margin: 0; }
+      a { color: inherit; }
+      img { display: block; max-width: 100%; height: auto; }
+      ::selection { background: var(--gcs-red); color: var(--gcs-paper); }
+      h1, h2, h3, p, li, span, a { overflow-wrap: anywhere; }
+
+      .gcs-display { font-family: var(--gcs-display); }
+      .gcs-script  { font-family: var(--gcs-script); }
+      .gcs-italic  { font-style: italic; }
+
+      /* ─── Header ─── */
+      .gcs-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        background: rgba(250, 246, 236, 0.94);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--gcs-line);
+      }
+      .gcs-header-inner {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0.9rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+      .gcs-logo {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+        text-decoration: none;
+        color: var(--gcs-ink);
+      }
+      .gcs-logo-main {
+        font-family: var(--gcs-display);
+        font-size: 1.4rem;
+        letter-spacing: -0.01em;
+      }
+      .gcs-logo-sub {
+        font-family: var(--gcs-body);
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gcs-muted);
+        margin-top: 0.3rem;
+      }
+      .gcs-nav { display: flex; gap: 1.75rem; align-items: center; }
+      .gcs-nav a {
+        font-family: var(--gcs-body);
+        font-size: 0.86rem;
+        font-weight: 600;
+        color: var(--gcs-ink-2);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .gcs-nav a:hover { color: var(--gcs-red); }
+      .gcs-header-phone {
+        font-family: var(--gcs-display);
+        font-size: 1rem;
+        color: var(--gcs-ink);
+        text-decoration: none;
+      }
+      .gcs-header-phone:hover { color: var(--gcs-red); }
+
+      /* ─── Buttons ─── */
+      .gcs-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        padding: 0.9rem 1.6rem;
+        font-family: var(--gcs-body);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: transform 0.15s, background 0.15s, color 0.15s, box-shadow 0.15s;
+        line-height: 1;
+      }
+      .gcs-btn-red    { background: var(--gcs-red); color: var(--gcs-paper); }
+      .gcs-btn-red:hover { background: var(--gcs-red-2); transform: translateY(-1px); }
+      .gcs-btn-green  { background: var(--gcs-green); color: var(--gcs-paper); }
+      .gcs-btn-green:hover { background: var(--gcs-green-2); transform: translateY(-1px); }
+      .gcs-btn-ink    { background: var(--gcs-ink); color: var(--gcs-paper); }
+      .gcs-btn-ink:hover { background: var(--gcs-ink-2); transform: translateY(-1px); }
+      .gcs-btn-ghost  { background: transparent; color: var(--gcs-ink); border: 1.5px solid var(--gcs-ink); }
+      .gcs-btn-ghost:hover { background: var(--gcs-ink); color: var(--gcs-paper); }
+      .gcs-btn-ghost-light { background: transparent; color: var(--gcs-paper); border: 1.5px solid var(--gcs-paper); }
+      .gcs-btn-ghost-light:hover { background: var(--gcs-paper); color: var(--gcs-ink); }
+      .gcs-btn-lg { padding: 1.1rem 1.85rem; font-size: 0.88rem; }
+
+      /* ─── Section utilities ─── */
+      .gcs-section { padding: 5.5rem 1.5rem; position: relative; width: 100%; }
+      .gcs-section-tight { padding: 3rem 1.5rem; }
+      .gcs-container {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .gcs-container-narrow {
+        width: 100%;
+        max-width: 920px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .gcs-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        font-family: var(--gcs-body);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gcs-red);
+        margin-bottom: 1rem;
+      }
+      .gcs-eyebrow::before,
+      .gcs-eyebrow::after {
+        content: "";
+        display: inline-block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--gcs-red);
+      }
+
+      .gcs-h2 { font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.02em; }
+      .gcs-h2 em { font-style: italic; color: var(--gcs-red); }
+
+      /* ─── Hero ─── */
+      .gcs-hero {
+        position: relative;
+        padding: 4.5rem 1.5rem 5.5rem;
+        background: var(--gcs-paper);
+        overflow: hidden;
+      }
+      .gcs-hero-grid {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .gcs-hero-est {
+        font-family: var(--gcs-script);
+        font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+        color: var(--gcs-red);
+        margin-bottom: 0.5rem;
+        line-height: 1;
+      }
+      .gcs-hero h1 {
+        font-family: var(--gcs-display);
+        font-size: clamp(2.6rem, 6.5vw, 5rem);
+        color: var(--gcs-ink);
+        line-height: 0.98;
+        letter-spacing: -0.02em;
+      }
+      .gcs-hero h1 em {
+        font-style: italic;
+        color: var(--gcs-red);
+      }
+      .gcs-hero-tag-row {
+        margin-top: 1.5rem;
+        display: flex;
+        gap: 1.25rem;
+        align-items: center;
+        font-family: var(--gcs-body);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gcs-green);
+      }
+      .gcs-hero-tag-row .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gcs-green); }
+      .gcs-hero p.lead {
+        font-family: var(--gcs-display);
+        font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+        color: var(--gcs-ink);
+        max-width: 520px;
+        margin-top: 1.75rem;
+        line-height: 1.5;
+        font-style: italic;
+      }
+      .gcs-hero-cta-row { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 2.25rem; }
+
+      /* Photo collage in hero */
+      .gcs-hero-photo {
+        position: relative;
+        aspect-ratio: 4/5;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .gcs-hero-photo > div {
+        background-size: cover;
+        background-position: center;
+        border-radius: 4px;
+      }
+      .gcs-hero-photo > div:nth-child(1) {
+        grid-row: 1 / span 2;
+        background-image: url("https://images.unsplash.com/photo-1542444459-db63c9b07a7e?w=900&q=85");
+      }
+      .gcs-hero-photo > div:nth-child(2) {
+        background-image: url("https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600&q=85");
+      }
+      .gcs-hero-photo > div:nth-child(3) {
+        background-image: url("https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=85");
+      }
+      .gcs-hero-stamp {
+        position: absolute;
+        bottom: -1rem;
+        right: -1rem;
+        width: 130px;
+        height: 130px;
+        background: var(--gcs-red);
+        color: var(--gcs-paper);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: var(--gcs-display);
+        font-size: 0.95rem;
+        line-height: 1.2;
+        padding: 1rem;
+        transform: rotate(-12deg);
+        box-shadow: 0 8px 24px -8px rgba(181, 64, 46, 0.4);
+        z-index: 2;
+      }
+      .gcs-hero-stamp em { font-style: italic; display: block; font-size: 1.5rem; }
+
+      /* ─── Open status banner ─── */
+      .gcs-status {
+        background: var(--gcs-cream);
+        border-bottom: 1px solid var(--gcs-line);
+        padding: 1.25rem 1.5rem;
+      }
+      .gcs-status-inner {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .gcs-status-left {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        font-family: var(--gcs-body);
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: var(--gcs-ink);
+      }
+      .gcs-status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: var(--gcs-green);
+        color: var(--gcs-paper);
+        padding: 0.35rem 0.85rem;
+        border-radius: 999px;
+        font-family: var(--gcs-body);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .gcs-status-pill.closed { background: var(--gcs-red); }
+      .gcs-status-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gcs-paper); animation: gcs-pulse 2s infinite; }
+      @keyframes gcs-pulse {
+        0%   { opacity: 1; }
+        50%  { opacity: 0.4; }
+        100% { opacity: 1; }
+      }
+      .gcs-status-right {
+        font-family: var(--gcs-body);
+        font-size: 0.82rem;
+        color: var(--gcs-muted);
+        display: flex;
+        gap: 1.25rem;
+        align-items: center;
+      }
+      .gcs-status-right a { color: var(--gcs-ink); font-weight: 700; text-decoration: none; border-bottom: 1.5px solid var(--gcs-red); padding-bottom: 1px; }
+      .gcs-status-right a:hover { color: var(--gcs-red); }
+
+      /* ─── Menu section ─── */
+      .gcs-section-menu { background: var(--gcs-paper); }
+      .gcs-menu-grid {
+        margin-top: 3.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+      }
+      .gcs-menu-col {
+        background: var(--gcs-cream);
+        border: 1px solid var(--gcs-line);
+        border-radius: 6px;
+        padding: 2rem 1.75rem;
+      }
+      .gcs-menu-col h3 {
+        font-family: var(--gcs-display);
+        font-size: 1.85rem;
+        color: var(--gcs-ink);
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.85rem;
+        border-bottom: 2px solid var(--gcs-line);
+      }
+      .gcs-menu-col h3 .gcs-script { font-size: 1.3rem; color: var(--gcs-red); }
+      .gcs-menu-list { display: grid; grid-template-columns: 1fr; gap: 0; }
+      .gcs-menu-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1rem;
+        align-items: baseline;
+        padding: 0.85rem 0;
+        border-bottom: 1px dotted var(--gcs-line);
+      }
+      .gcs-menu-row:last-child { border-bottom: none; }
+      .gcs-menu-row .name { font-weight: 700; font-size: 1rem; color: var(--gcs-ink); }
+      .gcs-menu-row .desc { font-size: 0.85rem; color: var(--gcs-muted); margin-top: 0.15rem; line-height: 1.45; }
+      .gcs-menu-row .price { font-family: var(--gcs-display); font-size: 1.1rem; color: var(--gcs-red); white-space: nowrap; }
+      .gcs-menu-row .flag {
+        display: inline-block;
+        background: var(--gcs-mustard);
+        color: var(--gcs-ink);
+        font-family: var(--gcs-body);
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 0.15rem 0.5rem;
+        border-radius: 3px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+      }
+
+      .gcs-drinks-sides {
+        margin-top: 2.5rem;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 2.5rem;
+      }
+      .gcs-sides-col h3 {
+        font-family: var(--gcs-display);
+        font-size: 1.45rem;
+        color: var(--gcs-ink);
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 2px solid var(--gcs-line);
+      }
+      .gcs-sides-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.55rem 1.5rem;
+      }
+      .gcs-sides-list > div {
+        display: flex;
+        align-items: baseline;
+        gap: 0.5rem;
+        font-size: 0.92rem;
+        padding: 0.4rem 0;
+        border-bottom: 1px dotted var(--gcs-line);
+      }
+      .gcs-sides-list .name { flex: 1; font-weight: 600; color: var(--gcs-ink); }
+      .gcs-sides-list .price { font-family: var(--gcs-display); color: var(--gcs-red); white-space: nowrap; }
+
+      .gcs-menu-footnote {
+        margin-top: 2.5rem;
+        text-align: center;
+        font-family: var(--gcs-display);
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--gcs-muted);
+      }
+
+      /* ─── Delivery callout ─── */
+      .gcs-delivery {
+        background: var(--gcs-green);
+        color: var(--gcs-paper);
+        padding: 5rem 1.5rem;
+      }
+      .gcs-delivery-grid {
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 3.5rem;
+        align-items: center;
+      }
+      .gcs-delivery .gcs-eyebrow { color: var(--gcs-mustard); }
+      .gcs-delivery .gcs-eyebrow::before,
+      .gcs-delivery .gcs-eyebrow::after { background: var(--gcs-mustard); }
+      .gcs-delivery h2 { color: var(--gcs-paper); font-size: clamp(2rem, 5vw, 3.4rem); }
+      .gcs-delivery h2 em { color: var(--gcs-mustard); font-style: italic; }
+      .gcs-delivery p { color: rgba(250, 246, 236, 0.85); font-size: 1.05rem; line-height: 1.7; margin-top: 1.25rem; max-width: 32rem; }
+      .gcs-delivery-cta-row { margin-top: 2rem; display: flex; gap: 0.85rem; flex-wrap: wrap; }
+      .gcs-delivery-info {
+        background: rgba(250, 246, 236, 0.06);
+        border: 1px solid rgba(250, 246, 236, 0.15);
+        border-radius: 6px;
+        padding: 2rem;
+      }
+      .gcs-delivery-info .row {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 1rem;
+        padding: 0.85rem 0;
+        border-bottom: 1px dashed rgba(250, 246, 236, 0.2);
+      }
+      .gcs-delivery-info .row:last-child { border-bottom: none; }
+      .gcs-delivery-info .label {
+        font-family: var(--gcs-body);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gcs-mustard);
+      }
+      .gcs-delivery-info .val { color: var(--gcs-paper); font-size: 0.95rem; font-weight: 500; }
+
+      /* ─── Story / 1958 ─── */
+      .gcs-section-story {
+        background: var(--gcs-cream-2);
+        position: relative;
+      }
+      .gcs-story-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .gcs-story-photo {
+        aspect-ratio: 4/5;
+        border-radius: 4px;
+        overflow: hidden;
+        background: url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=85") center/cover;
+        position: relative;
+      }
+      .gcs-story-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 60%, rgba(26, 23, 20, 0.25));
+        pointer-events: none;
+      }
+      .gcs-story h2 { font-size: clamp(2.1rem, 5vw, 3.6rem); }
+      .gcs-story h2 em { color: var(--gcs-red); font-style: italic; }
+      .gcs-story p { font-size: 1.02rem; line-height: 1.75; color: var(--gcs-ink); margin-top: 1.1rem; }
+      .gcs-story .pull {
+        font-family: var(--gcs-display);
+        font-size: 1.4rem;
+        font-style: italic;
+        color: var(--gcs-green);
+        line-height: 1.4;
+        margin: 1.75rem 0;
+        padding: 0 0 0 1.5rem;
+        border-left: 2.5px solid var(--gcs-red);
+      }
+      .gcs-stat-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        margin-top: 2.25rem;
+        padding-top: 1.75rem;
+        border-top: 1px solid var(--gcs-line);
+      }
+      .gcs-stat .num { font-family: var(--gcs-display); font-size: 2rem; color: var(--gcs-red); line-height: 1; }
+      .gcs-stat .label { font-family: var(--gcs-body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gcs-muted); margin-top: 0.4rem; }
+
+      /* ─── Testimonials ─── */
+      .gcs-testimonials { background: var(--gcs-paper); }
+      .gcs-quote-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+      .gcs-quote {
+        background: var(--gcs-cream);
+        padding: 2rem 1.75rem;
+        border-radius: 4px;
+        border-top: 4px solid var(--gcs-red);
+      }
+      .gcs-quote .mark {
+        font-family: var(--gcs-display);
+        font-size: 3rem;
+        line-height: 0.4;
+        color: var(--gcs-red);
+        margin-bottom: 1rem;
+        display: block;
+        font-style: italic;
+      }
+      .gcs-quote p { font-family: var(--gcs-display); font-style: italic; font-size: 1.05rem; line-height: 1.55; color: var(--gcs-ink); margin-bottom: 1.5rem; }
+      .gcs-quote .source { font-size: 0.86rem; color: var(--gcs-ink); font-weight: 700; }
+      .gcs-quote .source small { display: block; font-weight: 500; font-size: 0.78rem; color: var(--gcs-muted); margin-top: 0.15rem; }
+
+      /* ─── Visit ─── */
+      .gcs-section-visit { background: var(--gcs-cream); }
+      .gcs-visit-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+      .gcs-visit-block {
+        padding-bottom: 1.85rem;
+        margin-bottom: 1.85rem;
+        border-bottom: 1px solid var(--gcs-line);
+      }
+      .gcs-visit-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+      .gcs-visit-label {
+        font-family: var(--gcs-body);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--gcs-muted);
+        margin-bottom: 0.75rem;
+      }
+      .gcs-visit-block h4 { font-family: var(--gcs-display); font-size: 1.5rem; color: var(--gcs-ink); margin-bottom: 0.35rem; line-height: 1.2; }
+      .gcs-visit-block a { color: var(--gcs-red); text-decoration: none; font-weight: 600; }
+      .gcs-visit-block a:hover { text-decoration: underline; }
+
+      .gcs-hours-list { list-style: none; padding: 0; margin: 0; }
+      .gcs-hours-list li {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 1rem;
+        padding: 0.65rem 0;
+        font-size: 0.96rem;
+        border-bottom: 1px dashed var(--gcs-line);
+      }
+      .gcs-hours-list li:last-child { border-bottom: none; }
+      .gcs-hr-day { font-weight: 700; color: var(--gcs-ink); }
+      .gcs-hr-time { color: var(--gcs-muted); }
+      .gcs-hours-list li.closed .gcs-hr-time { color: var(--gcs-red); font-style: italic; }
+      .gcs-hours-list li.today {
+        background: rgba(181, 64, 46, 0.08);
+        border-radius: 4px;
+        padding-left: 0.65rem;
+        padding-right: 0.65rem;
+      }
+
+      /* ─── Footer ─── */
+      .gcs-footer {
+        background: var(--gcs-ink);
+        color: rgba(250, 246, 236, 0.7);
+        padding: 3.5rem 1.5rem 2rem;
+      }
+      .gcs-footer-inner { width: 100%; max-width: 1280px; margin: 0 auto; }
+      .gcs-footer-top {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 3rem;
+        padding-bottom: 2.5rem;
+        border-bottom: 1px solid rgba(250, 246, 236, 0.12);
+      }
+      .gcs-footer .brand { font-family: var(--gcs-display); font-size: 1.4rem; color: var(--gcs-paper); margin-bottom: 0.5rem; }
+      .gcs-footer .brand-sub { font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gcs-mustard); margin-bottom: 0.85rem; }
+      .gcs-footer h5 { font-family: var(--gcs-body); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gcs-mustard); margin-bottom: 0.9rem; }
+      .gcs-footer p { font-size: 0.88rem; line-height: 1.65; }
+      .gcs-footer ul { list-style: none; padding: 0; margin: 0; }
+      .gcs-footer li { padding: 0.35rem 0; }
+      .gcs-footer a { color: rgba(250, 246, 236, 0.7); text-decoration: none; font-size: 0.88rem; }
+      .gcs-footer a:hover { color: var(--gcs-mustard); }
+      .gcs-footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1.75rem;
+        font-size: 0.78rem;
+      }
+      .gcs-footer-bottom a { color: var(--gcs-paper); font-weight: 700; text-decoration: underline; }
+
+      /* ─── Reveal animations ─── */
+      .gcs-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
+      .gcs-reveal.is-visible { opacity: 1; transform: none; }
+      .gcs-d-1 { transition-delay: 0.08s; }
+      .gcs-d-2 { transition-delay: 0.16s; }
+      .gcs-d-3 { transition-delay: 0.24s; }
+      .gcs-d-4 { transition-delay: 0.32s; }
+      @media (prefers-reduced-motion: reduce) {
+        .gcs-reveal { opacity: 1; transform: none; transition: none; }
+        html { scroll-behavior: auto; }
+        .gcs-status-pill .dot { animation: none; }
+      }
+
+      /* ─── Responsive ─── */
+      @media (max-width: 900px) {
+        .gcs-nav { display: none; }
+        .gcs-section { padding: 4rem 1.25rem; }
+        .gcs-hero { padding: 3rem 1.25rem 4rem; }
+        .gcs-hero-grid { grid-template-columns: 1fr; gap: 3rem; }
+        .gcs-hero-photo { max-width: 480px; margin: 0 auto; }
+        .gcs-menu-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        .gcs-drinks-sides { grid-template-columns: 1fr; gap: 2rem; }
+        .gcs-sides-list { grid-template-columns: 1fr; }
+        .gcs-delivery-grid, .gcs-story-grid, .gcs-visit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .gcs-quote-grid { grid-template-columns: 1fr; }
+        .gcs-stat-strip { grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
+        .gcs-footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .gcs-header-phone { display: none; }
+      }
+      @media (max-width: 520px) {
+        .gcs-header-inner { padding: 0.7rem 1rem; gap: 1rem; }
+        .gcs-footer-top { grid-template-columns: 1fr; gap: 2rem; }
+        .gcs-stat-strip { grid-template-columns: 1fr; gap: 1rem; }
+        .gcs-btn { width: 100%; }
+        .gcs-hero-cta-row .gcs-btn, .gcs-delivery-cta-row .gcs-btn { width: auto; }
+        .gcs-hero-stamp { width: 100px; height: 100px; font-size: 0.78rem; bottom: -0.5rem; right: -0.5rem; }
+        .gcs-hero-stamp em { font-size: 1.15rem; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ───── Header ───── -->
+    <header class="gcs-header">
+      <div class="gcs-header-inner">
+        <a href="#top" class="gcs-logo">
+          <span class="gcs-logo-main">The Coffee Shop</span>
+          <span class="gcs-logo-sub">at Lawrence Pharmacy · Est. {business.pharmacyFounded}</span>
+        </a>
+        <nav class="gcs-nav">
+          <a href="#menu">Menu</a>
+          <a href="#delivery">Delivery</a>
+          <a href="#story">Since '58</a>
+          <a href="#visit">Visit</a>
+        </nav>
+        <a href={`tel:${business.phoneDigits}`} class="gcs-header-phone">{business.phone}</a>
+      </div>
+    </header>
+
+    <!-- ───── Hero ───── -->
+    <section class="gcs-hero" id="top">
+      <div class="gcs-hero-grid">
+
+        <div>
+          <p class="gcs-hero-est gcs-reveal">since 1958.</p>
+          <h1 class="gcs-reveal gcs-d-1">
+            Breakfast and lunch<br/>from the <em>corner of Broad.</em>
+          </h1>
+          <div class="gcs-hero-tag-row gcs-reveal gcs-d-2">
+            <span class="dot"></span><span>Counter Service</span>
+            <span class="dot"></span><span>Free Delivery</span>
+            <span class="dot"></span><span>Open M–F</span>
+          </div>
+          <p class="lead gcs-reveal gcs-d-3">
+            A working diner counter inside Lawrence Pharmacy. Chili dogs that haven't changed since you were a kid. Free delivery in Gainesville, no minimum. Done by 2.
+          </p>
+          <div class="gcs-hero-cta-row gcs-reveal gcs-d-4">
+            <a href={business.chownow} target="_blank" rel="noopener noreferrer" class="gcs-btn gcs-btn-red gcs-btn-lg">Order online</a>
+            <a href="#menu" class="gcs-btn gcs-btn-ghost gcs-btn-lg">See the menu</a>
+          </div>
+        </div>
+
+        <div class="gcs-hero-photo gcs-reveal gcs-d-2">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div class="gcs-hero-stamp">
+            <span>since<em>1958</em>on Broad</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ───── Open status banner ───── -->
+    <div class="gcs-status">
+      <div class="gcs-status-inner">
+        <div class="gcs-status-left">
+          <span class="gcs-status-pill" id="gcsStatusPill"><span class="dot"></span><span id="gcsStatusLabel">Open now</span></span>
+          <span id="gcsStatusText">Breakfast until 11 · Lunch until 2 PM today</span>
+        </div>
+        <div class="gcs-status-right">
+          <span>Free local delivery</span>
+          <span aria-hidden="true">·</span>
+          <a href={business.chownow} target="_blank" rel="noopener noreferrer">Order on ChowNow →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───── Menu ───── -->
+    <section class="gcs-section gcs-section-menu" id="menu">
+      <div class="gcs-container">
+
+        <div style="text-align: center; max-width: 720px; margin: 0 auto;" class="gcs-reveal">
+          <span class="gcs-eyebrow">The Menu</span>
+          <h2 class="gcs-h2">Counter food, <em>done right.</em></h2>
+          <p style="font-family: var(--gcs-display); font-style: italic; color: var(--gcs-muted); font-size: 1.1rem; margin-top: 1rem;">
+            Cathead biscuits. Eggs cracked-to-order. Twenty-some sandwiches. Free refills on coffee.
+          </p>
+        </div>
+
+        <div class="gcs-menu-grid">
+
+          <!-- Breakfast -->
+          <div class="gcs-menu-col gcs-reveal gcs-d-1">
+            <h3>Breakfast <span class="gcs-script">8 – 11 am.</span></h3>
+            <div class="gcs-menu-list">
+              {breakfast.map((item) => (
+                <div class="gcs-menu-row">
+                  <div>
+                    <div class="name">{item.name}{item.flag && <span class="flag">{item.flag}</span>}</div>
+                    {item.desc && <div class="desc">{item.desc}</div>}
+                  </div>
+                  <div class="price">{item.price}</div>
+                </div>
+              ))}
+            </div>
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1.5px solid var(--gcs-line);">
+              <div style="font-family: var(--gcs-body); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gcs-muted); margin-bottom: 0.65rem;">À la carte</div>
+              {breakfastAlacarte.map((item) => (
+                <div class="gcs-menu-row">
+                  <div><div class="name">{item.name}</div></div>
+                  <div class="price">{item.price}</div>
+                </div>
+              ))}
+            </div>
+            <p style="font-family: var(--gcs-display); font-style: italic; font-size: 0.85rem; color: var(--gcs-muted); margin-top: 1rem; line-height: 1.5;">
+              All egg plates & sandwiches with biscuit and/or egg whites available for $1.00 more.
+            </p>
+          </div>
+
+          <!-- Sandwiches -->
+          <div class="gcs-menu-col gcs-reveal gcs-d-2">
+            <h3>Sandwiches <span class="gcs-script">11 – 2 pm.</span></h3>
+            <div class="gcs-menu-list">
+              {sandwiches.map((item) => (
+                <div class="gcs-menu-row">
+                  <div>
+                    <div class="name">{item.name}{item.flag && <span class="flag">{item.flag}</span>}</div>
+                    {item.desc && <div class="desc">{item.desc}</div>}
+                  </div>
+                  <div class="price">{item.price}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Combo callout -->
+        <div class="gcs-reveal" style="margin-top: 2rem; background: var(--gcs-mustard); color: var(--gcs-ink); padding: 1.5rem 1.85rem; border-radius: 6px; display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center;">
+          <div>
+            <div style="font-family: var(--gcs-body); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 0.4rem;">Combos · pick any two</div>
+            <div style="font-family: var(--gcs-display); font-size: 1.1rem; line-height: 1.45;">
+              Half ham, turkey, or roast beef melt — or tuna or chicken salad — paired with a half BLT, grilled cheese, egg salad, or pimento. Served with a side salad or cup of soup.
+            </div>
+            <div style="font-family: var(--gcs-display); font-size: 0.92rem; font-style: italic; margin-top: 0.4rem; opacity: 0.75;">
+              Sub gumbo or chili for $1.49.
+            </div>
+          </div>
+          <div style="font-family: var(--gcs-display); font-size: 2.4rem; color: var(--gcs-red); white-space: nowrap; line-height: 1;">$7.99</div>
+        </div>
+
+        <!-- Soups & Salads / Drinks & Extras -->
+        <div class="gcs-drinks-sides" style="margin-top: 2.5rem;">
+
+          <div class="gcs-sides-col gcs-reveal">
+            <h3>Soups &amp; Salads</h3>
+            <div style="font-family: var(--gcs-body); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gcs-muted); margin-bottom: 0.65rem;">Soups</div>
+            <div class="gcs-menu-list">
+              {soups.map((item) => (
+                <div class="gcs-menu-row">
+                  <div>
+                    <div class="name">{item.name}</div>
+                    {item.desc && <div class="desc">{item.desc}</div>}
+                  </div>
+                  <div class="price">{item.price}</div>
+                </div>
+              ))}
+            </div>
+            <div style="font-family: var(--gcs-body); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gcs-muted); margin: 1.25rem 0 0.65rem;">Salads</div>
+            <div class="gcs-menu-list">
+              {salads.map((item) => (
+                <div class="gcs-menu-row">
+                  <div>
+                    <div class="name">{item.name}</div>
+                    {item.desc && <div class="desc">{item.desc}</div>}
+                  </div>
+                  <div class="price">{item.price}</div>
+                </div>
+              ))}
+            </div>
+            <p style="font-family: var(--gcs-display); font-style: italic; font-size: 0.85rem; color: var(--gcs-muted); margin-top: 1rem; line-height: 1.5;">
+              Add grilled or blackened chicken, fish, or shrimp to any salad for $3.99.
+            </p>
+          </div>
+
+          <div class="gcs-sides-col gcs-reveal gcs-d-1">
+            <h3>Drinks &amp; Extras</h3>
+            <div style="font-family: var(--gcs-body); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gcs-muted); margin-bottom: 0.65rem;">Drinks</div>
+            <div class="gcs-menu-list">
+              {drinks.map((item) => (
+                <div class="gcs-menu-row">
+                  <div>
+                    <div class="name">{item.name}</div>
+                    {item.desc && <div class="desc">{item.desc}</div>}
+                  </div>
+                  <div class="price">{item.price}</div>
+                </div>
+              ))}
+            </div>
+            <div style="font-family: var(--gcs-body); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gcs-muted); margin: 1.25rem 0 0.65rem;">Sides &amp; Add-ons</div>
+            <div class="gcs-menu-list">
+              {sides.map((item) => (
+                <div class="gcs-menu-row">
+                  <div>
+                    <div class="name">{item.name}</div>
+                    {item.desc && <div class="desc">{item.desc}</div>}
+                  </div>
+                  <div class="price">{item.price}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
+        <p class="gcs-menu-footnote gcs-reveal">
+          Cash, card, and a friendly nod accepted at the counter.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ───── Delivery callout ───── -->
+    <section class="gcs-section gcs-delivery" id="delivery">
+      <div class="gcs-delivery-grid">
+
+        <div class="gcs-reveal">
+          <span class="gcs-eyebrow">Free Delivery</span>
+          <h2>We bring the <em>counter</em> to you.</h2>
+          <p>Free delivery anywhere in Gainesville. No minimum order, no fees, no surge pricing. Call the shop or order online — we'll be there in 25 minutes or so, faster if it's slow.</p>
+          <p style="font-family: var(--gcs-script); font-size: 1.55rem; color: var(--gcs-mustard); margin-top: 1.5rem; line-height: 1;">
+            Office breakfast for a dozen? That's our specialty.
+          </p>
+          <div class="gcs-delivery-cta-row">
+            <a href={business.chownow} target="_blank" rel="noopener noreferrer" class="gcs-btn gcs-btn-red gcs-btn-lg">Order on ChowNow</a>
+            <a href={`tel:${business.phoneDigits}`} class="gcs-btn gcs-btn-ghost-light gcs-btn-lg">Call {business.phone}</a>
+          </div>
+        </div>
+
+        <div class="gcs-delivery-info gcs-reveal gcs-d-1">
+          <div class="row">
+            <span class="label">Cost</span>
+            <span class="val">Free in Gainesville</span>
+          </div>
+          <div class="row">
+            <span class="label">Minimum</span>
+            <span class="val">None — order one chili dog if you want</span>
+          </div>
+          <div class="row">
+            <span class="label">Catering</span>
+            <span class="val">Breakfast, danish &amp; sandwich trays for events</span>
+          </div>
+          <div class="row">
+            <span class="label">Window</span>
+            <span class="val">Monday – Friday · 8 AM to 2 PM</span>
+          </div>
+          <div class="row">
+            <span class="label">Phone</span>
+            <span class="val">{business.phone}</span>
+          </div>
+          <div class="row">
+            <span class="label">Online</span>
+            <span class="val">ChowNow</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ───── Story (1958) ───── -->
+    <section class="gcs-section gcs-section-story gcs-story" id="story">
+      <div class="gcs-container">
+        <div class="gcs-story-grid">
+
+          <div class="gcs-story-photo gcs-reveal"></div>
+
+          <div class="gcs-reveal gcs-d-1">
+            <span class="gcs-eyebrow">Since '58</span>
+            <h2 class="gcs-h2">Same <em>corner</em>, same chili, same wave from the register.</h2>
+            <p>Lawrence Pharmacy opened the doors at 631 Broad Street on January 29, 1958. The lunch counter came with it. Most of what's changed since then is the price.</p>
+            <p>Stephen Adams runs the pharmacy now. The Coffee Shop runs the counter — breakfast at 8, lunch at 11, last order at 2. We've been making the same chili the same way for sixty-something years. Some things hold up.</p>
+            <p class="pull">"Best chili dog in Hall County. Two locations: here, and that's it."</p>
+            <p>If you grew up in Gainesville, you ate here. If you didn't, your boss did. Either way, the door's open — come find the counter.</p>
+            <div class="gcs-stat-strip">
+              <div class="gcs-stat">
+                <div class="num">1958</div>
+                <div class="label">On Broad Street</div>
+              </div>
+              <div class="gcs-stat">
+                <div class="num">3</div>
+                <div class="label">Generations served</div>
+              </div>
+              <div class="gcs-stat">
+                <div class="num">$0</div>
+                <div class="label">Delivery minimum</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Testimonials ───── -->
+    <section class="gcs-section gcs-testimonials">
+      <div class="gcs-container">
+        <div style="text-align: center; max-width: 640px; margin: 0 auto;" class="gcs-reveal">
+          <span class="gcs-eyebrow">From the regulars</span>
+          <h2 class="gcs-h2">The counter <em>remembers.</em></h2>
+        </div>
+        <div class="gcs-quote-grid">
+          {testimonials.map((t, i) => (
+            <figure class={`gcs-quote gcs-reveal gcs-d-${i + 1}`}>
+              <span class="mark">"</span>
+              <p>{t.quote}</p>
+              <figcaption class="source">
+                {t.name}
+                <small>{t.detail}</small>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Visit ───── -->
+    <section class="gcs-section gcs-section-visit" id="visit">
+      <div class="gcs-container">
+
+        <div style="text-align: center; max-width: 640px; margin: 0 auto 3.5rem;" class="gcs-reveal">
+          <span class="gcs-eyebrow">Find us</span>
+          <h2 class="gcs-h2">631 Broad Street.</h2>
+          <p style="font-family: var(--gcs-display); font-style: italic; font-size: 1.1rem; color: var(--gcs-muted); margin-top: 0.85rem;">
+            Inside Lawrence Pharmacy, right near Northeast Georgia Medical Center. Park out front, walk through the pharmacy, the counter's on your left.
+          </p>
+        </div>
+
+        <div class="gcs-visit-grid">
+
+          <div class="gcs-reveal">
+            <div class="gcs-visit-block">
+              <div class="gcs-visit-label">Address</div>
+              <h4>{business.address}</h4>
+              <p style="color: var(--gcs-muted); font-size: 0.95rem; margin-top: 0.25rem;">{business.cityState}</p>
+              <p style="margin-top: 0.85rem;">
+                <a href="https://maps.google.com/?q=631+Broad+St+SE+Gainesville+GA+30501" target="_blank" rel="noopener noreferrer">Get directions ↗</a>
+              </p>
+            </div>
+            <div class="gcs-visit-block">
+              <div class="gcs-visit-label">Contact</div>
+              <h4><a href={`tel:${business.phoneDigits}`}>{business.phone}</a></h4>
+              <p style="margin-top: 0.35rem;"><a href={`mailto:${business.email}`}>{business.email}</a></p>
+            </div>
+            <div class="gcs-visit-block">
+              <div class="gcs-visit-label">Order online</div>
+              <h4><a href={business.chownow} target="_blank" rel="noopener noreferrer">ChowNow →</a></h4>
+              <p style="color: var(--gcs-muted); font-size: 0.9rem; margin-top: 0.3rem;">Free delivery in Gainesville, no minimum.</p>
+            </div>
+            <div class="gcs-visit-block">
+              <div class="gcs-visit-label">Sister kitchen</div>
+              <h4>{business.sister}</h4>
+              <p style="color: var(--gcs-muted); font-size: 0.9rem; margin-top: 0.3rem;">Same folks — dockside food and lake views at Gainesville Marina when the weather's right.</p>
+            </div>
+          </div>
+
+          <div class="gcs-reveal gcs-d-1">
+            <div class="gcs-visit-block">
+              <div class="gcs-visit-label">Hours</div>
+              <ul class="gcs-hours-list">
+                {hours.map((h) => (
+                  <li class={h.closed ? 'closed' : ''}>
+                    <span class="gcs-hr-day">{h.day}</span>
+                    <span class="gcs-hr-time">{h.open}</span>
+                  </li>
+                ))}
+              </ul>
+              <p style="font-size: 0.85rem; color: var(--gcs-muted); margin-top: 1rem;">Breakfast served 8 – 11. Lunch served 11 – 2. Free delivery the whole window.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ───── Footer ───── -->
+    <footer class="gcs-footer">
+      <div class="gcs-footer-inner">
+        <div class="gcs-footer-top">
+          <div>
+            <div class="brand">The Coffee Shop</div>
+            <div class="brand-sub">at Lawrence Pharmacy · Est. {business.pharmacyFounded}</div>
+            <p>{business.address}<br/>{business.cityState}</p>
+            <p style="margin-top: 0.65rem;">{business.phone}<br/>{business.email}</p>
+          </div>
+          <div>
+            <h5>Counter</h5>
+            <ul>
+              <li><a href="#menu">Breakfast</a></li>
+              <li><a href="#menu">Sandwiches</a></li>
+              <li><a href="#menu">Soups &amp; salads</a></li>
+              <li><a href="#menu">Combos &amp; sides</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Order</h5>
+            <ul>
+              <li><a href={business.chownow} target="_blank" rel="noopener noreferrer">ChowNow</a></li>
+              <li><a href={`tel:${business.phoneDigits}`}>Call the shop</a></li>
+              <li><a href="#delivery">Free delivery</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Find us</h5>
+            <ul>
+              <li><a href="#visit">Hours</a></li>
+              <li><a href="https://maps.google.com/?q=631+Broad+St+SE+Gainesville+GA+30501" target="_blank" rel="noopener noreferrer">Directions</a></li>
+              <li><a href={`mailto:${business.email}`}>Email</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="gcs-footer-bottom">
+          <span>© 2026 The Coffee Shop at Lawrence Pharmacy · On Broad since 1958</span>
+          <span>Site preview by <a href="/">Lanier Web</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        // Reveal animations
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -80px 0px' }
+        );
+        document.querySelectorAll('.gcs-reveal').forEach(function (el) { io.observe(el); });
+
+        // Open / Closed status banner — counter open M-F 8am-2pm
+        function applyStatus() {
+          var d = new Date();
+          var dow = d.getDay(); // 0 Sun .. 6 Sat
+          var minutes = d.getHours() * 60 + d.getMinutes();
+          var pill = document.getElementById('gcsStatusPill');
+          var label = document.getElementById('gcsStatusLabel');
+          var text = document.getElementById('gcsStatusText');
+          if (!pill || !label || !text) return;
+
+          var isWeekday = (dow >= 1 && dow <= 5);
+          var openMin = 8 * 60;        // 8:00 AM
+          var breakfastEnd = 11 * 60;  // 11:00 AM
+          var closeMin = 14 * 60;      // 2:00 PM
+
+          if (isWeekday && minutes >= openMin && minutes < closeMin) {
+            pill.classList.remove('closed');
+            label.textContent = 'Open now';
+            if (minutes < breakfastEnd) {
+              text.textContent = 'Breakfast until 11 · Lunch until 2 PM today';
+            } else {
+              text.textContent = 'Lunch until 2 PM today';
+            }
+          } else if (isWeekday && minutes < openMin) {
+            pill.classList.add('closed');
+            label.textContent = 'Closed';
+            text.textContent = 'Opens at 8 AM today';
+          } else if (dow === 6 || dow === 0) {
+            pill.classList.add('closed');
+            label.textContent = 'Closed';
+            text.textContent = (dow === 6 ? 'Back Monday' : 'Back Monday') + ' at 8 AM';
+          } else {
+            pill.classList.add('closed');
+            label.textContent = 'Closed';
+            // After 2pm on a weekday
+            if (dow === 5) {
+              text.textContent = 'Back Monday at 8 AM';
+            } else {
+              text.textContent = 'Back tomorrow at 8 AM';
+            }
+          }
+        }
+        applyStatus();
+        setInterval(applyStatus, 60000);
+
+        // Highlight today's row in the hours list
+        var hoursOrder = [1, 2, 3, 4, 5, 6, 0]; // Mon..Sun
+        var todayIdx = hoursOrder.indexOf(new Date().getDay());
+        if (todayIdx >= 0) {
+          var rows = document.querySelectorAll('.gcs-hours-list li');
+          if (rows[todayIdx]) rows[todayIdx].classList.add('today');
+        }
+      })();
+    </script>
+
+  </body>
+</html>
