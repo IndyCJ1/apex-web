@@ -187,14 +187,29 @@ const schedule = [
 
       input::placeholder, textarea::placeholder, select { color: var(--fz-muted); opacity: 0.85; }
 
+      /* Schedule rows — day + time on top, location below; consistent across all sizes */
+      .fz-sched-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding-bottom: 0.4rem;
+        border-bottom: 1px dashed var(--fz-ink);
+      }
+      .fz-sched-spot { line-height: 1.35; }
+
       /* Mobile tightening */
       @media (max-width: 600px) {
-        section { padding-left: 1.1rem !important; padding-right: 1.1rem !important; }
+        section { padding-left: 1rem !important; padding-right: 1rem !important; }
         .fz-mobile-stack { grid-template-columns: 1fr !important; }
         .fz-btn { width: 100%; }
         .fz-btn-row .fz-btn { width: auto; }
         .fz-tilt-l, .fz-tilt-r { transform: rotate(0deg); }
+        /* Slightly reduce hero so "Get Fizzy / With It." breathes on tiny phones */
+        .fz-hero-title { font-size: clamp(2.5rem, 13vw, 4.25rem) !important; }
       }
+      /* Long-word safety net so nothing overflows containers */
+      h1, h2, h3, p, li, span, a { overflow-wrap: anywhere; }
     </style>
   </head>
 
@@ -237,7 +252,7 @@ const schedule = [
         </div>
 
         <!-- Tagline -->
-        <h1 class="fz-display fz-reveal fz-d-1" style="font-size: clamp(3rem, 9vw, 7rem); color: var(--fz-ink); margin-bottom: 1rem;">
+        <h1 class="fz-display fz-reveal fz-d-1 fz-hero-title" style="font-size: clamp(3rem, 9vw, 7rem); color: var(--fz-ink); margin-bottom: 1rem;">
           Get Fizzy<br/>With It.
         </h1>
 
@@ -271,13 +286,15 @@ const schedule = [
 
         <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
           {schedule.map((s, i) => (
-            <div class={`fz-reveal fz-d-${(i % 5) + 1}`} style={`background: ${s.featured ? 'var(--fz-yellow)' : (s.booked ? 'var(--fz-pink-3)' : 'var(--fz-pink)')}; border: 3px solid var(--fz-ink); padding: 1.4rem 1.65rem; box-shadow: 5px 5px 0 var(--fz-ink); display: grid; grid-template-columns: 110px 1fr auto; gap: 1.25rem; align-items: center;`} class:list={[`fz-reveal fz-d-${(i % 5) + 1}`, "fz-mobile-stack-row"]}>
-              <p class="fz-display" style="font-size: 1.25rem; color: var(--fz-ink);">{s.day}</p>
-              <div>
-                <p style="font-size: 1.05rem; font-weight: 700; color: var(--fz-ink);">{s.spot}</p>
-                {s.featured && <p class="fz-script" style="font-size: 1.1rem; color: var(--fz-coral); margin-top: 0.15rem;">we're here right now ✨</p>}
+            <div class={`fz-reveal fz-d-${(i % 5) + 1} fz-sched-row`} style={`background: ${s.featured ? 'var(--fz-yellow)' : (s.booked ? 'var(--fz-pink-3)' : 'var(--fz-pink)')}; border: 3px solid var(--fz-ink); padding: 1.25rem 1.4rem; box-shadow: 5px 5px 0 var(--fz-ink);`}>
+              <div class="fz-sched-head">
+                <p class="fz-display" style="font-size: 1.25rem; color: var(--fz-ink); margin: 0;">{s.day}</p>
+                <p class="fz-display fz-sched-time" style="font-size: 0.9rem; letter-spacing: 0.08em; color: var(--fz-ink); white-space: nowrap; margin: 0;">{s.time}</p>
               </div>
-              <p class="fz-display" style="font-size: 0.9rem; letter-spacing: 0.08em; color: var(--fz-ink); white-space: nowrap;">{s.time}</p>
+              <div style="margin-top: 0.4rem;">
+                <p class="fz-sched-spot" style="font-size: 1.05rem; font-weight: 700; color: var(--fz-ink); margin: 0; word-wrap: break-word; overflow-wrap: break-word;">{s.spot}</p>
+                {s.featured && <p class="fz-script" style="font-size: 1.1rem; color: var(--fz-coral); margin: 0.2rem 0 0;">we're here right now ✨</p>}
+              </div>
             </div>
           ))}
         </div>
