@@ -1,0 +1,509 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Farmhouse Coffee — Rise and Shine. Gainesville, GA"
+  description="Specialty coffee, fresh breakfast, and a rentable coffee trailer in downtown Gainesville, GA. Mon–Fri 6am–7pm, Sat 7am–7pm."
+  noindex={true}
+>
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Manrope:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+  </Fragment>
+
+  <style is:global>
+    .fh-root {
+      font-family: 'Manrope', system-ui, sans-serif;
+      background-color: #FAF6F0;
+      color: #2C1A0E;
+    }
+    .fh-serif { font-family: 'Playfair Display', Georgia, serif; }
+    .fh-hand  { font-family: 'Caveat', cursive; }
+
+    /* Nav links */
+    .fh-nav-link { color: #9B8070; text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .fh-nav-link:hover { color: #2C1A0E; }
+
+    /* Primary button */
+    .fh-btn-primary { display: inline-block; background-color: #C4622D; color: #FFFCF8; padding: 15px 32px; border-radius: 9999px; font-size: 0.875rem; font-weight: 700; text-decoration: none; text-align: center; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; transition: background-color 0.2s; }
+    .fh-btn-primary:hover { background-color: #A3511F; }
+
+    /* Ghost button (on dark bg) */
+    .fh-btn-ghost { display: inline-block; background-color: rgba(255,252,248,0.10); border: 1px solid rgba(255,252,248,0.25); color: #FFFCF8; padding: 15px 32px; border-radius: 9999px; font-size: 0.875rem; font-weight: 700; text-decoration: none; text-align: center; transition: background-color 0.2s; }
+    .fh-btn-ghost:hover { background-color: rgba(255,252,248,0.18); }
+
+    /* Dark button */
+    .fh-btn-dark { display: inline-block; background-color: #2C1A0E; color: #FFFCF8; padding: 14px 24px; border-radius: 9999px; font-size: 0.875rem; font-weight: 700; text-decoration: none; border: none; cursor: pointer; font-family: 'Manrope', sans-serif; transition: background-color 0.2s; white-space: nowrap; }
+    .fh-btn-dark:hover { background-color: #C4622D; }
+
+    /* Form inputs */
+    .fh-input { width: 100%; background: rgba(255,252,248,0.08); border: 1px solid rgba(255,252,248,0.20); border-radius: 10px; padding: 12px 16px; color: #FFFCF8; font-size: 0.875rem; font-family: 'Manrope', sans-serif; outline: none; box-sizing: border-box; transition: border-color 0.2s; }
+    .fh-input:focus { border-color: #C4622D; }
+    .fh-input::placeholder { color: rgba(255,252,248,0.35); }
+
+    .fh-input-light { width: 100%; background-color: #FFFCF8; border: 1px solid #E8DDD0; border-radius: 9999px; padding: 14px 20px; font-size: 0.875rem; color: #2C1A0E; font-family: 'Manrope', sans-serif; outline: none; box-sizing: border-box; flex: 1; min-width: 180px; transition: border-color 0.2s; }
+    .fh-input-light:focus { border-color: #C4622D; }
+    .fh-input-light::placeholder { color: #9B8070; }
+
+    /* Hours row highlight */
+    .fh-hours-today { background-color: #F5E8DF; border-radius: 6px; margin: 0 -10px; padding-left: 10px; padding-right: 10px; }
+    .fh-hours-today .fh-day { color: #C4622D; font-weight: 700; }
+    .fh-hours-today .fh-time { color: #C4622D; font-weight: 700; }
+
+    /* Footer links */
+    .fh-footer-link { color: rgba(255,252,248,0.45); text-decoration: none; font-size: 0.8125rem; transition: color 0.2s; }
+    .fh-footer-link:hover { color: rgba(255,252,248,0.9); }
+
+    /* Trailer checklist items */
+    .fh-check-list { list-style: none; padding: 0; margin: 0 0 36px; display: flex; flex-direction: column; gap: 8px; }
+    .fh-check-item { display: flex; align-items: center; gap: 10px; color: rgba(255,252,248,0.85); font-size: 0.9375rem; }
+
+    /* Social link */
+    .fh-social { display: inline-flex; align-items: center; gap: 8px; color: #9B8070; font-weight: 600; text-decoration: none; font-size: 0.9375rem; transition: color 0.2s; }
+    .fh-social:hover { color: #C4622D; }
+
+    .fh-tel { display: inline-flex; align-items: center; gap: 8px; color: #C4622D; font-weight: 600; text-decoration: none; font-size: 0.9375rem; }
+  </style>
+
+  <div class="fh-root min-h-screen">
+
+    <!-- ── NAV ─────────────────────────────────────────────────────────── -->
+    <header style="position:fixed;top:0;left:0;right:0;z-index:50;background-color:#FAF6F0;border-bottom:1px solid #E8DDD0;">
+      <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/mockups/farmhouse-coffee/" class="fh-serif" style="font-weight:700;font-size:1.25rem;color:#2C1A0E;text-decoration:none;letter-spacing:-0.01em;">
+          Farmhouse Coffee
+        </a>
+        <nav class="hidden md:flex items-center gap-8" aria-label="Primary">
+          <a href="#menu"     class="fh-nav-link">Menu</a>
+          <a href="#trailer"  class="fh-nav-link">Trailer</a>
+          <a href="#fam-club" class="fh-nav-link">FAM Club</a>
+          <a href="#hours"    class="fh-nav-link">Visit</a>
+        </nav>
+        <a href="#trailer" class="fh-btn-primary hidden md:inline-block" style="padding:10px 20px;">
+          Book the Trailer
+        </a>
+        <button id="fh-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="fh-panel"
+          class="md:hidden" style="padding:8px;background:none;border:none;cursor:pointer;color:#2C1A0E;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div id="fh-panel" class="hidden md:hidden" style="border-top:1px solid #E8DDD0;background-color:#FAF6F0;">
+        <nav class="px-6 py-4 flex flex-col gap-1" aria-label="Mobile">
+          <a href="#menu"     class="block py-2" style="color:#2C1A0E;text-decoration:none;font-size:0.9375rem;font-weight:500;">Menu</a>
+          <a href="#trailer"  class="block py-2" style="color:#2C1A0E;text-decoration:none;font-size:0.9375rem;font-weight:500;">Trailer</a>
+          <a href="#fam-club" class="block py-2" style="color:#2C1A0E;text-decoration:none;font-size:0.9375rem;font-weight:500;">FAM Club</a>
+          <a href="#hours"    class="block py-2" style="color:#2C1A0E;text-decoration:none;font-size:0.9375rem;font-weight:500;">Visit</a>
+          <a href="#trailer" class="fh-btn-primary self-start mt-3" style="padding:12px 20px;">Book the Trailer</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ── HERO ───────────────────────────────────────────────────────── -->
+    <section style="padding-top:64px;position:relative;overflow:hidden;min-height:92vh;display:flex;align-items:center;">
+      <div style="position:absolute;inset:0;z-index:0;">
+        <img
+          src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1600&q=80"
+          alt=""
+          aria-hidden="true"
+          style="width:100%;height:100%;object-fit:cover;"
+        />
+        <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(28,14,6,0.88) 45%, rgba(28,14,6,0.35) 100%);"></div>
+      </div>
+
+      <div class="relative max-w-6xl mx-auto px-6 py-24 w-full" style="z-index:1;">
+        <div class="reveal max-w-xl">
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#C4622D;margin-bottom:16px;">
+            Downtown Gainesville, GA
+          </p>
+          <h1 class="fh-serif" style="font-size:clamp(3.5rem,8vw,6rem);font-weight:900;color:#FFFCF8;line-height:0.95;margin-bottom:28px;letter-spacing:-0.02em;">
+            Rise and<br/>Shine.
+          </h1>
+          <p style="font-size:1.0625rem;color:rgba(255,252,248,0.72);line-height:1.7;margin-bottom:36px;max-width:400px;">
+            Specialty coffee, fresh bites, and a community that feels like home. In the heart of Gainesville since 2023.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="#menu"    class="fh-btn-primary">See the Menu →</a>
+            <a href="#trailer" class="fh-btn-ghost">Book the Coffee Trailer</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STRIP ──────────────────────────────────────────────────────── -->
+    <div style="background-color:#C4622D;padding:14px 24px;">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="fh-hand" style="font-size:1.25rem;font-weight:700;color:#FFFCF8;text-align:center;">
+          From GA to the 🌏 &nbsp;·&nbsp; Mon–Fri 6am–7pm &nbsp;·&nbsp; Sat 7am–7pm
+        </p>
+        <a href="tel:7062910001" style="color:rgba(255,252,248,0.85);font-size:0.875rem;font-weight:600;text-decoration:none;white-space:nowrap;">
+          706-291-0001
+        </a>
+      </div>
+    </div>
+
+    <!-- ── MENU ───────────────────────────────────────────────────────── -->
+    <section id="menu" style="padding:96px 24px;background-color:#FAF6F0;">
+      <div class="max-w-6xl mx-auto">
+
+        <div class="reveal" style="margin-bottom:56px;">
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#C4622D;margin-bottom:12px;">The Menu</p>
+          <h2 class="fh-serif" style="font-size:clamp(2.25rem,5vw,3rem);font-weight:700;color:#2C1A0E;line-height:1.05;">
+            Crafted with intention.
+          </h2>
+        </div>
+
+        <!-- Signature drinks — editorial ruled list -->
+        <div class="reveal" style="margin-bottom:56px;">
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#9B8070;padding-bottom:14px;border-bottom:1px solid #E8DDD0;margin-bottom:0;">
+            Signature Drinks
+          </p>
+          <div style="border-bottom:1px solid #E8DDD0;">
+            {[
+              { name: "S'mores Latte",              desc: "Chocolate, graham cracker, toasted marshmallow. Hot or iced.",         price: "$6.50", note: "Most loved" },
+              { name: "Cinnamon Vanilla Oat Latte", desc: "House cinnamon syrup, vanilla, steamed oat milk.",                     price: "$6.50", note: "Most ordered" },
+              { name: "Honey Lavender Latte",        desc: "Local honey, culinary lavender, milk of choice.",                      price: "$6.75", note: "" },
+              { name: "Brown Butter Cortado",        desc: "Double shot, brown butter, finishing salt.",                           price: "$5.50", note: "" },
+              { name: "Dirty Matcha",                desc: "Ceremonial grade matcha, single espresso shot, oat milk.",             price: "$6.75", note: "" },
+              { name: "Cold Brew Float",             desc: "24-hour cold brew over house-made sweet cream.",                       price: "$6.00", note: "" },
+            ].map((item) => (
+              <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:18px 0;border-top:1px solid #E8DDD0;">
+                <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
+                  <span style="font-weight:700;color:#2C1A0E;">{item.name}</span>
+                  {item.note && <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#C4622D;background-color:#F5E8DF;padding:2px 8px;border-radius:9999px;">{item.note}</span>}
+                  <span style="font-size:0.8125rem;color:#9B8070;">{item.desc}</span>
+                </div>
+                <span class="fh-hand" style="font-size:1.25rem;font-weight:700;color:#C4622D;flex-shrink:0;">{item.price}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Espresso bar + food -->
+        <div class="reveal grid md:grid-cols-2 gap-12">
+          <div>
+            <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#9B8070;padding-bottom:14px;border-bottom:1px solid #E8DDD0;margin-bottom:0;">
+              Espresso Bar
+            </p>
+            {[
+              { name: "Espresso",   price: "$3.25" },
+              { name: "Cortado",    price: "$4.50" },
+              { name: "Cappuccino", price: "$4.75" },
+              { name: "Latte",      price: "$5.50" },
+              { name: "Flat White", price: "$5.25" },
+              { name: "Cold Brew",  price: "$5.00" },
+              { name: "Matcha",     price: "$5.50" },
+            ].map((item) => (
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid #E8DDD0;">
+                <span style="font-weight:600;color:#2C1A0E;">{item.name}</span>
+                <span class="fh-hand" style="font-size:1.125rem;color:#9B8070;">{item.price}</span>
+              </div>
+            ))}
+            <p style="font-size:0.75rem;color:#9B8070;margin-top:12px;font-style:italic;">Oat milk available. Hot or iced on most drinks.</p>
+          </div>
+
+          <div>
+            <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#9B8070;padding-bottom:14px;border-bottom:1px solid #E8DDD0;margin-bottom:0;">
+              Something to Eat
+            </p>
+            {[
+              { name: "Bacon, Egg & Cheese Croissant", price: "$7.50" },
+              { name: "Everything Bagel + Cream Cheese", price: "$4.50" },
+              { name: "Avocado Toast",                  price: "$8.00" },
+              { name: "Blueberry Scone",                price: "$4.00" },
+              { name: "Banana Bread",                   price: "$3.50" },
+              { name: "House Granola Cup",              price: "$5.50" },
+              { name: "Seasonal Pastry",                price: "ask us" },
+            ].map((item) => (
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid #E8DDD0;">
+                <span style="font-weight:600;color:#2C1A0E;">{item.name}</span>
+                <span class="fh-hand" style="font-size:1.125rem;color:#9B8070;">{item.price}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── COFFEE TRAILER ─────────────────────────────────────────────── -->
+    <section id="trailer" style="position:relative;overflow:hidden;min-height:640px;display:flex;align-items:center;">
+      <div style="position:absolute;inset:0;z-index:0;">
+        <img
+          src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1600&q=80"
+          alt="Farmhouse Coffee trailer at an outdoor event"
+          style="width:100%;height:100%;object-fit:cover;"
+        />
+        <div style="position:absolute;inset:0;background:rgba(18,8,3,0.82);"></div>
+      </div>
+
+      <div class="relative max-w-6xl mx-auto px-6 py-20 w-full" style="z-index:1;">
+        <div class="grid md:grid-cols-2 gap-16 items-start">
+
+          <!-- Left: pitch -->
+          <div class="reveal">
+            <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#C4622D;margin-bottom:16px;">
+              Coffee Trailer
+            </p>
+            <h2 class="fh-serif" style="font-size:clamp(2rem,5vw,3.25rem);font-weight:700;color:#FFFCF8;line-height:1.05;margin-bottom:20px;">
+              Bring Farmhouse<br/>to your event.
+            </h2>
+            <p style="color:rgba(255,252,248,0.72);line-height:1.7;margin-bottom:28px;font-size:0.9375rem;">
+              We roll up with a full La Marzocco espresso bar and serve your guests specialty drinks on-site. Available for weddings, corporate events, markets, and private parties all over North Georgia.
+            </p>
+            <ul class="fh-check-list">
+              {[
+                "Weddings and rehearsal dinners",
+                "Corporate breakfasts and team events",
+                "Graduation and birthday parties",
+                "Farmers markets and pop-ups",
+                "Film sets and photo shoots",
+              ].map((item) => (
+                <li class="fh-check-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C4622D" stroke-width="2.5" aria-hidden="true" style="flex-shrink:0;">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Right: booking form -->
+          <div class="reveal" style="background:rgba(255,252,248,0.06);border:1px solid rgba(255,252,248,0.12);border-radius:20px;padding:36px;">
+            <h3 class="fh-serif" style="font-size:1.5rem;font-weight:700;color:#FFFCF8;margin-bottom:24px;">
+              Check availability
+            </h3>
+
+            <div id="trailer-success" class="hidden" style="text-align:center;padding:32px 0;">
+              <p style="font-size:1.125rem;font-weight:700;color:#FFFCF8;margin-bottom:8px;">Request received.</p>
+              <p style="color:rgba(255,252,248,0.65);font-size:0.875rem;">We'll get back to you within 24 hours to confirm dates and details.</p>
+            </div>
+
+            <form id="trailer-form" class="flex flex-col gap-4" autocomplete="on" novalidate>
+              <div class="grid md:grid-cols-2 gap-3">
+                <div>
+                  <label for="t-name" style="display:block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,252,248,0.5);margin-bottom:6px;">Your name</label>
+                  <input id="t-name" type="text" name="name" autocomplete="name" placeholder="Jane Smith" class="fh-input" required maxlength="100" />
+                </div>
+                <div>
+                  <label for="t-email" style="display:block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,252,248,0.5);margin-bottom:6px;">Email</label>
+                  <input id="t-email" type="email" name="email" autocomplete="email" placeholder="jane@example.com" class="fh-input" required maxlength="254" />
+                </div>
+              </div>
+              <div class="grid md:grid-cols-2 gap-3">
+                <div>
+                  <label for="t-date" style="display:block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,252,248,0.5);margin-bottom:6px;">Event date</label>
+                  <input id="t-date" type="date" name="date" class="fh-input" style="color-scheme:dark;" />
+                </div>
+                <div>
+                  <label for="t-guests" style="display:block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,252,248,0.5);margin-bottom:6px;">Est. guests</label>
+                  <input id="t-guests" type="number" name="guests" placeholder="50" min="1" class="fh-input" />
+                </div>
+              </div>
+              <div>
+                <label for="t-details" style="display:block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,252,248,0.5);margin-bottom:6px;">Event details</label>
+                <textarea id="t-details" name="details" rows="3" placeholder="Event type, location, any special requests..." class="fh-input" style="resize:none;" maxlength="2000"></textarea>
+              </div>
+              <button type="submit" class="fh-btn-primary" style="width:100%;padding:16px;">
+                Request Booking →
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAM CLUB ───────────────────────────────────────────────────── -->
+    <section id="fam-club" style="padding:96px 24px;background-color:#F5E8DF;">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="reveal" style="margin-bottom:48px;">
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#C4622D;margin-bottom:12px;">FAM Club</p>
+          <h2 class="fh-serif" style="font-size:clamp(2rem,5vw,3rem);font-weight:700;color:#2C1A0E;line-height:1.1;margin-bottom:16px;">
+            More than a regular.<br/>
+            <em>Part of the family.</em>
+          </h2>
+          <p style="font-size:1rem;color:#5C3D2E;line-height:1.7;max-width:460px;margin:0 auto;">
+            Join the FAM Club for loyalty perks, early seasonal access, and priority trailer booking for your events.
+          </p>
+        </div>
+
+        <div class="reveal grid md:grid-cols-3 gap-5 mb-12">
+          {[
+            { emoji: "☕", title: "Free drink on your birthday", desc: "Any menu item, on us. No questions asked." },
+            { emoji: "🏷️", title: "10% off every visit",          desc: "Show your FAM card. Every single time." },
+            { emoji: "📅", title: "Seasonal menu early access",   desc: "Try new drinks before the public launch." },
+          ].map((perk) => (
+            <div style="background-color:#FAF6F0;border-radius:16px;padding:32px 24px;border:1px solid #E8DDD0;text-align:left;">
+              <div style="font-size:2rem;margin-bottom:14px;">{perk.emoji}</div>
+              <h3 style="font-weight:700;color:#2C1A0E;margin-bottom:8px;font-size:1rem;">{perk.title}</h3>
+              <p style="font-size:0.875rem;color:#9B8070;line-height:1.6;">{perk.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="reveal" style="max-width:440px;margin:0 auto;">
+          <div id="fam-success" class="hidden" style="padding:16px;background-color:#FAF6F0;border-radius:12px;border:1px solid #E8DDD0;text-align:center;">
+            <p style="font-weight:700;color:#2C1A0E;margin-bottom:4px;">You're in the FAM. ☕</p>
+            <p style="font-size:0.875rem;color:#9B8070;">Check your inbox for a welcome note.</p>
+          </div>
+          <form id="fam-form" style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;" autocomplete="on" novalidate>
+            <input type="email" name="email" autocomplete="email" placeholder="your@email.com" class="fh-input-light" required maxlength="254" />
+            <button type="submit" class="fh-btn-dark">Join the FAM →</button>
+          </form>
+          <p style="font-size:0.75rem;color:#9B8070;margin-top:12px;">No spam. Just coffee news and early access.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOURS + LOCATION ───────────────────────────────────────────── -->
+    <section id="hours" style="padding:96px 24px;background-color:#FAF6F0;">
+      <div class="max-w-6xl mx-auto">
+        <div class="reveal" style="margin-bottom:56px;">
+          <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#C4622D;margin-bottom:12px;">Visit Us</p>
+          <h2 class="fh-serif" style="font-size:clamp(2.25rem,5vw,3rem);font-weight:700;color:#2C1A0E;line-height:1.05;">
+            Come find us.
+          </h2>
+        </div>
+
+        <div class="reveal grid md:grid-cols-2 gap-16 items-start">
+
+          <!-- Hours -->
+          <div>
+            <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#9B8070;padding-bottom:14px;border-bottom:1px solid #E8DDD0;margin-bottom:0;">
+              Hours
+            </p>
+            <div id="hours-list">
+              {[
+                { day: "Monday",    time: "6:00 am – 7:00 pm", d: 1 },
+                { day: "Tuesday",   time: "6:00 am – 7:00 pm", d: 2 },
+                { day: "Wednesday", time: "6:00 am – 7:00 pm", d: 3 },
+                { day: "Thursday",  time: "6:00 am – 7:00 pm", d: 4 },
+                { day: "Friday",    time: "6:00 am – 7:00 pm", d: 5 },
+                { day: "Saturday",  time: "7:00 am – 7:00 pm", d: 6 },
+                { day: "Sunday",    time: "Closed",             d: 0 },
+              ].map((row) => (
+                <div data-day={row.d} style="display:flex;justify-content:space-between;padding:14px 0;border-top:1px solid #E8DDD0;">
+                  <span class="fh-day" style="font-weight:500;color:#2C1A0E;">{row.day}</span>
+                  <span class="fh-time" style={`font-size:0.9375rem;color:${row.time === 'Closed' ? '#9B8070' : '#5C3D2E'};`}>{row.time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Address + contact -->
+          <div>
+            <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#9B8070;padding-bottom:14px;border-bottom:1px solid #E8DDD0;margin-bottom:0;">
+              Location
+            </p>
+            <div style="padding-top:16px;space-y:12px;">
+              <p class="fh-serif" style="font-size:1.25rem;font-weight:700;color:#2C1A0E;margin-bottom:4px;">Farmhouse Coffee</p>
+              <p style="color:#5C3D2E;margin-bottom:4px;line-height:1.6;">118 Jesse Jewell Pkwy SE, Suite 100<br/>Gainesville, GA 30501</p>
+              <p style="font-size:0.8125rem;color:#9B8070;margin-bottom:28px;">Free parking available. Outdoor patio. Wi-Fi.</p>
+
+              <div style="display:flex;flex-direction:column;gap:12px;">
+                <a href="tel:7062910001" class="fh-tel">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 14a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.9a16 16 0 0 0 6.29 6.29l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 18.92z"/>
+                  </svg>
+                  706-291-0001
+                </a>
+                <a href="https://www.instagram.com/farmhousecoffee.co/" target="_blank" rel="noopener noreferrer" class="fh-social">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/>
+                    <circle cx="12" cy="12" r="4"/>
+                    <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                  </svg>
+                  @farmhousecoffee.co
+                </a>
+                <a href="https://maps.google.com/?q=118+Jesse+Jewell+Pkwy+SE+Suite+100+Gainesville+GA+30501"
+                   target="_blank" rel="noopener noreferrer"
+                   class="fh-btn-primary self-start" style="margin-top:8px;padding:12px 24px;font-size:0.8125rem;">
+                  Get Directions →
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FOOTER ─────────────────────────────────────────────────────── -->
+    <footer style="background-color:#2C1A0E;padding:48px 24px;">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div>
+          <p class="fh-serif" style="font-size:1.25rem;font-weight:700;color:#FFFCF8;margin-bottom:4px;">Farmhouse Coffee</p>
+          <p style="font-size:0.8125rem;color:rgba(255,252,248,0.35);">118 Jesse Jewell Pkwy SE · Gainesville, GA 30501</p>
+        </div>
+        <nav style="display:flex;gap:24px;flex-wrap:wrap;" aria-label="Footer">
+          <a href="#menu"     class="fh-footer-link">Menu</a>
+          <a href="#trailer"  class="fh-footer-link">Trailer</a>
+          <a href="#fam-club" class="fh-footer-link">FAM Club</a>
+          <a href="#hours"    class="fh-footer-link">Visit</a>
+        </nav>
+        <p style="font-size:0.75rem;color:rgba(255,252,248,0.2);">© 2026 Farmhouse Coffee</p>
+      </div>
+    </footer>
+
+  </div><!-- /fh-root -->
+
+  <script is:inline>
+    (function() {
+      // Mobile nav
+      var toggle = document.getElementById('fh-toggle');
+      var panel  = document.getElementById('fh-panel');
+      if (toggle && panel) {
+        toggle.addEventListener('click', function() {
+          var open = panel.classList.toggle('hidden') ? 'false' : 'true';
+          toggle.setAttribute('aria-expanded', open);
+        });
+        panel.addEventListener('click', function(e) {
+          if (e.target.tagName === 'A') {
+            panel.classList.add('hidden');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      // Today's hours highlight
+      var today = new Date().getDay();
+      var rows = document.querySelectorAll('#hours-list [data-day]');
+      rows.forEach(function(row) {
+        if (parseInt(row.getAttribute('data-day'), 10) === today) {
+          row.classList.add('fh-hours-today');
+          var dayEl = row.querySelector('.fh-day');
+          var timeEl = row.querySelector('.fh-time');
+          if (dayEl) dayEl.textContent = dayEl.textContent + ' (today)';
+        }
+      });
+
+      // Trailer form — demo submit
+      var trailerForm = document.getElementById('trailer-form');
+      var trailerSuccess = document.getElementById('trailer-success');
+      if (trailerForm && trailerSuccess) {
+        trailerForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          trailerForm.classList.add('hidden');
+          trailerSuccess.classList.remove('hidden');
+        });
+      }
+
+      // FAM Club form — demo submit
+      var famForm = document.getElementById('fam-form');
+      var famSuccess = document.getElementById('fam-success');
+      if (famForm && famSuccess) {
+        famForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          famForm.classList.add('hidden');
+          famSuccess.classList.remove('hidden');
+        });
+      }
+    })();
+  </script>
+
+</Layout>
