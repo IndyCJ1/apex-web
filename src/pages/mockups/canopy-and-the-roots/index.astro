@@ -1,0 +1,1472 @@
+---
+// Canopy + the Roots mockup — Plus tier single-page demo
+// SWAP before walking in: real phone, real hours, real membership pricing,
+// real upcoming shows from their calendar, real teacher names.
+import "../../../styles/global.css";
+
+const business = {
+  name: "Canopy + the Roots",
+  tagline: "Where the hustle slows and the rhythm is heard.",
+  subtitle: "Coffee · Yoga upstairs   |   Music · Comedy underground",
+  address: "53 W Main Street",
+  cityState: "Dahlonega, GA 30533",
+  email: "events@canopyandtheroots.com",
+  instagram: "canopyandtherootsdahlonega",
+  facebook: "canopyandtheroots",
+  founded: "2020",
+  phone: "(706) 555-0184",            // PLACEHOLDER — confirm on walk-in
+  phoneDigits: "7065550184",
+};
+
+// Best-guess hours — confirm with owner. Coffee shop typically opens early,
+// closes mid-afternoon; show nights extend into evening.
+const hours = [
+  { day: "Monday",    open: "Closed",        accent: false },
+  { day: "Tuesday",   open: "7am – 3pm",      accent: false },
+  { day: "Wednesday", open: "7am – 3pm",      accent: false },
+  { day: "Thursday",  open: "7am – 3pm  ·  7pm – 10pm", accent: true, note: "comedy night" },
+  { day: "Friday",    open: "7am – 3pm  ·  7pm – 11pm", accent: true, note: "music" },
+  { day: "Saturday",  open: "8am – 3pm  ·  7pm – 11pm", accent: true, note: "music" },
+  { day: "Sunday",    open: "8am – 2pm",       accent: false },
+];
+
+// Yoga schedule preview — Plus tier shows weekly grid with booking buttons.
+const yogaClasses = [
+  { day: "Tue", time: "6:30 AM",  name: "Sunrise Vinyasa",  teacher: "Hannah",  level: "All" },
+  { day: "Tue", time: "5:30 PM",  name: "Power Flow",       teacher: "Marcus",  level: "II / III" },
+  { day: "Wed", time: "9:00 AM",  name: "Hatha Foundations",teacher: "Mira",    level: "I / II" },
+  { day: "Wed", time: "6:00 PM",  name: "Christ-Centered",  teacher: "Sarah",   level: "All" },
+  { day: "Thu", time: "6:30 AM",  name: "Ashtanga",         teacher: "Hannah",  level: "II / III" },
+  { day: "Thu", time: "5:30 PM",  name: "Yin & Restorative",teacher: "Mira",    level: "All" },
+  { day: "Fri", time: "9:00 AM",  name: "Vinyasa Flow",     teacher: "Marcus",  level: "II" },
+  { day: "Sat", time: "8:30 AM",  name: "Slow Flow",        teacher: "Hannah",  level: "All" },
+  { day: "Sat", time: "10:30 AM", name: "Meditation + Nidra",teacher: "Sarah",  level: "All" },
+  { day: "Sun", time: "9:00 AM",  name: "Sunday Stretch",   teacher: "Mira",    level: "All" },
+];
+
+const yogaTypes = [
+  { name: "Vinyasa",     blurb: "Breath-led flow. Build heat, find rhythm." },
+  { name: "Ashtanga",    blurb: "The classical primary series. Disciplined, repeatable." },
+  { name: "Hatha",       blurb: "Slower, foundational. Strong hold work, breath training." },
+  { name: "Power Flow",  blurb: "Heated. Strength-biased. Sweat is the point." },
+  { name: "Yin / Restorative", blurb: "Long holds, deep tissue, parasympathetic reset." },
+  { name: "Christ-Centered",   blurb: "Scripture, breath, asana — held together." },
+  { name: "Meditation + Nidra", blurb: "Guided stillness. No mat experience required." },
+];
+
+// Underground shows — invented but plausible. Pull real ones before walking in.
+const shows = [
+  {
+    date: "FRI · MAY 15",
+    title: "The Marshall Highway Trio",
+    kind: "Live Music",
+    blurb: "Bluegrass meets jazz. Stripped acoustic set in the room.",
+    price: "$18",
+    time: "Doors 7 · Show 8",
+    featured: true,
+  },
+  {
+    date: "SAT · MAY 16",
+    title: "Hadley West",
+    kind: "Singer-songwriter",
+    blurb: "Atlanta-based. Warm room, no opener, two sets.",
+    price: "$22",
+    time: "Doors 7 · Show 8",
+  },
+  {
+    date: "THU · MAY 21",
+    title: "Underground Comedy Night",
+    kind: "Stand-up · 5 comics",
+    blurb: "Headliner: Reese Mahaffey. Showcase set, 18+.",
+    price: "$15",
+    time: "Doors 7 · Show 7:30",
+  },
+  {
+    date: "FRI · MAY 22",
+    title: "Iron Hollow String Band",
+    kind: "Live Music",
+    blurb: "North-Georgia natives. Two sets, last show before tour.",
+    price: "$20",
+    time: "Doors 7 · Show 8",
+  },
+];
+
+const membership = [
+  {
+    tier: "Roots",
+    price: "$45",
+    cadence: "/ month",
+    blurb: "For the regular at the coffee bar.",
+    perks: [
+      "Bottomless drip + cold brew",
+      "10% off all merch",
+      "First-look at new bean releases",
+      "Member-only cuppings (monthly)",
+    ],
+    cta: "Become a Roots member",
+    accent: false,
+  },
+  {
+    tier: "Canopy",
+    price: "$95",
+    cadence: "/ month",
+    blurb: "For the practice. For the practice of showing up.",
+    perks: [
+      "Everything in Roots",
+      "Unlimited yoga + meditation",
+      "10% off show tickets",
+      "Early access to special events",
+      "Guest pass: bring a friend once a month",
+    ],
+    cta: "Become a Canopy member",
+    accent: true,
+    badge: "Most chosen",
+  },
+  {
+    tier: "Underground",
+    price: "$175",
+    cadence: "/ month",
+    blurb: "For the night owl. For the room that listens.",
+    perks: [
+      "Everything in Canopy",
+      "Two free show tickets a month",
+      "VIP listening-room lounge access",
+      "Reserved seats on featured nights",
+      "20% off private-event bookings",
+    ],
+    cta: "Become an Underground member",
+    accent: false,
+  },
+];
+
+const testimonials = [
+  {
+    quote: "I came for the coffee and stayed for the silence. The underground room is the best-kept secret in north Georgia.",
+    name: "Mara K.",
+    detail: "Member since 2022",
+  },
+  {
+    quote: "Hannah's 6:30 Vinyasa is the only reason I'm a morning person now. The space upstairs feels like a long exhale.",
+    name: "Daniel T.",
+    detail: "Canopy member",
+  },
+  {
+    quote: "Hosted my book launch in the listening room. They handled everything — sound, seating, coffee bar. Showed up to a packed room.",
+    name: "Reese M.",
+    detail: "Private event host",
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,follow" />
+    <meta name="description" content="Canopy + the Roots — coffee, yoga, music and comedy in Dahlonega, Georgia. Where the hustle slows and the rhythm is heard." />
+    <title>Canopy + the Roots — Coffee · Yoga · Music · Comedy · Dahlonega, GA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
+
+    <style is:global>
+      :root {
+        --ct-paper:    #FAF6EE;
+        --ct-cream:    #F2EADA;
+        --ct-cream-2:  #EBE0CB;
+        --ct-clay:     #B5854F;
+        --ct-clay-2:   #94673F;
+        --ct-sage:     #8A9C7C;
+        --ct-sage-2:   #6E815E;
+        --ct-moss:     #44563F;
+        --ct-forest:   #1B2620;
+        --ct-forest-2: #11181440;
+        --ct-night:    #0D1411;
+        --ct-ember:    #D8A85B;
+        --ct-ember-2:  #B98837;
+        --ct-ink:      #1C1A17;
+        --ct-ink-2:    #2A2722;
+        --ct-muted:    #6B6457;
+        --ct-bone:     #EDE5D3;
+
+        --ct-display: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+        --ct-body:    'Manrope', system-ui, -apple-system, sans-serif;
+        --ct-script:  'Caveat', cursive;
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      html, body { background: var(--ct-paper); margin: 0; }
+      body {
+        color: var(--ct-ink);
+        font-family: var(--ct-body);
+        font-size: 16px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3, h4 { font-family: var(--ct-display); font-weight: 500; letter-spacing: -0.015em; line-height: 1.05; margin: 0; }
+      p { margin: 0; }
+      a { color: inherit; }
+      img { display: block; max-width: 100%; height: auto; }
+      ::selection { background: var(--ct-moss); color: var(--ct-paper); }
+      h1, h2, h3, p, li, span, a { overflow-wrap: anywhere; }
+
+      .ct-display  { font-family: var(--ct-display); }
+      .ct-script   { font-family: var(--ct-script); }
+      .ct-italic   { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; }
+
+      /* ─── Header ─── */
+      .ct-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        background: rgba(250, 246, 238, 0.92);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-bottom: 1px solid rgba(28, 26, 23, 0.08);
+      }
+      .ct-header-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 1rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.25rem;
+      }
+      .ct-logo {
+        font-family: var(--ct-display);
+        font-weight: 600;
+        font-size: 1.25rem;
+        letter-spacing: -0.01em;
+        color: var(--ct-ink);
+        text-decoration: none;
+        line-height: 1.05;
+        display: flex;
+        align-items: baseline;
+        gap: 0.35rem;
+      }
+      .ct-logo-plus { color: var(--ct-clay); font-weight: 400; }
+      .ct-logo small { font-family: var(--ct-body); font-weight: 600; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ct-muted); margin-left: 0.6rem; }
+      .ct-nav { display: flex; gap: 1.75rem; align-items: center; }
+      .ct-nav a {
+        font-family: var(--ct-body);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--ct-ink-2);
+        text-decoration: none;
+        letter-spacing: 0.01em;
+        transition: color 0.2s;
+      }
+      .ct-nav a:hover { color: var(--ct-clay); }
+
+      /* ─── Buttons ─── */
+      .ct-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.85rem 1.5rem;
+        font-family: var(--ct-body);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        border-radius: 999px;
+        transition: transform 0.2s ease, background 0.2s, color 0.2s, box-shadow 0.2s;
+        line-height: 1;
+      }
+      .ct-btn-dark   { background: var(--ct-ink); color: var(--ct-paper); }
+      .ct-btn-dark:hover { background: var(--ct-moss); transform: translateY(-1px); }
+      .ct-btn-clay   { background: var(--ct-clay); color: var(--ct-paper); }
+      .ct-btn-clay:hover { background: var(--ct-clay-2); transform: translateY(-1px); }
+      .ct-btn-ember  { background: var(--ct-ember); color: var(--ct-ink); }
+      .ct-btn-ember:hover { background: var(--ct-ember-2); transform: translateY(-1px); }
+      .ct-btn-ghost  { background: transparent; color: var(--ct-ink); border: 1.5px solid var(--ct-ink); }
+      .ct-btn-ghost:hover { background: var(--ct-ink); color: var(--ct-paper); }
+      .ct-btn-ghost-light { background: transparent; color: var(--ct-bone); border: 1.5px solid var(--ct-bone); }
+      .ct-btn-ghost-light:hover { background: var(--ct-bone); color: var(--ct-forest); }
+      .ct-btn-lg { padding: 1.05rem 1.85rem; font-size: 0.9rem; }
+
+      /* ─── Section utilities ─── */
+      .ct-section { padding: 6rem 1.5rem; position: relative; }
+      .ct-section-tight { padding: 4rem 1.5rem; }
+      .ct-container { max-width: 1180px; margin: 0 auto; position: relative; }
+      .ct-container-narrow { max-width: 880px; margin: 0 auto; position: relative; }
+
+      .ct-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: var(--ct-body);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--ct-clay);
+        margin-bottom: 1rem;
+      }
+      .ct-eyebrow::before { content: ""; display: inline-block; width: 26px; height: 1px; background: var(--ct-clay); }
+
+      .ct-h1 { font-size: clamp(2.6rem, 7vw, 5.5rem); letter-spacing: -0.025em; font-variation-settings: "opsz" 144, "SOFT" 50; }
+      .ct-h2 { font-size: clamp(2.1rem, 5vw, 3.5rem); letter-spacing: -0.02em; font-variation-settings: "opsz" 96, "SOFT" 50; }
+      .ct-h3 { font-size: clamp(1.4rem, 2.8vw, 1.85rem); letter-spacing: -0.01em; }
+
+      /* ─── Hero ─── */
+      .ct-hero {
+        position: relative;
+        padding: 5rem 1.5rem 6rem;
+        background:
+          radial-gradient(ellipse 60% 50% at 30% 20%, rgba(138, 156, 124, 0.25), transparent 70%),
+          radial-gradient(ellipse 80% 60% at 80% 80%, rgba(181, 133, 79, 0.18), transparent 70%),
+          var(--ct-paper);
+        overflow: hidden;
+      }
+      .ct-hero-tag {
+        font-family: var(--ct-script);
+        font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+        color: var(--ct-sage-2);
+        margin-bottom: 0.5rem;
+      }
+      .ct-hero h1 {
+        font-size: clamp(2.6rem, 9vw, 6.5rem);
+        color: var(--ct-ink);
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .ct-hero h1 em {
+        font-style: italic;
+        color: var(--ct-clay);
+        font-variation-settings: "opsz" 144, "SOFT" 100;
+      }
+      .ct-hero p.lead {
+        font-family: var(--ct-display);
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        color: var(--ct-muted);
+        max-width: 540px;
+        margin: 1.5rem auto 0;
+        line-height: 1.5;
+        font-style: italic;
+      }
+
+      .ct-split-doors {
+        margin-top: 5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        max-width: 1180px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .ct-door {
+        position: relative;
+        padding: 2.5rem 2rem;
+        border-radius: 4px;
+        overflow: hidden;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        cursor: pointer;
+      }
+      .ct-door:hover { transform: translateY(-4px); }
+      .ct-door-up {
+        background:
+          linear-gradient(135deg, rgba(242, 234, 218, 0.6), rgba(235, 224, 203, 0.95)),
+          url("https://images.unsplash.com/photo-1545194445-dddb8f4487c6?w=900&q=85") center/cover;
+        color: var(--ct-ink);
+      }
+      .ct-door-down {
+        background:
+          linear-gradient(135deg, rgba(13, 20, 17, 0.78), rgba(27, 38, 32, 0.92)),
+          url("https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=900&q=85") center/cover;
+        color: var(--ct-bone);
+      }
+      .ct-door .ct-label {
+        font-family: var(--ct-body);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        opacity: 0.7;
+        margin-bottom: 0.85rem;
+      }
+      .ct-door h3 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: 0.5rem; }
+      .ct-door p { font-size: 0.95rem; line-height: 1.55; max-width: 26rem; opacity: 0.85; }
+      .ct-door-arrow {
+        margin-top: 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--ct-body);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      /* ─── This Week banner ─── */
+      .ct-week {
+        background: var(--ct-cream);
+        border-top: 1px solid rgba(28, 26, 23, 0.1);
+        border-bottom: 1px solid rgba(28, 26, 23, 0.1);
+        padding: 2.5rem 1.5rem;
+      }
+      .ct-week-grid {
+        max-width: 1180px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        align-items: start;
+      }
+      .ct-week-card .ct-label {
+        font-family: var(--ct-body);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--ct-clay);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.65rem;
+      }
+      .ct-week-card .ct-label .ct-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ct-clay); }
+      .ct-week-card .ct-label.live .ct-dot { background: #C73650; box-shadow: 0 0 0 0 rgba(199, 54, 80, 0.7); animation: ct-pulse 2s infinite; }
+      @keyframes ct-pulse {
+        0%   { box-shadow: 0 0 0 0 rgba(199, 54, 80, 0.55); }
+        70%  { box-shadow: 0 0 0 8px rgba(199, 54, 80, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(199, 54, 80, 0); }
+      }
+      .ct-week-card h4 { font-size: 1.25rem; font-family: var(--ct-display); margin-bottom: 0.25rem; }
+      .ct-week-card p  { font-size: 0.92rem; color: var(--ct-muted); }
+      .ct-week-card a  { display: inline-block; margin-top: 0.65rem; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ct-ink); border-bottom: 1.5px solid var(--ct-clay); text-decoration: none; padding-bottom: 2px; }
+      .ct-week-card a:hover { color: var(--ct-clay); }
+
+      /* ─── Yoga ─── */
+      .ct-section-yoga {
+        background:
+          radial-gradient(ellipse 50% 40% at 10% 100%, rgba(138, 156, 124, 0.18), transparent 70%),
+          var(--ct-paper);
+      }
+      .ct-yoga-types {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1rem;
+        margin-top: 3rem;
+      }
+      .ct-type-card {
+        padding: 1.5rem 1.25rem;
+        background: var(--ct-paper);
+        border: 1px solid rgba(28, 26, 23, 0.1);
+        border-radius: 6px;
+        transition: border-color 0.25s, transform 0.25s;
+      }
+      .ct-type-card:hover { border-color: var(--ct-sage); transform: translateY(-2px); }
+      .ct-type-card h4 { font-size: 1.2rem; font-family: var(--ct-display); margin-bottom: 0.5rem; color: var(--ct-ink); }
+      .ct-type-card p  { font-size: 0.88rem; color: var(--ct-muted); line-height: 1.5; }
+
+      .ct-schedule {
+        margin-top: 4rem;
+        background: var(--ct-cream);
+        border-radius: 8px;
+        padding: 2rem;
+      }
+      .ct-schedule h3 {
+        font-family: var(--ct-display);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .ct-schedule h3 .ct-script { font-size: 1.4rem; color: var(--ct-sage-2); }
+      .ct-class-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .ct-class-row {
+        display: grid;
+        grid-template-columns: 60px 100px 1fr auto 110px;
+        gap: 1rem;
+        align-items: center;
+        padding: 0.95rem 0.25rem;
+        border-bottom: 1px solid rgba(28, 26, 23, 0.08);
+      }
+      .ct-class-row:last-child { border-bottom: none; }
+      .ct-class-row .ct-day {
+        font-family: var(--ct-body);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ct-clay);
+      }
+      .ct-class-row .ct-time { font-family: var(--ct-display); font-size: 1rem; color: var(--ct-ink); }
+      .ct-class-row .ct-name { font-weight: 700; font-size: 0.98rem; color: var(--ct-ink); }
+      .ct-class-row .ct-name small { display: block; font-weight: 500; font-size: 0.78rem; color: var(--ct-muted); margin-top: 0.15rem; }
+      .ct-class-row .ct-level {
+        font-family: var(--ct-body);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--ct-sage-2);
+        text-transform: uppercase;
+      }
+      .ct-class-row .ct-book {
+        font-family: var(--ct-body);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.5rem 0.85rem;
+        border-radius: 999px;
+        background: var(--ct-ink);
+        color: var(--ct-paper);
+        text-decoration: none;
+        text-align: center;
+        transition: background 0.2s;
+      }
+      .ct-class-row .ct-book:hover { background: var(--ct-clay); }
+
+      .ct-pricing-strip {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px dashed rgba(28, 26, 23, 0.18);
+      }
+      .ct-price-item .ct-price-label {
+        font-family: var(--ct-body);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--ct-muted);
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+      .ct-price-item .ct-price-val {
+        font-family: var(--ct-display);
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--ct-ink);
+        line-height: 1.1;
+      }
+      .ct-price-item small { font-size: 0.78rem; font-weight: 500; color: var(--ct-muted); }
+
+      /* ─── Underground (dark section) ─── */
+      .ct-underground {
+        background:
+          radial-gradient(ellipse 70% 50% at 50% 0%, rgba(216, 168, 91, 0.12), transparent 70%),
+          radial-gradient(ellipse 50% 40% at 90% 100%, rgba(216, 168, 91, 0.08), transparent 70%),
+          var(--ct-forest);
+        color: var(--ct-bone);
+        position: relative;
+      }
+      .ct-underground::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: linear-gradient(180deg, var(--ct-paper) 0%, transparent 100%);
+        opacity: 0.4;
+        pointer-events: none;
+      }
+      .ct-underground .ct-eyebrow { color: var(--ct-ember); }
+      .ct-underground .ct-eyebrow::before { background: var(--ct-ember); }
+      .ct-underground h2 { color: var(--ct-bone); }
+      .ct-underground h2 em { color: var(--ct-ember); font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; }
+
+      .ct-shows-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.25rem;
+        margin-top: 3.5rem;
+      }
+      .ct-show-card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(216, 168, 91, 0.2);
+        border-radius: 6px;
+        padding: 1.75rem 1.5rem;
+        transition: border-color 0.25s, transform 0.25s, background 0.25s;
+      }
+      .ct-show-card:hover { border-color: var(--ct-ember); background: rgba(216, 168, 91, 0.06); transform: translateY(-2px); }
+      .ct-show-card.featured { background: rgba(216, 168, 91, 0.07); border-color: rgba(216, 168, 91, 0.4); }
+      .ct-show-card .ct-date {
+        font-family: var(--ct-body);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--ct-ember);
+        margin-bottom: 0.85rem;
+      }
+      .ct-show-card .ct-kind { font-family: var(--ct-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(237, 229, 211, 0.55); margin-bottom: 0.5rem; }
+      .ct-show-card h4 { font-family: var(--ct-display); font-size: 1.5rem; color: var(--ct-bone); margin-bottom: 0.65rem; }
+      .ct-show-card p { font-size: 0.9rem; color: rgba(237, 229, 211, 0.75); line-height: 1.55; margin-bottom: 1.25rem; }
+      .ct-show-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(216, 168, 91, 0.15);
+      }
+      .ct-show-meta .ct-time-small { font-size: 0.78rem; color: rgba(237, 229, 211, 0.55); font-weight: 500; }
+      .ct-show-meta .ct-price-small { font-family: var(--ct-display); font-size: 1.2rem; color: var(--ct-ember); }
+      .ct-show-card a.ct-ticket {
+        display: block;
+        margin-top: 1.25rem;
+        text-align: center;
+        padding: 0.75rem 1rem;
+        background: var(--ct-ember);
+        color: var(--ct-forest);
+        text-decoration: none;
+        border-radius: 999px;
+        font-family: var(--ct-body);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: background 0.2s, transform 0.2s;
+      }
+      .ct-show-card a.ct-ticket:hover { background: var(--ct-bone); transform: translateY(-1px); }
+
+      .ct-underground-note {
+        margin-top: 3rem;
+        text-align: center;
+        font-family: var(--ct-display);
+        font-size: 1.05rem;
+        font-style: italic;
+        color: rgba(237, 229, 211, 0.65);
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+        font-variation-settings: "opsz" 144, "SOFT" 100;
+      }
+
+      /* ─── Membership ─── */
+      .ct-section-membership {
+        background: var(--ct-cream);
+        border-top: 1px solid rgba(28, 26, 23, 0.08);
+        border-bottom: 1px solid rgba(28, 26, 23, 0.08);
+      }
+      .ct-tiers {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 3.5rem;
+      }
+      .ct-tier {
+        position: relative;
+        background: var(--ct-paper);
+        border: 1px solid rgba(28, 26, 23, 0.1);
+        border-radius: 8px;
+        padding: 2.25rem 1.75rem;
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      }
+      .ct-tier:hover { transform: translateY(-3px); box-shadow: 0 12px 30px -16px rgba(28, 26, 23, 0.18); }
+      .ct-tier.featured {
+        background: var(--ct-ink);
+        color: var(--ct-paper);
+        border-color: var(--ct-ink);
+      }
+      .ct-tier-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--ct-ember);
+        color: var(--ct-ink);
+        font-family: var(--ct-body);
+        font-size: 0.68rem;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        padding: 0.4rem 0.85rem;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      .ct-tier h3 { font-family: var(--ct-display); font-size: 1.65rem; margin-bottom: 0.3rem; }
+      .ct-tier .ct-tier-blurb { font-family: var(--ct-display); font-style: italic; font-size: 0.95rem; opacity: 0.7; line-height: 1.5; margin-bottom: 1.5rem; min-height: 2.7em; }
+      .ct-tier.featured .ct-tier-blurb { color: rgba(250, 246, 238, 0.7); }
+      .ct-tier .ct-tier-price {
+        display: flex;
+        align-items: baseline;
+        gap: 0.4rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(28, 26, 23, 0.08);
+      }
+      .ct-tier.featured .ct-tier-price { border-bottom-color: rgba(250, 246, 238, 0.15); }
+      .ct-tier-price .ct-amount { font-family: var(--ct-display); font-size: 2.75rem; font-weight: 500; color: inherit; line-height: 1; }
+      .ct-tier-price .ct-cadence { font-family: var(--ct-body); font-size: 0.85rem; font-weight: 500; color: var(--ct-muted); }
+      .ct-tier.featured .ct-cadence { color: rgba(250, 246, 238, 0.65); }
+      .ct-tier ul { list-style: none; padding: 0; margin: 0 0 2rem; flex: 1; }
+      .ct-tier li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        padding: 0.5rem 0;
+        font-size: 0.92rem;
+        line-height: 1.45;
+      }
+      .ct-tier li::before {
+        content: "";
+        flex-shrink: 0;
+        margin-top: 0.55rem;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--ct-clay);
+      }
+      .ct-tier.featured li::before { background: var(--ct-ember); }
+      .ct-tier .ct-btn { width: 100%; }
+
+      /* ─── Coffee ─── */
+      .ct-section-coffee {
+        background: var(--ct-paper);
+      }
+      .ct-coffee-split {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .ct-coffee-photo {
+        aspect-ratio: 4/5;
+        border-radius: 6px;
+        overflow: hidden;
+        background: url("https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=900&q=85") center/cover;
+      }
+      .ct-coffee-list { list-style: none; padding: 0; margin: 1.5rem 0 0; }
+      .ct-coffee-list li { padding: 1rem 0; border-bottom: 1px solid rgba(28, 26, 23, 0.08); display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: baseline; }
+      .ct-coffee-list li:last-child { border-bottom: none; }
+      .ct-coffee-list .bean-name { font-family: var(--ct-display); font-size: 1.1rem; }
+      .ct-coffee-list .bean-origin { font-size: 0.82rem; color: var(--ct-muted); margin-top: 0.15rem; }
+      .ct-coffee-list .bean-price { font-family: var(--ct-display); font-size: 1.05rem; color: var(--ct-clay); white-space: nowrap; }
+
+      /* ─── About ─── */
+      .ct-section-about {
+        background: var(--ct-cream-2);
+        position: relative;
+      }
+      .ct-about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .ct-about-photo {
+        aspect-ratio: 4/5;
+        border-radius: 6px;
+        overflow: hidden;
+        background: url("https://images.unsplash.com/photo-1545048702-79362596cdc9?w=900&q=85") center/cover;
+      }
+      .ct-about-grid p { font-size: 1.02rem; line-height: 1.7; color: var(--ct-ink); margin-bottom: 1.1rem; }
+      .ct-about-grid .pull {
+        font-family: var(--ct-display);
+        font-size: 1.4rem;
+        font-style: italic;
+        line-height: 1.4;
+        color: var(--ct-moss);
+        margin: 1.5rem 0;
+        padding: 0 0 0 1.5rem;
+        border-left: 2px solid var(--ct-sage);
+        font-variation-settings: "opsz" 144, "SOFT" 100;
+      }
+      .ct-stat-strip {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(28, 26, 23, 0.1);
+      }
+      .ct-stat .ct-stat-num { font-family: var(--ct-display); font-size: 2.1rem; color: var(--ct-clay); line-height: 1; }
+      .ct-stat .ct-stat-label { font-family: var(--ct-body); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ct-muted); margin-top: 0.4rem; }
+
+      /* ─── Testimonials ─── */
+      .ct-testimonials {
+        background: var(--ct-paper);
+      }
+      .ct-quote-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 3rem;
+      }
+      .ct-quote {
+        background: var(--ct-cream);
+        padding: 2rem 1.75rem;
+        border-radius: 6px;
+      }
+      .ct-quote .ct-mark {
+        font-family: var(--ct-display);
+        font-size: 3rem;
+        line-height: 0.4;
+        color: var(--ct-clay);
+        margin-bottom: 1rem;
+        display: block;
+        font-style: italic;
+      }
+      .ct-quote p { font-family: var(--ct-display); font-style: italic; font-size: 1.05rem; line-height: 1.55; color: var(--ct-ink); margin-bottom: 1.5rem; font-variation-settings: "opsz" 144, "SOFT" 80; }
+      .ct-quote .ct-source { font-size: 0.85rem; color: var(--ct-ink); font-weight: 700; }
+      .ct-quote .ct-source small { display: block; font-weight: 500; font-size: 0.78rem; color: var(--ct-muted); margin-top: 0.15rem; }
+
+      /* ─── Private events ─── */
+      .ct-section-events {
+        background: var(--ct-ink);
+        color: var(--ct-paper);
+      }
+      .ct-events-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .ct-events-photo {
+        aspect-ratio: 4/3;
+        border-radius: 6px;
+        overflow: hidden;
+        background:
+          linear-gradient(135deg, rgba(13, 20, 17, 0.4), transparent),
+          url("https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?w=900&q=85") center/cover;
+      }
+      .ct-section-events .ct-eyebrow { color: var(--ct-ember); }
+      .ct-section-events .ct-eyebrow::before { background: var(--ct-ember); }
+      .ct-section-events h2 em { color: var(--ct-ember); font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; }
+      .ct-section-events p { color: rgba(250, 246, 238, 0.75); line-height: 1.65; margin-bottom: 1rem; max-width: 36rem; }
+      .ct-uses { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.5rem; margin: 1.75rem 0 2rem; max-width: 30rem; }
+      .ct-use { font-size: 0.92rem; font-weight: 500; color: rgba(250, 246, 238, 0.85); display: flex; align-items: center; gap: 0.6rem; }
+      .ct-use::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--ct-ember); flex-shrink: 0; }
+
+      /* ─── Visit ─── */
+      .ct-section-visit {
+        background: var(--ct-paper);
+      }
+      .ct-visit-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+      .ct-visit-block {
+        padding-bottom: 1.75rem;
+        margin-bottom: 1.75rem;
+        border-bottom: 1px solid rgba(28, 26, 23, 0.1);
+      }
+      .ct-visit-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+      .ct-visit-label {
+        font-family: var(--ct-body);
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--ct-muted);
+        margin-bottom: 0.65rem;
+      }
+      .ct-visit-block h4 { font-family: var(--ct-display); font-size: 1.4rem; color: var(--ct-ink); margin-bottom: 0.35rem; line-height: 1.2; }
+      .ct-visit-block a { color: var(--ct-clay); text-decoration: none; font-weight: 600; }
+      .ct-visit-block a:hover { text-decoration: underline; }
+
+      .ct-hours-list { list-style: none; padding: 0; margin: 0; }
+      .ct-hours-list li {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 1rem;
+        padding: 0.55rem 0;
+        font-size: 0.95rem;
+        border-bottom: 1px dashed rgba(28, 26, 23, 0.1);
+      }
+      .ct-hours-list li:last-child { border-bottom: none; }
+      .ct-hours-list .ct-hr-day { font-weight: 700; color: var(--ct-ink); }
+      .ct-hours-list .ct-hr-time { color: var(--ct-muted); }
+      .ct-hours-list li.accent .ct-hr-time { color: var(--ct-clay); font-weight: 600; }
+      .ct-hours-list li.accent .ct-hr-time small { font-family: var(--ct-script); font-size: 1rem; color: var(--ct-sage-2); margin-left: 0.4rem; }
+      .ct-hours-list .ct-today { background: rgba(216, 168, 91, 0.12); border-radius: 4px; padding-left: 0.6rem; padding-right: 0.6rem; }
+
+      /* ─── Newsletter ─── */
+      .ct-newsletter {
+        background: var(--ct-cream);
+        padding: 4.5rem 1.5rem;
+        text-align: center;
+      }
+      .ct-news-form {
+        max-width: 520px;
+        margin: 1.75rem auto 0;
+        display: flex;
+        gap: 0.5rem;
+      }
+      .ct-news-form input {
+        flex: 1;
+        padding: 1rem 1.25rem;
+        font-family: var(--ct-body);
+        font-size: 16px;
+        background: var(--ct-paper);
+        border: 1px solid rgba(28, 26, 23, 0.15);
+        border-radius: 999px;
+        color: var(--ct-ink);
+        outline: none;
+      }
+      .ct-news-form input:focus { border-color: var(--ct-clay); }
+      .ct-news-form button { white-space: nowrap; }
+
+      /* ─── Footer ─── */
+      .ct-footer {
+        background: var(--ct-night);
+        color: rgba(237, 229, 211, 0.65);
+        padding: 3.5rem 1.5rem 2rem;
+      }
+      .ct-footer-inner { max-width: 1180px; margin: 0 auto; }
+      .ct-footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(237, 229, 211, 0.1); }
+      .ct-footer h5 { font-family: var(--ct-body); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ct-ember); margin-bottom: 1rem; }
+      .ct-footer .ct-foot-logo { font-family: var(--ct-display); font-size: 1.4rem; color: var(--ct-bone); margin-bottom: 0.85rem; }
+      .ct-footer p { font-size: 0.85rem; line-height: 1.65; }
+      .ct-footer ul { list-style: none; padding: 0; margin: 0; }
+      .ct-footer li { padding: 0.35rem 0; }
+      .ct-footer a { color: rgba(237, 229, 211, 0.65); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+      .ct-footer a:hover { color: var(--ct-ember); }
+      .ct-footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1.75rem;
+        font-size: 0.78rem;
+      }
+      .ct-footer-bottom a { color: var(--ct-bone); font-weight: 700; text-decoration: underline; }
+
+      /* ─── Reveal ─── */
+      .ct-reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); will-change: opacity, transform; }
+      .ct-reveal.is-visible { opacity: 1; transform: none; }
+      .ct-d-1 { transition-delay: 0.08s; }
+      .ct-d-2 { transition-delay: 0.16s; }
+      .ct-d-3 { transition-delay: 0.24s; }
+      .ct-d-4 { transition-delay: 0.32s; }
+      .ct-d-5 { transition-delay: 0.40s; }
+      @media (prefers-reduced-motion: reduce) {
+        .ct-reveal { opacity: 1; transform: none; transition: none; }
+        html { scroll-behavior: auto; }
+      }
+
+      /* ─── Responsive ─── */
+      @media (max-width: 900px) {
+        .ct-nav { display: none; }
+        .ct-section { padding: 4.5rem 1.25rem; }
+        .ct-hero { padding: 3.5rem 1.25rem 4rem; }
+        .ct-split-doors { grid-template-columns: 1fr; gap: 0.75rem; margin-top: 3rem; }
+        .ct-week-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .ct-class-row { grid-template-columns: 50px 1fr 90px; gap: 0.65rem; }
+        .ct-class-row .ct-time, .ct-class-row .ct-level { display: none; }
+        .ct-tiers { grid-template-columns: 1fr; gap: 1rem; }
+        .ct-coffee-split, .ct-about-grid, .ct-events-grid, .ct-visit-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        .ct-quote-grid { grid-template-columns: 1fr; }
+        .ct-stat-strip { grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
+        .ct-footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .ct-news-form { flex-direction: column; }
+        .ct-news-form button { width: 100%; }
+        .ct-shows-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 520px) {
+        .ct-header-inner { padding: 0.75rem 1rem; }
+        .ct-footer-top { grid-template-columns: 1fr; gap: 2rem; }
+        .ct-stat-strip { grid-template-columns: 1fr; gap: 1rem; }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- ───── Header ───── -->
+    <header class="ct-header">
+      <div class="ct-header-inner">
+        <a href="#top" class="ct-logo">
+          Canopy <span class="ct-logo-plus">+</span> the Roots
+          <small>Dahlonega</small>
+        </a>
+        <nav class="ct-nav">
+          <a href="#yoga">Yoga</a>
+          <a href="#underground">Music + Comedy</a>
+          <a href="#membership">Membership</a>
+          <a href="#events">Private events</a>
+          <a href="#visit">Visit</a>
+        </nav>
+        <a href="#yoga" class="ct-btn ct-btn-dark">Book a class</a>
+      </div>
+    </header>
+
+    <!-- ───── Hero ───── -->
+    <section class="ct-hero" id="top">
+      <div class="ct-container-narrow" style="text-align: center;">
+        <p class="ct-hero-tag ct-reveal">est. {business.founded} · Dahlonega, Georgia</p>
+        <h1 class="ct-reveal ct-d-1">
+          Where the hustle <em>slows</em><br/>and the rhythm is <em>heard.</em>
+        </h1>
+        <p class="lead ct-reveal ct-d-2">
+          Coffee and yoga upstairs. Music and comedy in the room beneath. One door, two rhythms — both intentional.
+        </p>
+        <div class="ct-reveal ct-d-3" style="margin-top: 2.5rem; display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#yoga" class="ct-btn ct-btn-dark ct-btn-lg">Book a yoga class</a>
+          <a href="#underground" class="ct-btn ct-btn-ghost ct-btn-lg">See tonight's show</a>
+        </div>
+      </div>
+
+      <div class="ct-split-doors">
+        <a href="#yoga" class="ct-door ct-door-up ct-reveal ct-d-4">
+          <div class="ct-label">↑ Upstairs</div>
+          <h3>Coffee + Yoga</h3>
+          <p>Sunrise vinyasa, slow-pour drip, a quiet booth by the window. The day starts here.</p>
+          <div class="ct-door-arrow">See the schedule →</div>
+        </a>
+        <a href="#underground" class="ct-door ct-door-down ct-reveal ct-d-5">
+          <div class="ct-label">↓ Underground</div>
+          <h3>Music + Comedy</h3>
+          <p>Acoustic listening room. No clinking glasses, no phones. Just the room, the players, and you.</p>
+          <div class="ct-door-arrow">See the calendar →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ───── This Week strip ───── -->
+    <section class="ct-week">
+      <div class="ct-week-grid">
+        <div class="ct-week-card ct-reveal">
+          <div class="ct-label live"><span class="ct-dot"></span> Open now</div>
+          <h4>Coffee bar · until 3pm</h4>
+          <p>Drip, cold brew, pour-over, espresso. Ethiopia Yirgacheffe on this week.</p>
+          <a href="#visit">See full hours</a>
+        </div>
+        <div class="ct-week-card ct-reveal ct-d-1">
+          <div class="ct-label"><span class="ct-dot"></span> Next class</div>
+          <h4>Power Flow · 5:30 PM</h4>
+          <p>Marcus · Level II/III · 60 min · {yogaClasses[1].day} · 8 spots left.</p>
+          <a href="#yoga">Reserve your spot</a>
+        </div>
+        <div class="ct-week-card ct-reveal ct-d-2">
+          <div class="ct-label"><span class="ct-dot"></span> This Friday</div>
+          <h4>The Marshall Highway Trio</h4>
+          <p>Bluegrass + jazz, two sets. Doors 7 · Show 8 · $18 advance.</p>
+          <a href="#underground">Buy tickets</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Yoga ───── -->
+    <section class="ct-section ct-section-yoga" id="yoga">
+      <div class="ct-container">
+
+        <div style="max-width: 720px;" class="ct-reveal">
+          <span class="ct-eyebrow">Upstairs · Yoga</span>
+          <h2 class="ct-h2">A practice room with windows that open to the trees.</h2>
+          <p style="font-family: var(--ct-display); font-size: 1.15rem; font-style: italic; color: var(--ct-muted); margin-top: 1.25rem; line-height: 1.5; font-variation-settings: 'opsz' 144, 'SOFT' 100;">
+            Seven styles, seven teachers, one room. New here? Start with Hatha Foundations or Slow Flow on Saturday morning.
+          </p>
+        </div>
+
+        <div class="ct-yoga-types">
+          {yogaTypes.map((t, i) => (
+            <div class={`ct-type-card ct-reveal ct-d-${(i % 5) + 1}`}>
+              <h4>{t.name}</h4>
+              <p>{t.blurb}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="ct-schedule ct-reveal">
+          <h3>
+            This week's classes
+            <span class="ct-script">reserve in advance — small rooms fill fast.</span>
+          </h3>
+          <div class="ct-class-list">
+            {yogaClasses.map((c) => (
+              <div class="ct-class-row">
+                <span class="ct-day">{c.day}</span>
+                <span class="ct-time">{c.time}</span>
+                <span class="ct-name">{c.name}<small>{c.teacher}</small></span>
+                <span class="ct-level">{c.level}</span>
+                <a href="#book" class="ct-book">Reserve</a>
+              </div>
+            ))}
+          </div>
+
+          <div class="ct-pricing-strip">
+            <div class="ct-price-item">
+              <span class="ct-price-label">Drop-in</span>
+              <div class="ct-price-val">$22</div>
+              <small>single class</small>
+            </div>
+            <div class="ct-price-item">
+              <span class="ct-price-label">10-class pack</span>
+              <div class="ct-price-val">$180</div>
+              <small>$18 / class</small>
+            </div>
+            <div class="ct-price-item">
+              <span class="ct-price-label">First class</span>
+              <div class="ct-price-val">Free</div>
+              <small>new to the studio</small>
+            </div>
+            <div class="ct-price-item">
+              <span class="ct-price-label">Members</span>
+              <div class="ct-price-val">Unlimited</div>
+              <small>see Canopy tier ↓</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ───── Underground ───── -->
+    <section class="ct-section ct-underground" id="underground">
+      <div class="ct-container">
+
+        <div style="max-width: 720px;" class="ct-reveal">
+          <span class="ct-eyebrow">↓ Underground · Music + Comedy</span>
+          <h2 class="ct-h2">An acoustic room that <em>listens back.</em></h2>
+          <p style="font-family: var(--ct-display); font-size: 1.15rem; font-style: italic; color: rgba(237, 229, 211, 0.75); margin-top: 1.25rem; line-height: 1.55; max-width: 36rem; font-variation-settings: 'opsz' 144, 'SOFT' 100;">
+            Sultry, moss-walled, star-lit. The kind of room artists ask to come back to. No clinking glasses. No phones lit up. Just the room and the work.
+          </p>
+        </div>
+
+        <div class="ct-shows-grid">
+          {shows.map((s, i) => (
+            <div class={`ct-show-card ${s.featured ? 'featured' : ''} ct-reveal ct-d-${(i % 4) + 1}`}>
+              <div class="ct-date">{s.date}</div>
+              <div class="ct-kind">{s.kind}</div>
+              <h4>{s.title}</h4>
+              <p>{s.blurb}</p>
+              <div class="ct-show-meta">
+                <span class="ct-time-small">{s.time}</span>
+                <span class="ct-price-small">{s.price}</span>
+              </div>
+              <a href="#tickets" class="ct-ticket">Buy tickets</a>
+            </div>
+          ))}
+        </div>
+
+        <p class="ct-underground-note ct-reveal">
+          Want to play the room?
+          <a href={`mailto:${business.email}?subject=Artist%20booking%20%E2%80%94%20Underground`} style="color: var(--ct-ember); text-decoration: underline; text-underline-offset: 4px;">Send a song and a date</a>
+          — we book six weeks out.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ───── Membership ───── -->
+    <section class="ct-section ct-section-membership" id="membership">
+      <div class="ct-container">
+
+        <div style="text-align: center; max-width: 680px; margin: 0 auto;" class="ct-reveal">
+          <span class="ct-eyebrow" style="justify-content: center;">Membership</span>
+          <h2 class="ct-h2">For the people who keep <em>coming back.</em></h2>
+          <p style="font-family: var(--ct-display); font-size: 1.1rem; font-style: italic; color: var(--ct-muted); margin-top: 1.25rem; line-height: 1.55; font-variation-settings: 'opsz' 144, 'SOFT' 100;">
+            Three tiers, cancel anytime. Most members join Canopy — the practice tier — and add Underground later when they fall for the music room.
+          </p>
+        </div>
+
+        <div class="ct-tiers">
+          {membership.map((m, i) => (
+            <div class={`ct-tier ${m.accent ? 'featured' : ''} ct-reveal ct-d-${i + 1}`}>
+              {m.badge && <span class="ct-tier-badge">{m.badge}</span>}
+              <h3>{m.tier}</h3>
+              <p class="ct-tier-blurb">{m.blurb}</p>
+              <div class="ct-tier-price">
+                <span class="ct-amount">{m.price}</span>
+                <span class="ct-cadence">{m.cadence}</span>
+              </div>
+              <ul>
+                {m.perks.map((p) => <li>{p}</li>)}
+              </ul>
+              <a href="#join" class={`ct-btn ${m.accent ? 'ct-btn-ember' : 'ct-btn-dark'}`}>{m.cta}</a>
+            </div>
+          ))}
+        </div>
+
+        <p style="text-align: center; margin-top: 2.5rem; font-size: 0.88rem; color: var(--ct-muted);" class="ct-reveal">
+          All memberships include early access to special events · gift memberships available · pause anytime for travel.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ───── Coffee ───── -->
+    <section class="ct-section ct-section-coffee" id="coffee">
+      <div class="ct-container">
+        <div class="ct-coffee-split">
+          <div class="ct-coffee-photo ct-reveal"></div>
+          <div class="ct-reveal ct-d-1">
+            <span class="ct-eyebrow">The Coffee Bar</span>
+            <h2 class="ct-h2">Roasted small. Poured slow.</h2>
+            <p style="font-size: 1rem; color: var(--ct-ink); line-height: 1.7; margin-top: 1.25rem;">
+              We work with two roasters within an hour of Dahlonega and one farm-direct source in Guatemala. Beans on the bar this week:
+            </p>
+            <ul class="ct-coffee-list">
+              <li>
+                <div>
+                  <div class="bean-name">Yirgacheffe</div>
+                  <div class="bean-origin">Ethiopia · light roast · floral, lemon, jasmine</div>
+                </div>
+                <div class="bean-price">$18 / 12oz</div>
+              </li>
+              <li>
+                <div>
+                  <div class="bean-name">Huehuetenango Reserva</div>
+                  <div class="bean-origin">Guatemala · medium · cocoa, brown sugar, plum</div>
+                </div>
+                <div class="bean-price">$22 / 12oz</div>
+              </li>
+              <li>
+                <div>
+                  <div class="bean-name">Sumatra Mandheling</div>
+                  <div class="bean-origin">Indonesia · dark · earthy, tobacco, dark chocolate</div>
+                </div>
+                <div class="bean-price">$19 / 12oz</div>
+              </li>
+            </ul>
+            <p style="font-family: var(--ct-script); font-size: 1.35rem; color: var(--ct-sage-2); margin-top: 1.5rem;">
+              Monthly cuppings — first Saturday, 10am. Members free.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Testimonials ───── -->
+    <section class="ct-section ct-testimonials">
+      <div class="ct-container">
+        <div style="text-align: center; max-width: 640px; margin: 0 auto;" class="ct-reveal">
+          <span class="ct-eyebrow" style="justify-content: center;">From the community</span>
+          <h2 class="ct-h2">The room remembers.</h2>
+        </div>
+        <div class="ct-quote-grid">
+          {testimonials.map((t, i) => (
+            <figure class={`ct-quote ct-reveal ct-d-${i + 1}`}>
+              <span class="ct-mark">"</span>
+              <p>{t.quote}</p>
+              <figcaption class="ct-source">
+                {t.name}
+                <small>{t.detail}</small>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Private events ───── -->
+    <section class="ct-section ct-section-events" id="events">
+      <div class="ct-container">
+        <div class="ct-events-grid">
+          <div class="ct-events-photo ct-reveal"></div>
+          <div class="ct-reveal ct-d-1">
+            <span class="ct-eyebrow">Private Events</span>
+            <h2 class="ct-h2">Take the <em>whole room.</em></h2>
+            <p>The underground listening room holds 60 seated, 90 standing. We handle the sound, seating, coffee bar, and the door. You bring the people.</p>
+            <p>Book the upstairs studio for daytime gatherings — yoga retreats, book launches, daylight portrait sessions.</p>
+            <div class="ct-uses">
+              <span class="ct-use">Birthdays</span>
+              <span class="ct-use">Album release</span>
+              <span class="ct-use">Book launch</span>
+              <span class="ct-use">Wedding rehearsal</span>
+              <span class="ct-use">Corporate offsite</span>
+              <span class="ct-use">Yoga retreat</span>
+            </div>
+            <a href={`mailto:${business.email}?subject=Private%20event%20inquiry`} class="ct-btn ct-btn-ember ct-btn-lg">
+              Inquire about the space
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── About ───── -->
+    <section class="ct-section ct-section-about" id="about">
+      <div class="ct-container">
+        <div class="ct-about-grid">
+          <div class="ct-about-photo ct-reveal"></div>
+          <div class="ct-reveal ct-d-1">
+            <span class="ct-eyebrow">Our Story</span>
+            <h2 class="ct-h2">One door, two rhythms.</h2>
+            <p>We opened in {business.founded} on West Main with a question that didn't have a clean answer: what would it look like if a coffee shop and a music room shared a roof — and neither one had to apologize for being there?</p>
+            <p class="pull">"Relationships are key to a healthy community. Coffee, breath, and music are how we keep them alive."</p>
+            <p>Upstairs has windows, plants, and a sunrise yoga slot we built around the way light hits the mountains in March. Downstairs has no windows and that's the point — the listening room is a place to hear things you'd miss anywhere else.</p>
+            <p>Both run on the same idea: presence is the product. The room slows you down on purpose.</p>
+            <div class="ct-stat-strip">
+              <div class="ct-stat">
+                <div class="ct-stat-num">5</div>
+                <div class="ct-stat-label">Years on Main St</div>
+              </div>
+              <div class="ct-stat">
+                <div class="ct-stat-num">12+</div>
+                <div class="ct-stat-label">Weekly classes</div>
+              </div>
+              <div class="ct-stat">
+                <div class="ct-stat-num">90</div>
+                <div class="ct-stat-label">Shows / year</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── Visit ───── -->
+    <section class="ct-section ct-section-visit" id="visit">
+      <div class="ct-container">
+
+        <div style="text-align: center; max-width: 640px; margin: 0 auto 4rem;" class="ct-reveal">
+          <span class="ct-eyebrow" style="justify-content: center;">Visit</span>
+          <h2 class="ct-h2">53 West Main Street.</h2>
+          <p style="font-family: var(--ct-display); font-style: italic; font-size: 1.1rem; color: var(--ct-muted); margin-top: 1rem; font-variation-settings: 'opsz' 144, 'SOFT' 100;">
+            Right off the square. Free parking on Chestatee. The blue door under the awning.
+          </p>
+        </div>
+
+        <div class="ct-visit-grid">
+
+          <div class="ct-reveal">
+            <div class="ct-visit-block">
+              <div class="ct-visit-label">Address</div>
+              <h4>{business.address}</h4>
+              <p style="color: var(--ct-muted); font-size: 0.95rem; margin-bottom: 0.65rem;">{business.cityState}</p>
+              <a href="https://maps.google.com/?q=53+W+Main+St+Dahlonega+GA" target="_blank" rel="noopener noreferrer">Get directions ↗</a>
+            </div>
+            <div class="ct-visit-block">
+              <div class="ct-visit-label">Contact</div>
+              <h4><a href={`tel:${business.phoneDigits}`}>{business.phone}</a></h4>
+              <p style="margin-top: 0.4rem;"><a href={`mailto:${business.email}`}>{business.email}</a></p>
+            </div>
+            <div class="ct-visit-block">
+              <div class="ct-visit-label">Follow</div>
+              <p style="font-size: 0.95rem;">
+                <a href={`https://instagram.com/${business.instagram}`} target="_blank" rel="noopener noreferrer">Instagram @{business.instagram}</a>
+              </p>
+              <p style="font-size: 0.95rem; margin-top: 0.35rem;">
+                <a href={`https://facebook.com/${business.facebook}`} target="_blank" rel="noopener noreferrer">Facebook · {business.facebook}</a>
+              </p>
+            </div>
+          </div>
+
+          <div class="ct-reveal ct-d-1">
+            <div class="ct-visit-block">
+              <div class="ct-visit-label">Hours</div>
+              <ul class="ct-hours-list">
+                {hours.map((h) => (
+                  <li class={h.accent ? 'accent' : ''}>
+                    <span class="ct-hr-day">{h.day}</span>
+                    <span class="ct-hr-time">
+                      {h.open}
+                      {h.note && <small>· {h.note}</small>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p style="font-size: 0.85rem; color: var(--ct-muted); margin-top: 1rem;">Coffee bar closes at 3pm even on show nights — we open the room at 7.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ───── Newsletter ───── -->
+    <section class="ct-newsletter">
+      <div class="ct-container-narrow">
+        <span class="ct-eyebrow" style="justify-content: center;">Stay close</span>
+        <h2 class="ct-h2" style="margin-bottom: 0.75rem;">Hear about shows before they sell out.</h2>
+        <p style="font-family: var(--ct-display); font-style: italic; color: var(--ct-muted); font-size: 1.05rem; font-variation-settings: 'opsz' 144, 'SOFT' 100;">
+          One short email a week. Shows, new beans, special classes. No fluff.
+        </p>
+        <form class="ct-news-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = 'Subscribed ✓'; this.querySelector('input').value = '';">
+          <input type="email" required placeholder="your@email.com" aria-label="Email address" />
+          <button type="submit" class="ct-btn ct-btn-dark">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ───── Footer ───── -->
+    <footer class="ct-footer">
+      <div class="ct-footer-inner">
+        <div class="ct-footer-top">
+          <div>
+            <div class="ct-foot-logo">Canopy + the Roots</div>
+            <p>{business.address}<br/>{business.cityState}</p>
+            <p style="margin-top: 0.75rem;">{business.phone}<br/>{business.email}</p>
+          </div>
+          <div>
+            <h5>Upstairs</h5>
+            <ul>
+              <li><a href="#yoga">Yoga schedule</a></li>
+              <li><a href="#yoga">Class types</a></li>
+              <li><a href="#coffee">Coffee bar</a></li>
+              <li><a href="#membership">Membership</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Underground</h5>
+            <ul>
+              <li><a href="#underground">Upcoming shows</a></li>
+              <li><a href="#tickets">Tickets</a></li>
+              <li><a href={`mailto:${business.email}?subject=Artist%20booking`}>Play the room</a></li>
+              <li><a href="#events">Private events</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Follow</h5>
+            <ul>
+              <li><a href={`https://instagram.com/${business.instagram}`} target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href={`https://facebook.com/${business.facebook}`} target="_blank" rel="noopener noreferrer">Facebook</a></li>
+              <li><a href="#visit">Newsletter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="ct-footer-bottom">
+          <span>© 2026 Canopy + the Roots · Est. {business.founded}</span>
+          <span>Site preview by <a href="/">Lanier Web</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      (function () {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add('is-visible');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -80px 0px' }
+        );
+        document.querySelectorAll('.ct-reveal').forEach(function (el) { io.observe(el); });
+
+        // Highlight today's row in the hours list.
+        var today = new Date().getDay(); // 0 Sun .. 6 Sat
+        var order = [1, 2, 3, 4, 5, 6, 0]; // Mon..Sun matches the data array order
+        var todayIdx = order.indexOf(today);
+        if (todayIdx >= 0) {
+          var rows = document.querySelectorAll('.ct-hours-list li');
+          if (rows[todayIdx]) rows[todayIdx].classList.add('ct-today');
+        }
+      })();
+    </script>
+
+  </body>
+</html>
